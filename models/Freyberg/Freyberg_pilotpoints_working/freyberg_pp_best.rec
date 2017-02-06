@@ -1,0 +1,346 @@
+             PEST++ Version 3.2.0
+
+                 by Dave Welter
+     Computational Water Resource Engineering
+
+
+
+using control file: "freyberg_pp_best.pst"
+
+noptmax = 0, resetting max_run_fail = 1
+
+PEST++ run mode:- 
+   estimation
+
+Case dimensions:- 
+    Number of parameters = 72
+    Number of adjustable parameters = 72
+    Number of observations = 33
+    Number of prior estimates = 0
+
+Model command line(s):- 
+    python run_model_pp.py
+
+Model interface files:-
+    template files:
+      freyberg.rch.tpl
+      points1.dat.tpl
+    model input files:
+      freyberg.rch
+      points1.dat
+
+    instruction files:
+      freyberg.heads.ins
+      freyberg.rivflux.ins
+      freyberg.travel.ins
+    model output files:
+      freyberg.heads
+      freyberg.rivflux
+      freyberg.travel
+
+
+PEST Control Information
+    relparmax = 10
+    facparmax = 10
+    facorig = 0.001
+    phiredswh = 0.1
+    noptmax = 0
+    phiredstp = 0.01
+    nphistp = 3
+    nphinored = 3
+    relparstp = 0.01
+    nrelpar = 3
+
+PEST++ Options
+    n_iter_base = -1                  
+    n_iter_super = 4                   
+    max_n_super = 72                  
+    super eigthres = 1e-06               
+    svd pack = 0                   
+    auto norm = -999                
+    super relparmax = 0.1                 
+    max super frz iter = 5                   
+    mat inv = 1                   
+    max run fail = 1                   
+    max reg iter = 20                  
+    lambdas = 
+            0.1
+              1
+             10
+            100
+           1000
+    uncertainty flag = 1                   
+    parameter covariance file =                     
+    prediction names = 
+    RIVFLUX_CAL
+   RIVFLUX_FORE
+    TRAVEL_TIME
+       OR03C16F
+        OR04C9F
+
+
+Parameter group information
+NAME            INCREMENT TYPE     DERIVATIVE INCREMENT    INCREMENT LOWER BOUND  FORCE CENTRAL     INCREMENT MULTIPLIER
+pilotpt               RELATIVE                     0.01                        0         SWITCH                        2
+rch                   RELATIVE                     0.01                        0         SWITCH                        2
+
+Parameter information
+NAME           TRANSFORMATION        CHANGE LIMIT  INITIAL VALUE    LOWER BOUND    UPPER BOUND          GROUP          SCALE         OFFSET  DERIVATIVE COMMAND
+rch1           log                     FACTOR     0.00125111          1e-10          1e+10            rch              1              0                   0
+rch2           log                     FACTOR    9.35851e-05          1e-10          1e+10            rch              1              0                   0
+hkpp1          log                     FACTOR        50.7952          1e-10          1e+10        pilotpt              1              0                   0
+hkpp2          log                     FACTOR        34.2077          1e-10          1e+10        pilotpt              1              0                   0
+hkpp3          log                     FACTOR        41.0829          1e-10          1e+10        pilotpt              1              0                   0
+hkpp4          log                     FACTOR        17.8435          1e-10          1e+10        pilotpt              1              0                   0
+hkpp5          log                     FACTOR        7.10118          1e-10          1e+10        pilotpt              1              0                   0
+hkpp6          log                     FACTOR        26.8878          1e-10          1e+10        pilotpt              1              0                   0
+hkpp7          log                     FACTOR        32.0815          1e-10          1e+10        pilotpt              1              0                   0
+hkpp8          log                     FACTOR        7.61081          1e-10          1e+10        pilotpt              1              0                   0
+hkpp9          log                     FACTOR        75.8493          1e-10          1e+10        pilotpt              1              0                   0
+hkpp10         log                     FACTOR        14.6981          1e-10          1e+10        pilotpt              1              0                   0
+hkpp11         log                     FACTOR        11.5477          1e-10          1e+10        pilotpt              1              0                   0
+hkpp12         log                     FACTOR        24.8797          1e-10          1e+10        pilotpt              1              0                   0
+hkpp13         log                     FACTOR         37.712          1e-10          1e+10        pilotpt              1              0                   0
+hkpp14         log                     FACTOR        579.843          1e-10          1e+10        pilotpt              1              0                   0
+hkpp15         log                     FACTOR        1093.37          1e-10          1e+10        pilotpt              1              0                   0
+hkpp16         log                     FACTOR        45.6224          1e-10          1e+10        pilotpt              1              0                   0
+hkpp17         log                     FACTOR        17.9013          1e-10          1e+10        pilotpt              1              0                   0
+hkpp18         log                     FACTOR        35.6151          1e-10          1e+10        pilotpt              1              0                   0
+hkpp19         log                     FACTOR        75.1925          1e-10          1e+10        pilotpt              1              0                   0
+hkpp20         log                     FACTOR        63.5734          1e-10          1e+10        pilotpt              1              0                   0
+hkpp21         log                     FACTOR        49.5878          1e-10          1e+10        pilotpt              1              0                   0
+hkpp22         log                     FACTOR        7.43943          1e-10          1e+10        pilotpt              1              0                   0
+hkpp23         log                     FACTOR        23.3548          1e-10          1e+10        pilotpt              1              0                   0
+hkpp24         log                     FACTOR        74.2081          1e-10          1e+10        pilotpt              1              0                   0
+hkpp25         log                     FACTOR        160.224          1e-10          1e+10        pilotpt              1              0                   0
+hkpp26         log                     FACTOR         146.61          1e-10          1e+10        pilotpt              1              0                   0
+hkpp27         log                     FACTOR        2.97613          1e-10          1e+10        pilotpt              1              0                   0
+hkpp28         log                     FACTOR        20.2751          1e-10          1e+10        pilotpt              1              0                   0
+hkpp29         log                     FACTOR         103.97          1e-10          1e+10        pilotpt              1              0                   0
+hkpp30         log                     FACTOR        395.616          1e-10          1e+10        pilotpt              1              0                   0
+hkpp31         log                     FACTOR        489.559          1e-10          1e+10        pilotpt              1              0                   0
+hkpp32         log                     FACTOR        386.477          1e-10          1e+10        pilotpt              1              0                   0
+hkpp33         log                     FACTOR        14.3613          1e-10          1e+10        pilotpt              1              0                   0
+hkpp34         log                     FACTOR        85.4895          1e-10          1e+10        pilotpt              1              0                   0
+hkpp35         log                     FACTOR        108.761          1e-10          1e+10        pilotpt              1              0                   0
+hkpp36         log                     FACTOR        57.3709          1e-10          1e+10        pilotpt              1              0                   0
+hkpp37         log                     FACTOR        106.409          1e-10          1e+10        pilotpt              1              0                   0
+hkpp38         log                     FACTOR        19.2873          1e-10          1e+10        pilotpt              1              0                   0
+hkpp39         log                     FACTOR        31.6849          1e-10          1e+10        pilotpt              1              0                   0
+hkpp40         log                     FACTOR        78.4506          1e-10          1e+10        pilotpt              1              0                   0
+hkpp41         log                     FACTOR        14.3173          1e-10          1e+10        pilotpt              1              0                   0
+hkpp42         log                     FACTOR        43.7476          1e-10          1e+10        pilotpt              1              0                   0
+hkpp43         log                     FACTOR        251.212          1e-10          1e+10        pilotpt              1              0                   0
+hkpp44         log                     FACTOR        29.9291          1e-10          1e+10        pilotpt              1              0                   0
+hkpp45         log                     FACTOR        52.8716          1e-10          1e+10        pilotpt              1              0                   0
+hkpp46         log                     FACTOR        30.8735          1e-10          1e+10        pilotpt              1              0                   0
+hkpp47         log                     FACTOR        12.8459          1e-10          1e+10        pilotpt              1              0                   0
+hkpp48         log                     FACTOR        93.7922          1e-10          1e+10        pilotpt              1              0                   0
+hkpp49         log                     FACTOR        1951.45          1e-10          1e+10        pilotpt              1              0                   0
+hkpp50         log                     FACTOR        39.3851          1e-10          1e+10        pilotpt              1              0                   0
+hkpp51         log                     FACTOR        38.3062          1e-10          1e+10        pilotpt              1              0                   0
+hkpp52         log                     FACTOR        18.6377          1e-10          1e+10        pilotpt              1              0                   0
+hkpp53         log                     FACTOR        16.9583          1e-10          1e+10        pilotpt              1              0                   0
+hkpp54         log                     FACTOR        41.3969          1e-10          1e+10        pilotpt              1              0                   0
+hkpp55         log                     FACTOR        284.596          1e-10          1e+10        pilotpt              1              0                   0
+hkpp56         log                     FACTOR        43.7487          1e-10          1e+10        pilotpt              1              0                   0
+hkpp57         log                     FACTOR        38.1673          1e-10          1e+10        pilotpt              1              0                   0
+hkpp58         log                     FACTOR        28.5355          1e-10          1e+10        pilotpt              1              0                   0
+hkpp59         log                     FACTOR        24.9293          1e-10          1e+10        pilotpt              1              0                   0
+hkpp60         log                     FACTOR        25.4445          1e-10          1e+10        pilotpt              1              0                   0
+hkpp61         log                     FACTOR        38.7001          1e-10          1e+10        pilotpt              1              0                   0
+hkpp62         log                     FACTOR        50.5029          1e-10          1e+10        pilotpt              1              0                   0
+hkpp63         log                     FACTOR        48.2295          1e-10          1e+10        pilotpt              1              0                   0
+hkpp64         log                     FACTOR        49.6696          1e-10          1e+10        pilotpt              1              0                   0
+hkpp65         log                     FACTOR         41.333          1e-10          1e+10        pilotpt              1              0                   0
+hkpp66         log                     FACTOR        40.6788          1e-10          1e+10        pilotpt              1              0                   0
+hkpp67         log                     FACTOR        68.6316          1e-10          1e+10        pilotpt              1              0                   0
+hkpp68         log                     FACTOR         61.514          1e-10          1e+10        pilotpt              1              0                   0
+hkpp69         log                     FACTOR        58.3881          1e-10          1e+10        pilotpt              1              0                   0
+hkpp70         log                     FACTOR        46.5509          1e-10          1e+10        pilotpt              1              0                   0
+
+Observation information
+NAME                                    VALUE               GROUP              WEIGHT
+or03c16c                              22.1867            head_cal                   1
+or03c10c                              24.0859            head_cal                   1
+or04c9c                               22.3334            head_cal                   1
+or10c2c                               31.8343            head_cal                   1
+or14c11c                              17.7284            head_cal                   1
+or16c17c                              16.5665            head_cal                   1
+or22c11c                              18.2859            head_cal                   1
+or23c16c                              15.2082            head_cal                   1
+or25c5c                               24.2429            head_cal                   1
+or27c7c                               22.7489            head_cal                   1
+or30c16c                              14.7362            head_cal                   1
+or34c8c                               18.6199            head_cal                   1
+or35c11c                                15.62            head_cal                   1
+rivflux_cal                           -999999            flux_cal                   0
+or03c16f                              -999999           head_fore                   0
+or03c10f                              -999999           head_fore                   0
+or04c9f                               -999999           head_fore                   0
+or10c2f                               -999999           head_fore                   0
+or14c11f                              -999999           head_fore                   0
+or16c17f                              -999999           head_fore                   0
+or22c11f                              -999999           head_fore                   0
+or23c16f                              -999999           head_fore                   0
+or25c5f                               -999999           head_fore                   0
+or27c7f                               -999999           head_fore                   0
+or30c16f                              -999999           head_fore                   0
+or34c8f                               -999999           head_fore                   0
+or35c11f                              -999999           head_fore                   0
+fr02c02f                              -999999           head_fore                   0
+fr01c13f                              -999999           head_fore                   0
+fr09c15f                              -999999           head_fore                   0
+fr25c10f                              -999999           head_fore                   0
+rivflux_fore                          -999999           flux_fore                   0
+travel_time                           -999999         travel_fore                   0
+
+Prior information
+
+   no prior information provided
+
+PEST SVD Information
+    maxsing = 33
+    eigthresh = 1e-06
+
+
+   -----    Starting PEST++ Iterations    ----    
+
+
+-----------------------------------------
+     ---   OPTIMIZATION COMPLETE   ---   
+  Reason for terminating PEST++ simulation: NOPTMAX criterion met
+  Summary of termination criteria:
+  NOPTMAX = 0 ;  NOPT at termination = 0
+  NPHINORED = 3 ;  NPHINORED at termination = 0
+  NRELPAR = 3; RELPARSTP = 0.01 ;  NRELPAR at termination = 0
+  PHIREDSTP = 0.01; NPHISTP = 3
+  NPHISTP lowest PHI's:
+
+FINAL OPTIMISATION RESULTS
+
+  Optimal parameter values  
+
+     Parameter            
+        Name         Value
+    ------------  ------------
+    rch1            0.00125111
+    rch2           9.35851e-05
+    hkpp1              50.7952
+    hkpp2              34.2077
+    hkpp3              41.0829
+    hkpp4              17.8435
+    hkpp5              7.10118
+    hkpp6              26.8878
+    hkpp7              32.0815
+    hkpp8              7.61081
+    hkpp9              75.8493
+    hkpp10             14.6981
+    hkpp11             11.5477
+    hkpp12             24.8797
+    hkpp13              37.712
+    hkpp14             579.843
+    hkpp15             1093.37
+    hkpp16             45.6224
+    hkpp17             17.9013
+    hkpp18             35.6151
+    hkpp19             75.1925
+    hkpp20             63.5734
+    hkpp21             49.5878
+    hkpp22             7.43943
+    hkpp23             23.3548
+    hkpp24             74.2081
+    hkpp25             160.224
+    hkpp26              146.61
+    hkpp27             2.97613
+    hkpp28             20.2751
+    hkpp29              103.97
+    hkpp30             395.616
+    hkpp31             489.559
+    hkpp32             386.477
+    hkpp33             14.3613
+    hkpp34             85.4895
+    hkpp35             108.761
+    hkpp36             57.3709
+    hkpp37             106.409
+    hkpp38             19.2873
+    hkpp39             31.6849
+    hkpp40             78.4506
+    hkpp41             14.3173
+    hkpp42             43.7476
+    hkpp43             251.212
+    hkpp44             29.9291
+    hkpp45             52.8716
+    hkpp46             30.8735
+    hkpp47             12.8459
+    hkpp48             93.7922
+    hkpp49             1951.45
+    hkpp50             39.3851
+    hkpp51             38.3062
+    hkpp52             18.6377
+    hkpp53             16.9583
+    hkpp54             41.3969
+    hkpp55             284.596
+    hkpp56             43.7487
+    hkpp57             38.1673
+    hkpp58             28.5355
+    hkpp59             24.9293
+    hkpp60             25.4445
+    hkpp61             38.7001
+    hkpp62             50.5029
+    hkpp63             48.2295
+    hkpp64             49.6696
+    hkpp65              41.333
+    hkpp66             40.6788
+    hkpp67             68.6316
+    hkpp68              61.514
+    hkpp69             58.3881
+    hkpp70             46.5509
+
+
+  Observations with optimal model-simulated equivalents and residuals
+                 Name        Group             Measured             Modelled             Residual               Weight
+             or03c16c     head_cal              22.1867              22.3308            -0.144040              1.00000
+             or03c10c     head_cal              24.0859              24.0321            0.0538500              1.00000
+              or04c9c     head_cal              22.3334              22.5641            -0.230720              1.00000
+              or10c2c     head_cal              31.8343              31.8210            0.0133300              1.00000
+             or14c11c     head_cal              17.7284              17.8004           -0.0719800              1.00000
+             or16c17c     head_cal              16.5665              16.7231            -0.156570              1.00000
+             or22c11c     head_cal              18.2859              18.2588            0.0271200              1.00000
+             or23c16c     head_cal              15.2082              15.2989           -0.0906600              1.00000
+              or25c5c     head_cal              24.2429              24.2208            0.0221000              1.00000
+              or27c7c     head_cal              22.7489              22.8040           -0.0551300              1.00000
+             or30c16c     head_cal              14.7362              14.8005           -0.0643400              1.00000
+              or34c8c     head_cal              18.6199              18.6157           0.00420000              1.00000
+             or35c11c     head_cal              15.6200              15.6288          -0.00880000              1.00000
+          rivflux_cal     flux_cal             -999999.             -47704.9             -952294.              0.00000
+             or03c16f    head_fore             -999999.              20.2523         -1.00002e+06              0.00000
+             or03c10f    head_fore             -999999.              21.3500         -1.00002e+06              0.00000
+              or04c9f    head_fore             -999999.              20.3511         -1.00002e+06              0.00000
+              or10c2f    head_fore             -999999.              27.2636         -1.00003e+06              0.00000
+             or14c11f    head_fore             -999999.              17.0868         -1.00002e+06              0.00000
+             or16c17f    head_fore             -999999.              16.2042         -1.00002e+06              0.00000
+             or22c11f    head_fore             -999999.              16.7304         -1.00002e+06              0.00000
+             or23c16f    head_fore             -999999.              14.7736         -1.00001e+06              0.00000
+              or25c5f    head_fore             -999999.              20.3669         -1.00002e+06              0.00000
+              or27c7f    head_fore             -999999.              19.2002         -1.00002e+06              0.00000
+             or30c16f    head_fore             -999999.              14.2163         -1.00001e+06              0.00000
+              or34c8f    head_fore             -999999.              16.2938         -1.00002e+06              0.00000
+             or35c11f    head_fore             -999999.              14.2299         -1.00001e+06              0.00000
+             fr02c02f    head_fore             -999999.              25.2718         -1.00002e+06              0.00000
+             fr01c13f    head_fore             -999999.              20.8918         -1.00002e+06              0.00000
+             fr09c15f    head_fore             -999999.              18.2712         -1.00002e+06              0.00000
+             fr25c10f    head_fore             -999999.              17.4066         -1.00002e+06              0.00000
+         rivflux_fore    flux_fore             -999999.             -14059.4             -985940.              0.00000
+          travel_time  travel_fore             -999999.              7655.96         -1.00765e+06              0.00000
+
+Final composite objective function 
+    Final phi                                           Total : 0.123469
+    Contribution to phi from observation group  "travel_fore" : 0.00000
+    Contribution to phi from observation group    "head_fore" : 0.00000
+    Contribution to phi from observation group     "flux_cal" : 0.00000
+    Contribution to phi from observation group    "flux_fore" : 0.00000
+    Contribution to phi from observation group     "head_cal" : 0.123469
+
+
+Number of forward model runs performed during optimiztion: 1

@@ -1,0 +1,33 @@
+                    PARAMETER SENSITIVITIES: CASE freyberg_k+r
+
+
+NUMERIC PARAMETER SENSITIVITIES FOR OPTIMISATION ITERATION NO. 1   ----->
+ Parameter name   Group        Current Value           CSS w/reg           CSS w/o reg
+   rch1            rch          -4.85942659773       0.00436809470370     0.00436809470370    
+   hk1             hk           1.69897000434        0.00127259273756     0.00127259273756    
+
+
+NUMERIC PARAMETER SENSITIVITIES FOR OPTIMISATION ITERATION NO. 2   ----->
+ Parameter name   Group        Current Value           CSS w/reg           CSS w/o reg
+   rch1            rch          -3.85942659773       0.0455982040816      0.0455982040816     
+   hk1             hk           1.37982461997        0.0147816630929      0.0147816630929     
+
+
+NUMERIC PARAMETER SENSITIVITIES FOR OPTIMISATION ITERATION NO. 3   ----->
+ Parameter name   Group        Current Value           CSS w/reg           CSS w/o reg
+   rch1            rch          -2.85942659773       0.113192563738       0.113192563738      
+   hk1             hk           1.63118929735        0.0617464278346      0.0617464278346     
+
+
+NUMERIC PARAMETER SENSITIVITIES FOR OPTIMISATION ITERATION NO. 4   ----->
+ Parameter name   Group        Current Value           CSS w/reg           CSS w/o reg
+   rch1            rch          -3.09347451387       0.105304385108       0.105304385108      
+   hk1             hk           1.49235239353        0.0486789241433      0.0486789241433     
+
+
+NUMERIC PARAMETER SENSITIVITIES FOR OPTIMISATION ITERATION NO. 5   ----->
+ Parameter name   Group        Current Value           CSS w/reg           CSS w/o reg
+   rch1            rch          -3.10062593993       0.103673142001       0.103673142001      
+   hk1             hk           1.49472107614        0.0481979441517      0.0481979441517     
+
+

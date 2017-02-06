@@ -1,0 +1,1263 @@
+
+YAMR Master listening on socket:0.0.0.0:4004 (IPv4)
+running model 73 times
+
+    waiting for slaves to appear...
+
+
+05/11/16 20:05:37->new connection from: 192.168.4.82:51230
+05/11/16 20:05:37->new connection from: 192.168.4.82:51231
+05/11/16 20:05:37->initializing new slave connection from: 192.168.4.82:51230; number of slaves: 2; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_0
+05/11/16 20:05:37->initializing new slave connection from: 192.168.4.82:51231; number of slaves: 2; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_1
+05/11/16 20:05:37->new connection from: 192.168.4.82:51232
+05/11/16 20:05:37->initializing new slave connection from: 192.168.4.82:51232; number of slaves: 3; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_2
+05/11/16 20:05:37->new connection from: 192.168.4.82:51233
+05/11/16 20:05:37->initializing new slave connection from: 192.168.4.82:51233; number of slaves: 4; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_3
+05/11/16 20:05:37->new connection from: 192.168.4.82:51234
+05/11/16 20:05:37->initializing new slave connection from: 192.168.4.82:51234; number of slaves: 5; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_4
+05/11/16 20:05:37->new connection from: 192.168.4.82:51235
+05/11/16 20:05:37->initializing new slave connection from: 192.168.4.82:51235; number of slaves: 6; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_5
+05/11/16 20:05:37->new connection from: 192.168.4.82:51236
+05/11/16 20:05:37->initializing new slave connection from: 192.168.4.82:51236; number of slaves: 7; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_6
+05/11/16 20:05:37->new connection from: 192.168.4.82:51237
+05/11/16 20:05:37->initializing new slave connection from: 192.168.4.82:51237; number of slaves: 8; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_7
+05/11/16 20:05:37->new connection from: 192.168.4.82:51238
+05/11/16 20:05:37->initializing new slave connection from: 192.168.4.82:51238; number of slaves: 9; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_8
+05/11/16 20:05:38->new connection from: 192.168.4.82:51239
+05/11/16 20:05:38->initializing new slave connection from: 192.168.4.82:51239; number of slaves: 10; working dir: /Users/jwhite/Training/cal_uq/ppp_course/slave_9
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51230
+05/11/16 20:05:39->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 2, run id = 0, concurrent runs = 1)
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51231
+05/11/16 20:05:39->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 2, run id = 1, concurrent runs = 1)
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51232
+05/11/16 20:05:39->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 2, run id = 2, concurrent runs = 1)
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51233
+05/11/16 20:05:39->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 2, run id = 3, concurrent runs = 1)
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51234
+05/11/16 20:05:39->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 2, run id = 4, concurrent runs = 1)
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51235
+05/11/16 20:05:39->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 2, run id = 5, concurrent runs = 1)
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51236
+05/11/16 20:05:39->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 2, run id = 6, concurrent runs = 1)
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51238
+05/11/16 20:05:39->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 2, run id = 7, concurrent runs = 1)
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51237
+05/11/16 20:05:39->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 2, run id = 8, concurrent runs = 1)
+05/11/16 20:05:39->new slave ready: 192.168.4.82:51239
+05/11/16 20:05:39->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 2, run id = 9, concurrent runs = 1)
+05/11/16 20:05:43->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0786833 min, group id = 2, run id = 0 concurrent = 1)
+05/11/16 20:05:43->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 2, run id = 10, concurrent runs = 1)
+05/11/16 20:05:43->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.07885 min, group id = 2, run id = 1 concurrent = 1)
+05/11/16 20:05:43->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 2, run id = 11, concurrent runs = 1)
+05/11/16 20:05:43->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.07675 min, group id = 2, run id = 5 concurrent = 1)
+05/11/16 20:05:43->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 2, run id = 12, concurrent runs = 1)
+05/11/16 20:05:43->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0787333 min, group id = 2, run id = 2 concurrent = 1)
+05/11/16 20:05:43->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 2, run id = 13, concurrent runs = 1)
+05/11/16 20:05:43->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.07865 min, group id = 2, run id = 3 concurrent = 1)
+05/11/16 20:05:43->Sending run 14 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 2, run id = 14, concurrent runs = 1)
+05/11/16 20:05:43->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0787 min, group id = 2, run id = 4 concurrent = 1)
+05/11/16 20:05:43->Sending run 15 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 2, run id = 15, concurrent runs = 1)
+05/11/16 20:05:43->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0784167 min, group id = 2, run id = 6 concurrent = 1)
+05/11/16 20:05:43->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0783 min, group id = 2, run id = 8 concurrent = 1)
+05/11/16 20:05:43->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.07835 min, group id = 2, run id = 7 concurrent = 1)
+05/11/16 20:05:43->Sending run 16 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 2, run id = 16, concurrent runs = 1)
+05/11/16 20:05:43->Sending run 17 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 2, run id = 17, concurrent runs = 1)
+05/11/16 20:05:43->Sending run 18 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 2, run id = 18, concurrent runs = 1)
+05/11/16 20:05:44->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0752667 min, group id = 2, run id = 9 concurrent = 1)
+05/11/16 20:05:44->Sending run 19 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 2, run id = 19, concurrent runs = 1)
+05/11/16 20:05:48->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0803167 min, group id = 2, run id = 10 concurrent = 1)
+05/11/16 20:05:48->Sending run 20 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 2, run id = 20, concurrent runs = 1)
+05/11/16 20:05:48->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.08105 min, group id = 2, run id = 11 concurrent = 1)
+05/11/16 20:05:48->Sending run 21 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 2, run id = 21, concurrent runs = 1)
+05/11/16 20:05:48->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0811 min, group id = 2, run id = 13 concurrent = 1)
+05/11/16 20:05:48->Sending run 22 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 2, run id = 22, concurrent runs = 1)
+05/11/16 20:05:48->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0803167 min, group id = 2, run id = 12 concurrent = 1)
+05/11/16 20:05:48->Sending run 23 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 2, run id = 23, concurrent runs = 1)
+05/11/16 20:05:48->run 14 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0816833 min, group id = 2, run id = 14 concurrent = 1)
+05/11/16 20:05:48->run 15 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0815667 min, group id = 2, run id = 15 concurrent = 1)
+05/11/16 20:05:48->run 16 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0809833 min, group id = 2, run id = 16 concurrent = 1)
+05/11/16 20:05:48->run 17 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0809167 min, group id = 2, run id = 17 concurrent = 1)
+05/11/16 20:05:48->run 18 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.08095 min, group id = 2, run id = 18 concurrent = 1)
+05/11/16 20:05:48->Sending run 24 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 2, run id = 24, concurrent runs = 1)
+05/11/16 20:05:48->Sending run 25 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 2, run id = 25, concurrent runs = 1)
+05/11/16 20:05:48->Sending run 26 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 2, run id = 26, concurrent runs = 1)
+05/11/16 20:05:48->Sending run 27 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 2, run id = 27, concurrent runs = 1)
+05/11/16 20:05:48->Sending run 28 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 2, run id = 28, concurrent runs = 1)
+05/11/16 20:05:49->run 19 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.07775 min, group id = 2, run id = 19 concurrent = 1)
+05/11/16 20:05:49->Sending run 29 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 2, run id = 29, concurrent runs = 1)
+05/11/16 20:05:53->run 20 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0826667 min, group id = 2, run id = 20 concurrent = 1)
+05/11/16 20:05:53->Sending run 30 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 2, run id = 30, concurrent runs = 1)
+05/11/16 20:05:54->run 21 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0838833 min, group id = 2, run id = 21 concurrent = 1)
+05/11/16 20:05:54->run 23 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0831667 min, group id = 2, run id = 23 concurrent = 1)
+05/11/16 20:05:54->Sending run 31 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 2, run id = 31, concurrent runs = 1)
+05/11/16 20:05:54->Sending run 32 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 2, run id = 32, concurrent runs = 1)
+05/11/16 20:05:54->run 27 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0826 min, group id = 2, run id = 27 concurrent = 1)
+05/11/16 20:05:54->Sending run 33 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 2, run id = 33, concurrent runs = 1)
+05/11/16 20:05:54->run 25 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0837667 min, group id = 2, run id = 25 concurrent = 1)
+05/11/16 20:05:54->Sending run 34 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 2, run id = 34, concurrent runs = 1)
+05/11/16 20:05:54->run 26 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0834833 min, group id = 2, run id = 26 concurrent = 1)
+05/11/16 20:05:54->run 28 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0834667 min, group id = 2, run id = 28 concurrent = 1)
+05/11/16 20:05:54->run 22 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0844333 min, group id = 2, run id = 22 concurrent = 1)
+05/11/16 20:05:54->run 24 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.08385 min, group id = 2, run id = 24 concurrent = 1)
+05/11/16 20:05:54->Sending run 35 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 2, run id = 35, concurrent runs = 1)
+05/11/16 20:05:54->Sending run 36 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 2, run id = 36, concurrent runs = 1)
+05/11/16 20:05:54->Sending run 37 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 2, run id = 37, concurrent runs = 1)
+05/11/16 20:05:54->Sending run 38 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 2, run id = 38, concurrent runs = 1)
+05/11/16 20:05:54->run 29 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0814 min, group id = 2, run id = 29 concurrent = 1)
+05/11/16 20:05:54->Sending run 39 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 2, run id = 39, concurrent runs = 1)
+05/11/16 20:05:59->run 30 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0856333 min, group id = 2, run id = 30 concurrent = 1)
+05/11/16 20:05:59->Sending run 40 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 2, run id = 40, concurrent runs = 1)
+05/11/16 20:05:59->run 32 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0850167 min, group id = 2, run id = 32 concurrent = 1)
+05/11/16 20:05:59->Sending run 41 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 2, run id = 41, concurrent runs = 1)
+05/11/16 20:05:59->run 34 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.08465 min, group id = 2, run id = 34 concurrent = 1)
+05/11/16 20:05:59->Sending run 42 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 2, run id = 42, concurrent runs = 1)
+05/11/16 20:05:59->run 35 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0845167 min, group id = 2, run id = 35 concurrent = 1)
+05/11/16 20:05:59->Sending run 43 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 2, run id = 43, concurrent runs = 1)
+05/11/16 20:05:59->run 31 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0862 min, group id = 2, run id = 31 concurrent = 1)
+05/11/16 20:05:59->Sending run 44 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 2, run id = 44, concurrent runs = 1)
+05/11/16 20:05:59->run 38 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0853167 min, group id = 2, run id = 38 concurrent = 1)
+05/11/16 20:05:59->run 36 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0851333 min, group id = 2, run id = 36 concurrent = 1)
+05/11/16 20:05:59->Sending run 45 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 2, run id = 45, concurrent runs = 1)
+05/11/16 20:05:59->Sending run 46 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 2, run id = 46, concurrent runs = 1)
+05/11/16 20:05:59->run 33 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0855667 min, group id = 2, run id = 33 concurrent = 1)
+05/11/16 20:05:59->Sending run 47 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 2, run id = 47, concurrent runs = 1)
+05/11/16 20:05:59->run 37 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0864667 min, group id = 2, run id = 37 concurrent = 1)
+05/11/16 20:05:59->Sending run 48 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 2, run id = 48, concurrent runs = 1)
+05/11/16 20:05:59->run 39 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0841667 min, group id = 2, run id = 39 concurrent = 1)
+05/11/16 20:05:59->Sending run 49 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 2, run id = 49, concurrent runs = 1)
+05/11/16 20:06:04->run 40 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0871167 min, group id = 2, run id = 40 concurrent = 1)
+05/11/16 20:06:04->Sending run 50 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 2, run id = 50, concurrent runs = 1)
+05/11/16 20:06:04->run 41 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0868 min, group id = 2, run id = 41 concurrent = 1)
+05/11/16 20:06:04->Sending run 51 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 2, run id = 51, concurrent runs = 1)
+05/11/16 20:06:04->run 42 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0867167 min, group id = 2, run id = 42 concurrent = 1)
+05/11/16 20:06:04->Sending run 52 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 2, run id = 52, concurrent runs = 1)
+05/11/16 20:06:04->run 47 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0871667 min, group id = 2, run id = 47 concurrent = 1)
+05/11/16 20:06:04->Sending run 53 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 2, run id = 53, concurrent runs = 1)
+05/11/16 20:06:04->run 44 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0875167 min, group id = 2, run id = 44 concurrent = 1)
+05/11/16 20:06:04->Sending run 54 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 2, run id = 54, concurrent runs = 1)
+05/11/16 20:06:04->run 43 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0874667 min, group id = 2, run id = 43 concurrent = 1)
+05/11/16 20:06:04->Sending run 55 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 2, run id = 55, concurrent runs = 1)
+05/11/16 20:06:04->run 45 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0878167 min, group id = 2, run id = 45 concurrent = 1)
+05/11/16 20:06:04->Sending run 56 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 2, run id = 56, concurrent runs = 1)
+05/11/16 20:06:04->run 49 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0847 min, group id = 2, run id = 49 concurrent = 1)
+05/11/16 20:06:04->Sending run 57 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 2, run id = 57, concurrent runs = 1)
+05/11/16 20:06:04->run 46 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0877833 min, group id = 2, run id = 46 concurrent = 1)
+05/11/16 20:06:04->Sending run 58 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 2, run id = 58, concurrent runs = 1)
+05/11/16 20:06:04->run 48 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0876667 min, group id = 2, run id = 48 concurrent = 1)
+05/11/16 20:06:04->Sending run 59 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 2, run id = 59, concurrent runs = 1)
+05/11/16 20:06:09->run 50 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0870167 min, group id = 2, run id = 50 concurrent = 1)
+05/11/16 20:06:09->Sending run 60 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 2, run id = 60, concurrent runs = 1)
+05/11/16 20:06:09->run 51 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0869333 min, group id = 2, run id = 51 concurrent = 1)
+05/11/16 20:06:09->Sending run 61 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 2, run id = 61, concurrent runs = 1)
+05/11/16 20:06:09->run 53 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0872333 min, group id = 2, run id = 53 concurrent = 1)
+05/11/16 20:06:09->Sending run 62 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 2, run id = 62, concurrent runs = 1)
+05/11/16 20:06:09->run 52 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.08765 min, group id = 2, run id = 52 concurrent = 1)
+05/11/16 20:06:09->Sending run 63 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 2, run id = 63, concurrent runs = 1)
+05/11/16 20:06:09->run 54 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0881167 min, group id = 2, run id = 54 concurrent = 1)
+05/11/16 20:06:09->Sending run 64 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 2, run id = 64, concurrent runs = 1)
+05/11/16 20:06:09->run 55 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0881167 min, group id = 2, run id = 55 concurrent = 1)
+05/11/16 20:06:09->Sending run 65 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 2, run id = 65, concurrent runs = 1)
+05/11/16 20:06:10->run 58 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0880667 min, group id = 2, run id = 58 concurrent = 1)
+05/11/16 20:06:10->Sending run 66 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 2, run id = 66, concurrent runs = 1)
+05/11/16 20:06:10->run 59 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0881 min, group id = 2, run id = 59 concurrent = 1)
+05/11/16 20:06:10->Sending run 67 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 2, run id = 67, concurrent runs = 1)
+05/11/16 20:06:10->run 56 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0883333 min, group id = 2, run id = 56 concurrent = 1)
+05/11/16 20:06:10->Sending run 68 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 2, run id = 68, concurrent runs = 1)
+05/11/16 20:06:10->run 57 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0875833 min, group id = 2, run id = 57 concurrent = 1)
+05/11/16 20:06:10->Sending run 69 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 2, run id = 69, concurrent runs = 1)
+05/11/16 20:06:14->run 60 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0854167 min, group id = 2, run id = 60 concurrent = 1)
+05/11/16 20:06:14->Sending run 70 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 2, run id = 70, concurrent runs = 1)
+05/11/16 20:06:14->run 61 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0861167 min, group id = 2, run id = 61 concurrent = 1)
+05/11/16 20:06:14->Sending run 71 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 2, run id = 71, concurrent runs = 1)
+05/11/16 20:06:15->run 62 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0863 min, group id = 2, run id = 62 concurrent = 1)
+05/11/16 20:06:15->Sending run 72 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 2, run id = 72, concurrent runs = 1)
+05/11/16 20:06:15->run 64 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.08665 min, group id = 2, run id = 64 concurrent = 1)
+05/11/16 20:06:15->run 63 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.08735 min, group id = 2, run id = 63 concurrent = 1)
+05/11/16 20:06:15->run 67 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0867167 min, group id = 2, run id = 67 concurrent = 1)
+05/11/16 20:06:15->run 65 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0875333 min, group id = 2, run id = 65 concurrent = 1)
+05/11/16 20:06:15->run 68 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0875167 min, group id = 2, run id = 68 concurrent = 1)
+05/11/16 20:06:15->run 66 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.08825 min, group id = 2, run id = 66 concurrent = 1)
+05/11/16 20:06:15->run 69 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0873667 min, group id = 2, run id = 69 concurrent = 1)
+05/11/16 20:06:17->run 70 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0649167 min, group id = 2, run id = 70 concurrent = 1)
+05/11/16 20:06:17->run 71 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0644 min, group id = 2, run id = 71 concurrent = 1)
+05/11/16 20:06:17->run 72 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0644167 min, group id = 2, run id = 72 concurrent = 1)
+
+---------------------
+   73 runs complete :  0 runs failed
+
+running model 1 times
+
+05/11/16 20:06:17->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 3, run id = 0, concurrent runs = 1)
+05/11/16 20:06:19->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.05045 min, group id = 3, run id = 0 concurrent = 1)
+
+---------------------
+   1 runs complete :  0 runs failed
+
+running model 7 times
+
+05/11/16 20:06:19->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 4, run id = 1, concurrent runs = 1)
+05/11/16 20:06:19->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 4, run id = 2, concurrent runs = 1)
+05/11/16 20:06:19->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 4, run id = 3, concurrent runs = 1)
+05/11/16 20:06:19->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 4, run id = 4, concurrent runs = 1)
+05/11/16 20:06:19->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 4, run id = 5, concurrent runs = 1)
+05/11/16 20:06:19->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 4, run id = 6, concurrent runs = 1)
+05/11/16 20:06:19->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 4, run id = 7, concurrent runs = 1)
+05/11/16 20:06:23->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.06375 min, group id = 4, run id = 5 concurrent = 1)
+05/11/16 20:06:23->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0753167 min, group id = 4, run id = 6 concurrent = 1)
+05/11/16 20:06:23->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0749167 min, group id = 4, run id = 2 concurrent = 1)
+05/11/16 20:06:23->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0753167 min, group id = 4, run id = 3 concurrent = 1)
+05/11/16 20:06:23->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0752333 min, group id = 4, run id = 4 concurrent = 1)
+05/11/16 20:06:23->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0637667 min, group id = 4, run id = 7 concurrent = 1)
+05/11/16 20:06:23->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0757667 min, group id = 4, run id = 1 concurrent = 1)
+
+---------------------
+   7 runs complete :  0 runs failed
+
+running model 14 times
+
+05/11/16 20:06:23->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 5, run id = 0, concurrent runs = 1)
+05/11/16 20:06:23->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 5, run id = 1, concurrent runs = 1)
+05/11/16 20:06:23->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 5, run id = 2, concurrent runs = 1)
+05/11/16 20:06:23->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 5, run id = 3, concurrent runs = 1)
+05/11/16 20:06:23->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 5, run id = 4, concurrent runs = 1)
+05/11/16 20:06:23->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 5, run id = 5, concurrent runs = 1)
+05/11/16 20:06:23->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 5, run id = 6, concurrent runs = 1)
+05/11/16 20:06:23->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 5, run id = 7, concurrent runs = 1)
+05/11/16 20:06:23->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 5, run id = 8, concurrent runs = 1)
+05/11/16 20:06:23->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 5, run id = 9, concurrent runs = 1)
+05/11/16 20:06:28->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0811167 min, group id = 5, run id = 3 concurrent = 1)
+05/11/16 20:06:28->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0753667 min, group id = 5, run id = 6 concurrent = 1)
+05/11/16 20:06:28->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 5, run id = 10, concurrent runs = 1)
+05/11/16 20:06:28->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 5, run id = 11, concurrent runs = 1)
+05/11/16 20:06:28->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0884333 min, group id = 5, run id = 7 concurrent = 1)
+05/11/16 20:06:28->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0761833 min, group id = 5, run id = 4 concurrent = 1)
+05/11/16 20:06:28->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 5, run id = 12, concurrent runs = 1)
+05/11/16 20:06:28->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 5, run id = 13, concurrent runs = 1)
+05/11/16 20:06:28->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0822 min, group id = 5, run id = 9 concurrent = 1)
+05/11/16 20:06:28->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0817833 min, group id = 5, run id = 1 concurrent = 1)
+05/11/16 20:06:28->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0880167 min, group id = 5, run id = 8 concurrent = 1)
+05/11/16 20:06:28->rescheduling overdue run 0 (0.0886667|0.05045 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0
+05/11/16 20:06:28->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 5, run id = 0, concurrent runs = 2)
+05/11/16 20:06:28->2 concurrent runs for run id = 0
+05/11/16 20:06:28->rescheduling overdue run 0 (0.0886667|0.05045 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0
+05/11/16 20:06:28->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 5, run id = 0, concurrent runs = 3)
+05/11/16 20:06:28->3 concurrent runs for run id = 0
+05/11/16 20:06:28->rescheduling overdue run 2 (0.0886667|0.0753167 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3
+05/11/16 20:06:28->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 5, run id = 2, concurrent runs = 2)
+05/11/16 20:06:28->2 concurrent runs for run id = 2
+05/11/16 20:06:29->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0704167 min, group id = 5, run id = 0 concurrent = 3)
+05/11/16 20:06:29->sending kill request; reason: completed on alternative node; run id:0; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1
+05/11/16 20:06:29->sending kill request; reason: completed on alternative node; run id:0; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2
+05/11/16 20:06:29->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0828667 min, group id = 5, run id = 2 concurrent = 2)
+05/11/16 20:06:29->sending kill request; reason: completed on alternative node; run id:2; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9
+05/11/16 20:06:29->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0828833 min, group id = 5, run id = 5 concurrent = 1)
+05/11/16 20:06:29->Run 0 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1, run id = 0 concurrent = 0
+05/11/16 20:06:29->Run 0 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2, run id = 0 concurrent = 0
+05/11/16 20:06:29->Run 2 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9, run id = 2 concurrent = 0
+05/11/16 20:06:31->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.06425 min, group id = 5, run id = 10 concurrent = 1)
+05/11/16 20:06:31->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0613833 min, group id = 5, run id = 11 concurrent = 1)
+05/11/16 20:06:31->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0609667 min, group id = 5, run id = 13 concurrent = 1)
+05/11/16 20:06:31->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0671167 min, group id = 5, run id = 12 concurrent = 1)
+
+---------------------
+   14 runs complete :  0 runs failed
+
+running model 7 times
+
+05/11/16 20:06:31->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 6, run id = 1, concurrent runs = 1)
+05/11/16 20:06:31->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 6, run id = 2, concurrent runs = 1)
+05/11/16 20:06:31->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 6, run id = 3, concurrent runs = 1)
+05/11/16 20:06:31->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 6, run id = 4, concurrent runs = 1)
+05/11/16 20:06:31->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 6, run id = 5, concurrent runs = 1)
+05/11/16 20:06:31->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 6, run id = 6, concurrent runs = 1)
+05/11/16 20:06:31->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 6, run id = 7, concurrent runs = 1)
+05/11/16 20:06:35->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.07295 min, group id = 6, run id = 7 concurrent = 1)
+05/11/16 20:06:35->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.07295 min, group id = 6, run id = 4 concurrent = 1)
+05/11/16 20:06:35->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0675333 min, group id = 6, run id = 1 concurrent = 1)
+05/11/16 20:06:35->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0732833 min, group id = 6, run id = 3 concurrent = 1)
+05/11/16 20:06:35->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0645 min, group id = 6, run id = 5 concurrent = 1)
+05/11/16 20:06:35->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0628667 min, group id = 6, run id = 6 concurrent = 1)
+05/11/16 20:06:35->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0734833 min, group id = 6, run id = 2 concurrent = 1)
+
+---------------------
+   7 runs complete :  0 runs failed
+
+running model 14 times
+
+05/11/16 20:06:35->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 7, run id = 0, concurrent runs = 1)
+05/11/16 20:06:35->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 7, run id = 1, concurrent runs = 1)
+05/11/16 20:06:35->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 7, run id = 2, concurrent runs = 1)
+05/11/16 20:06:35->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 7, run id = 3, concurrent runs = 1)
+05/11/16 20:06:35->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 7, run id = 4, concurrent runs = 1)
+05/11/16 20:06:35->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 7, run id = 5, concurrent runs = 1)
+05/11/16 20:06:35->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 7, run id = 6, concurrent runs = 1)
+05/11/16 20:06:35->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 7, run id = 7, concurrent runs = 1)
+05/11/16 20:06:35->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 7, run id = 8, concurrent runs = 1)
+05/11/16 20:06:35->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 7, run id = 9, concurrent runs = 1)
+05/11/16 20:06:40->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.075 min, group id = 7, run id = 6 concurrent = 1)
+05/11/16 20:06:40->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.08105 min, group id = 7, run id = 9 concurrent = 1)
+05/11/16 20:06:40->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0807833 min, group id = 7, run id = 2 concurrent = 1)
+05/11/16 20:06:40->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0807833 min, group id = 7, run id = 5 concurrent = 1)
+05/11/16 20:06:40->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0778667 min, group id = 7, run id = 7 concurrent = 1)
+05/11/16 20:06:40->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0883167 min, group id = 7, run id = 8 concurrent = 1)
+05/11/16 20:06:40->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 7, run id = 10, concurrent runs = 1)
+05/11/16 20:06:40->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 7, run id = 11, concurrent runs = 1)
+05/11/16 20:06:40->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 7, run id = 12, concurrent runs = 1)
+05/11/16 20:06:40->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 7, run id = 13, concurrent runs = 1)
+05/11/16 20:06:40->rescheduling overdue run 0 (0.0886333|0.0675333 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0
+05/11/16 20:06:40->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 7, run id = 0, concurrent runs = 2)
+05/11/16 20:06:40->2 concurrent runs for run id = 0
+05/11/16 20:06:40->rescheduling overdue run 1 (0.0886333|0.0732833 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2
+05/11/16 20:06:40->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 7, run id = 1, concurrent runs = 2)
+05/11/16 20:06:40->2 concurrent runs for run id = 1
+05/11/16 20:06:41->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0789167 min, group id = 7, run id = 0 concurrent = 2)
+05/11/16 20:06:41->sending kill request; reason: completed on alternative node; run id:0; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8
+05/11/16 20:06:41->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0818 min, group id = 7, run id = 1 concurrent = 2)
+05/11/16 20:06:41->sending kill request; reason: completed on alternative node; run id:1; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9
+05/11/16 20:06:41->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0774167 min, group id = 7, run id = 3 concurrent = 1)
+05/11/16 20:06:41->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0766 min, group id = 7, run id = 4 concurrent = 1)
+05/11/16 20:06:41->Run 0 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8, run id = 0 concurrent = 0
+05/11/16 20:06:41->Run 1 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9, run id = 1 concurrent = 0
+05/11/16 20:06:43->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0618 min, group id = 7, run id = 13 concurrent = 1)
+05/11/16 20:06:43->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.05895 min, group id = 7, run id = 10 concurrent = 1)
+05/11/16 20:06:43->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0625667 min, group id = 7, run id = 12 concurrent = 1)
+05/11/16 20:06:43->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0627 min, group id = 7, run id = 11 concurrent = 1)
+
+---------------------
+   14 runs complete :  0 runs failed
+
+running model 7 times
+
+05/11/16 20:06:43->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 8, run id = 1, concurrent runs = 1)
+05/11/16 20:06:43->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 8, run id = 2, concurrent runs = 1)
+05/11/16 20:06:43->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 8, run id = 3, concurrent runs = 1)
+05/11/16 20:06:43->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 8, run id = 4, concurrent runs = 1)
+05/11/16 20:06:43->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 8, run id = 5, concurrent runs = 1)
+05/11/16 20:06:43->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 8, run id = 6, concurrent runs = 1)
+05/11/16 20:06:43->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 8, run id = 7, concurrent runs = 1)
+05/11/16 20:06:47->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0716833 min, group id = 8, run id = 2 concurrent = 1)
+05/11/16 20:06:47->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0709833 min, group id = 8, run id = 1 concurrent = 1)
+05/11/16 20:06:47->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0706167 min, group id = 8, run id = 5 concurrent = 1)
+05/11/16 20:06:47->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0618 min, group id = 8, run id = 7 concurrent = 1)
+05/11/16 20:06:47->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0632833 min, group id = 8, run id = 6 concurrent = 1)
+05/11/16 20:06:47->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0711167 min, group id = 8, run id = 4 concurrent = 1)
+05/11/16 20:06:47->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0645333 min, group id = 8, run id = 3 concurrent = 1)
+
+---------------------
+   7 runs complete :  0 runs failed
+
+running model 14 times
+
+05/11/16 20:06:47->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 9, run id = 0, concurrent runs = 1)
+05/11/16 20:06:47->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 9, run id = 1, concurrent runs = 1)
+05/11/16 20:06:47->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 9, run id = 2, concurrent runs = 1)
+05/11/16 20:06:47->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 9, run id = 3, concurrent runs = 1)
+05/11/16 20:06:47->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 9, run id = 4, concurrent runs = 1)
+05/11/16 20:06:47->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 9, run id = 5, concurrent runs = 1)
+05/11/16 20:06:47->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 9, run id = 6, concurrent runs = 1)
+05/11/16 20:06:47->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 9, run id = 7, concurrent runs = 1)
+05/11/16 20:06:47->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 9, run id = 8, concurrent runs = 1)
+05/11/16 20:06:47->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 9, run id = 9, concurrent runs = 1)
+05/11/16 20:06:53->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0806333 min, group id = 9, run id = 0 concurrent = 1)
+05/11/16 20:06:53->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.081 min, group id = 9, run id = 2 concurrent = 1)
+05/11/16 20:06:53->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 9, run id = 10, concurrent runs = 1)
+05/11/16 20:06:53->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 9, run id = 11, concurrent runs = 1)
+05/11/16 20:06:53->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0807167 min, group id = 9, run id = 3 concurrent = 1)
+05/11/16 20:06:53->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 9, run id = 12, concurrent runs = 1)
+05/11/16 20:06:53->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0765167 min, group id = 9, run id = 1 concurrent = 1)
+05/11/16 20:06:53->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0774333 min, group id = 9, run id = 9 concurrent = 1)
+05/11/16 20:06:53->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0804833 min, group id = 9, run id = 4 concurrent = 1)
+05/11/16 20:06:53->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0760667 min, group id = 9, run id = 6 concurrent = 1)
+05/11/16 20:06:53->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0841167 min, group id = 9, run id = 7 concurrent = 1)
+05/11/16 20:06:53->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0768167 min, group id = 9, run id = 5 concurrent = 1)
+05/11/16 20:06:53->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 9, run id = 13, concurrent runs = 1)
+05/11/16 20:06:53->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0909333 min, group id = 9, run id = 8 concurrent = 1)
+05/11/16 20:06:55->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.06245 min, group id = 9, run id = 12 concurrent = 1)
+05/11/16 20:06:55->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0606 min, group id = 9, run id = 13 concurrent = 1)
+05/11/16 20:06:55->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0633167 min, group id = 9, run id = 10 concurrent = 1)
+05/11/16 20:06:55->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0635 min, group id = 9, run id = 11 concurrent = 1)
+
+---------------------
+   14 runs complete :  0 runs failed
+
+running model 8 times
+
+05/11/16 20:06:55->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 10, run id = 1, concurrent runs = 1)
+05/11/16 20:06:55->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 10, run id = 2, concurrent runs = 1)
+05/11/16 20:06:55->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 10, run id = 3, concurrent runs = 1)
+05/11/16 20:06:55->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 10, run id = 4, concurrent runs = 1)
+05/11/16 20:06:55->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 10, run id = 5, concurrent runs = 1)
+05/11/16 20:06:55->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 10, run id = 6, concurrent runs = 1)
+05/11/16 20:06:55->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 10, run id = 7, concurrent runs = 1)
+05/11/16 20:06:55->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 10, run id = 8, concurrent runs = 1)
+05/11/16 20:06:59->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0769333 min, group id = 10, run id = 7 concurrent = 1)
+05/11/16 20:06:59->rescheduling overdue run 1 (0.06975|0.0606 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1
+05/11/16 20:06:59->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 10, run id = 1, concurrent runs = 2)
+05/11/16 20:06:59->2 concurrent runs for run id = 1
+05/11/16 20:06:59->rescheduling overdue run 1 (0.0697667|0.0606 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1
+05/11/16 20:06:59->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 10, run id = 1, concurrent runs = 3)
+05/11/16 20:06:59->3 concurrent runs for run id = 1
+05/11/16 20:06:59->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0662333 min, group id = 10, run id = 3 concurrent = 1)
+05/11/16 20:06:59->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0804833 min, group id = 10, run id = 8 concurrent = 1)
+05/11/16 20:06:59->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0734333 min, group id = 10, run id = 5 concurrent = 1)
+05/11/16 20:07:00->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0738167 min, group id = 10, run id = 2 concurrent = 1)
+05/11/16 20:07:00->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.076 min, group id = 10, run id = 4 concurrent = 1)
+05/11/16 20:07:00->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0661 min, group id = 10, run id = 1 concurrent = 3)
+05/11/16 20:07:00->sending kill request; reason: completed on alternative node; run id:1; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0
+05/11/16 20:07:00->sending kill request; reason: completed on alternative node; run id:1; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2
+05/11/16 20:07:00->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0738833 min, group id = 10, run id = 6 concurrent = 1)
+
+---------------------
+   8 runs complete :  0 runs failed
+
+running model 72 times
+
+05/11/16 20:07:00->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 11, run id = 1, concurrent runs = 1)
+05/11/16 20:07:00->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 11, run id = 2, concurrent runs = 1)
+05/11/16 20:07:00->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 11, run id = 3, concurrent runs = 1)
+05/11/16 20:07:00->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 11, run id = 4, concurrent runs = 1)
+05/11/16 20:07:00->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 11, run id = 5, concurrent runs = 1)
+05/11/16 20:07:00->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 11, run id = 6, concurrent runs = 1)
+05/11/16 20:07:00->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 11, run id = 7, concurrent runs = 1)
+05/11/16 20:07:00->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 11, run id = 8, concurrent runs = 1)
+05/11/16 20:07:00->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 11, run id = 9, concurrent runs = 1)
+05/11/16 20:07:00->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 11, run id = 10, concurrent runs = 1)
+05/11/16 20:07:05->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0808833 min, group id = 11, run id = 5 concurrent = 1)
+05/11/16 20:07:05->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 11, run id = 11, concurrent runs = 1)
+05/11/16 20:07:05->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0760833 min, group id = 11, run id = 9 concurrent = 1)
+05/11/16 20:07:05->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.08195 min, group id = 11, run id = 2 concurrent = 1)
+05/11/16 20:07:05->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0781667 min, group id = 11, run id = 3 concurrent = 1)
+05/11/16 20:07:05->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0835167 min, group id = 11, run id = 6 concurrent = 1)
+05/11/16 20:07:05->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0852833 min, group id = 11, run id = 7 concurrent = 1)
+05/11/16 20:07:05->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0781 min, group id = 11, run id = 1 concurrent = 1)
+05/11/16 20:07:05->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.08305 min, group id = 11, run id = 4 concurrent = 1)
+05/11/16 20:07:05->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0819833 min, group id = 11, run id = 8 concurrent = 1)
+05/11/16 20:07:05->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 11, run id = 12, concurrent runs = 1)
+05/11/16 20:07:05->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 11, run id = 13, concurrent runs = 1)
+05/11/16 20:07:05->Sending run 14 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 11, run id = 14, concurrent runs = 1)
+05/11/16 20:07:05->Sending run 15 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 11, run id = 15, concurrent runs = 1)
+05/11/16 20:07:05->Sending run 16 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 11, run id = 16, concurrent runs = 1)
+05/11/16 20:07:05->Sending run 17 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 11, run id = 17, concurrent runs = 1)
+05/11/16 20:07:05->Sending run 18 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 11, run id = 18, concurrent runs = 1)
+05/11/16 20:07:05->Sending run 19 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 11, run id = 19, concurrent runs = 1)
+05/11/16 20:07:05->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0768167 min, group id = 11, run id = 10 concurrent = 1)
+05/11/16 20:07:05->Sending run 20 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 11, run id = 20, concurrent runs = 1)
+05/11/16 20:07:10->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0847667 min, group id = 11, run id = 11 concurrent = 1)
+05/11/16 20:07:10->Sending run 21 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 11, run id = 21, concurrent runs = 1)
+05/11/16 20:07:10->run 18 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0858167 min, group id = 11, run id = 18 concurrent = 1)
+05/11/16 20:07:10->Sending run 22 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 11, run id = 22, concurrent runs = 1)
+05/11/16 20:07:10->run 20 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0819167 min, group id = 11, run id = 20 concurrent = 1)
+05/11/16 20:07:10->Sending run 23 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 11, run id = 23, concurrent runs = 1)
+05/11/16 20:07:10->run 15 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0868667 min, group id = 11, run id = 15 concurrent = 1)
+05/11/16 20:07:10->Sending run 24 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 11, run id = 24, concurrent runs = 1)
+05/11/16 20:07:10->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0831667 min, group id = 11, run id = 12 concurrent = 1)
+05/11/16 20:07:10->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0861 min, group id = 11, run id = 13 concurrent = 1)
+05/11/16 20:07:10->Sending run 25 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 11, run id = 25, concurrent runs = 1)
+05/11/16 20:07:10->Sending run 26 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 11, run id = 26, concurrent runs = 1)
+05/11/16 20:07:10->run 17 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0842333 min, group id = 11, run id = 17 concurrent = 1)
+05/11/16 20:07:10->run 14 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0842667 min, group id = 11, run id = 14 concurrent = 1)
+05/11/16 20:07:10->run 16 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0878333 min, group id = 11, run id = 16 concurrent = 1)
+05/11/16 20:07:10->run 19 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0861833 min, group id = 11, run id = 19 concurrent = 1)
+05/11/16 20:07:10->Sending run 27 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 11, run id = 27, concurrent runs = 1)
+05/11/16 20:07:10->Sending run 28 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 11, run id = 28, concurrent runs = 1)
+05/11/16 20:07:10->Sending run 29 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 11, run id = 29, concurrent runs = 1)
+05/11/16 20:07:10->Sending run 30 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 11, run id = 30, concurrent runs = 1)
+05/11/16 20:07:16->run 21 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0874833 min, group id = 11, run id = 21 concurrent = 1)
+05/11/16 20:07:16->Sending run 31 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 11, run id = 31, concurrent runs = 1)
+05/11/16 20:07:16->run 22 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.08735 min, group id = 11, run id = 22 concurrent = 1)
+05/11/16 20:07:16->Sending run 32 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 11, run id = 32, concurrent runs = 1)
+05/11/16 20:07:16->run 30 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0867167 min, group id = 11, run id = 30 concurrent = 1)
+05/11/16 20:07:16->Sending run 33 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 11, run id = 33, concurrent runs = 1)
+05/11/16 20:07:16->run 23 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.08615 min, group id = 11, run id = 23 concurrent = 1)
+05/11/16 20:07:16->run 29 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0882667 min, group id = 11, run id = 29 concurrent = 1)
+05/11/16 20:07:16->run 28 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0864833 min, group id = 11, run id = 28 concurrent = 1)
+05/11/16 20:07:16->Sending run 34 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 11, run id = 34, concurrent runs = 1)
+05/11/16 20:07:16->Sending run 35 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 11, run id = 35, concurrent runs = 1)
+05/11/16 20:07:16->Sending run 36 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 11, run id = 36, concurrent runs = 1)
+05/11/16 20:07:16->run 26 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0875 min, group id = 11, run id = 26 concurrent = 1)
+05/11/16 20:07:16->Sending run 37 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 11, run id = 37, concurrent runs = 1)
+05/11/16 20:07:16->run 24 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0886 min, group id = 11, run id = 24 concurrent = 1)
+05/11/16 20:07:16->Sending run 38 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 11, run id = 38, concurrent runs = 1)
+05/11/16 20:07:16->run 27 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0873167 min, group id = 11, run id = 27 concurrent = 1)
+05/11/16 20:07:16->run 25 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.08685 min, group id = 11, run id = 25 concurrent = 1)
+05/11/16 20:07:16->Sending run 39 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 11, run id = 39, concurrent runs = 1)
+05/11/16 20:07:16->Sending run 40 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 11, run id = 40, concurrent runs = 1)
+05/11/16 20:07:21->run 33 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0852833 min, group id = 11, run id = 33 concurrent = 1)
+05/11/16 20:07:21->Sending run 41 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 11, run id = 41, concurrent runs = 1)
+05/11/16 20:07:21->run 31 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0863 min, group id = 11, run id = 31 concurrent = 1)
+05/11/16 20:07:21->Sending run 42 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 11, run id = 42, concurrent runs = 1)
+05/11/16 20:07:21->run 32 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0863833 min, group id = 11, run id = 32 concurrent = 1)
+05/11/16 20:07:21->Sending run 43 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 11, run id = 43, concurrent runs = 1)
+05/11/16 20:07:21->run 34 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0856833 min, group id = 11, run id = 34 concurrent = 1)
+05/11/16 20:07:21->Sending run 44 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 11, run id = 44, concurrent runs = 1)
+05/11/16 20:07:21->run 36 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0866667 min, group id = 11, run id = 36 concurrent = 1)
+05/11/16 20:07:21->Sending run 45 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 11, run id = 45, concurrent runs = 1)
+05/11/16 20:07:21->run 37 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0871833 min, group id = 11, run id = 37 concurrent = 1)
+05/11/16 20:07:21->Sending run 46 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 11, run id = 46, concurrent runs = 1)
+05/11/16 20:07:21->run 35 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0876167 min, group id = 11, run id = 35 concurrent = 1)
+05/11/16 20:07:21->Sending run 47 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 11, run id = 47, concurrent runs = 1)
+05/11/16 20:07:21->run 40 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0861667 min, group id = 11, run id = 40 concurrent = 1)
+05/11/16 20:07:21->Sending run 48 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 11, run id = 48, concurrent runs = 1)
+05/11/16 20:07:21->run 38 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.08785 min, group id = 11, run id = 38 concurrent = 1)
+05/11/16 20:07:21->Sending run 49 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 11, run id = 49, concurrent runs = 1)
+05/11/16 20:07:21->run 39 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0871 min, group id = 11, run id = 39 concurrent = 1)
+05/11/16 20:07:21->Sending run 50 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 11, run id = 50, concurrent runs = 1)
+05/11/16 20:07:26->run 41 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.08605 min, group id = 11, run id = 41 concurrent = 1)
+05/11/16 20:07:26->Sending run 51 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 11, run id = 51, concurrent runs = 1)
+05/11/16 20:07:26->run 43 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0869333 min, group id = 11, run id = 43 concurrent = 1)
+05/11/16 20:07:26->Sending run 52 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 11, run id = 52, concurrent runs = 1)
+05/11/16 20:07:26->run 42 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0875 min, group id = 11, run id = 42 concurrent = 1)
+05/11/16 20:07:26->Sending run 53 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 11, run id = 53, concurrent runs = 1)
+05/11/16 20:07:26->run 44 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.08635 min, group id = 11, run id = 44 concurrent = 1)
+05/11/16 20:07:26->Sending run 54 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 11, run id = 54, concurrent runs = 1)
+05/11/16 20:07:26->run 45 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0868167 min, group id = 11, run id = 45 concurrent = 1)
+05/11/16 20:07:26->Sending run 55 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 11, run id = 55, concurrent runs = 1)
+05/11/16 20:07:26->run 49 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0866167 min, group id = 11, run id = 49 concurrent = 1)
+05/11/16 20:07:26->Sending run 56 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 11, run id = 56, concurrent runs = 1)
+05/11/16 20:07:26->run 48 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0866 min, group id = 11, run id = 48 concurrent = 1)
+05/11/16 20:07:26->Sending run 57 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 11, run id = 57, concurrent runs = 1)
+05/11/16 20:07:26->run 46 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.08785 min, group id = 11, run id = 46 concurrent = 1)
+05/11/16 20:07:26->Sending run 58 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 11, run id = 58, concurrent runs = 1)
+05/11/16 20:07:26->run 47 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0880667 min, group id = 11, run id = 47 concurrent = 1)
+05/11/16 20:07:26->Sending run 59 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 11, run id = 59, concurrent runs = 1)
+05/11/16 20:07:26->run 50 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0870833 min, group id = 11, run id = 50 concurrent = 1)
+05/11/16 20:07:26->Sending run 60 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 11, run id = 60, concurrent runs = 1)
+05/11/16 20:07:31->run 51 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0863667 min, group id = 11, run id = 51 concurrent = 1)
+05/11/16 20:07:31->Sending run 61 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 11, run id = 61, concurrent runs = 1)
+05/11/16 20:07:31->run 52 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0863167 min, group id = 11, run id = 52 concurrent = 1)
+05/11/16 20:07:31->Sending run 62 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 11, run id = 62, concurrent runs = 1)
+05/11/16 20:07:31->run 55 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0853 min, group id = 11, run id = 55 concurrent = 1)
+05/11/16 20:07:31->Sending run 63 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 11, run id = 63, concurrent runs = 1)
+05/11/16 20:07:31->run 53 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0872167 min, group id = 11, run id = 53 concurrent = 1)
+05/11/16 20:07:31->Sending run 64 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 11, run id = 64, concurrent runs = 1)
+05/11/16 20:07:31->run 54 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0866333 min, group id = 11, run id = 54 concurrent = 1)
+05/11/16 20:07:31->Sending run 65 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 11, run id = 65, concurrent runs = 1)
+05/11/16 20:07:31->run 56 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0859167 min, group id = 11, run id = 56 concurrent = 1)
+05/11/16 20:07:31->Sending run 66 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 11, run id = 66, concurrent runs = 1)
+05/11/16 20:07:31->run 57 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.086 min, group id = 11, run id = 57 concurrent = 1)
+05/11/16 20:07:31->Sending run 67 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 11, run id = 67, concurrent runs = 1)
+05/11/16 20:07:31->run 59 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0867833 min, group id = 11, run id = 59 concurrent = 1)
+05/11/16 20:07:31->Sending run 68 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 11, run id = 68, concurrent runs = 1)
+05/11/16 20:07:32->run 58 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0873667 min, group id = 11, run id = 58 concurrent = 1)
+05/11/16 20:07:32->Sending run 69 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 11, run id = 69, concurrent runs = 1)
+05/11/16 20:07:32->run 60 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0871 min, group id = 11, run id = 60 concurrent = 1)
+05/11/16 20:07:32->Sending run 70 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 11, run id = 70, concurrent runs = 1)
+05/11/16 20:07:36->run 61 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0858 min, group id = 11, run id = 61 concurrent = 1)
+05/11/16 20:07:36->Sending run 71 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 11, run id = 71, concurrent runs = 1)
+05/11/16 20:07:36->run 62 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0858667 min, group id = 11, run id = 62 concurrent = 1)
+05/11/16 20:07:36->Sending run 72 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 11, run id = 72, concurrent runs = 1)
+05/11/16 20:07:36->run 64 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0863167 min, group id = 11, run id = 64 concurrent = 1)
+05/11/16 20:07:36->run 63 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0860333 min, group id = 11, run id = 63 concurrent = 1)
+05/11/16 20:07:36->run 66 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0856333 min, group id = 11, run id = 66 concurrent = 1)
+05/11/16 20:07:36->run 67 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0858167 min, group id = 11, run id = 67 concurrent = 1)
+05/11/16 20:07:37->run 65 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0868333 min, group id = 11, run id = 65 concurrent = 1)
+05/11/16 20:07:37->run 68 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0868333 min, group id = 11, run id = 68 concurrent = 1)
+05/11/16 20:07:37->run 69 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0870167 min, group id = 11, run id = 69 concurrent = 1)
+05/11/16 20:07:37->run 70 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0869667 min, group id = 11, run id = 70 concurrent = 1)
+05/11/16 20:07:39->run 71 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0625167 min, group id = 11, run id = 71 concurrent = 1)
+05/11/16 20:07:39->run 72 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0634 min, group id = 11, run id = 72 concurrent = 1)
+
+---------------------
+   72 runs complete :  0 runs failed
+
+running model 1 times
+
+05/11/16 20:07:39->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 12, run id = 0, concurrent runs = 1)
+05/11/16 20:07:41->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0605833 min, group id = 12, run id = 0 concurrent = 1)
+
+---------------------
+   1 runs complete :  0 runs failed
+
+running model 7 times
+
+05/11/16 20:07:41->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 13, run id = 1, concurrent runs = 1)
+05/11/16 20:07:41->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 13, run id = 2, concurrent runs = 1)
+05/11/16 20:07:41->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 13, run id = 3, concurrent runs = 1)
+05/11/16 20:07:41->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 13, run id = 4, concurrent runs = 1)
+05/11/16 20:07:41->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 13, run id = 5, concurrent runs = 1)
+05/11/16 20:07:41->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 13, run id = 6, concurrent runs = 1)
+05/11/16 20:07:41->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 13, run id = 7, concurrent runs = 1)
+05/11/16 20:07:44->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.07255 min, group id = 13, run id = 3 concurrent = 1)
+05/11/16 20:07:44->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0732667 min, group id = 13, run id = 1 concurrent = 1)
+05/11/16 20:07:44->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.06155 min, group id = 13, run id = 5 concurrent = 1)
+05/11/16 20:07:44->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.073 min, group id = 13, run id = 6 concurrent = 1)
+05/11/16 20:07:44->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.07275 min, group id = 13, run id = 2 concurrent = 1)
+05/11/16 20:07:45->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0737333 min, group id = 13, run id = 4 concurrent = 1)
+05/11/16 20:07:45->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0619667 min, group id = 13, run id = 7 concurrent = 1)
+
+---------------------
+   7 runs complete :  0 runs failed
+
+running model 14 times
+
+05/11/16 20:07:45->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 14, run id = 0, concurrent runs = 1)
+05/11/16 20:07:45->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 14, run id = 1, concurrent runs = 1)
+05/11/16 20:07:45->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 14, run id = 2, concurrent runs = 1)
+05/11/16 20:07:45->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 14, run id = 3, concurrent runs = 1)
+05/11/16 20:07:45->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 14, run id = 4, concurrent runs = 1)
+05/11/16 20:07:45->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 14, run id = 5, concurrent runs = 1)
+05/11/16 20:07:45->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 14, run id = 6, concurrent runs = 1)
+05/11/16 20:07:45->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 14, run id = 7, concurrent runs = 1)
+05/11/16 20:07:45->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 14, run id = 8, concurrent runs = 1)
+05/11/16 20:07:45->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 14, run id = 9, concurrent runs = 1)
+05/11/16 20:07:50->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0780167 min, group id = 14, run id = 3 concurrent = 1)
+05/11/16 20:07:50->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0782333 min, group id = 14, run id = 5 concurrent = 1)
+05/11/16 20:07:50->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 14, run id = 10, concurrent runs = 1)
+05/11/16 20:07:50->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 14, run id = 11, concurrent runs = 1)
+05/11/16 20:07:50->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0859333 min, group id = 14, run id = 7 concurrent = 1)
+05/11/16 20:07:50->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 14, run id = 12, concurrent runs = 1)
+05/11/16 20:07:50->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0728833 min, group id = 14, run id = 0 concurrent = 1)
+05/11/16 20:07:50->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0792333 min, group id = 14, run id = 1 concurrent = 1)
+05/11/16 20:07:50->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0789833 min, group id = 14, run id = 2 concurrent = 1)
+05/11/16 20:07:50->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0733667 min, group id = 14, run id = 4 concurrent = 1)
+05/11/16 20:07:50->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 14, run id = 13, concurrent runs = 1)
+05/11/16 20:07:50->rescheduling overdue run 8 (0.0852|0.0737333 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4
+05/11/16 20:07:50->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 14, run id = 8, concurrent runs = 2)
+05/11/16 20:07:50->2 concurrent runs for run id = 8
+05/11/16 20:07:50->rescheduling overdue run 8 (0.0852|0.0737333 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4
+05/11/16 20:07:50->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 14, run id = 8, concurrent runs = 3)
+05/11/16 20:07:50->3 concurrent runs for run id = 8
+05/11/16 20:07:50->rescheduling overdue run 9 (0.0852|0.0619667 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7
+05/11/16 20:07:50->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 14, run id = 9, concurrent runs = 2)
+05/11/16 20:07:50->2 concurrent runs for run id = 9
+05/11/16 20:07:50->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.08545 min, group id = 14, run id = 6 concurrent = 1)
+05/11/16 20:07:50->rescheduling overdue run 9 (0.0852667|0.0619667 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7
+05/11/16 20:07:50->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 14, run id = 9, concurrent runs = 3)
+05/11/16 20:07:50->3 concurrent runs for run id = 9
+05/11/16 20:07:50->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0803167 min, group id = 14, run id = 8 concurrent = 3)
+05/11/16 20:07:50->sending kill request; reason: completed on alternative node; run id:8; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1
+05/11/16 20:07:50->sending kill request; reason: completed on alternative node; run id:8; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2
+05/11/16 20:07:50->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0744333 min, group id = 14, run id = 9 concurrent = 3)
+05/11/16 20:07:50->sending kill request; reason: completed on alternative node; run id:9; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5
+05/11/16 20:07:50->sending kill request; reason: completed on alternative node; run id:9; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8
+05/11/16 20:07:50->Run 8 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1, run id = 8 concurrent = 0
+05/11/16 20:07:50->Run 9 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5, run id = 9 concurrent = 0
+05/11/16 20:07:50->Run 8 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2, run id = 8 concurrent = 0
+05/11/16 20:07:50->Run 9 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8, run id = 9 concurrent = 0
+05/11/16 20:07:52->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0620667 min, group id = 14, run id = 10 concurrent = 1)
+05/11/16 20:07:52->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0621833 min, group id = 14, run id = 11 concurrent = 1)
+05/11/16 20:07:52->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0587333 min, group id = 14, run id = 13 concurrent = 1)
+05/11/16 20:07:52->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0659833 min, group id = 14, run id = 12 concurrent = 1)
+
+---------------------
+   14 runs complete :  0 runs failed
+
+running model 7 times
+
+05/11/16 20:07:52->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 15, run id = 1, concurrent runs = 1)
+05/11/16 20:07:52->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 15, run id = 2, concurrent runs = 1)
+05/11/16 20:07:52->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 15, run id = 3, concurrent runs = 1)
+05/11/16 20:07:52->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 15, run id = 4, concurrent runs = 1)
+05/11/16 20:07:52->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 15, run id = 5, concurrent runs = 1)
+05/11/16 20:07:52->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 15, run id = 6, concurrent runs = 1)
+05/11/16 20:07:52->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 15, run id = 7, concurrent runs = 1)
+05/11/16 20:07:56->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0717333 min, group id = 15, run id = 5 concurrent = 1)
+05/11/16 20:07:56->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0712 min, group id = 15, run id = 2 concurrent = 1)
+05/11/16 20:07:56->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0717833 min, group id = 15, run id = 3 concurrent = 1)
+05/11/16 20:07:56->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0635167 min, group id = 15, run id = 7 concurrent = 1)
+05/11/16 20:07:56->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.06345 min, group id = 15, run id = 4 concurrent = 1)
+05/11/16 20:07:56->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0691167 min, group id = 15, run id = 6 concurrent = 1)
+05/11/16 20:07:56->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0619333 min, group id = 15, run id = 1 concurrent = 1)
+
+---------------------
+   7 runs complete :  0 runs failed
+
+running model 14 times
+
+05/11/16 20:07:56->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 16, run id = 0, concurrent runs = 1)
+05/11/16 20:07:56->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 16, run id = 1, concurrent runs = 1)
+05/11/16 20:07:56->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 16, run id = 2, concurrent runs = 1)
+05/11/16 20:07:56->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 16, run id = 3, concurrent runs = 1)
+05/11/16 20:07:56->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 16, run id = 4, concurrent runs = 1)
+05/11/16 20:07:56->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 16, run id = 5, concurrent runs = 1)
+05/11/16 20:07:56->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 16, run id = 6, concurrent runs = 1)
+05/11/16 20:07:56->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 16, run id = 7, concurrent runs = 1)
+05/11/16 20:07:56->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 16, run id = 8, concurrent runs = 1)
+05/11/16 20:07:56->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 16, run id = 9, concurrent runs = 1)
+05/11/16 20:08:02->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.08 min, group id = 16, run id = 0 concurrent = 1)
+05/11/16 20:08:02->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0816333 min, group id = 16, run id = 6 concurrent = 1)
+05/11/16 20:08:02->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 16, run id = 10, concurrent runs = 1)
+05/11/16 20:08:02->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 16, run id = 11, concurrent runs = 1)
+05/11/16 20:08:02->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0879667 min, group id = 16, run id = 7 concurrent = 1)
+05/11/16 20:08:02->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 16, run id = 12, concurrent runs = 1)
+05/11/16 20:08:02->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0811167 min, group id = 16, run id = 3 concurrent = 1)
+05/11/16 20:08:02->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.07615 min, group id = 16, run id = 9 concurrent = 1)
+05/11/16 20:08:02->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0769833 min, group id = 16, run id = 2 concurrent = 1)
+05/11/16 20:08:02->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0798 min, group id = 16, run id = 4 concurrent = 1)
+05/11/16 20:08:02->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 16, run id = 13, concurrent runs = 1)
+05/11/16 20:08:02->rescheduling overdue run 1 (0.0905|0.0717833 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2
+05/11/16 20:08:02->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 16, run id = 1, concurrent runs = 2)
+05/11/16 20:08:02->2 concurrent runs for run id = 1
+05/11/16 20:08:02->rescheduling overdue run 5 (0.0905|0.0635167 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6
+05/11/16 20:08:02->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 16, run id = 5, concurrent runs = 2)
+05/11/16 20:08:02->2 concurrent runs for run id = 5
+05/11/16 20:08:02->rescheduling overdue run 8 (0.0905|0.0659833 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9
+05/11/16 20:08:02->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 16, run id = 8, concurrent runs = 2)
+05/11/16 20:08:02->2 concurrent runs for run id = 8
+05/11/16 20:08:02->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0811667 min, group id = 16, run id = 1 concurrent = 2)
+05/11/16 20:08:02->sending kill request; reason: completed on alternative node; run id:1; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0
+05/11/16 20:08:02->Run 5 failed on slave:192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 16, run id = 5, concurrent = 2) 
+05/11/16 20:08:02->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0782833 min, group id = 16, run id = 8 concurrent = 2)
+05/11/16 20:08:02->sending kill request; reason: completed on alternative node; run id:8; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5
+05/11/16 20:08:02->rescheduling overdue run 5 (0.0905667|0.0635167 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6
+05/11/16 20:08:02->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 16, run id = 5, concurrent runs = 2)
+05/11/16 20:08:02->2 concurrent runs for run id = 5
+05/11/16 20:08:02->Run 1 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0, run id = 1 concurrent = 0
+05/11/16 20:08:02->Run 8 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5, run id = 8 concurrent = 0
+05/11/16 20:08:05->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0707667 min, group id = 16, run id = 11 concurrent = 1)
+05/11/16 20:08:05->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0708167 min, group id = 16, run id = 10 concurrent = 1)
+05/11/16 20:08:05->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0745 min, group id = 16, run id = 12 concurrent = 1)
+05/11/16 20:08:05->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0711167 min, group id = 16, run id = 13 concurrent = 1)
+05/11/16 20:08:05->Run 5 failed on slave:192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 16, run id = 5, concurrent = 2) 
+05/11/16 20:08:05->Run 5 failed on slave:192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 16, run id = 5, concurrent = 1) 
+
+---------------------
+   13 runs complete :  1 runs failed
+
+running model 72 times
+
+05/11/16 20:08:05->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 17, run id = 1, concurrent runs = 1)
+05/11/16 20:08:05->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 17, run id = 2, concurrent runs = 1)
+05/11/16 20:08:05->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 17, run id = 3, concurrent runs = 1)
+05/11/16 20:08:05->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 17, run id = 4, concurrent runs = 1)
+05/11/16 20:08:05->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 17, run id = 5, concurrent runs = 1)
+05/11/16 20:08:05->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 17, run id = 6, concurrent runs = 1)
+05/11/16 20:08:05->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 17, run id = 7, concurrent runs = 1)
+05/11/16 20:08:05->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 17, run id = 8, concurrent runs = 1)
+05/11/16 20:08:05->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 17, run id = 9, concurrent runs = 1)
+05/11/16 20:08:05->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 17, run id = 10, concurrent runs = 1)
+05/11/16 20:08:10->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0808667 min, group id = 17, run id = 8 concurrent = 1)
+05/11/16 20:08:10->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 17, run id = 11, concurrent runs = 1)
+05/11/16 20:08:10->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.07715 min, group id = 17, run id = 2 concurrent = 1)
+05/11/16 20:08:10->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0823167 min, group id = 17, run id = 9 concurrent = 1)
+05/11/16 20:08:10->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.08165 min, group id = 17, run id = 4 concurrent = 1)
+05/11/16 20:08:10->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0771167 min, group id = 17, run id = 6 concurrent = 1)
+05/11/16 20:08:10->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.079 min, group id = 17, run id = 7 concurrent = 1)
+05/11/16 20:08:10->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 17, run id = 12, concurrent runs = 1)
+05/11/16 20:08:10->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 17, run id = 13, concurrent runs = 1)
+05/11/16 20:08:10->Sending run 14 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 17, run id = 14, concurrent runs = 1)
+05/11/16 20:08:10->Sending run 15 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 17, run id = 15, concurrent runs = 1)
+05/11/16 20:08:10->Sending run 16 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 17, run id = 16, concurrent runs = 1)
+05/11/16 20:08:11->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.08105 min, group id = 17, run id = 10 concurrent = 1)
+05/11/16 20:08:11->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0781333 min, group id = 17, run id = 3 concurrent = 1)
+05/11/16 20:08:11->Sending run 17 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 17, run id = 17, concurrent runs = 1)
+05/11/16 20:08:11->Sending run 18 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 17, run id = 18, concurrent runs = 1)
+05/11/16 20:08:11->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0815 min, group id = 17, run id = 1 concurrent = 1)
+05/11/16 20:08:11->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0751833 min, group id = 17, run id = 5 concurrent = 1)
+05/11/16 20:08:11->Sending run 19 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 17, run id = 19, concurrent runs = 1)
+05/11/16 20:08:11->Sending run 20 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 17, run id = 20, concurrent runs = 1)
+05/11/16 20:08:16->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.08465 min, group id = 17, run id = 13 concurrent = 1)
+05/11/16 20:08:16->run 14 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0843167 min, group id = 17, run id = 14 concurrent = 1)
+05/11/16 20:08:16->run 16 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0829833 min, group id = 17, run id = 16 concurrent = 1)
+05/11/16 20:08:16->Sending run 21 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 17, run id = 21, concurrent runs = 1)
+05/11/16 20:08:16->Sending run 22 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 17, run id = 22, concurrent runs = 1)
+05/11/16 20:08:16->Sending run 23 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 17, run id = 23, concurrent runs = 1)
+05/11/16 20:08:16->run 15 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0829167 min, group id = 17, run id = 15 concurrent = 1)
+05/11/16 20:08:16->Sending run 24 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 17, run id = 24, concurrent runs = 1)
+05/11/16 20:08:16->run 19 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0842667 min, group id = 17, run id = 19 concurrent = 1)
+05/11/16 20:08:16->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0856333 min, group id = 17, run id = 11 concurrent = 1)
+05/11/16 20:08:16->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0837667 min, group id = 17, run id = 12 concurrent = 1)
+05/11/16 20:08:16->Sending run 25 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 17, run id = 25, concurrent runs = 1)
+05/11/16 20:08:16->Sending run 26 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 17, run id = 26, concurrent runs = 1)
+05/11/16 20:08:16->Sending run 27 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 17, run id = 27, concurrent runs = 1)
+05/11/16 20:08:16->run 17 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0857333 min, group id = 17, run id = 17 concurrent = 1)
+05/11/16 20:08:16->run 18 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0842833 min, group id = 17, run id = 18 concurrent = 1)
+05/11/16 20:08:16->run 20 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.08195 min, group id = 17, run id = 20 concurrent = 1)
+05/11/16 20:08:16->Sending run 28 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 17, run id = 28, concurrent runs = 1)
+05/11/16 20:08:16->Sending run 29 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 17, run id = 29, concurrent runs = 1)
+05/11/16 20:08:16->Sending run 30 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 17, run id = 30, concurrent runs = 1)
+05/11/16 20:08:21->run 21 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0849833 min, group id = 17, run id = 21 concurrent = 1)
+05/11/16 20:08:21->Sending run 31 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 17, run id = 31, concurrent runs = 1)
+05/11/16 20:08:21->run 24 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0832667 min, group id = 17, run id = 24 concurrent = 1)
+05/11/16 20:08:21->run 23 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0841667 min, group id = 17, run id = 23 concurrent = 1)
+05/11/16 20:08:21->Sending run 32 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 17, run id = 32, concurrent runs = 1)
+05/11/16 20:08:21->Sending run 33 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 17, run id = 33, concurrent runs = 1)
+05/11/16 20:08:21->run 22 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.08555 min, group id = 17, run id = 22 concurrent = 1)
+05/11/16 20:08:21->Sending run 34 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 17, run id = 34, concurrent runs = 1)
+05/11/16 20:08:21->run 29 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.08485 min, group id = 17, run id = 29 concurrent = 1)
+05/11/16 20:08:21->Sending run 35 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 17, run id = 35, concurrent runs = 1)
+05/11/16 20:08:21->run 25 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0863833 min, group id = 17, run id = 25 concurrent = 1)
+05/11/16 20:08:21->Sending run 36 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 17, run id = 36, concurrent runs = 1)
+05/11/16 20:08:21->run 26 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0870833 min, group id = 17, run id = 26 concurrent = 1)
+05/11/16 20:08:21->Sending run 37 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 17, run id = 37, concurrent runs = 1)
+05/11/16 20:08:21->run 27 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.08625 min, group id = 17, run id = 27 concurrent = 1)
+05/11/16 20:08:21->Sending run 38 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 17, run id = 38, concurrent runs = 1)
+05/11/16 20:08:21->run 28 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.08645 min, group id = 17, run id = 28 concurrent = 1)
+05/11/16 20:08:21->run 30 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0845667 min, group id = 17, run id = 30 concurrent = 1)
+05/11/16 20:08:21->Sending run 39 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 17, run id = 39, concurrent runs = 1)
+05/11/16 20:08:21->Sending run 40 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 17, run id = 40, concurrent runs = 1)
+05/11/16 20:08:26->run 33 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0838 min, group id = 17, run id = 33 concurrent = 1)
+05/11/16 20:08:26->Sending run 41 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 17, run id = 41, concurrent runs = 1)
+05/11/16 20:08:26->run 34 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0838667 min, group id = 17, run id = 34 concurrent = 1)
+05/11/16 20:08:26->Sending run 42 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 17, run id = 42, concurrent runs = 1)
+05/11/16 20:08:26->run 31 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0843667 min, group id = 17, run id = 31 concurrent = 1)
+05/11/16 20:08:26->Sending run 43 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 17, run id = 43, concurrent runs = 1)
+05/11/16 20:08:26->run 32 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0841833 min, group id = 17, run id = 32 concurrent = 1)
+05/11/16 20:08:26->Sending run 44 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 17, run id = 44, concurrent runs = 1)
+05/11/16 20:08:26->run 35 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0841833 min, group id = 17, run id = 35 concurrent = 1)
+05/11/16 20:08:26->Sending run 45 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 17, run id = 45, concurrent runs = 1)
+05/11/16 20:08:26->run 36 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.08495 min, group id = 17, run id = 36 concurrent = 1)
+05/11/16 20:08:26->Sending run 46 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 17, run id = 46, concurrent runs = 1)
+05/11/16 20:08:26->run 38 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0850167 min, group id = 17, run id = 38 concurrent = 1)
+05/11/16 20:08:26->Sending run 47 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 17, run id = 47, concurrent runs = 1)
+05/11/16 20:08:26->run 37 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0861333 min, group id = 17, run id = 37 concurrent = 1)
+05/11/16 20:08:26->Sending run 48 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 17, run id = 48, concurrent runs = 1)
+05/11/16 20:08:26->run 40 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.08495 min, group id = 17, run id = 40 concurrent = 1)
+05/11/16 20:08:26->Sending run 49 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 17, run id = 49, concurrent runs = 1)
+05/11/16 20:08:26->run 39 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0859667 min, group id = 17, run id = 39 concurrent = 1)
+05/11/16 20:08:26->Sending run 50 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 17, run id = 50, concurrent runs = 1)
+05/11/16 20:08:31->run 41 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0861167 min, group id = 17, run id = 41 concurrent = 1)
+05/11/16 20:08:31->Sending run 51 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 17, run id = 51, concurrent runs = 1)
+05/11/16 20:08:31->run 42 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0862167 min, group id = 17, run id = 42 concurrent = 1)
+05/11/16 20:08:31->Sending run 52 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 17, run id = 52, concurrent runs = 1)
+05/11/16 20:08:31->run 43 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0865667 min, group id = 17, run id = 43 concurrent = 1)
+05/11/16 20:08:31->run 44 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0858 min, group id = 17, run id = 44 concurrent = 1)
+05/11/16 20:08:31->Sending run 53 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 17, run id = 53, concurrent runs = 1)
+05/11/16 20:08:31->Sending run 54 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 17, run id = 54, concurrent runs = 1)
+05/11/16 20:08:31->run 48 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0850333 min, group id = 17, run id = 48 concurrent = 1)
+05/11/16 20:08:31->Sending run 55 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 17, run id = 55, concurrent runs = 1)
+05/11/16 20:08:31->run 46 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0859333 min, group id = 17, run id = 46 concurrent = 1)
+05/11/16 20:08:31->Sending run 56 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 17, run id = 56, concurrent runs = 1)
+05/11/16 20:08:31->run 47 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0859 min, group id = 17, run id = 47 concurrent = 1)
+05/11/16 20:08:31->run 45 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0864167 min, group id = 17, run id = 45 concurrent = 1)
+05/11/16 20:08:31->Sending run 57 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 17, run id = 57, concurrent runs = 1)
+05/11/16 20:08:31->Sending run 58 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 17, run id = 58, concurrent runs = 1)
+05/11/16 20:08:32->run 50 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0863833 min, group id = 17, run id = 50 concurrent = 1)
+05/11/16 20:08:32->Sending run 59 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 17, run id = 59, concurrent runs = 1)
+05/11/16 20:08:32->run 49 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0861 min, group id = 17, run id = 49 concurrent = 1)
+05/11/16 20:08:32->Sending run 60 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 17, run id = 60, concurrent runs = 1)
+05/11/16 20:08:36->run 52 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0841167 min, group id = 17, run id = 52 concurrent = 1)
+05/11/16 20:08:36->Sending run 61 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 17, run id = 61, concurrent runs = 1)
+05/11/16 20:08:36->run 54 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0839833 min, group id = 17, run id = 54 concurrent = 1)
+05/11/16 20:08:36->Sending run 62 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 17, run id = 62, concurrent runs = 1)
+05/11/16 20:08:36->run 51 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0848 min, group id = 17, run id = 51 concurrent = 1)
+05/11/16 20:08:36->Sending run 63 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 17, run id = 63, concurrent runs = 1)
+05/11/16 20:08:36->run 53 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0860333 min, group id = 17, run id = 53 concurrent = 1)
+05/11/16 20:08:36->Sending run 64 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 17, run id = 64, concurrent runs = 1)
+05/11/16 20:08:36->run 55 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.08515 min, group id = 17, run id = 55 concurrent = 1)
+05/11/16 20:08:36->Sending run 65 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 17, run id = 65, concurrent runs = 1)
+05/11/16 20:08:37->run 57 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0857 min, group id = 17, run id = 57 concurrent = 1)
+05/11/16 20:08:37->Sending run 66 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 17, run id = 66, concurrent runs = 1)
+05/11/16 20:08:37->run 59 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0850833 min, group id = 17, run id = 59 concurrent = 1)
+05/11/16 20:08:37->Sending run 67 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 17, run id = 67, concurrent runs = 1)
+05/11/16 20:08:37->run 60 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0848667 min, group id = 17, run id = 60 concurrent = 1)
+05/11/16 20:08:37->Sending run 68 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 17, run id = 68, concurrent runs = 1)
+05/11/16 20:08:37->run 56 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0864833 min, group id = 17, run id = 56 concurrent = 1)
+05/11/16 20:08:37->Sending run 69 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 17, run id = 69, concurrent runs = 1)
+05/11/16 20:08:37->run 58 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.08675 min, group id = 17, run id = 58 concurrent = 1)
+05/11/16 20:08:37->Sending run 70 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 17, run id = 70, concurrent runs = 1)
+05/11/16 20:08:41->run 63 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0851667 min, group id = 17, run id = 63 concurrent = 1)
+05/11/16 20:08:41->Sending run 71 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 17, run id = 71, concurrent runs = 1)
+05/11/16 20:08:41->run 62 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0860833 min, group id = 17, run id = 62 concurrent = 1)
+05/11/16 20:08:41->Sending run 72 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 17, run id = 72, concurrent runs = 1)
+05/11/16 20:08:41->run 61 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0864333 min, group id = 17, run id = 61 concurrent = 1)
+05/11/16 20:08:41->run 64 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0863833 min, group id = 17, run id = 64 concurrent = 1)
+05/11/16 20:08:42->run 65 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0859167 min, group id = 17, run id = 65 concurrent = 1)
+05/11/16 20:08:42->run 66 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0863 min, group id = 17, run id = 66 concurrent = 1)
+05/11/16 20:08:42->run 67 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.08595 min, group id = 17, run id = 67 concurrent = 1)
+05/11/16 20:08:42->run 68 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0857667 min, group id = 17, run id = 68 concurrent = 1)
+05/11/16 20:08:42->run 70 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0861333 min, group id = 17, run id = 70 concurrent = 1)
+05/11/16 20:08:42->run 69 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.08675 min, group id = 17, run id = 69 concurrent = 1)
+05/11/16 20:08:44->run 71 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.06305 min, group id = 17, run id = 71 concurrent = 1)
+05/11/16 20:08:44->run 72 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0628333 min, group id = 17, run id = 72 concurrent = 1)
+
+---------------------
+   72 runs complete :  0 runs failed
+
+running model 1 times
+
+05/11/16 20:08:44->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 18, run id = 0, concurrent runs = 1)
+05/11/16 20:08:46->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0613 min, group id = 18, run id = 0 concurrent = 1)
+
+---------------------
+   1 runs complete :  0 runs failed
+
+running model 7 times
+
+05/11/16 20:08:46->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 19, run id = 1, concurrent runs = 1)
+05/11/16 20:08:46->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 19, run id = 2, concurrent runs = 1)
+05/11/16 20:08:46->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 19, run id = 3, concurrent runs = 1)
+05/11/16 20:08:46->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 19, run id = 4, concurrent runs = 1)
+05/11/16 20:08:46->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 19, run id = 5, concurrent runs = 1)
+05/11/16 20:08:46->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 19, run id = 6, concurrent runs = 1)
+05/11/16 20:08:46->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 19, run id = 7, concurrent runs = 1)
+05/11/16 20:08:49->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0603667 min, group id = 19, run id = 7 concurrent = 1)
+05/11/16 20:08:49->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0726667 min, group id = 19, run id = 6 concurrent = 1)
+05/11/16 20:08:49->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0728667 min, group id = 19, run id = 3 concurrent = 1)
+05/11/16 20:08:50->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0736167 min, group id = 19, run id = 4 concurrent = 1)
+05/11/16 20:08:50->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0738 min, group id = 19, run id = 1 concurrent = 1)
+05/11/16 20:08:50->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.07385 min, group id = 19, run id = 2 concurrent = 1)
+05/11/16 20:08:50->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0738667 min, group id = 19, run id = 5 concurrent = 1)
+
+---------------------
+   7 runs complete :  0 runs failed
+
+running model 14 times
+
+05/11/16 20:08:50->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 20, run id = 0, concurrent runs = 1)
+05/11/16 20:08:50->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 20, run id = 1, concurrent runs = 1)
+05/11/16 20:08:50->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 20, run id = 2, concurrent runs = 1)
+05/11/16 20:08:50->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 20, run id = 3, concurrent runs = 1)
+05/11/16 20:08:50->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 20, run id = 4, concurrent runs = 1)
+05/11/16 20:08:50->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 20, run id = 5, concurrent runs = 1)
+05/11/16 20:08:50->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 20, run id = 6, concurrent runs = 1)
+05/11/16 20:08:50->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 20, run id = 7, concurrent runs = 1)
+05/11/16 20:08:50->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 20, run id = 8, concurrent runs = 1)
+05/11/16 20:08:50->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 20, run id = 9, concurrent runs = 1)
+05/11/16 20:08:55->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.078 min, group id = 20, run id = 3 concurrent = 1)
+05/11/16 20:08:55->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 20, run id = 10, concurrent runs = 1)
+05/11/16 20:08:55->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0723167 min, group id = 20, run id = 0 concurrent = 1)
+05/11/16 20:08:55->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0781167 min, group id = 20, run id = 1 concurrent = 1)
+05/11/16 20:08:55->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0784833 min, group id = 20, run id = 2 concurrent = 1)
+05/11/16 20:08:55->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0732 min, group id = 20, run id = 5 concurrent = 1)
+05/11/16 20:08:55->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 20, run id = 11, concurrent runs = 1)
+05/11/16 20:08:55->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 20, run id = 12, concurrent runs = 1)
+05/11/16 20:08:55->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 20, run id = 13, concurrent runs = 1)
+05/11/16 20:08:55->rescheduling overdue run 4 (0.0833667|0.0603667 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7
+05/11/16 20:08:55->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 20, run id = 4, concurrent runs = 2)
+05/11/16 20:08:55->2 concurrent runs for run id = 4
+05/11/16 20:08:55->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0848 min, group id = 20, run id = 6 concurrent = 1)
+05/11/16 20:08:55->rescheduling overdue run 4 (0.0837|0.0603667 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7
+05/11/16 20:08:55->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 20, run id = 4, concurrent runs = 3)
+05/11/16 20:08:55->3 concurrent runs for run id = 4
+05/11/16 20:08:55->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0794333 min, group id = 20, run id = 7 concurrent = 1)
+05/11/16 20:08:55->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0727167 min, group id = 20, run id = 4 concurrent = 3)
+05/11/16 20:08:55->sending kill request; reason: completed on alternative node; run id:4; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8
+05/11/16 20:08:55->sending kill request; reason: completed on alternative node; run id:4; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9
+05/11/16 20:08:55->rescheduling overdue run 8 (0.0850667|0.07385 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2
+05/11/16 20:08:55->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 20, run id = 8, concurrent runs = 2)
+05/11/16 20:08:55->2 concurrent runs for run id = 8
+05/11/16 20:08:55->rescheduling overdue run 8 (0.0850667|0.07385 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2
+05/11/16 20:08:55->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 20, run id = 8, concurrent runs = 3)
+05/11/16 20:08:55->3 concurrent runs for run id = 8
+05/11/16 20:08:55->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.08045 min, group id = 20, run id = 8 concurrent = 3)
+05/11/16 20:08:55->sending kill request; reason: completed on alternative node; run id:8; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1
+05/11/16 20:08:55->sending kill request; reason: completed on alternative node; run id:8; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7
+05/11/16 20:08:55->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0804667 min, group id = 20, run id = 9 concurrent = 1)
+05/11/16 20:08:55->Run 4 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8, run id = 4 concurrent = 0
+05/11/16 20:08:55->Run 4 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9, run id = 4 concurrent = 0
+05/11/16 20:08:55->Run 8 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1, run id = 8 concurrent = 0
+05/11/16 20:08:55->Run 8 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7, run id = 8 concurrent = 0
+05/11/16 20:08:57->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0613667 min, group id = 20, run id = 13 concurrent = 1)
+05/11/16 20:08:57->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0591667 min, group id = 20, run id = 11 concurrent = 1)
+05/11/16 20:08:57->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0620667 min, group id = 20, run id = 12 concurrent = 1)
+05/11/16 20:08:57->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0620167 min, group id = 20, run id = 10 concurrent = 1)
+
+---------------------
+   14 runs complete :  0 runs failed
+
+running model 7 times
+
+05/11/16 20:08:57->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 21, run id = 1, concurrent runs = 1)
+05/11/16 20:08:57->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 21, run id = 2, concurrent runs = 1)
+05/11/16 20:08:57->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 21, run id = 3, concurrent runs = 1)
+05/11/16 20:08:57->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 21, run id = 4, concurrent runs = 1)
+05/11/16 20:08:57->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 21, run id = 5, concurrent runs = 1)
+05/11/16 20:08:57->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 21, run id = 6, concurrent runs = 1)
+05/11/16 20:08:57->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 21, run id = 7, concurrent runs = 1)
+05/11/16 20:09:01->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.06785 min, group id = 21, run id = 5 concurrent = 1)
+05/11/16 20:09:01->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.06225 min, group id = 21, run id = 3 concurrent = 1)
+05/11/16 20:09:01->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0681667 min, group id = 21, run id = 6 concurrent = 1)
+05/11/16 20:09:01->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.07205 min, group id = 21, run id = 1 concurrent = 1)
+05/11/16 20:09:01->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0725833 min, group id = 21, run id = 2 concurrent = 1)
+05/11/16 20:09:01->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0749 min, group id = 21, run id = 7 concurrent = 1)
+05/11/16 20:09:01->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0727333 min, group id = 21, run id = 4 concurrent = 1)
+
+---------------------
+   7 runs complete :  0 runs failed
+
+running model 14 times
+
+05/11/16 20:09:01->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 22, run id = 0, concurrent runs = 1)
+05/11/16 20:09:01->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 22, run id = 1, concurrent runs = 1)
+05/11/16 20:09:01->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 22, run id = 2, concurrent runs = 1)
+05/11/16 20:09:01->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 22, run id = 3, concurrent runs = 1)
+05/11/16 20:09:01->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 22, run id = 4, concurrent runs = 1)
+05/11/16 20:09:01->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 22, run id = 5, concurrent runs = 1)
+05/11/16 20:09:01->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 22, run id = 6, concurrent runs = 1)
+05/11/16 20:09:01->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 22, run id = 7, concurrent runs = 1)
+05/11/16 20:09:01->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 22, run id = 8, concurrent runs = 1)
+05/11/16 20:09:01->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 22, run id = 9, concurrent runs = 1)
+05/11/16 20:09:06->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0746 min, group id = 22, run id = 4 concurrent = 1)
+05/11/16 20:09:06->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 22, run id = 10, concurrent runs = 1)
+05/11/16 20:09:07->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0739 min, group id = 22, run id = 0 concurrent = 1)
+05/11/16 20:09:07->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 22, run id = 11, concurrent runs = 1)
+05/11/16 20:09:07->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0784 min, group id = 22, run id = 7 concurrent = 1)
+05/11/16 20:09:07->Run 5 failed on slave:192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 22, run id = 5, concurrent = 1) 
+05/11/16 20:09:07->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 22, run id = 5, concurrent runs = 1)
+05/11/16 20:09:07->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 22, run id = 12, concurrent runs = 1)
+05/11/16 20:09:07->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0811833 min, group id = 22, run id = 1 concurrent = 1)
+05/11/16 20:09:07->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.08145 min, group id = 22, run id = 2 concurrent = 1)
+05/11/16 20:09:07->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0762 min, group id = 22, run id = 3 concurrent = 1)
+05/11/16 20:09:07->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0815333 min, group id = 22, run id = 9 concurrent = 1)
+05/11/16 20:09:07->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0791 min, group id = 22, run id = 6 concurrent = 1)
+05/11/16 20:09:07->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 22, run id = 13, concurrent runs = 1)
+05/11/16 20:09:07->rescheduling overdue run 8 (0.0903333|0.0749 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9
+05/11/16 20:09:07->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 22, run id = 8, concurrent runs = 2)
+05/11/16 20:09:07->2 concurrent runs for run id = 8
+05/11/16 20:09:07->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.08345 min, group id = 22, run id = 8 concurrent = 2)
+05/11/16 20:09:07->sending kill request; reason: completed on alternative node; run id:8; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2
+05/11/16 20:09:07->Run 8 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2, run id = 8 concurrent = 0
+05/11/16 20:09:10->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.06345 min, group id = 22, run id = 11 concurrent = 1)
+05/11/16 20:09:10->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0654 min, group id = 22, run id = 10 concurrent = 1)
+05/11/16 20:09:10->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0582833 min, group id = 22, run id = 12 concurrent = 1)
+05/11/16 20:09:10->Run 5 failed on slave:192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 22, run id = 5, concurrent = 1) 
+05/11/16 20:09:10->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 22, run id = 5, concurrent runs = 1)
+05/11/16 20:09:10->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0687 min, group id = 22, run id = 13 concurrent = 1)
+05/11/16 20:09:12->Run 5 failed on slave:192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 22, run id = 5, concurrent = 1) 
+
+---------------------
+   13 runs complete :  1 runs failed
+
+running model 72 times
+
+05/11/16 20:09:12->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 23, run id = 1, concurrent runs = 1)
+05/11/16 20:09:12->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 23, run id = 2, concurrent runs = 1)
+05/11/16 20:09:12->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 23, run id = 3, concurrent runs = 1)
+05/11/16 20:09:12->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 23, run id = 4, concurrent runs = 1)
+05/11/16 20:09:12->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 23, run id = 5, concurrent runs = 1)
+05/11/16 20:09:12->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 23, run id = 6, concurrent runs = 1)
+05/11/16 20:09:12->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 23, run id = 7, concurrent runs = 1)
+05/11/16 20:09:12->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 23, run id = 8, concurrent runs = 1)
+05/11/16 20:09:12->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 23, run id = 9, concurrent runs = 1)
+05/11/16 20:09:12->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 23, run id = 10, concurrent runs = 1)
+05/11/16 20:09:17->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0811 min, group id = 23, run id = 2 concurrent = 1)
+05/11/16 20:09:17->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 23, run id = 11, concurrent runs = 1)
+05/11/16 20:09:17->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0785333 min, group id = 23, run id = 3 concurrent = 1)
+05/11/16 20:09:17->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 23, run id = 12, concurrent runs = 1)
+05/11/16 20:09:17->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0800833 min, group id = 23, run id = 7 concurrent = 1)
+05/11/16 20:09:17->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 23, run id = 13, concurrent runs = 1)
+05/11/16 20:09:17->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0749 min, group id = 23, run id = 1 concurrent = 1)
+05/11/16 20:09:17->Sending run 14 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 23, run id = 14, concurrent runs = 1)
+05/11/16 20:09:17->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0827333 min, group id = 23, run id = 9 concurrent = 1)
+05/11/16 20:09:17->Sending run 15 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 23, run id = 15, concurrent runs = 1)
+05/11/16 20:09:17->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0805 min, group id = 23, run id = 8 concurrent = 1)
+05/11/16 20:09:17->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0740167 min, group id = 23, run id = 4 concurrent = 1)
+05/11/16 20:09:17->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0820833 min, group id = 23, run id = 5 concurrent = 1)
+05/11/16 20:09:17->Sending run 16 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 23, run id = 16, concurrent runs = 1)
+05/11/16 20:09:17->Sending run 17 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 23, run id = 17, concurrent runs = 1)
+05/11/16 20:09:17->Sending run 18 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 23, run id = 18, concurrent runs = 1)
+05/11/16 20:09:17->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.07055 min, group id = 23, run id = 6 concurrent = 1)
+05/11/16 20:09:17->Sending run 19 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 23, run id = 19, concurrent runs = 1)
+05/11/16 20:09:17->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.07345 min, group id = 23, run id = 10 concurrent = 1)
+05/11/16 20:09:17->Sending run 20 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 23, run id = 20, concurrent runs = 1)
+05/11/16 20:09:22->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0820833 min, group id = 23, run id = 12 concurrent = 1)
+05/11/16 20:09:22->Sending run 21 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 23, run id = 21, concurrent runs = 1)
+05/11/16 20:09:22->run 14 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.08015 min, group id = 23, run id = 14 concurrent = 1)
+05/11/16 20:09:22->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0834333 min, group id = 23, run id = 11 concurrent = 1)
+05/11/16 20:09:22->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.08275 min, group id = 23, run id = 13 concurrent = 1)
+05/11/16 20:09:22->Sending run 22 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 23, run id = 22, concurrent runs = 1)
+05/11/16 20:09:22->Sending run 23 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 23, run id = 23, concurrent runs = 1)
+05/11/16 20:09:22->Sending run 24 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 23, run id = 24, concurrent runs = 1)
+05/11/16 20:09:22->run 18 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0847833 min, group id = 23, run id = 18 concurrent = 1)
+05/11/16 20:09:22->run 17 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.08075 min, group id = 23, run id = 17 concurrent = 1)
+05/11/16 20:09:22->run 19 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0789167 min, group id = 23, run id = 19 concurrent = 1)
+05/11/16 20:09:22->run 16 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.084 min, group id = 23, run id = 16 concurrent = 1)
+05/11/16 20:09:22->run 15 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0854167 min, group id = 23, run id = 15 concurrent = 1)
+05/11/16 20:09:22->Sending run 25 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 23, run id = 25, concurrent runs = 1)
+05/11/16 20:09:22->Sending run 26 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 23, run id = 26, concurrent runs = 1)
+05/11/16 20:09:22->Sending run 27 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 23, run id = 27, concurrent runs = 1)
+05/11/16 20:09:22->Sending run 28 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 23, run id = 28, concurrent runs = 1)
+05/11/16 20:09:22->Sending run 29 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 23, run id = 29, concurrent runs = 1)
+05/11/16 20:09:22->run 20 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0808 min, group id = 23, run id = 20 concurrent = 1)
+05/11/16 20:09:22->Sending run 30 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 23, run id = 30, concurrent runs = 1)
+05/11/16 20:09:27->run 23 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.08515 min, group id = 23, run id = 23 concurrent = 1)
+05/11/16 20:09:27->Sending run 31 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 23, run id = 31, concurrent runs = 1)
+05/11/16 20:09:27->run 22 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0835167 min, group id = 23, run id = 22 concurrent = 1)
+05/11/16 20:09:27->run 21 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0844833 min, group id = 23, run id = 21 concurrent = 1)
+05/11/16 20:09:27->run 24 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0848167 min, group id = 23, run id = 24 concurrent = 1)
+05/11/16 20:09:27->Sending run 32 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 23, run id = 32, concurrent runs = 1)
+05/11/16 20:09:27->Sending run 33 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 23, run id = 33, concurrent runs = 1)
+05/11/16 20:09:27->Sending run 34 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 23, run id = 34, concurrent runs = 1)
+05/11/16 20:09:28->run 28 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.08615 min, group id = 23, run id = 28 concurrent = 1)
+05/11/16 20:09:28->Sending run 35 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 23, run id = 35, concurrent runs = 1)
+05/11/16 20:09:28->run 26 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0845167 min, group id = 23, run id = 26 concurrent = 1)
+05/11/16 20:09:28->run 27 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0836167 min, group id = 23, run id = 27 concurrent = 1)
+05/11/16 20:09:28->Sending run 36 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 23, run id = 36, concurrent runs = 1)
+05/11/16 20:09:28->Sending run 37 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 23, run id = 37, concurrent runs = 1)
+05/11/16 20:09:28->run 25 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0865833 min, group id = 23, run id = 25 concurrent = 1)
+05/11/16 20:09:28->Sending run 38 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 23, run id = 38, concurrent runs = 1)
+05/11/16 20:09:28->run 29 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.087 min, group id = 23, run id = 29 concurrent = 1)
+05/11/16 20:09:28->Sending run 39 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 23, run id = 39, concurrent runs = 1)
+05/11/16 20:09:28->run 30 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0846333 min, group id = 23, run id = 30 concurrent = 1)
+05/11/16 20:09:28->Sending run 40 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 23, run id = 40, concurrent runs = 1)
+05/11/16 20:09:33->run 32 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.08525 min, group id = 23, run id = 32 concurrent = 1)
+05/11/16 20:09:33->Sending run 41 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 23, run id = 41, concurrent runs = 1)
+05/11/16 20:09:33->run 33 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0864833 min, group id = 23, run id = 33 concurrent = 1)
+05/11/16 20:09:33->Sending run 42 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 23, run id = 42, concurrent runs = 1)
+05/11/16 20:09:33->run 34 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0867333 min, group id = 23, run id = 34 concurrent = 1)
+05/11/16 20:09:33->Sending run 43 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 23, run id = 43, concurrent runs = 1)
+05/11/16 20:09:33->run 31 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.08765 min, group id = 23, run id = 31 concurrent = 1)
+05/11/16 20:09:33->Sending run 44 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 23, run id = 44, concurrent runs = 1)
+05/11/16 20:09:33->run 36 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0858 min, group id = 23, run id = 36 concurrent = 1)
+05/11/16 20:09:33->Sending run 45 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 23, run id = 45, concurrent runs = 1)
+05/11/16 20:09:33->run 38 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0874833 min, group id = 23, run id = 38 concurrent = 1)
+05/11/16 20:09:33->Sending run 46 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 23, run id = 46, concurrent runs = 1)
+05/11/16 20:09:33->run 35 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0873333 min, group id = 23, run id = 35 concurrent = 1)
+05/11/16 20:09:33->run 37 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0860667 min, group id = 23, run id = 37 concurrent = 1)
+05/11/16 20:09:33->Sending run 47 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 23, run id = 47, concurrent runs = 1)
+05/11/16 20:09:33->Sending run 48 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 23, run id = 48, concurrent runs = 1)
+05/11/16 20:09:33->run 40 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0858667 min, group id = 23, run id = 40 concurrent = 1)
+05/11/16 20:09:33->Sending run 49 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 23, run id = 49, concurrent runs = 1)
+05/11/16 20:09:33->run 39 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0879 min, group id = 23, run id = 39 concurrent = 1)
+05/11/16 20:09:33->Sending run 50 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 23, run id = 50, concurrent runs = 1)
+05/11/16 20:09:38->run 43 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0859833 min, group id = 23, run id = 43 concurrent = 1)
+05/11/16 20:09:38->Sending run 51 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 23, run id = 51, concurrent runs = 1)
+05/11/16 20:09:38->run 42 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0866167 min, group id = 23, run id = 42 concurrent = 1)
+05/11/16 20:09:38->Sending run 52 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 23, run id = 52, concurrent runs = 1)
+05/11/16 20:09:38->run 41 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0869833 min, group id = 23, run id = 41 concurrent = 1)
+05/11/16 20:09:38->Sending run 53 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 23, run id = 53, concurrent runs = 1)
+05/11/16 20:09:38->run 44 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0872167 min, group id = 23, run id = 44 concurrent = 1)
+05/11/16 20:09:38->Sending run 54 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 23, run id = 54, concurrent runs = 1)
+05/11/16 20:09:38->run 46 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0873333 min, group id = 23, run id = 46 concurrent = 1)
+05/11/16 20:09:38->run 48 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0866 min, group id = 23, run id = 48 concurrent = 1)
+05/11/16 20:09:38->Sending run 55 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 23, run id = 55, concurrent runs = 1)
+05/11/16 20:09:38->Sending run 56 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 23, run id = 56, concurrent runs = 1)
+05/11/16 20:09:38->run 45 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.08735 min, group id = 23, run id = 45 concurrent = 1)
+05/11/16 20:09:38->run 49 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0865333 min, group id = 23, run id = 49 concurrent = 1)
+05/11/16 20:09:38->Sending run 57 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 23, run id = 57, concurrent runs = 1)
+05/11/16 20:09:38->Sending run 58 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 23, run id = 58, concurrent runs = 1)
+05/11/16 20:09:38->run 47 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0879333 min, group id = 23, run id = 47 concurrent = 1)
+05/11/16 20:09:38->Sending run 59 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 23, run id = 59, concurrent runs = 1)
+05/11/16 20:09:38->run 50 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0883167 min, group id = 23, run id = 50 concurrent = 1)
+05/11/16 20:09:38->Sending run 60 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 23, run id = 60, concurrent runs = 1)
+05/11/16 20:09:43->run 51 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0856833 min, group id = 23, run id = 51 concurrent = 1)
+05/11/16 20:09:43->run 53 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0852833 min, group id = 23, run id = 53 concurrent = 1)
+05/11/16 20:09:43->Sending run 61 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 23, run id = 61, concurrent runs = 1)
+05/11/16 20:09:43->Sending run 62 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 23, run id = 62, concurrent runs = 1)
+05/11/16 20:09:43->run 52 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.08675 min, group id = 23, run id = 52 concurrent = 1)
+05/11/16 20:09:43->run 54 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0862 min, group id = 23, run id = 54 concurrent = 1)
+05/11/16 20:09:43->Sending run 63 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 23, run id = 63, concurrent runs = 1)
+05/11/16 20:09:43->Sending run 64 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 23, run id = 64, concurrent runs = 1)
+05/11/16 20:09:43->run 60 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0859 min, group id = 23, run id = 60 concurrent = 1)
+05/11/16 20:09:43->Sending run 65 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 23, run id = 65, concurrent runs = 1)
+05/11/16 20:09:43->run 56 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0866667 min, group id = 23, run id = 56 concurrent = 1)
+05/11/16 20:09:43->Sending run 66 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 23, run id = 66, concurrent runs = 1)
+05/11/16 20:09:43->run 59 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0867667 min, group id = 23, run id = 59 concurrent = 1)
+05/11/16 20:09:43->run 55 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0871667 min, group id = 23, run id = 55 concurrent = 1)
+05/11/16 20:09:43->Sending run 67 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 23, run id = 67, concurrent runs = 1)
+05/11/16 20:09:43->Sending run 68 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 23, run id = 68, concurrent runs = 1)
+05/11/16 20:09:43->run 57 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0871667 min, group id = 23, run id = 57 concurrent = 1)
+05/11/16 20:09:43->Sending run 69 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 23, run id = 69, concurrent runs = 1)
+05/11/16 20:09:43->run 58 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0868333 min, group id = 23, run id = 58 concurrent = 1)
+05/11/16 20:09:43->Sending run 70 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 23, run id = 70, concurrent runs = 1)
+05/11/16 20:09:48->run 62 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0852167 min, group id = 23, run id = 62 concurrent = 1)
+05/11/16 20:09:48->Sending run 71 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 23, run id = 71, concurrent runs = 1)
+05/11/16 20:09:48->run 61 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0862 min, group id = 23, run id = 61 concurrent = 1)
+05/11/16 20:09:48->Sending run 72 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 23, run id = 72, concurrent runs = 1)
+05/11/16 20:09:48->run 63 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0862167 min, group id = 23, run id = 63 concurrent = 1)
+05/11/16 20:09:48->run 64 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0865667 min, group id = 23, run id = 64 concurrent = 1)
+05/11/16 20:09:49->run 70 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0861167 min, group id = 23, run id = 70 concurrent = 1)
+05/11/16 20:09:49->run 65 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0870833 min, group id = 23, run id = 65 concurrent = 1)
+05/11/16 20:09:49->run 69 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0870167 min, group id = 23, run id = 69 concurrent = 1)
+05/11/16 20:09:49->run 66 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0876 min, group id = 23, run id = 66 concurrent = 1)
+05/11/16 20:09:49->run 67 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.08765 min, group id = 23, run id = 67 concurrent = 1)
+05/11/16 20:09:49->run 68 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0880333 min, group id = 23, run id = 68 concurrent = 1)
+05/11/16 20:09:51->run 71 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0639167 min, group id = 23, run id = 71 concurrent = 1)
+05/11/16 20:09:51->run 72 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0644667 min, group id = 23, run id = 72 concurrent = 1)
+
+---------------------
+   72 runs complete :  0 runs failed
+
+running model 1 times
+
+05/11/16 20:09:51->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 24, run id = 0, concurrent runs = 1)
+05/11/16 20:09:53->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0602167 min, group id = 24, run id = 0 concurrent = 1)
+
+---------------------
+   1 runs complete :  0 runs failed
+
+running model 7 times
+
+05/11/16 20:09:53->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 25, run id = 1, concurrent runs = 1)
+05/11/16 20:09:53->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 25, run id = 2, concurrent runs = 1)
+05/11/16 20:09:53->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 25, run id = 3, concurrent runs = 1)
+05/11/16 20:09:53->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 25, run id = 4, concurrent runs = 1)
+05/11/16 20:09:53->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 25, run id = 5, concurrent runs = 1)
+05/11/16 20:09:53->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 25, run id = 6, concurrent runs = 1)
+05/11/16 20:09:53->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 25, run id = 7, concurrent runs = 1)
+05/11/16 20:09:56->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0730167 min, group id = 25, run id = 3 concurrent = 1)
+05/11/16 20:09:56->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0734167 min, group id = 25, run id = 4 concurrent = 1)
+05/11/16 20:09:56->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0733167 min, group id = 25, run id = 2 concurrent = 1)
+05/11/16 20:09:56->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0740333 min, group id = 25, run id = 5 concurrent = 1)
+05/11/16 20:09:56->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0738167 min, group id = 25, run id = 6 concurrent = 1)
+05/11/16 20:09:56->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0629833 min, group id = 25, run id = 7 concurrent = 1)
+05/11/16 20:09:56->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0628167 min, group id = 25, run id = 1 concurrent = 1)
+
+---------------------
+   7 runs complete :  0 runs failed
+
+running model 14 times
+
+05/11/16 20:09:56->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 26, run id = 0, concurrent runs = 1)
+05/11/16 20:09:56->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 26, run id = 1, concurrent runs = 1)
+05/11/16 20:09:56->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 26, run id = 2, concurrent runs = 1)
+05/11/16 20:09:56->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 26, run id = 3, concurrent runs = 1)
+05/11/16 20:09:56->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 26, run id = 4, concurrent runs = 1)
+05/11/16 20:09:56->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 26, run id = 5, concurrent runs = 1)
+05/11/16 20:09:56->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 26, run id = 6, concurrent runs = 1)
+05/11/16 20:09:56->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 26, run id = 7, concurrent runs = 1)
+05/11/16 20:09:56->Sending run 8 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 26, run id = 8, concurrent runs = 1)
+05/11/16 20:09:56->Sending run 9 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 26, run id = 9, concurrent runs = 1)
+05/11/16 20:10:01->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0781 min, group id = 26, run id = 4 concurrent = 1)
+05/11/16 20:10:01->Sending run 10 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 26, run id = 10, concurrent runs = 1)
+05/11/16 20:10:01->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0782667 min, group id = 26, run id = 1 concurrent = 1)
+05/11/16 20:10:01->run 9 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.0730167 min, group id = 26, run id = 9 concurrent = 1)
+05/11/16 20:10:01->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0783167 min, group id = 26, run id = 3 concurrent = 1)
+05/11/16 20:10:01->Sending run 11 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 26, run id = 11, concurrent runs = 1)
+05/11/16 20:10:01->Sending run 12 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (group id = 26, run id = 12, concurrent runs = 1)
+05/11/16 20:10:01->Sending run 13 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 26, run id = 13, concurrent runs = 1)
+05/11/16 20:10:01->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (run time = 0.0855 min, group id = 26, run id = 7 concurrent = 1)
+05/11/16 20:10:01->rescheduling overdue run 0 (0.0833667|0.0602167 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0
+05/11/16 20:10:01->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8  (group id = 26, run id = 0, concurrent runs = 2)
+05/11/16 20:10:01->2 concurrent runs for run id = 0
+05/11/16 20:10:01->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0782 min, group id = 26, run id = 2 concurrent = 1)
+05/11/16 20:10:01->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0786 min, group id = 26, run id = 5 concurrent = 1)
+05/11/16 20:10:01->rescheduling overdue run 0 (0.0833667|0.0602167 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0
+05/11/16 20:10:01->Sending run 0 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 26, run id = 0, concurrent runs = 3)
+05/11/16 20:10:01->3 concurrent runs for run id = 0
+05/11/16 20:10:01->rescheduling overdue run 6 (0.0833667|0.0629833 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7
+05/11/16 20:10:01->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 26, run id = 6, concurrent runs = 2)
+05/11/16 20:10:01->2 concurrent runs for run id = 6
+05/11/16 20:10:01->run 8 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (run time = 0.0852333 min, group id = 26, run id = 8 concurrent = 1)
+05/11/16 20:10:01->rescheduling overdue run 6 (0.0834|0.0629833 minutes) on: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7
+05/11/16 20:10:01->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9  (group id = 26, run id = 6, concurrent runs = 3)
+05/11/16 20:10:01->3 concurrent runs for run id = 6
+05/11/16 20:10:02->run 0 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.07265 min, group id = 26, run id = 0 concurrent = 3)
+05/11/16 20:10:02->sending kill request; reason: completed on alternative node; run id:0; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8
+05/11/16 20:10:02->sending kill request; reason: completed on alternative node; run id:0; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3
+05/11/16 20:10:02->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.07485 min, group id = 26, run id = 6 concurrent = 3)
+05/11/16 20:10:02->sending kill request; reason: completed on alternative node; run id:6; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6
+05/11/16 20:10:02->sending kill request; reason: completed on alternative node; run id:6; slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9
+05/11/16 20:10:02->Run 0 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_8, run id = 0 concurrent = 0
+05/11/16 20:10:02->Run 6 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6, run id = 6 concurrent = 0
+05/11/16 20:10:02->Run 0 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3, run id = 0 concurrent = 0
+05/11/16 20:10:02->Run 6 killed on slave: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_9, run id = 6 concurrent = 0
+05/11/16 20:10:04->run 13 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0622833 min, group id = 26, run id = 13 concurrent = 1)
+05/11/16 20:10:04->run 11 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0623333 min, group id = 26, run id = 11 concurrent = 1)
+05/11/16 20:10:04->run 10 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0628333 min, group id = 26, run id = 10 concurrent = 1)
+05/11/16 20:10:04->run 12 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_1  (run time = 0.06035 min, group id = 26, run id = 12 concurrent = 1)
+
+---------------------
+   14 runs complete :  0 runs failed
+
+running model 7 times
+
+05/11/16 20:10:04->Sending run 1 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (group id = 27, run id = 1, concurrent runs = 1)
+05/11/16 20:10:04->Sending run 2 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (group id = 27, run id = 2, concurrent runs = 1)
+05/11/16 20:10:04->Sending run 3 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (group id = 27, run id = 3, concurrent runs = 1)
+05/11/16 20:10:04->Sending run 4 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (group id = 27, run id = 4, concurrent runs = 1)
+05/11/16 20:10:04->Sending run 5 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (group id = 27, run id = 5, concurrent runs = 1)
+05/11/16 20:10:04->Sending run 6 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (group id = 27, run id = 6, concurrent runs = 1)
+05/11/16 20:10:04->Sending run 7 to: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (group id = 27, run id = 7, concurrent runs = 1)
+05/11/16 20:10:08->run 7 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_7  (run time = 0.0689833 min, group id = 27, run id = 7 concurrent = 1)
+05/11/16 20:10:08->run 1 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_0  (run time = 0.0686667 min, group id = 27, run id = 1 concurrent = 1)
+05/11/16 20:10:08->run 3 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_3  (run time = 0.0715167 min, group id = 27, run id = 3 concurrent = 1)
+05/11/16 20:10:08->run 6 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_6  (run time = 0.0717167 min, group id = 27, run id = 6 concurrent = 1)
+05/11/16 20:10:08->run 4 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_4  (run time = 0.0636167 min, group id = 27, run id = 4 concurrent = 1)
+05/11/16 20:10:08->run 5 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_5  (run time = 0.0640167 min, group id = 27, run id = 5 concurrent = 1)
+05/11/16 20:10:08->run 2 received from: 192.168.4.82$/Users/jwhite/Training/cal_uq/ppp_course/slave_2  (run time = 0.0646167 min, group id = 27, run id = 2 concurrent = 1)
+
+---------------------
+   7 runs complete :  0 runs failed
+

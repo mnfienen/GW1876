@@ -1,0 +1,575 @@
+------------------------------------------------------------------------------
+OPTIMISATION ITERATION NO.        : 1
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        150.057        40.6804        10.2656        6.95225        1.20535       0.310379      0.0449751
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.100000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        20630.2        132.376        36.0310        8.92555        2.98825        1.74606       0.436628
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        206032.        135.045        41.6517        14.6333        7.99562        5.61761        3.62280
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 10.0000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    2.06006e+06        169.331        110.610        65.0515        52.8244        39.7488        30.6247
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 20.0000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    4.12008e+06        246.763        162.575        112.178        101.089        77.2576        56.7874
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 40.0000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    8.24013e+06        449.815        231.179        205.500        193.190        151.462        102.423
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 100.000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    2.06003e+07        1081.20        498.585        492.112        415.028        366.116        211.287
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1000.00 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    2.06003e+08        10596.5        4920.60        4713.57        3867.90        3377.84        1549.28
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+------------------------------------------------------------------------------
+OPTIMISATION ITERATION NO.        : 2
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        434.449        74.1976        20.6200        7.73120        1.36391       0.348464      0.0384792
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.100000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        610.711        401.450        71.9023        9.29476        4.31289        1.42612       0.104164
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        5629.49        423.570        72.7194        9.97918        4.82898        2.15174       0.530924
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 10.0000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        56038.1        427.348        78.7576        16.4724        9.91420        8.59667        4.72286
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 50.0000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        280080.        441.137        106.273        46.3559        42.2816        26.6873        22.0861
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 100.000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        560132.        458.831        141.906        84.7666        82.0145        49.0931        41.8987
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 200.000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    1.12024e+06        496.351        215.057        165.038        156.959        93.5289        78.9420
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1000.00 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    5.60107e+06        987.973        813.884        774.563        624.625        441.026        342.707
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+------------------------------------------------------------------------------
+OPTIMISATION ITERATION NO.        : 3
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        494.971        86.4651        11.5942        3.97996        1.83539       0.341259      0.0464389
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.100000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        559.044        442.311        83.6958        6.49048        2.52152        1.50986       0.114221
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.500000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        2498.63        486.727        84.3019        6.91078        2.81026        1.80520       0.321581
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        4978.01        487.807        84.6448        7.40542        3.16218        2.17536       0.572734
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 2.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        9938.25        488.561        85.2718        8.39829        3.86375        2.92547        1.05551
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 10.0000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        49623.1        491.830        90.1719        16.6282        9.55357        8.81990        4.61018
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 100.000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        496081.        526.712        148.942        111.989        76.1245        67.0200        42.3705
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1000.00 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    4.96066e+06        1207.66        888.386        793.966        666.506        559.565        371.893
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+------------------------------------------------------------------------------
+OPTIMISATION ITERATION NO.        : 4
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        352.092        69.4324        13.3838        2.40474        1.41888       0.308162      0.0417426
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.0500000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        798.077        331.277        65.9111        4.43834        1.98844        1.04881      0.0911007
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.100000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        1556.13        336.682        66.0753        4.49074        2.02104        1.07827       0.110510
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.200000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        3081.43        338.525        66.1913        4.56717        2.08412        1.13552       0.149147
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        15297.8        339.939        66.6440        5.11525        2.58391        1.58934       0.452431
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 10.0000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        152745.        342.805        71.1880        11.6534        8.30970        6.32003        3.64504
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 100.000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    1.52722e+06        370.140        117.816        81.9140        66.3210        47.6457        33.5579
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1000.00 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    1.52720e+07        856.215        723.624        618.442        541.515        446.290        265.797
+TRUNCATED SINGULAR VALUES:-
+        0.00000
+
+
+Number of singular values used in solution = 7
+
+
+------------------------------------------------------------------------------
+OPTIMISATION ITERATION NO.        : 5
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+        409.055        73.2083        14.7929        2.69706        1.63876        1.16386       0.335028
+      0.0333314
+TRUNCATED SINGULAR VALUES:-
+
+
+Number of singular values used in solution = 8
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.100000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    1.74378e+24
+TRUNCATED SINGULAR VALUES:-
+        1002.76        383.423        69.4849        5.45571        2.21316        1.29404       0.110046
+
+
+Number of singular values used in solution = 1
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.200000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    3.48757e+24
+TRUNCATED SINGULAR VALUES:-
+        1972.80        387.036        69.6490        5.54927        2.28613        1.36056       0.154153
+
+
+Number of singular values used in solution = 1
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 0.400000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    6.97514e+24
+TRUNCATED SINGULAR VALUES:-
+        3919.00        388.350        69.8108        5.70508        2.43076        1.49256       0.241643
+
+
+Number of singular values used in solution = 1
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1.00000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    1.74378e+25
+TRUNCATED SINGULAR VALUES:-
+        9760.85        389.177        70.1703        6.15302        2.86315        1.88658       0.499348
+
+
+Number of singular values used in solution = 1
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 10.0000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    1.74378e+26
+TRUNCATED SINGULAR VALUES:-
+        97398.3        392.427        75.1400        13.5995        9.42659        7.13877        4.09006
+
+
+Number of singular values used in solution = 1
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 100.000 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    1.74378e+27
+TRUNCATED SINGULAR VALUES:-
+        973777.        422.652        126.675        96.3950        75.5931        50.2050        37.3884
+
+
+Number of singular values used in solution = 1
+
+
+CURRENT VALUE OF MARQUARDT LAMBDA = 1000.00 --------->
+
+FROZEN PARAMETERS-
+
+
+SINGULAR VALUES IN SOLUTION:-
+    1.74378e+28
+TRUNCATED SINGULAR VALUES:-
+    9.73756e+06        1009.01        827.873        690.566        578.661        463.326        309.985
+
+
+Number of singular values used in solution = 1
+
+

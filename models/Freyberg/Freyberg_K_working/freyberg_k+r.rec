@@ -1,0 +1,554 @@
+             PEST++ Version 3.2.0
+
+                 by Dave Welter
+     Computational Water Resource Engineering
+
+
+
+using control file: "freyberg_k+r.pst"
+
+
+PEST++ run mode:- 
+   estimation
+
+Case dimensions:- 
+    Number of parameters = 3
+    Number of adjustable parameters = 2
+    Number of observations = 33
+    Number of prior estimates = 0
+
+Model command line(s):- 
+    python run_model.py
+
+Model interface files:-
+    template files:
+      freyberg.rch.tpl
+      freyberg.lpf.tpl
+    model input files:
+      freyberg.rch
+      freyberg.lpf
+
+    instruction files:
+      freyberg.heads.ins
+      freyberg.rivflux.ins
+      freyberg.travel.ins
+    model output files:
+      freyberg.heads
+      freyberg.rivflux
+      freyberg.travel
+
+
+PEST Control Information
+    relparmax = 10
+    facparmax = 10
+    facorig = 0.001
+    phiredswh = 0.1
+    noptmax = 10
+    phiredstp = 0.01
+    nphistp = 3
+    nphinored = 3
+    relparstp = 0.01
+    nrelpar = 3
+
+PEST++ Options
+    n_iter_base = 10                  
+    n_iter_super = 0                   
+    max_n_super = 3                   
+    super eigthres = 1e-06               
+    svd pack = 0                   
+    auto norm = -999                
+    super relparmax = 0.1                 
+    max super frz iter = 5                   
+    mat inv = 1                   
+    max run fail = 3                   
+    max reg iter = 20                  
+    lambdas = 
+            0.1
+              1
+             10
+            100
+           1000
+    uncertainty flag = 1                   
+    parameter covariance file =                     
+    prediction names = 
+    RIVFLUX_CAL
+   RIVFLUX_FORE
+    TRAVEL_TIME
+       OR03C16F
+        OR04C9F
+
+
+Parameter group information
+NAME            INCREMENT TYPE     DERIVATIVE INCREMENT    INCREMENT LOWER BOUND  FORCE CENTRAL     INCREMENT MULTIPLIER
+hk                    RELATIVE                     0.01                        0         SWITCH                        2
+rch                   RELATIVE                     0.01                        0         SWITCH                        2
+
+Parameter information
+NAME           TRANSFORMATION        CHANGE LIMIT  INITIAL VALUE    LOWER BOUND    UPPER BOUND          GROUP          SCALE         OFFSET  DERIVATIVE COMMAND
+rch1           log                     FACTOR    1.38221e-05          1e-08             10            rch              1              0                   0
+rch2           fixed                   FACTOR    9.35851e-05          1e-10          1e+10            rch              1              0                   0
+hk1            log                     FACTOR             50            0.5            100             hk              1              0                   0
+
+Observation information
+NAME                                    VALUE               GROUP              WEIGHT
+or03c16c                              22.1867            head_cal                   1
+or03c10c                              24.0859            head_cal                   1
+or04c9c                               22.3334            head_cal                   1
+or10c2c                               31.8343            head_cal                   1
+or14c11c                              17.7284            head_cal                   1
+or16c17c                              16.5665            head_cal                   1
+or22c11c                              18.2859            head_cal                   1
+or23c16c                              15.2082            head_cal                   1
+or25c5c                               24.2429            head_cal                   1
+or27c7c                               22.7489            head_cal                   1
+or30c16c                              14.7362            head_cal                   1
+or34c8c                               18.6199            head_cal                   1
+or35c11c                                15.62            head_cal                   1
+rivflux_cal                           -999999            flux_cal                   0
+or03c16f                              -999999           head_fore                   0
+or03c10f                              -999999           head_fore                   0
+or04c9f                               -999999           head_fore                   0
+or10c2f                               -999999           head_fore                   0
+or14c11f                              -999999           head_fore                   0
+or16c17f                              -999999           head_fore                   0
+or22c11f                              -999999           head_fore                   0
+or23c16f                              -999999           head_fore                   0
+or25c5f                               -999999           head_fore                   0
+or27c7f                               -999999           head_fore                   0
+or30c16f                              -999999           head_fore                   0
+or34c8f                               -999999           head_fore                   0
+or35c11f                              -999999           head_fore                   0
+fr02c02f                              -999999           head_fore                   0
+fr01c13f                              -999999           head_fore                   0
+fr09c15f                              -999999           head_fore                   0
+fr25c10f                              -999999           head_fore                   0
+rivflux_fore                          -999999           flux_fore                   0
+travel_time                           -999999         travel_fore                   0
+
+Prior information
+
+   no prior information provided
+
+PEST SVD Information
+    maxsing = 3
+    eigthresh = 1e-06
+
+
+   -----    Starting PEST++ Iterations    ----    
+
+
+OPTIMISATION ITERATION NUMBER: 1
+
+  Iteration type: base parameter solution
+    SVD Package: Eigen JacobiSVD
+    Matrix Inversion: "Jt Q J"
+    Model calls so far : 0
+
+    Starting phi for this iteration                     Total : 455.038
+    Contribution to phi from observation group    "flux_fore" : 0
+    Contribution to phi from observation group  "travel_fore" : 0
+    Contribution to phi from observation group     "head_cal" : 455.038
+    Contribution to phi from observation group     "flux_cal" : 0
+    Contribution to phi from observation group    "head_fore" : 0
+    Number of terms in the jacobian equal to zero: 0 / 66 (0%)
+
+    Summary of upgrade runs:
+      Lambda =     0.10; Type: upgrade_run; length = 5.00e+01;  phi = 385.717 (84.77% of starting phi)
+      Lambda =     1.00; Type: upgrade_run; length = 1.42e+01;  phi = 288.982 (63.51% of starting phi)
+      Lambda =    10.00; Type: upgrade_run; length = 2.60e+01;  phi = 234.433 (51.52% of starting phi)
+      Lambda =    20.00; Type: upgrade_run; length = 2.58e+01;  phi = 254.724 (55.98% of starting phi)
+      Lambda =    40.00; Type: upgrade_run; length = 1.59e+01;  phi = 403.176 (88.60% of starting phi)
+      Marquardt Lambda = 100.00; length = NA;  run failed
+      Lambda =  1000.00; Type: upgrade_run; length = 7.95e-01;  phi = 454.112 (99.80% of starting phi)
+
+  Model calls in iteration 1: 9
+  Total model calls at end of iteration 1: 9
+
+
+    Iteration 1 Parameter Upgrades (Control File Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+            rch1   0.000138221   1.38221e-05            10            -9
+            rch2   9.35851e-05   9.35851e-05             1             0
+             hk1       23.9786            50       2.08519      0.520427
+       Maximum changes in "Control File" parameters:
+         Maximum relative change = -9   [rch1]
+         Maximum factor change = 10   [rch1]
+
+    Iteration 1 Parameter Upgrades (Transformed Numeric Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+             hk1       1.37982       1.69897       1.23129      0.187846
+            rch1      -3.85943      -4.85943       1.25911      0.205786
+       Maximum changes in "Transformed Numeric" parameters:
+         Maximum relative change = 0.205786   [rch1]
+         Maximum factor change = 1.25911   [rch1]
+
+OPTIMISATION ITERATION NUMBER: 2
+
+  Iteration type: base parameter solution
+    SVD Package: Eigen JacobiSVD
+    Matrix Inversion: "Jt Q J"
+    Model calls so far : 9
+
+    Starting phi for this iteration                     Total : 234.433
+    Contribution to phi from observation group    "flux_fore" : 0
+    Contribution to phi from observation group  "travel_fore" : 0
+    Contribution to phi from observation group     "head_cal" : 234.433
+    Contribution to phi from observation group     "flux_cal" : 0
+    Contribution to phi from observation group    "head_fore" : 0
+    Number of terms in the jacobian equal to zero: 0 / 66 (0%)
+
+    Summary of upgrade runs:
+      Lambda =     0.10; Type: upgrade_run; length = 7.60e+01;  phi = 68.2417 (29.11% of starting phi)
+      Lambda =     1.00; Type: upgrade_run; length = 1.88e+01;  phi = 33.6076 (14.34% of starting phi)
+      Lambda =     5.00; Type: upgrade_run; length = 1.16e+01;  phi = 877.239 (374.20% of starting phi)
+      Lambda =    10.00; Type: upgrade_run; length = 1.46e+01;  phi = 827.399 (352.94% of starting phi)
+      Lambda =    20.00; Type: upgrade_run; length = 1.57e+01;  phi = 679.908 (290.02% of starting phi)
+      Lambda =   100.00; Type: upgrade_run; length = 1.47e+01;  phi = 127.594 (54.43% of starting phi)
+      Lambda =  1000.00; Type: upgrade_run; length = 6.21e+00;  phi = 124.895 (53.28% of starting phi)
+
+  Model calls in iteration 2: 9
+  Total model calls at end of iteration 2: 18
+
+
+    Iteration 2 Parameter Upgrades (Control File Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+            rch1    0.00138221   0.000138221            10            -9
+            rch2   9.35851e-05   9.35851e-05             1             0
+             hk1       42.7749       23.9786       1.78388     -0.783876
+       Maximum changes in "Control File" parameters:
+         Maximum relative change = -9   [rch1]
+         Maximum factor change = 10   [rch1]
+
+    Iteration 2 Parameter Upgrades (Transformed Numeric Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+             hk1       1.63119       1.37982       1.18217     -0.182171
+            rch1      -2.85943      -3.85943       1.34972      0.259106
+       Maximum changes in "Transformed Numeric" parameters:
+         Maximum relative change = 0.259106   [rch1]
+         Maximum factor change = 1.34972   [rch1]
+
+OPTIMISATION ITERATION NUMBER: 3
+
+  Iteration type: base parameter solution
+    SVD Package: Eigen JacobiSVD
+    Matrix Inversion: "Jt Q J"
+    Model calls so far : 18
+
+    Starting phi for this iteration                     Total : 33.6076
+    Contribution to phi from observation group    "flux_fore" : 0
+    Contribution to phi from observation group  "travel_fore" : 0
+    Contribution to phi from observation group     "head_cal" : 33.6076
+    Contribution to phi from observation group     "flux_cal" : 0
+    Contribution to phi from observation group    "head_fore" : 0
+    Number of terms in the jacobian equal to zero: 0 / 66 (0%)
+
+    Summary of upgrade runs:
+      Lambda =     0.10; Type: upgrade_run; length = 1.99e+01;  phi = 14.709 (43.77% of starting phi)
+      Lambda =     0.50; Type: upgrade_run; length = 1.55e+01;  phi = 14.6434 (43.57% of starting phi)
+      Lambda =     1.00; Type: upgrade_run; length = 1.17e+01;  phi = 14.6217 (43.51% of starting phi)
+      Lambda =     2.00; Type: upgrade_run; length = 7.13e+00;  phi = 14.6243 (43.51% of starting phi)
+      Lambda =    10.00; Type: upgrade_run; length = 1.36e+00;  phi = 14.6892 (43.71% of starting phi)
+      Lambda =   100.00; Type: upgrade_run; length = 4.69e+00;  phi = 14.7953 (44.02% of starting phi)
+      Lambda =  1000.00; Type: upgrade_run; length = 4.03e+00;  phi = 15.9331 (47.41% of starting phi)
+
+  Model calls in iteration 3: 9
+  Total model calls at end of iteration 3: 27
+
+
+    Iteration 3 Parameter Upgrades (Control File Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+            rch1   0.000806354    0.00138221       1.71415      0.416619
+            rch2   9.35851e-05   9.35851e-05             1             0
+             hk1       31.0708       42.7749       1.37669      0.273621
+       Maximum changes in "Control File" parameters:
+         Maximum relative change = 0.416619   [rch1]
+         Maximum factor change = 1.71415   [rch1]
+
+    Iteration 3 Parameter Upgrades (Transformed Numeric Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+             hk1       1.49235       1.63119       1.09303     0.0851139
+            rch1      -3.09347      -2.85943       1.08185    -0.0818513
+       Maximum changes in "Transformed Numeric" parameters:
+         Maximum relative change = 0.0851139   [hk1]
+         Maximum factor change = 1.09303   [hk1]
+
+OPTIMISATION ITERATION NUMBER: 4
+
+  Iteration type: base parameter solution
+    SVD Package: Eigen JacobiSVD
+    Matrix Inversion: "Jt Q J"
+    Model calls so far : 27
+
+    Starting phi for this iteration                     Total : 14.6217
+    Contribution to phi from observation group    "flux_fore" : 0
+    Contribution to phi from observation group  "travel_fore" : 0
+    Contribution to phi from observation group     "head_cal" : 14.6217
+    Contribution to phi from observation group     "flux_cal" : 0
+    Contribution to phi from observation group    "head_fore" : 0
+    Number of terms in the jacobian equal to zero: 0 / 66 (0%)
+
+    Summary of upgrade runs:
+      Lambda =     0.10; Type: upgrade_run; length = 1.94e+00;  phi = 14.5023 (99.18% of starting phi)
+      Lambda =     0.50; Type: upgrade_run; length = 1.17e+00;  phi = 14.5005 (99.17% of starting phi)
+      Lambda =     1.00; Type: upgrade_run; length = 7.27e-01;  phi = 14.4998 (99.17% of starting phi)
+      Lambda =     2.00; Type: upgrade_run; length = 3.31e-01;  phi = 14.4995 (99.16% of starting phi)
+      Lambda =    10.00; Type: upgrade_run; length = 1.70e-01;  phi = 14.4994 (99.16% of starting phi)
+      Lambda =   100.00; Type: upgrade_run; length = 3.09e-01;  phi = 14.4996 (99.17% of starting phi)
+      Lambda =  1000.00; Type: upgrade_run; length = 2.44e-01;  phi = 14.5087 (99.23% of starting phi)
+
+      Switching to central derivatives:
+
+  Model calls in iteration 4: 9
+  Total model calls at end of iteration 4: 36
+
+
+    Iteration 4 Parameter Upgrades (Control File Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+            rch1   0.000793184   0.000806354        1.0166     0.0163319
+            rch2   9.35851e-05   9.35851e-05             1             0
+             hk1       31.2407       31.0708       1.00547   -0.00546899
+       Maximum changes in "Control File" parameters:
+         Maximum relative change = 0.0163319   [rch1]
+         Maximum factor change = 1.0166   [rch1]
+
+    Iteration 4 Parameter Upgrades (Transformed Numeric Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+             hk1       1.49472       1.49235       1.00159   -0.00158721
+            rch1      -3.10063      -3.09347       1.00231   -0.00231178
+       Maximum changes in "Transformed Numeric" parameters:
+         Maximum relative change = -0.00231178   [rch1]
+         Maximum factor change = 1.00231   [rch1]
+
+OPTIMISATION ITERATION NUMBER: 5
+
+  Iteration type: base parameter solution
+    SVD Package: Eigen JacobiSVD
+    Matrix Inversion: "Jt Q J"
+    Model calls so far : 36
+
+    Starting phi for this iteration                     Total : 14.4994
+    Contribution to phi from observation group    "flux_fore" : 0
+    Contribution to phi from observation group  "travel_fore" : 0
+    Contribution to phi from observation group     "head_cal" : 14.4994
+    Contribution to phi from observation group     "flux_cal" : 0
+    Contribution to phi from observation group    "head_fore" : 0
+    Number of terms in the jacobian equal to zero: 0 / 66 (0%)
+
+    Summary of upgrade runs:
+      Lambda =     0.10; Type: upgrade_run; length = 2.62e-01;  phi = 14.4995 (100.00% of starting phi)
+      Lambda =     1.00; Type: upgrade_run; length = 1.15e-01;  phi = 14.4994 (100.00% of starting phi)
+      Lambda =     5.00; Type: upgrade_run; length = 3.12e-02;  phi = 14.4995 (100.00% of starting phi)
+      Lambda =    10.00; Type: upgrade_run; length = 1.53e-02;  phi = 14.4995 (100.00% of starting phi)
+      Lambda =    20.00; Type: upgrade_run; length = 6.58e-03;  phi = 14.4995 (100.00% of starting phi)
+      Lambda =   100.00; Type: upgrade_run; length = 6.82e-04;  phi = 14.4995 (100.00% of starting phi)
+      Lambda =  1000.00; Type: upgrade_run; length = 1.73e-03;  phi = 14.4994 (100.00% of starting phi)
+
+  Model calls in iteration 5: 11
+  Total model calls at end of iteration 5: 47
+
+
+    Iteration 5 Parameter Upgrades (Control File Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+            rch1   0.000790237   0.000793184       1.00373    0.00371559
+            rch2   9.35851e-05   9.35851e-05             1             0
+             hk1       31.1259       31.2407       1.00369    0.00367568
+       Maximum changes in "Control File" parameters:
+         Maximum relative change = 0.00371559   [rch1]
+         Maximum factor change = 1.00373   [rch1]
+
+    Iteration 5 Parameter Upgrades (Transformed Numeric Parameters) 
+      Parameter     Current       Previous       Factor       Relative
+        Name         Value         Value         Change        Change
+      ----------  ------------  ------------  ------------  ------------
+             hk1       1.49312       1.49472       1.00107    0.00106995
+            rch1      -3.10224      -3.10063       1.00052    -0.0005214
+       Maximum changes in "Transformed Numeric" parameters:
+         Maximum relative change = 0.00106995   [hk1]
+         Maximum factor change = 1.00107   [hk1]
+
+-----------------------------------------
+     ---   OPTIMIZATION COMPLETE   ---   
+  Reason for terminating PEST++ simulation: PHIREDSTP / NPHISTP criterion met
+  Summary of termination criteria:
+  NOPTMAX = 10 ;  NOPT at termination = 5
+  NPHINORED = 3 ;  NPHINORED at termination = 0
+  NRELPAR = 3; RELPARSTP = 0.01 ;  NRELPAR at termination = 1
+  PHIREDSTP = 0.01; NPHISTP = 3
+  NPHISTP lowest PHI's:
+        14.4994
+        14.4994
+        14.6217
+
+FINAL OPTIMISATION RESULTS
+
+  Optimal parameter values  
+
+     Parameter            
+        Name         Value
+    ------------  ------------
+    rch1           0.000790237
+    rch2           9.35851e-05
+    hk1                31.1259
+
+
+  Observations with optimal model-simulated equivalents and residuals
+                 Name        Group             Measured             Modelled             Residual               Weight
+             or03c16c     head_cal              22.1867              20.2999              1.88681              1.00000
+             or03c10c     head_cal              24.0859              23.7447             0.341160              1.00000
+              or04c9c     head_cal              22.3334              24.4127             -2.07928              1.00000
+              or10c2c     head_cal              31.8343              31.9046           -0.0702700              1.00000
+             or14c11c     head_cal              17.7284              19.0534             -1.32499              1.00000
+             or16c17c     head_cal              16.5665              17.8374             -1.27094              1.00000
+             or22c11c     head_cal              18.2859              18.3325           -0.0465800              1.00000
+             or23c16c     head_cal              15.2082              16.1599            -0.951710              1.00000
+              or25c5c     head_cal              24.2429              23.6508             0.592130              1.00000
+              or27c7c     head_cal              22.7489              21.4432              1.30572              1.00000
+             or30c16c     head_cal              14.7362              14.6123             0.123840              1.00000
+              or34c8c     head_cal              18.6199              18.2708             0.349040              1.00000
+             or35c11c     head_cal              15.6200              15.4679             0.152110              1.00000
+          rivflux_cal     flux_cal             -999999.             -30012.8             -969986.              0.00000
+             or03c16f    head_fore             -999999.              19.5592         -1.00002e+06              0.00000
+             or03c10f    head_fore             -999999.              21.8700         -1.00002e+06              0.00000
+              or04c9f    head_fore             -999999.              22.2818         -1.00002e+06              0.00000
+              or10c2f    head_fore             -999999.              28.4249         -1.00003e+06              0.00000
+             or14c11f    head_fore             -999999.              17.8743         -1.00002e+06              0.00000
+             or16c17f    head_fore             -999999.              16.8963         -1.00002e+06              0.00000
+             or22c11f    head_fore             -999999.              16.8139         -1.00002e+06              0.00000
+             or23c16f    head_fore             -999999.              15.3243         -1.00001e+06              0.00000
+              or25c5f    head_fore             -999999.              20.7656         -1.00002e+06              0.00000
+              or27c7f    head_fore             -999999.              18.8841         -1.00002e+06              0.00000
+             or30c16f    head_fore             -999999.              13.7899         -1.00001e+06              0.00000
+              or34c8f    head_fore             -999999.              16.4240         -1.00002e+06              0.00000
+             or35c11f    head_fore             -999999.              14.3100         -1.00001e+06              0.00000
+             fr02c02f    head_fore             -999999.              26.7687         -1.00003e+06              0.00000
+             fr01c13f    head_fore             -999999.              20.5390         -1.00002e+06              0.00000
+             fr09c15f    head_fore             -999999.              18.2862         -1.00002e+06              0.00000
+             fr25c10f    head_fore             -999999.              17.1621         -1.00002e+06              0.00000
+         rivflux_fore    flux_fore             -999999.             -11457.5             -988542.              0.00000
+          travel_time  travel_fore             -999999.              5899.46         -1.00590e+06              0.00000
+
+Final composite objective function 
+    Final phi                                           Total : 14.4994
+    Contribution to phi from observation group    "flux_fore" : 0.00000
+    Contribution to phi from observation group  "travel_fore" : 0.00000
+    Contribution to phi from observation group     "head_cal" : 14.4994
+    Contribution to phi from observation group     "flux_cal" : 0.00000
+    Contribution to phi from observation group    "head_fore" : 0.00000
+
+
+Number of forward model runs performed during optimiztion: 47
+
+
+
+
+-----------------------------------------------------------------------
+Note: The following uncertainty estimates were calculated using 
+      Schur's complement for linear-based conditional uncertainty 
+      propogation.  For a derviation from Bayes equation, see 
+      M. N. Fienen, J. E. Doherty, R. J. Hunt, and H. W. Reeves. 
+      2010. 'Using Prediction Uncertainty Analysis to Design 
+      Hydrologic Monitoring Networks : Example Applications 
+      from the Great Lakes Water Availability Pilot Project'. 
+      See PEST++ V3 documentation for implementation details.
+-----------------------------------------------------------------------
+
+Note: Any observations or prior information equations with a group name
+      starting with 'regul' are dropped from the jacobian and observation
+      covariance matrices before uncertainty calculations.  Please
+      make sure that all expert knowledge is expressed in the prior 
+      parameter bounds or through a covariance matix, which can be 
+      supplied as a pest++ option as 'parameter_covariance(<matrix_file_name>),
+      where <matrix_file_name> can be an ASCII PEST-compatible matrix file (.mat) or
+      a PEST-compatible uncertainty file (.unc).
+
+
+Note: The observation covariance matrix has been constructed from 
+      weights listed in the pest control file that have been scaled by 
+      by the final objective function components to account for 
+      the level of measurement noise implied by the original weights so
+      the total objective function is equal to the number of  
+      non-zero weighted observations.
+
+Scaled observation weights used to form observation noise covariance matrix:
+
+         observation               group       scaled_weight
+             OR25C5C            HEAD_CAL            0.946883
+            OR14C11C            HEAD_CAL            0.946883
+            OR22C11C            HEAD_CAL            0.946883
+            OR16C17C            HEAD_CAL            0.946883
+             OR04C9C            HEAD_CAL            0.946883
+             OR27C7C            HEAD_CAL            0.946883
+             OR10C2C            HEAD_CAL            0.946883
+             OR34C8C            HEAD_CAL            0.946883
+            OR30C16C            HEAD_CAL            0.946883
+            OR35C11C            HEAD_CAL            0.946883
+            OR03C16C            HEAD_CAL            0.946883
+            OR03C10C            HEAD_CAL            0.946883
+            OR23C16C            HEAD_CAL            0.946883
+
+
+Note : posterior parameter covariance matrix written to file 'freyberg_k+r.post.cov'
+
+
+---------------------------------------
+---- parameter uncertainty summary ----
+---------------------------------------
+
+
+                name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+                RCH1            -4.85943             2.25000            -9.35943           -0.359427            -3.10224            0.467129            -4.03650            -2.16798
+                 HK1             1.69897            0.575257            0.548455             2.84949             1.49312            0.483759            0.525604             2.46064
+
+WARNING: the following parameters were not found in the final 
+      base parameter jacobian and were subsequently not included 
+      in the uncertainty analysis calculations.  This may lead to 
+      NON-CONSERVATIVE uncertainty estimates. Please 
+      consider including all parameters:
+                RCH2
+
+Note: Upper and lower uncertainty bounds reported above are 
+      calculated as: <prior,post>_mean +/- (2.0 * <prior,post>_stdev). 
+      For log-transformed parameters, the mean, stdev and range are reported 
+      with respect to the log of the parameter value. 
+
+Note : the above parameter uncertainty summary was written to file 'freyberg_k+r.par.usum.csv'
+
+
+----------------------------------------
+---- prediction uncertainty summary ----
+----------------------------------------
+
+
+     prediction_name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+            OR03C16F             19.2948             1.26658             16.7616             21.8280             19.5592            0.155372             19.2484             19.8699
+             OR04C9F             19.0544             14.3698            -9.68526             47.7941             22.2818             1.48172             19.3184             25.2453
+         RIVFLUX_CAL            -11.2544             160966.            -321943.             321921.            -30012.8             34139.5            -98291.7             38266.2
+        RIVFLUX_FORE            -1835.64             48946.9            -99729.4             96058.1            -11457.5             7038.54            -25534.5             2619.62
+         TRAVEL_TIME             4455.12             5491.05            -6526.99             15437.2             5899.46             4617.85            -3336.25             15135.2
+
+
+Note: predictive sensitivity vectors for both prior and 
+      posterior uncertainty calculations are the same 
+      and were extracted from final base parameter jacobian.
+      The upper and lower uncertainty bounds were calculated 
+      as: <prior,post>_mean +/- (2.0*<prior,post>_stdev
+Note : the above prediction uncertainty summary was written to file 'freyberg_k+r.pred.usum.csv'
+

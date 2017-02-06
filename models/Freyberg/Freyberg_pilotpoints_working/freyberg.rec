@@ -1,0 +1,203 @@
+             PEST++ Version 3.2.0
+
+                 by Dave Welter
+     Computational Water Resource Engineering
+
+
+
+using control file: "freyberg.pst"
+
+noptmax = 0, resetting max_run_fail = 1
+
+PEST++ run mode:- 
+   estimation
+
+Case dimensions:- 
+    Number of parameters = 3
+    Number of adjustable parameters = 3
+    Number of observations = 33
+    Number of prior estimates = 0
+
+Model command line(s):- 
+    python run_model.py
+
+Model interface files:-
+    template files:
+      freyberg.rch.tpl
+      freyberg.lpf.tpl
+    model input files:
+      freyberg.rch
+      freyberg.lpf
+
+    instruction files:
+      freyberg.heads.ins
+      freyberg.rivflux.ins
+      freyberg.travel.ins
+    model output files:
+      freyberg.heads
+      freyberg.rivflux
+      freyberg.travel
+
+
+PEST Control Information
+    relparmax = 10
+    facparmax = 10
+    facorig = 0.001
+    phiredswh = 0.1
+    noptmax = 0
+    phiredstp = 0.01
+    nphistp = 3
+    nphinored = 3
+    relparstp = 0.01
+    nrelpar = 3
+
+PEST++ Options
+    n_iter_base = 1                   
+    n_iter_super = 0                   
+    max_n_super = 3                   
+    super eigthres = 1e-06               
+    svd pack = 0                   
+    auto norm = -999                
+    super relparmax = 0.1                 
+    max super frz iter = 5                   
+    mat inv = 1                   
+    max run fail = 1                   
+    max reg iter = 20                  
+    lambdas = 
+            0.1
+              1
+             10
+            100
+           1000
+    uncertainty flag = 1                   
+    parameter covariance file =                     
+    prediction names = 
+
+
+Parameter group information
+NAME            INCREMENT TYPE     DERIVATIVE INCREMENT    INCREMENT LOWER BOUND  FORCE CENTRAL     INCREMENT MULTIPLIER
+hk                    RELATIVE                     0.01                        0         SWITCH                        2
+rch                   RELATIVE                     0.01                        0         SWITCH                        2
+
+Parameter information
+NAME           TRANSFORMATION        CHANGE LIMIT  INITIAL VALUE    LOWER BOUND    UPPER BOUND          GROUP          SCALE         OFFSET  DERIVATIVE COMMAND
+rch1           log                     FACTOR     0.00013824          1e-10          1e+10            rch              1              0                   0
+rch2           log                     FACTOR          9e-05          1e-10          1e+10            rch              1              0                   0
+hk1            log                     FACTOR        5.94751          1e-10          1e+10             hk              1              0                   0
+
+Observation information
+NAME                                    VALUE               GROUP              WEIGHT
+or03c16c                              19.7325            head_cal                   1
+or03c10c                              22.2941            head_cal                   1
+or04c9c                               22.7901            head_cal                   1
+or10c2c                               28.8322            head_cal                   1
+or14c11c                              18.4979            head_cal                   1
+or16c17c                              17.5548            head_cal                   1
+or22c11c                               18.364            head_cal                   1
+or23c16c                              16.0856            head_cal                   1
+or25c5c                               23.5692            head_cal                   1
+or27c7c                               22.0393            head_cal                   1
+or30c16c                              15.1866            head_cal                   1
+or34c8c                               19.2768            head_cal                   1
+or35c11c                               15.086            head_cal                   1
+rivflux_cal                           -999999            flux_cal                   0
+or03c16f                              -999999           head_fore                   0
+or03c10f                              -999999           head_fore                   0
+or04c9f                               -999999           head_fore                   0
+or10c2f                               -999999           head_fore                   0
+or14c11f                              -999999           head_fore                   0
+or16c17f                              -999999           head_fore                   0
+or22c11f                              -999999           head_fore                   0
+or23c16f                              -999999           head_fore                   0
+or25c5f                               -999999           head_fore                   0
+or27c7f                               -999999           head_fore                   0
+or30c16f                              -999999           head_fore                   0
+or34c8f                               -999999           head_fore                   0
+or35c11f                              -999999           head_fore                   0
+fr02c02f                              -999999           head_fore                   0
+fr01c13f                              -999999           head_fore                   0
+fr09c15f                              -999999           head_fore                   0
+fr25c10f                              -999999           head_fore                   0
+rivflux_fore                          -999999           flux_fore                   0
+travel_time                           -999999         travel_fore                   0
+
+Prior information
+
+   no prior information provided
+
+PEST SVD Information
+    maxsing = 3
+    eigthresh = 1e-06
+
+
+   -----    Starting PEST++ Iterations    ----    
+
+
+-----------------------------------------
+     ---   OPTIMIZATION COMPLETE   ---   
+  Reason for terminating PEST++ simulation: NOPTMAX criterion met
+  Summary of termination criteria:
+  NOPTMAX = 0 ;  NOPT at termination = 0
+  NPHINORED = 3 ;  NPHINORED at termination = 0
+  NRELPAR = 3; RELPARSTP = 0.01 ;  NRELPAR at termination = 0
+  PHIREDSTP = 0.01; NPHISTP = 3
+  NPHISTP lowest PHI's:
+
+FINAL OPTIMISATION RESULTS
+
+  Optimal parameter values  
+
+     Parameter            
+        Name         Value
+    ------------  ------------
+    rch1            0.00013824
+    rch2                 9e-05
+    hk1                5.94751
+
+
+  Observations with optimal model-simulated equivalents and residuals
+                 Name        Group             Measured             Modelled             Residual               Weight
+             or03c16c     head_cal              19.7325              18.9327             0.799868              1.00000
+             or03c10c     head_cal              22.2941              18.7230              3.57103              1.00000
+              or04c9c     head_cal              22.7901              18.5046              4.28545              1.00000
+              or10c2c     head_cal              28.8322              16.3781              12.4541              1.00000
+             or14c11c     head_cal              18.4979              16.2918              2.20610              1.00000
+             or16c17c     head_cal              17.5548              16.3387              1.21610              1.00000
+             or22c11c     head_cal              18.3640              14.3813              3.98263              1.00000
+             or23c16c     head_cal              16.0856              14.8907              1.19494              1.00000
+              or25c5c     head_cal              23.5692              12.9290              10.6402              1.00000
+              or27c7c     head_cal              22.0393              12.7665              9.27281              1.00000
+             or30c16c     head_cal              15.1866              13.3613              1.82521              1.00000
+              or34c8c     head_cal              19.2768              12.7900              6.48680              1.00000
+             or35c11c     head_cal              15.0860              12.0661              3.01989              1.00000
+          rivflux_cal     flux_cal             -999999.              1630.75         -1.00163e+06              0.00000
+             or03c16f    head_fore             -999999.              18.9327         -1.00002e+06              0.00000
+             or03c10f    head_fore             -999999.              18.7230         -1.00002e+06              0.00000
+              or04c9f    head_fore             -999999.              18.5046         -1.00002e+06              0.00000
+              or10c2f    head_fore             -999999.              16.3781         -1.00002e+06              0.00000
+             or14c11f    head_fore             -999999.              16.2918         -1.00002e+06              0.00000
+             or16c17f    head_fore             -999999.              16.3387         -1.00002e+06              0.00000
+             or22c11f    head_fore             -999999.              14.3813         -1.00001e+06              0.00000
+             or23c16f    head_fore             -999999.              14.8907         -1.00001e+06              0.00000
+              or25c5f    head_fore             -999999.              12.9290         -1.00001e+06              0.00000
+              or27c7f    head_fore             -999999.              12.7665         -1.00001e+06              0.00000
+             or30c16f    head_fore             -999999.              13.3613         -1.00001e+06              0.00000
+              or34c8f    head_fore             -999999.              12.7900         -1.00001e+06              0.00000
+             or35c11f    head_fore             -999999.              12.0661         -1.00001e+06              0.00000
+             fr02c02f    head_fore             -999999.              18.3617         -1.00002e+06              0.00000
+             fr01c13f    head_fore             -999999.              19.5531         -1.00002e+06              0.00000
+             fr09c15f    head_fore             -999999.              16.8981         -1.00002e+06              0.00000
+             fr25c10f    head_fore             -999999.              13.4132         -1.00001e+06              0.00000
+         rivflux_fore    flux_fore             -999999.              1903.24         -1.00190e+06              0.00000
+          travel_time  travel_fore             -999999.              44827.4         -1.04483e+06              0.00000
+
+Final composite objective function 
+    Final phi                                           Total : 464.225
+    Contribution to phi from observation group     "head_cal" : 464.225
+    Contribution to phi from observation group     "flux_cal" : 0.00000
+    Contribution to phi from observation group    "head_fore" : 0.00000
+    Contribution to phi from observation group    "flux_fore" : 0.00000
+    Contribution to phi from observation group  "travel_fore" : 0.00000
+
+
+Number of forward model runs performed during optimiztion: 1

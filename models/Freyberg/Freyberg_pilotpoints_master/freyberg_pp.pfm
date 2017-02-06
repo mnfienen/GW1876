@@ -1,0 +1,2235 @@
+PEST++ performance logger started at:  2016-05-11 20:05:21
+  starting to process control file
+          ( time = 2016-05-11 20:05:21,  elapsed time = 632us )
+  finished processing control file
+          ( time = 2016-05-11 20:05:21,  elapsed time = 2ms )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:05:21,  elapsed time = 1ms )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:05:21,  elapsed time = 1ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:06:17,  elapsed time = 56sec )
+  processing jacobian runs complete
+          ( time = 2016-05-11 20:06:17,  elapsed time = 4ms )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:06:17,  elapsed time = 16us )
+
+beginning iteration 1
+        ( time = 2016-05-11 20:06:19,  elapsed time = 2sec )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:06:19,  elapsed time = 184us )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:06:19,  elapsed time = 547us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 741us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 92us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 121us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:19,  elapsed time = 18us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 41us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:19,  elapsed time = 63us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 25
+            ( time = 2016-05-11 20:06:19,  elapsed time = 20us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 25
+            ( time = 2016-05-11 20:06:19,  elapsed time = 22us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 17us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:06:19,  elapsed time = 16us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 44us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:06:19,  elapsed time = 796us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 518us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 43us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 73us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:19,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 21us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:19,  elapsed time = 35us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 11us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 25us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:06:19,  elapsed time = 448us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 378us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 41us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 67us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:19,  elapsed time = 17us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 22us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:19,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 20
+          ( time = 2016-05-11 20:06:19,  elapsed time = 438us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 374us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 42us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 66us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:19,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 20us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:19,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:06:19,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 40
+          ( time = 2016-05-11 20:06:19,  elapsed time = 439us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 374us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 40us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 85us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 18us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:19,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:06:19,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:06:19,  elapsed time = 397us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 338us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 37us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 60us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:19,  elapsed time = 16us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 19us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:19,  elapsed time = 33us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:06:19,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:06:19,  elapsed time = 402us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 338us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:19,  elapsed time = 37us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 60us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 18us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:19,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:19,  elapsed time = 8us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:06:19,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:19,  elapsed time = 23us )
+  completed iteration 1
+          ( time = 2016-05-11 20:06:23,  elapsed time = 3sec )
+  time to complete iteration 1
+          ( elapsed time = 3sec )
+
+beginning iteration 2
+        ( time = 2016-05-11 20:06:23,  elapsed time = 3ms )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:06:23,  elapsed time = 65us )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:06:23,  elapsed time = 451us )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:06:23,  elapsed time = 2ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:06:31,  elapsed time = 8sec )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:06:31,  elapsed time = 1ms )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:06:31,  elapsed time = 1ms )
+  beginning upgrade vector calculations, lambda = 0.05
+          ( time = 2016-05-11 20:06:31,  elapsed time = 380us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 624us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 138us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 78us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:31,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 105us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:31,  elapsed time = 38us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:31,  elapsed time = 19us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 28us )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:06:31,  elapsed time = 454us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 377us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 133us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 68us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 99us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:31,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 11us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:31,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 0.2
+          ( time = 2016-05-11 20:06:31,  elapsed time = 449us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 376us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 132us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 68us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 96us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:31,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:06:31,  elapsed time = 439us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 354us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 118us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 85us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:31,  elapsed time = 39us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:31,  elapsed time = 14us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:31,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 24us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:06:31,  elapsed time = 396us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 339us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 118us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 81us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:31,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:31,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 24us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:06:31,  elapsed time = 396us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 338us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 118us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:31,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 65us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:31,  elapsed time = 33us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:31,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:31,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:31,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:06:31,  elapsed time = 394us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 311us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:31,  elapsed time = 108us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 55us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:31,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 54us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:31,  elapsed time = 30us )
+    Vt info: rows = 12: cols = 13: size = 156: nonzeros = 156
+            ( time = 2016-05-11 20:06:31,  elapsed time = 10us )
+    U info: rows = 13: cols = 12: size = 156: nonzeros = 156
+            ( time = 2016-05-11 20:06:31,  elapsed time = 8us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:31,  elapsed time = 14us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:31,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:31,  elapsed time = 22us )
+  completed iteration 2
+          ( time = 2016-05-11 20:06:35,  elapsed time = 3sec )
+  time to complete iteration 2
+          ( elapsed time = 11sec )
+
+beginning iteration 3
+        ( time = 2016-05-11 20:06:35,  elapsed time = 3ms )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:06:35,  elapsed time = 36us )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:06:35,  elapsed time = 473us )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:06:35,  elapsed time = 2ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:06:43,  elapsed time = 7sec )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:06:43,  elapsed time = 1ms )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:06:43,  elapsed time = 1ms )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:06:43,  elapsed time = 350us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 409us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 138us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 86us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:43,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 106us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:43,  elapsed time = 39us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 11us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 428
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 27us )
+  beginning upgrade vector calculations, lambda = 0.2
+          ( time = 2016-05-11 20:06:43,  elapsed time = 468us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 378us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 132us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 69us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 102us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:43,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 428
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 0.4
+          ( time = 2016-05-11 20:06:43,  elapsed time = 448us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 383us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 131us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 68us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:43,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 97us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:43,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 428
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:06:43,  elapsed time = 415us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 339us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 117us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 62us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 85us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:43,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 428
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 24us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:06:43,  elapsed time = 397us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 340us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 117us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 62us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 78us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:43,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:43,  elapsed time = 8us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 428
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 24us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:06:43,  elapsed time = 397us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 356us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 128us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 60us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 63us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:43,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 428
+            ( time = 2016-05-11 20:06:43,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:06:43,  elapsed time = 392us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 330us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:43,  elapsed time = 121us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 59us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:43,  elapsed time = 37us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:43,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 428
+            ( time = 2016-05-11 20:06:43,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:43,  elapsed time = 23us )
+  completed iteration 3
+          ( time = 2016-05-11 20:06:47,  elapsed time = 3sec )
+  time to complete iteration 3
+          ( elapsed time = 11sec )
+
+beginning iteration 4
+        ( time = 2016-05-11 20:06:47,  elapsed time = 3ms )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:06:47,  elapsed time = 38us )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:06:47,  elapsed time = 384us )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:06:47,  elapsed time = 2ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:06:55,  elapsed time = 8sec )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:06:55,  elapsed time = 1ms )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:06:55,  elapsed time = 953us )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:06:55,  elapsed time = 382us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 650us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 256us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 72us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:55,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 111us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:55,  elapsed time = 47us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 27us )
+  beginning upgrade vector calculations, lambda = 0.2
+          ( time = 2016-05-11 20:06:55,  elapsed time = 472us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 377us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 142us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 68us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:55,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 113us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:55,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 0.4
+          ( time = 2016-05-11 20:06:55,  elapsed time = 447us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 375us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 142us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 68us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 105us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:55,  elapsed time = 35us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 0.8
+          ( time = 2016-05-11 20:06:55,  elapsed time = 439us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 370us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 127us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 62us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 98us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:55,  elapsed time = 33us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:06:55,  elapsed time = 397us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 342us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 127us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 94us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:55,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:06:55,  elapsed time = 397us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 339us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 127us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 83us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:55,  elapsed time = 33us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:06:55,  elapsed time = 404us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 318us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 120us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 58us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 70us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:55,  elapsed time = 30us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:55,  elapsed time = 8us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:55,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:06:55,  elapsed time = 373us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 318us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:06:55,  elapsed time = 119us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 57us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 57us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:06:55,  elapsed time = 30us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:06:55,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:06:55,  elapsed time = 8us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:06:55,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:06:55,  elapsed time = 22us )
+  completed iteration 4
+          ( time = 2016-05-11 20:07:00,  elapsed time = 4sec )
+  time to complete iteration 4
+          ( elapsed time = 12sec )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:07:00,  elapsed time = 3ms )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:07:00,  elapsed time = 1ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:07:39,  elapsed time = 39sec )
+  processing jacobian runs complete
+          ( time = 2016-05-11 20:07:39,  elapsed time = 3ms )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:07:39,  elapsed time = 21us )
+
+beginning iteration 5
+        ( time = 2016-05-11 20:07:41,  elapsed time = 2sec )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:07:41,  elapsed time = 143us )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:07:41,  elapsed time = 368us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 666us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 53us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 70us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:41,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 38us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:41,  elapsed time = 37us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 137
+            ( time = 2016-05-11 20:07:41,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 137
+            ( time = 2016-05-11 20:07:41,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:07:41,  elapsed time = 19us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 28us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:07:41,  elapsed time = 694us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 413us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 43us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 66us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:41,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 27us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:41,  elapsed time = 41us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 67
+            ( time = 2016-05-11 20:07:41,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 67
+            ( time = 2016-05-11 20:07:41,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 24us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:07:41,  elapsed time = 417us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 340us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 40us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:41,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 19us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:41,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 20
+          ( time = 2016-05-11 20:07:41,  elapsed time = 394us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 338us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 39us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 60us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:41,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 19us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:41,  elapsed time = 31us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:07:41,  elapsed time = 16us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 40
+          ( time = 2016-05-11 20:07:41,  elapsed time = 395us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 346us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 35us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 55us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:41,  elapsed time = 8us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 17us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:41,  elapsed time = 29us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 8us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 8us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:07:41,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 21us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:07:41,  elapsed time = 359us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 307us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 35us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 56us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 17us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:41,  elapsed time = 29us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 8us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 8us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:07:41,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 21us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:07:41,  elapsed time = 366us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 309us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:41,  elapsed time = 35us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 55us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:41,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 17us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:41,  elapsed time = 29us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 8us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:41,  elapsed time = 8us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:07:41,  elapsed time = 14us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:41,  elapsed time = 22us )
+  completed iteration 5
+          ( time = 2016-05-11 20:07:45,  elapsed time = 3sec )
+  time to complete iteration 5
+          ( elapsed time = 3sec )
+
+beginning iteration 6
+        ( time = 2016-05-11 20:07:45,  elapsed time = 2ms )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:07:45,  elapsed time = 23us )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:07:45,  elapsed time = 333us )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:07:45,  elapsed time = 1ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:07:52,  elapsed time = 7sec )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:07:52,  elapsed time = 703us )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:07:52,  elapsed time = 657us )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:07:52,  elapsed time = 243us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 373us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 111us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 63us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 96us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:52,  elapsed time = 34us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 25us )
+  beginning upgrade vector calculations, lambda = 0.5
+          ( time = 2016-05-11 20:07:52,  elapsed time = 432us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 344us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 105us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 95us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:52,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:07:52,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 24us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:07:52,  elapsed time = 404us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 329us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 107us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 88us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:52,  elapsed time = 31us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:07:52,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 2
+          ( time = 2016-05-11 20:07:52,  elapsed time = 384us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 329us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 101us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 58us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:52,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 81us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:52,  elapsed time = 31us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:07:52,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:07:52,  elapsed time = 386us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 328us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 100us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 58us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 71us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:52,  elapsed time = 38us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:07:52,  elapsed time = 384us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 328us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 108us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 60us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:52,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 60us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:52,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 8us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 22us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:07:52,  elapsed time = 393us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 331us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:07:52,  elapsed time = 101us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 59us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 57us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:07:52,  elapsed time = 31us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:07:52,  elapsed time = 8us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:07:52,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:07:52,  elapsed time = 23us )
+  completed iteration 6
+          ( time = 2016-05-11 20:07:56,  elapsed time = 3sec )
+  time to complete iteration 6
+          ( elapsed time = 11sec )
+
+beginning iteration 7
+        ( time = 2016-05-11 20:07:56,  elapsed time = 3ms )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:07:56,  elapsed time = 38us )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:07:56,  elapsed time = 451us )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:07:56,  elapsed time = 2ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:08:05,  elapsed time = 9sec )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:08:05,  elapsed time = 1ms )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:08:05,  elapsed time = 1ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:08:44,  elapsed time = 38sec )
+  processing jacobian runs complete
+          ( time = 2016-05-11 20:08:44,  elapsed time = 4ms )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:08:44,  elapsed time = 40us )
+
+beginning iteration 7
+        ( time = 2016-05-11 20:08:46,  elapsed time = 2sec )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:08:46,  elapsed time = 107us )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:08:46,  elapsed time = 226us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 405us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 58us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 69us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:46,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 37us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:46,  elapsed time = 37us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 137
+            ( time = 2016-05-11 20:08:46,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 137
+            ( time = 2016-05-11 20:08:46,  elapsed time = 11us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 27us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:08:46,  elapsed time = 449us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 531us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 71us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 110us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:46,  elapsed time = 17us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 49us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:46,  elapsed time = 58us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 67
+            ( time = 2016-05-11 20:08:46,  elapsed time = 19us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 67
+            ( time = 2016-05-11 20:08:46,  elapsed time = 16us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 17us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:08:46,  elapsed time = 16us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 42us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:08:46,  elapsed time = 755us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 409us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 43us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 67us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 21us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:46,  elapsed time = 35us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 20
+          ( time = 2016-05-11 20:08:46,  elapsed time = 436us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 373us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 49us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 67us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 21us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:46,  elapsed time = 35us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 25us )
+  beginning upgrade vector calculations, lambda = 40
+          ( time = 2016-05-11 20:08:46,  elapsed time = 435us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 372us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 42us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 67us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:46,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 20us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:46,  elapsed time = 35us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:08:46,  elapsed time = 435us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 392us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 38us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 60us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 19us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:46,  elapsed time = 31us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:08:46,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:08:46,  elapsed time = 401us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 337us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:46,  elapsed time = 43us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 60us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 19us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:46,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:08:46,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:46,  elapsed time = 23us )
+  completed iteration 7
+          ( time = 2016-05-11 20:08:50,  elapsed time = 3sec )
+  time to complete iteration 7
+          ( elapsed time = 3sec )
+
+beginning iteration 8
+        ( time = 2016-05-11 20:08:50,  elapsed time = 2ms )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:08:50,  elapsed time = 34us )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:08:50,  elapsed time = 405us )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:08:50,  elapsed time = 2ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:08:57,  elapsed time = 7sec )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:08:57,  elapsed time = 1ms )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:08:57,  elapsed time = 951us )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:08:57,  elapsed time = 378us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 646us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 182us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 69us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:57,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 104us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:57,  elapsed time = 46us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 11us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 27us )
+  beginning upgrade vector calculations, lambda = 0.5
+          ( time = 2016-05-11 20:08:57,  elapsed time = 468us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 374us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 117us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 67us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:57,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 104us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:57,  elapsed time = 37us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 18us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:08:57,  elapsed time = 445us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 377us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 116us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 66us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:57,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 100us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:57,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 2
+          ( time = 2016-05-11 20:08:57,  elapsed time = 436us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 369us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 104us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 84us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:57,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:08:57,  elapsed time = 394us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 336us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 104us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 59us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 72us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:57,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 17us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:08:57,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 24us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:08:57,  elapsed time = 394us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 335us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 105us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 63us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:57,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:08:57,  elapsed time = 414us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 330us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:08:57,  elapsed time = 110us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 59us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 57us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:08:57,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:08:57,  elapsed time = 8us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:08:57,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:08:57,  elapsed time = 22us )
+  completed iteration 8
+          ( time = 2016-05-11 20:09:01,  elapsed time = 3sec )
+  time to complete iteration 8
+          ( elapsed time = 11sec )
+
+beginning iteration 9
+        ( time = 2016-05-11 20:09:01,  elapsed time = 2ms )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:09:01,  elapsed time = 29us )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:09:01,  elapsed time = 403us )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:09:01,  elapsed time = 2ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:09:12,  elapsed time = 10sec )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:09:12,  elapsed time = 1ms )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:09:12,  elapsed time = 2ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:09:51,  elapsed time = 38sec )
+  processing jacobian runs complete
+          ( time = 2016-05-11 20:09:51,  elapsed time = 3ms )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:09:51,  elapsed time = 21us )
+
+beginning iteration 9
+        ( time = 2016-05-11 20:09:53,  elapsed time = 2sec )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:09:53,  elapsed time = 143us )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:09:53,  elapsed time = 330us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 411us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 50us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 70us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 38us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:09:53,  elapsed time = 37us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 137
+            ( time = 2016-05-11 20:09:53,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 137
+            ( time = 2016-05-11 20:09:53,  elapsed time = 11us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 27us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:09:53,  elapsed time = 490us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 379us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 44us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 67us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:09:53,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 30us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:09:53,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 67
+            ( time = 2016-05-11 20:09:53,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 67
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:09:53,  elapsed time = 445us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 376us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 43us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 67us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:09:53,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 21us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:09:53,  elapsed time = 35us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 19us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 20
+          ( time = 2016-05-11 20:09:53,  elapsed time = 437us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 357us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 39us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 60us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 19us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:09:53,  elapsed time = 38us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 40
+          ( time = 2016-05-11 20:09:53,  elapsed time = 394us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 336us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 37us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 19us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:09:53,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:09:53,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:09:53,  elapsed time = 393us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 337us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 38us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 60us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:09:53,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 18us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:09:53,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 17us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 24us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:09:53,  elapsed time = 400us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 333us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:09:53,  elapsed time = 35us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 55us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 17us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:09:53,  elapsed time = 29us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 9us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 8us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:09:53,  elapsed time = 8us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 429
+            ( time = 2016-05-11 20:09:53,  elapsed time = 8us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:09:53,  elapsed time = 21us )
+  completed iteration 9
+          ( time = 2016-05-11 20:09:56,  elapsed time = 3sec )
+  time to complete iteration 9
+          ( elapsed time = 3sec )
+
+beginning iteration 10
+        ( time = 2016-05-11 20:09:56,  elapsed time = 2ms )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:09:56,  elapsed time = 36us )
+  commencing to build jacobian parameter sets
+          ( time = 2016-05-11 20:09:56,  elapsed time = 419us )
+  jacobian parameter sets built, commencing model runs
+          ( time = 2016-05-11 20:09:56,  elapsed time = 2ms )
+  jacobian runs complete, processing runs
+          ( time = 2016-05-11 20:10:04,  elapsed time = 7sec )
+  saving jacobian and sen files
+          ( time = 2016-05-11 20:10:04,  elapsed time = 1ms )
+  computing upgrade vectors
+          ( time = 2016-05-11 20:10:04,  elapsed time = 938us )
+  beginning upgrade vector calculations, lambda = 0.1
+          ( time = 2016-05-11 20:10:04,  elapsed time = 401us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 648us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 200us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 115us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:10:04,  elapsed time = 17us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 183us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:10:04,  elapsed time = 38us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 46us )
+  beginning upgrade vector calculations, lambda = 0.5
+          ( time = 2016-05-11 20:10:04,  elapsed time = 458us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 375us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 116us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 68us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 106us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:10:04,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 11us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 1
+          ( time = 2016-05-11 20:10:04,  elapsed time = 445us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 373us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 116us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 68us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:10:04,  elapsed time = 11us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 100us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:10:04,  elapsed time = 36us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 12us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 26us )
+  beginning upgrade vector calculations, lambda = 2
+          ( time = 2016-05-11 20:10:04,  elapsed time = 436us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 372us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 124us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 85us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:10:04,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:10:04,  elapsed time = 16us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 24us )
+  beginning upgrade vector calculations, lambda = 10
+          ( time = 2016-05-11 20:10:04,  elapsed time = 395us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 337us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 104us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 74us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:10:04,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 100
+          ( time = 2016-05-11 20:10:04,  elapsed time = 393us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 335us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 105us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:10:04,  elapsed time = 10us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 63us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:10:04,  elapsed time = 32us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 23us )
+  beginning upgrade vector calculations, lambda = 1000
+          ( time = 2016-05-11 20:10:04,  elapsed time = 404us )
+    commencing to scale JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 340us )
+    multiplying JtQJ matrix
+            ( time = 2016-05-11 20:10:04,  elapsed time = 104us )
+    scaling of  JtQJ matrix complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 61us )
+    commencing SVD factorization
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    SVD factorization complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 60us )
+    commencing linear algebra multiplication to compute ugrade
+            ( time = 2016-05-11 20:10:04,  elapsed time = 39us )
+    Vt info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 11us )
+    U info: rows = 13: cols = 13: size = 169: nonzeros = 169
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    S info: rows = 13: cols = 13: size = 169: nonzeros = 13
+            ( time = 2016-05-11 20:10:04,  elapsed time = 9us )
+    jac info: rows = 33: cols = 13: size = 429: nonzeros = 427
+            ( time = 2016-05-11 20:10:04,  elapsed time = 13us )
+    linear algebra multiplication to compute ugrade complete
+            ( time = 2016-05-11 20:10:04,  elapsed time = 24us )
+  completed iteration 10
+          ( time = 2016-05-11 20:10:08,  elapsed time = 4sec )
+  time to complete iteration 10
+          ( elapsed time = 11sec )
+
+
+-----------------------------------
+starting linear uncertainty analyses
+-----------------------------------
+
+2016-05-11 20:10:08-> starting set_predictions
+2016-05-11 20:10:08->-> starting extracting prediction RIVFLUX_CAL from jacobian
+2016-05-11 20:10:08->-> finished extracting prediction RIVFLUX_CAL from jacobian, elapsed time = 753us
+2016-05-11 20:10:08->-> starting extracting prediction RIVFLUX_FORE from jacobian
+2016-05-11 20:10:08->-> finished extracting prediction RIVFLUX_FORE from jacobian, elapsed time = 409us
+2016-05-11 20:10:08->-> starting extracting prediction TRAVEL_TIME from jacobian
+2016-05-11 20:10:08->-> finished extracting prediction TRAVEL_TIME from jacobian, elapsed time = 389us
+2016-05-11 20:10:08->-> starting extracting prediction OR03C16F from jacobian
+2016-05-11 20:10:08->-> finished extracting prediction OR03C16F from jacobian, elapsed time = 382us
+2016-05-11 20:10:08->-> starting extracting prediction OR04C9F from jacobian
+2016-05-11 20:10:08->-> finished extracting prediction OR04C9F from jacobian, elapsed time = 374us
+2016-05-11 20:10:08-> finished set_predictions, elapsed time = 2ms
+2016-05-11 20:10:08-> starting calc_posterior
+2016-05-11 20:10:08->-> starting align
+2016-05-11 20:10:08->-> finished align, elapsed time = 142us
+2016-05-11 20:10:08-> finished calc_posterior, elapsed time = 1ms
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 21us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 11us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 10us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 23us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_parameter_variance
+2016-05-11 20:10:08-> finished prior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 10us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 8us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 6us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 11us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 11us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 12us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 12us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 11us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 13us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 13us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 14us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 13us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 8us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 8us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 10us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 13us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting posterior_parameter_variance
+2016-05-11 20:10:08-> finished posterior_parameter_variance, elapsed time = 7us
+2016-05-11 20:10:08-> starting prior_prediction_variance
+2016-05-11 20:10:08-> finished prior_prediction_variance, elapsed time = 126us
+2016-05-11 20:10:08-> starting posterior_prediction_variance
+2016-05-11 20:10:08-> finished posterior_prediction_variance, elapsed time = 318us
