@@ -1,5 +1,0 @@
-iteration,model_runs_completed,total_phi,measurement_phi,regularization_phi,flux_fore,travel_fore,head_cal,flux_cal,head_fore
-0,0,326.563,326.563,0,0,0,326.563,0,0
-1,9,18.7703,18.7703,0,0,0,18.7703,0,0
-2,17,18.7437,18.7437,0,0,0,18.7437,0,0
-3,26,18.7436,18.7436,0,0,0,18.7436,0,0
