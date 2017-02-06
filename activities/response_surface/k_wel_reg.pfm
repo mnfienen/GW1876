@@ -1,0 +1,29 @@
+PEST++ performance logger started at:  2016-12-27 13:37:23
+  starting to process control file
+          ( time = 2016-12-27 13:37:23,  elapsed time = 557us )
+  finished processing control file
+          ( time = 2016-12-27 13:37:23,  elapsed time = 897us )
+    starting to read parameter csv file
+            ( time = 2016-12-27 13:37:23,  elapsed time = 1ms )
+    finished reading parameter csv file
+            ( time = 2016-12-27 13:37:23,  elapsed time = 3ms )
+      starting to read parameter csv file
+              ( time = 2016-12-27 13:37:40,  elapsed time = 17sec )
+      finished reading parameter csv file
+              ( time = 2016-12-27 13:37:40,  elapsed time = 2ms )
+        starting to read parameter csv file
+                ( time = 2016-12-27 13:37:50,  elapsed time = 10sec )
+        finished reading parameter csv file
+                ( time = 2016-12-27 13:37:50,  elapsed time = 2ms )
+          starting to read parameter csv file
+                  ( time = 2016-12-27 13:38:01,  elapsed time = 10sec )
+          finished reading parameter csv file
+                  ( time = 2016-12-27 13:38:01,  elapsed time = 2ms )
+            starting to read parameter csv file
+                    ( time = 2016-12-27 13:38:11,  elapsed time = 10sec )
+            finished reading parameter csv file
+                    ( time = 2016-12-27 13:38:11,  elapsed time = 3ms )
+              starting to read parameter csv file
+                      ( time = 2016-12-27 13:38:21,  elapsed time = 10sec )
+              finished reading parameter csv file
+                      ( time = 2016-12-27 13:38:21,  elapsed time = 30us )

@@ -1,0 +1,298 @@
+                                  MODFLOW-2005     
+      U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
+                            VERSION 1.11.00 8/8/2013
+
+ LIST FILE: Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.lst                                                                                                                                                                                                         
+                         UNIT    2
+
+ OPENING Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.bas                                                                                                                                                                                                         
+ FILE TYPE:BAS6   UNIT    1   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.lpf                                                                                                                                                                                                         
+ FILE TYPE:LPF   UNIT   15   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.dis                                                                                                                                                                                                         
+ FILE TYPE:DIS   UNIT   11   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.wel                                                                                                                                                                                                         
+ FILE TYPE:WEL   UNIT   20   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.oc                                                                                                                                                                                                           
+ FILE TYPE:OC   UNIT   22   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.pcg                                                                                                                                                                                                         
+ FILE TYPE:PCG   UNIT   27   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.cbb                                                                                                                                                                                                
+ FILE TYPE:DATA(BINARY)   UNIT   53   STATUS:UNKNOWN
+ FORMAT:BINARY                 ACCESS:SEQUENTIAL          
+
+ OPENING Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.hds                                                                                                                                                                                                
+ FILE TYPE:DATA(BINARY)   UNIT   30   STATUS:UNKNOWN
+ FORMAT:BINARY                 ACCESS:SEQUENTIAL          
+
+ OPENING Z:\Bitbucket\repos\ppp_1st_course\activities\xsec_pest_setup\GW_Vistas\xsect_pest_setup.ddn                                                                                                                                                                                                
+ FILE TYPE:DATA(BINARY)   UNIT   31   STATUS:UNKNOWN
+ FORMAT:BINARY                 ACCESS:SEQUENTIAL          
+
+ BAS -- BASIC PACKAGE, VERSION 7, 5/2/2005 INPUT READ FROM UNIT    1
+ 
+ MODFLOW was compiled using mixed precision
+ Precision of REAL variables:           6
+ Precision of DOUBLE PRECISION variables:          15
+
+ DISCRETIZATION INPUT DATA READ FROM UNIT   11
+ # MODFLOW2000 Discretization File
+    1 LAYERS         1 ROWS        10 COLUMNS
+    2 STRESS PERIOD(S) IN SIMULATION
+ MODEL TIME UNIT IS DAYS
+ MODEL LENGTH UNIT IS METERS
+  Confining bed flag for each layer:
+   0
+
+                     DELR =   10.0000    
+
+                     DELC =   10.0000    
+
+ TOP ELEVATION OF LAYER 1 =   1.00000    
+
+   MODEL LAYER BOTTOM EL. =   0.00000     FOR LAYER   1
+
+
+ STRESS PERIOD     LENGTH       TIME STEPS     MULTIPLIER FOR DELT    SS FLAG
+ ----------------------------------------------------------------------------
+        1         1.000000          1                    1.000         SS
+        2         1.000000          1                    1.000         SS
+
+ STEADY-STATE SIMULATION
+
+
+
+ 
+ # MODFLOW2005 Basic Package                                                     
+ #MODFLOW2000 Dataset Imported into Groundwater Vistas                           
+ #
+ THE FREE FORMAT OPTION HAS BEEN SELECTED
+
+
+
+                     BOUNDARY ARRAY FOR LAYER   1
+ READING ON UNIT    1 WITH FORMAT: (25I3)              
+
+ AQUIFER HEAD WILL BE SET TO  -999.99     AT ALL NO-FLOW NODES (IBOUND=0).
+
+             INITIAL HEAD =   1.00000     FOR LAYER   1
+
+ OUTPUT CONTROL IS SPECIFIED EVERY TIME STEP
+ HEAD PRINT FORMAT CODE IS   0    DRAWDOWN PRINT FORMAT CODE IS   0
+ HEADS WILL BE SAVED ON UNIT   30    DRAWDOWNS WILL BE SAVED ON UNIT   31
+
+ LPF -- LAYER-PROPERTY FLOW PACKAGE, VERSION 7, 5/2/2005
+         INPUT READ FROM UNIT   15
+ # MODFLOW2000 Layer Property Flow (LPF) Package
+ CELL-BY-CELL FLOWS WILL BE SAVED ON UNIT   53
+ HEAD AT CELLS THAT CONVERT TO DRY= -1.00000E+30
+ No named parameters
+
+   LAYER FLAGS:
+ LAYER       LAYTYP        LAYAVG         CHANI        LAYVKA        LAYWET
+ ---------------------------------------------------------------------------
+    1             0             0     1.000E+00             0             0
+
+   INTERPRETATION OF LAYER FLAGS:
+                        INTERBLOCK     HORIZONTAL    DATA IN
+         LAYER TYPE   TRANSMISSIVITY   ANISOTROPY   ARRAY VKA   WETTABILITY
+ LAYER      (LAYTYP)      (LAYAVG)       (CHANI)      (LAYVKA)      (LAYWET)
+ ---------------------------------------------------------------------------
+    1      CONFINED      HARMONIC     1.000E+00    VERTICAL K  NON-WETTABLE
+
+ WETTING CAPABILITY IS NOT ACTIVE IN ANY LAYER
+
+
+
+              HYD. COND. ALONG ROWS FOR LAYER   1
+ READING ON UNIT   15 WITH FORMAT: (10e20.12)          
+
+
+
+                VERTICAL HYD. COND. FOR LAYER   1
+ READING ON UNIT   15 WITH FORMAT: (10e20.12)          
+
+ WEL -- WELL PACKAGE, VERSION 7, 5/2/2005 INPUT READ FROM UNIT   20
+ # MODFLOW2000 Well Package
+          0 Named Parameters              0 List entries
+ MAXIMUM OF      1 ACTIVE WELLS AT ONE TIME
+
+
+     0 Well parameters
+
+ PCG -- CONJUGATE-GRADIENT SOLUTION PACKAGE, VERSION 7, 5/2/2005
+ MAXIMUM OF     50 CALLS OF SOLUTION ROUTINE
+ MAXIMUM OF     30 INTERNAL ITERATIONS PER CALL TO SOLUTION ROUTINE
+ MATRIX PRECONDITIONING TYPE :    1
+
+
+
+                                    SOLUTION BY THE CONJUGATE-GRADIENT METHOD
+                                   -------------------------------------------
+                    MAXIMUM NUMBER OF CALLS TO PCG ROUTINE =       50
+                        MAXIMUM ITERATIONS PER CALL TO PCG =       30
+                               MATRIX PRECONDITIONING TYPE =        1
+        RELAXATION FACTOR (ONLY USED WITH PRECOND. TYPE 1) =    0.10000E+01
+ PARAMETER OF POLYNOMIAL PRECOND. = 2 (2) OR IS CALCULATED :        0
+                         HEAD CHANGE CRITERION FOR CLOSURE =    0.10000E-04
+                     RESIDUAL CHANGE CRITERION FOR CLOSURE =    0.10000E-04
+            PCG HEAD AND RESIDUAL CHANGE PRINTOUT INTERVAL =        1
+     PRINTING FROM SOLVER IS LIMITED(1) OR SUPPRESSED (>1) =        3
+                            STEADY-STATE DAMPING PARAMETER =    0.10000E+01
+                               TRANSIENT DAMPING PARAMETER =    0.10000E+01
+1
+                            STRESS PERIOD NO.    1, LENGTH =   1.000000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   1.000000    
+
+ WELL NO.  LAYER   ROW   COL   STRESS RATE         
+ --------------------------------------------------
+      1      1      1     10      0.5000    
+
+      1 WELL 
+ SOLVING FOR HEAD 
+
+ HEAD/DRAWDOWN PRINTOUT FLAG = 1     TOTAL BUDGET PRINTOUT FLAG = 1
+ CELL-BY-CELL FLOW TERM FLAG = 1
+
+ OUTPUT FLAGS FOR ALL LAYERS ARE THE SAME:
+   HEAD    DRAWDOWN  HEAD  DRAWDOWN
+ PRINTOUT  PRINTOUT  SAVE    SAVE
+ ----------------------------------
+     0         0       1       1
+ UBUDSV SAVING "   CONSTANT HEAD" ON UNIT 53 AT TIME STEP  1, STRESS PERIOD    1
+ UBUDSV SAVING "FLOW RIGHT FACE " ON UNIT 53 AT TIME STEP  1, STRESS PERIOD    1
+
+ HEAD WILL BE SAVED ON UNIT   30 AT END OF TIME STEP   1, STRESS PERIOD    1
+
+ DRAWDOWN WILL BE SAVED ON UNIT   31 AT END OF TIME STEP   1, STRESS PERIOD    1
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP  1 IN STRESS PERIOD   1
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+               WELLS =           0.5000                 WELLS =           0.5000
+
+            TOTAL IN =           0.5000              TOTAL IN =           0.5000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.5000         CONSTANT HEAD =           0.5000
+               WELLS =           0.0000                 WELLS =           0.0000
+
+           TOTAL OUT =           0.5000             TOTAL OUT =           0.5000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+          TIME SUMMARY AT END OF TIME STEP   1 IN STRESS PERIOD    1
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
+ STRESS PERIOD TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
+         TOTAL TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
+1
+1
+                            STRESS PERIOD NO.    2, LENGTH =   1.000000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   1.000000    
+
+ WELL NO.  LAYER   ROW   COL   STRESS RATE         
+ --------------------------------------------------
+      1      1      1     10       1.000    
+
+      1 WELL 
+ SOLVING FOR HEAD 
+
+ HEAD/DRAWDOWN PRINTOUT FLAG = 1     TOTAL BUDGET PRINTOUT FLAG = 1
+ CELL-BY-CELL FLOW TERM FLAG = 1
+
+ OUTPUT FLAGS FOR ALL LAYERS ARE THE SAME:
+   HEAD    DRAWDOWN  HEAD  DRAWDOWN
+ PRINTOUT  PRINTOUT  SAVE    SAVE
+ ----------------------------------
+     0         0       1       1
+ UBUDSV SAVING "   CONSTANT HEAD" ON UNIT 53 AT TIME STEP  1, STRESS PERIOD    2
+ UBUDSV SAVING "FLOW RIGHT FACE " ON UNIT 53 AT TIME STEP  1, STRESS PERIOD    2
+
+ HEAD WILL BE SAVED ON UNIT   30 AT END OF TIME STEP   1, STRESS PERIOD    2
+
+ DRAWDOWN WILL BE SAVED ON UNIT   31 AT END OF TIME STEP   1, STRESS PERIOD    2
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP  1 IN STRESS PERIOD   2
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+               WELLS =           1.5000                 WELLS =           1.0000
+
+            TOTAL IN =           1.5000              TOTAL IN =           1.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           1.5000         CONSTANT HEAD =           1.0000
+               WELLS =           0.0000                 WELLS =           0.0000
+
+           TOTAL OUT =           1.5000             TOTAL OUT =           1.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+          TIME SUMMARY AT END OF TIME STEP   1 IN STRESS PERIOD    2
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
+ STRESS PERIOD TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
+         TOTAL TIME 1.72800E+05  2880.0      48.000      2.0000     5.47570E-03
+1
+
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/01/31 22:34:24
+ Elapsed run time:  0.031 Seconds
+
