@@ -1,0 +1,44 @@
+From xsect_pest_setup:
+
+                name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+                 HK1            0.100000         2.75000e+09        -5.50000e+09         5.50000e+09             1.57284            0.103291             1.36626             1.77942
+     prediction_name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+               H02_8             71.0000         7.83167e+09        -1.56633e+10         1.56633e+10             5.45100            0.294161             4.86268             6.03932
+
+
+With all 3 parameters freed and no log transform
+
+                name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+                 HK1            0.100000         2.75000e+09        -5.50000e+09         5.50000e+09            0.193866             1.83845            -3.48304             3.87077
+            SP1_FLUX            0.500000             2500.00            -4999.50             5000.50           0.0614941            0.576431            -1.09137             1.21436
+            SP2_FLUX             1.00000             2500.00            -4999.00             5001.00             1.00000             2500.00            -4999.00             5001.00
+     prediction_name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+               H02_8             71.0000         5.12435e+11        -1.02487e+12         1.02487e+12             37.1070             90313.1            -180589.             180663.
+
+
+With 3 parameters but 2 flux parameters fixed (=xsect_pest_setup)
+
+                name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+                 HK1            0.100000         2.75000e+09        -5.50000e+09         5.50000e+09             1.57284            0.103291             1.36626             1.77942
+     prediction_name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+               H02_8             71.0000         7.83167e+09        -1.56633e+10         1.56633e+10             5.45100            0.294161             4.86268             6.03932
+
+
+With all 3 parameters freed, no log transform, and smaller bounds on sp1 and sp2
+
+                name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+                 HK1            0.100000         2.75000e+09        -5.50000e+09         5.50000e+09            0.438520             1.42244            -2.40635             3.28340
+            SP1_FLUX            0.500000            0.475000           -0.450000             1.45000            0.139254            0.446412           -0.753571             1.03208
+            SP2_FLUX             1.00000            0.475000           0.0500000             1.95000             1.00000            0.475000           0.0500000             1.95000
+     prediction_name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+               H02_8             71.0000         1.00181e+11        -2.00361e+11         2.00361e+11             16.9630             52.3694            -87.7758             121.702
+
+
+With 3 parameters freed, log transformed, smaller bounds on sp1 and sp2
+
+                name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+                 HK1            -1.00000             5.00000            -11.0000             9.00000           -0.505523            0.325882            -1.15729            0.146240
+            SP1_FLUX           -0.301030            0.325257           -0.951545            0.349485            -1.00000            0.324570            -1.64914           -0.350861
+            SP2_FLUX            0.000000            0.325257           -0.650515            0.650515            0.000000            0.325257           -0.650515            0.650515
+     prediction_name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+               H02_8             71.0000             258.631            -446.262             588.262             23.4190             23.7711            -24.1232             70.9612
