@@ -65,5 +65,5 @@ freyberg.rivflux.ins freyberg.rivflux
 freyberg.travel.ins freyberg.travel
 ++sweep_forgive(true)
 ++forecasts(rivflux_fore,travel_time,fr03c16,fr04c9)
-++sweep_parameter_csv_file(sweep_in.csv)
+++sweep_parameter_csv_file(grid.csv)
 ++LAMBDAS(0.01,0.1,1,10,100,1000,10000,100000)
