@@ -1,0 +1,173 @@
+             PEST++ Version 3.6.0
+
+                 by Dave Welter
+     Computational Water Resource Engineering
+
+
+
+using control file: "xsect.pst"
+
+noptmax = 0, resetting max_run_fail = 1
+
+PEST++ run mode:- 
+   estimation
+
+Case dimensions:- 
+    Number of parameters = 1
+    Number of adjustable parameters = 1
+    Number of observations = 20
+    Number of prior estimates = 0
+
+PEST Control Information
+    relparmax = 10
+    facparmax = 10
+    facorig = 0.001
+    phiredswh = 0.1
+    noptmax = 0
+    phiredstp = 0.01
+    nphistp = 3
+    nphinored = 3
+    relparstp = 0.01
+    nrelpar = 3
+
+PEST++ Options
+    n_iter_base = 1                   
+    n_iter_super = 0                   
+    max_n_super = 1                   
+    super eigthres = 1e-06               
+    svd pack = 0                   
+    auto norm = -999                
+    super relparmax = 0.1                 
+    max super frz iter = 5                   
+    mat inv = 1                   
+    max run fail = 1                   
+    max reg iter = 20                  
+    lambdas = 
+            0.1
+              1
+             10
+            100
+           1000
+    using FOSM-based uncertainty estimation for parameters
+    parameter covariance file =                     
+    derivative run failure forgive = 1              
+    run overdue reschedule factor = 1.15                
+    run overdue giveup factor = 100                 
+    base parameter jacobian filename =                     
+    prior parameter covariance upgrade scaling factor = -999      
+
+
+Model command line(s):- 
+    ./mf2005 10par_xsec.nam
+
+Model interface files:-
+    template files:
+      hk_Layer_1.ref.tpl
+    model input files:
+      hk_Layer_1.ref
+
+    instruction files:
+      10par_xsec.hds.ins
+    model output files:
+      10par_xsec.hds
+
+
+Parameter group information
+NAME            INCREMENT TYPE     DERIVATIVE INCREMENT    INCREMENT LOWER BOUND  FORCE CENTRAL     INCREMENT MULTIPLIER
+pargp                 RELATIVE                     0.01                        0         SWITCH                        2
+
+
+
+Parameter information
+NAME           TRANSFORMATION        CHANGE LIMIT  INITIAL VALUE    LOWER BOUND    UPPER BOUND          GROUP          SCALE         OFFSET  DERIVATIVE COMMAND
+hk1            none                    FACTOR            0.1        1.1e-10        1.1e+10          pargp              1              0                   0
+
+
+
+Observation information
+NAME                                    VALUE               GROUP              WEIGHT
+h01_1                                       1              obgnme                   0
+h01_2                                     1.2              obgnme                   0
+h01_3                                     1.4              obgnme                   0
+h01_4                                     2.1              obgnme                   1
+h01_5                                     1.8              obgnme                   0
+h01_6                                     2.5              obgnme                   1
+h01_7                                     2.2              obgnme                   0
+h01_8                                     2.4              obgnme                   0
+h01_9                                     2.6              obgnme                   0
+h01_10                                  2.799              obgnme                   0
+h02_1                                       1              obgnme                   0
+h02_2                                     1.4              obgnme                   0
+h02_3                                     1.8              obgnme                   0
+h02_4                                     2.2              obgnme                   0
+h02_5                                     2.6              obgnme                   0
+h02_6                                       3              obgnme                   0
+h02_7                                     3.4              obgnme                   0
+h02_8                                     3.8              obgnme                   0
+h02_9                                     4.2              obgnme                   0
+h02_10                                  4.598              obgnme                   0
+
+
+
+Prior information
+
+   no prior information provided
+
+
+
+PEST SVD Information
+    maxsing = 1
+    eigthresh = 1e-06
+
+
+   -----    Starting PEST++ Iterations    ----    
+
+-----------------------------------------
+     ---   OPTIMIZATION COMPLETE   ---   
+  Reason for terminating PEST++ simulation: NOPTMAX criterion met
+  Summary of termination criteria:
+  NOPTMAX = 0 ;  NOPT at termination = 0
+  NPHINORED = 3 ;  NPHINORED at termination = 0
+  NRELPAR = 3; RELPARSTP = 0.01 ;  NRELPAR at termination = 0
+  PHIREDSTP = 0.01; NPHISTP = 3
+  NPHISTP lowest PHI's:
+
+FINAL OPTIMISATION RESULTS
+
+  Optimal parameter values  
+
+     Parameter            
+        Name         Value
+    ------------  ------------
+    hk1                    0.1
+
+
+  Observations with optimal model-simulated equivalents and residuals
+                 Name        Group             Measured             Modelled             Residual               Weight
+                h01_1       obgnme              1.00000              1.00000              0.00000              0.00000
+                h01_2       obgnme              1.20000              6.00000             -4.80000              0.00000
+                h01_3       obgnme              1.40000              11.0000             -9.60000              0.00000
+                h01_4       obgnme              2.10000              16.0000             -13.9000              1.00000
+                h01_5       obgnme              1.80000              21.0000             -19.2000              0.00000
+                h01_6       obgnme              2.50000              26.0000             -23.5000              1.00000
+                h01_7       obgnme              2.20000              31.0000             -28.8000              0.00000
+                h01_8       obgnme              2.40000              36.0000             -33.6000              0.00000
+                h01_9       obgnme              2.60000              41.0000             -38.4000              0.00000
+               h01_10       obgnme              2.79900              46.0000             -43.2010              0.00000
+                h02_1       obgnme              1.00000              1.00000              0.00000              0.00000
+                h02_2       obgnme              1.40000              11.0000             -9.60000              0.00000
+                h02_3       obgnme              1.80000              21.0000             -19.2000              0.00000
+                h02_4       obgnme              2.20000              31.0000             -28.8000              0.00000
+                h02_5       obgnme              2.60000              41.0000             -38.4000              0.00000
+                h02_6       obgnme              3.00000              51.0000             -48.0000              0.00000
+                h02_7       obgnme              3.40000              61.0000             -57.6000              0.00000
+                h02_8       obgnme              3.80000              71.0000             -67.2000              0.00000
+                h02_9       obgnme              4.20000              81.0000             -76.8000              0.00000
+               h02_10       obgnme              4.59800              91.0000             -86.4020              0.00000
+
+Final composite objective function 
+  Final phi                                           Total : 745.460
+  Contribution to phi from observation group       "obgnme" : 745.460
+
+
+Number of forward model runs performed during optimiztion: 1
