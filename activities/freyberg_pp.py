@@ -282,6 +282,14 @@ def run_fosm():
     fore_sum = sc.get_forecast_summary()
     fore_sum.to_csv(jco+".fore.csv")
 
+    ev = pyemu.ErrVar(jco=jco)
+    sing_vals = [1,int(ev.pst.nnz_obs/4),int(ev.pst.nnz_obs/2)]
+    for sing_val in sing_vals:
+        ident = ev.get_identifiability_dataframe(sing_val)
+        ident.sort_values(by="ident",inplace=True,ascending=False)
+        ident.to_csv(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".ident.{0}.csv").format(sing_val)))
+
+
 def run_dataworth():
     jco = os.path.join(WORKING_DIR,PST_NAME.replace('.pst','.jcb'))
     assert os.path.exists(jco),"jco not found:{0}".format(jco)
@@ -370,7 +378,7 @@ if __name__ == "__main__":
     #setup_model()
     #setup_pest()
     #run_pe()
-    #run_fosm()
+    run_fosm()
     #run_dataworth()
     #run_respsurf()
-    run_gsa()
+    #run_gsa()
