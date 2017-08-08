@@ -41,7 +41,7 @@ def setup_model():
 
     m.write_input()
 
-    m.exe_name = "mf2005"
+    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mf2005"))
     m.run_model()
     hyd_out = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".hyd.bin"))
     shutil.copy2(hyd_out,hyd_out+'.truth')
@@ -65,7 +65,7 @@ def setup_model():
     #m.output_binflag[output_idx] = False
     m.write_input()
 
-    m.exe_name = "mf2005"
+    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mf2005"))
     m.run_model()
 
     # hack for modpath crap
