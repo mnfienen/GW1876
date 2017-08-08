@@ -77,32 +77,34 @@ def setup_pest():
                                           every_n_cell=pp_space)
     pp_file = "hkpp.dat"
 
-
+    # setup hyd mod
+    df_hyd = pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
+    df_hyd.index = df_hyd.obsnme
     # setup list file water budget obs
     df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
 
     # setup potential water budget obs
-    perlen = pd.to_datetime(m._start_datetime) + pd.to_timedelta(np.cumsum(m.dis.perlen.array),unit='d')
-    #obsnme = []
-    print(perlen,m.dis.perlen.array)
-    with open("freyberg.hds.dat.ins",'w') as f:
-        f.write("pif ~\n")
-        for dt in perlen:
-            dt_str = dt.strftime('%Y%m%d')
-            for i in range(m.nrow):
-                for j in range(m.ncol):
-                    oname = "i{0:02d}j{1:02d}_{2}".format(i,j,dt_str)
-                    f.write("l1 !{0}!\n".format(oname))
-                #obsnme.append(oname)
-    hds = flopy.utils.HeadFile("freyberg.hds")
-    f = open('freyberg.hds.dat','wb')
-    for data in hds.get_alldata():
-        data = data.flatten()
-        np.savetxt(f,data,fmt='%15.6E')
-    f.close()
-    pyemu.helpers.run("inschek freyberg.hds.dat.ins freyberg.hds.dat")
-    df_po = pd.read_csv("freyberg.hds.dat.obf",delim_whitespace=True,names=["obsnme","obsval"])
-    df_po.index = df_po.obsnme
+    # perlen = pd.to_datetime(m._start_datetime) + pd.to_timedelta(np.cumsum(m.dis.perlen.array),unit='d')
+    # #obsnme = []
+    # print(perlen,m.dis.perlen.array)
+    # with open("freyberg.hds.dat.ins",'w') as f:
+    #     f.write("pif ~\n")
+    #     for dt in perlen:
+    #         dt_str = dt.strftime('%Y%m%d')
+    #         for i in range(m.nrow):
+    #             for j in range(m.ncol):
+    #                 oname = "i{0:02d}j{1:02d}_{2}".format(i,j,dt_str)
+    #                 f.write("l1 !{0}!\n".format(oname))
+    #             #obsnme.append(oname)
+    # hds = flopy.utils.HeadFile("freyberg.hds")
+    # f = open('freyberg.hds.dat','wb')
+    # for data in hds.get_alldata():
+    #     data = data.flatten()
+    #     np.savetxt(f,data,fmt='%15.6E')
+    # f.close()
+    # pyemu.helpers.run("inschek freyberg.hds.dat.ins freyberg.hds.dat")
+    # df_po = pd.read_csv("freyberg.hds.dat.obf",delim_whitespace=True,names=["obsnme","obsval"])
+    # df_po.index = df_po.obsnme
 
     # set particle travel time obs
     with open("freyberg.travel.ins",'w') as f:
@@ -137,7 +139,6 @@ def setup_pest():
     df_wel = pd.concat(w_dfs)
     df_wel.index = df_wel.parnme
 
-
     # setup rch parameters - history and future
     f_in = open(MODEL_NAM.replace(".nam",".rch"),'r')
     f_tpl = open(MODEL_NAM.replace(".nam",".rch.tpl"),'w')
@@ -169,8 +170,12 @@ def setup_pest():
     obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
     obs.loc[df_wb.obsnme,"weight"] = 0.0
     obs.loc[forecast_names,"weight"] = 0.0
-    obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
-    obs.loc[df_po.obsnme,"weight"] = 0.0
+    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
+    #obs.loc[df_po.obsnme,"weight"] = 0.0
+    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
+    obs.loc[df_hyd.obsnme,"weight"] = 1.0
+    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: x.split('_')[0])
+
 
     # set some parameter attribs
     par = pst.parameter_data
