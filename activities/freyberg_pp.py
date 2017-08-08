@@ -369,6 +369,9 @@ def run_respsurf(par_names=None):
     df = pd.DataFrame({parnme1:p1_vals,parnme2:p2_vals})
     df.to_csv(os.path.join(WORKING_DIR,"sweep_in.csv"))
 
+    os.chdir(WORKING_DIR)
+    pyemu.helpers.start_slaves('.', 'sweep', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
+    os.chdir("..")
 
 def run_ies():
     pass

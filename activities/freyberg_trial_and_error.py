@@ -13,7 +13,8 @@ BASE_MODEL_DIR = os.path.join("..","models","Freyberg","Freyberg_Truth")
 BASE_MODEL_NAM = "freyberg.truth.nam"
 MODEL_NAM = "freyberg.nam"
 PST_NAME = WORKING_DIR+".pst"
-
+NUM_SLAVES = 10
+NUM_STEPS_RESPSURF = 50
 
 def setup_model():
 
@@ -99,12 +100,32 @@ def setup_pest():
 
     pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
                                             ins_files,out_files)
+
+    hk_start = m.lpf.hk.array.mean()
+
+
+    pars = pst.parameter_data
+    pars.loc[pars.parnme == 'hk1', 'parval1'] = hk_start
+    pars.loc[pars.parnme == 'hk1', 'parlbnd'] = hk_start / 10.0
+    pars.loc[pars.parnme == 'hk1', 'parubnd'] = hk_start * 10.0
+
+    pars.loc[pars.parnme == 'rch_0', 'parval1'] = 1.0
+    pars.loc[pars.parnme == 'rch_0', 'parlbnd'] = 0.5
+    pars.loc[pars.parnme == 'rch_0', 'parubnd'] = 1.5
+
+
     obs = pst.observation_data
     obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
     obs.loc[df_wb.obsnme,"weight"] = 0.0
+    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'weight'] = 0.01
     obs.loc[df_hds.obsnme,"obgnme"] = 'head'
-    obs.loc[df_hds.obsnme,"weight"] = 0.0
+    obs.loc[df_hds.obsnme,"weight"] = [1.0 if i.startswith("c") and i.endswith('19700102')
+                                       else 0.0 for i in df_hds.obsnme]
 
+    forecast_names = [i for i in df_hds.obsnme  if i.startswith('f') and i.endswith('19700102')]
+    forecast_names.append('flx_river_l_19750102')
+    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
+    pst.control_data.noptmax = 0
     pst.model_command = ["python forward_run.py"]
     pst.write(PST_NAME)
 
@@ -167,8 +188,28 @@ def run_gsa():
     pyemu.helpers.run("gsa {0}".format(PST_NAME))
     os.chdir("..")
 
-def run_respsurf():
-    pass
+def run_respsurf(par_names=None):
+    pst = pyemu.Pst(os.path.join(WORKING_DIR,PST_NAME))
+    par = pst.parameter_data
+    icount = 0
+    if par_names is None:
+        parnme1 = par.parnme[0]
+        parnme2 = par.parnme[1]
+    else:
+        parnme1 = par_names[0]
+        parnme2 = par_names[1]
+    p1 = np.linspace(par.loc[parnme1,"parlbnd"],par.loc[parnme1,"parubnd"],NUM_STEPS_RESPSURF).tolist()
+    p2 = np.linspace(par.loc[parnme2,"parlbnd"],par.loc[parnme2,"parubnd"],NUM_STEPS_RESPSURF).tolist()
+    p1_vals,p2_vals = [],[]
+    for p in p1:
+        p1_vals.extend(list(np.zeros(NUM_STEPS_RESPSURF)+p))
+        p2_vals.extend(p2)
+    df = pd.DataFrame({parnme1:p1_vals,parnme2:p2_vals})
+    df.to_csv(os.path.join(WORKING_DIR,"sweep_in.csv"))
+
+    os.chdir(WORKING_DIR)
+    pyemu.helpers.start_slaves('.', 'sweep', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
+    os.chdir("..")
 
 def run_ies():
     pass
