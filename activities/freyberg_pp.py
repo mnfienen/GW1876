@@ -188,10 +188,8 @@ def setup_pest():
     noise = np.random.normal(0.0,2.0,c_names.shape[0])
     obs.loc[df_hyd.obsnme,"weight"] = 0.0
     obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    print(obs.loc[c_names,"obsval"])
     obs.loc[c_names,"obsval"] += noise
     obs.loc[c_names,"weight"] = 5.0
-    print(obs.loc[c_names,"obsval"])
     og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
     obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
 
@@ -228,15 +226,8 @@ def setup_pest():
 
     pst.write(PST_NAME)
 
-    fname = os.path.split(__file__)[-1].split(".")[0]
     with open("forward_run.py",'w') as f:
-        #f.write("import sys\nsys.path.append('..')\n")
-        #f.write("import {0}\n".format(fname))
-        #f.write("{0}.forward_run()\n".format(fname))
         f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
-        #f.write("pp_files = [f for f in os.listdir('.') if f.endswith('pp.dat')]\n")
-        #f.write("for pp_file in pp_files:\n")
-        #f.write("    pyemu.gw_utils.fac2real(pp_file,factors_file=pp_file+'.fac',out_file='hk_layer_1.ref')\n")
         f.write("wel_files = ['WEL_0001.dat','WEL_0002.dat']\n")
         f.write("names=['l','r','c','flux']\n")
         f.write("wel_fmt = {'l':lambda x: '{0:10.0f}'.format(x)}\n")
@@ -268,14 +259,6 @@ def setup_pest():
     #os.system("pestchek {0}".format(PST_NAME))
     pyemu.helpers.run("pestchek {0}".format(PST_NAME))
     os.chdir("..")
-
-
-#def forward_run():
-    # pp_files = [f for f in os.listdir('.') if f.endswith("pp.dat")]
-    # for pp_file in pp_files:
-    #     pyemu.gw_utils.fac2real(pp_file,factors_file=pp_file+".fac")
-    # os.system("mf2005 {0} >_mf2005.stdout".format(MODEL_NAM))
-    # pyemu.gw_utils.apply_mflist_budget_obs(os.path.join(WORKING_DIR+".list"))
 
 
 def run():
@@ -327,11 +310,37 @@ def run_mc():
     df_obs.loc[:,pst.nnz_obs_names].to_csv(os.path.join(WORKING_DIR,PST_NAME+".mc.obs.csv"))
 
 def run_gsa():
-    with open(PST_NAME.replace(".pst",".gsa"),'w') as f:
-        f.write("TODO!")
-    os.chdir(WORKING_DIR)
-    pyemu.helpers.run("gsa {0}".format(PST_NAME))
-    os.chdir("..")
+    with open(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".gsa")),'w') as f:
+        f.write("METHOD(MORRIS)\n")
+        f.write("MORRIS_R(4)\n")
+        f.write("MORRIS_P(4)\n")
+        f.write("MORRIS_DELTA(.666)\n")
+        f.write("MORRIS_POOLED_OBS(FALSE)\n")
+    #os.chdir(WORKING_DIR)
+    #pyemu.helpers.run("gsa {0}".format(PST_NAME))
+    #os.chdir("..")
+    #os.chdir(WORKING_DIR)
+    #pyemu.helpers.start_slaves('.','gsa',PST_NAME,num_slaves=NUM_SLAVES,master_dir='.')
+    #os.chdir("..")
+    df = pd.read_csv(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".msn")),skipinitialspace=True)
+    print(df.columns)
+    df.loc[:,"parnme"] = df.parameter_name.apply(lambda x: x.lower().replace("log(",''.replace(')','')))
+    # ax = plt.subplot(111)
+    # for parnme,mn,std in zip(df.parnme,df.sen_mean,df.sen_std_dev):
+    #     if mn < 1.0e-10 or std < 1.0e-10:
+    #         continue
+    #     x,y = pyemu.helpers.gaussian_distribution(mn,std)
+    #     print(parnme,x.min(),x.max())
+    #     ax.fill_between(x,0,y,alpha=0.5,facecolor='b')
+
+    plt.scatter(df.sen_mean_abs,df.sen_std_dev/df.sen_mean_abs)
+    ax = plt.gca()
+    ax.set_xlabel('mean abs(sensitivity)')
+    ax.set_ylabel('coefficient of variation abs(sensitivity)')
+    ax.grid()
+    plt.savefig(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".gsa.png")))
+
+
 
 def run_respsurf(par_names=None):
     pst = pyemu.Pst(os.path.join(WORKING_DIR,PST_NAME))
@@ -353,16 +362,15 @@ def run_respsurf(par_names=None):
     df.to_csv(os.path.join(WORKING_DIR,"sweep_in.csv"))
 
 
-
-
 def run_ies():
     pass
 
 
 if __name__ == "__main__":
-    setup_model()
-    setup_pest()
+    #setup_model()
+    #setup_pest()
     #run_pe()
     #run_fosm()
     #run_dataworth()
     #run_respsurf()
+    run_gsa()
