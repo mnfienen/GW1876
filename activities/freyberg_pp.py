@@ -38,6 +38,15 @@ def setup_model():
     m = flopy.modflow.Modflow.load(BASE_MODEL_NAM,model_ws=BASE_MODEL_DIR,check=False)
     m.change_model_ws(WORKING_DIR)
     m.name = MODEL_NAM.split(".")[0]
+
+    m.write_input()
+
+    m.exe_name = "mf2005"
+    m.run_model()
+    hyd_out = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".hyd.bin"))
+    shutil.copy2(hyd_out,hyd_out+'.truth')
+
+
     m.lpf.hk = m.lpf.hk.array.mean()
     m.lpf.hk[0].format.free = True
 
@@ -78,8 +87,11 @@ def setup_pest():
     pp_file = "hkpp.dat"
 
     # setup hyd mod
-    df_hyd = pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
+    pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
+    pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
+    df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
     df_hyd.index = df_hyd.obsnme
+
     # setup list file water budget obs
     df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
 
@@ -173,9 +185,16 @@ def setup_pest():
     #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
     #obs.loc[df_po.obsnme,"weight"] = 0.0
     obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    obs.loc[df_hyd.obsnme,"weight"] = 1.0
-    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: x.split('_')[0])
-
+    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
+    noise = np.random.normal(0.0,2.0,c_names.shape[0])
+    obs.loc[df_hyd.obsnme,"weight"] = 0.0
+    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
+    print(obs.loc[c_names,"obsval"])
+    obs.loc[c_names,"obsval"] += noise
+    obs.loc[c_names,"weight"] = 0.5
+    print(obs.loc[c_names,"obsval"])
+    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
+    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
 
     # set some parameter attribs
     par = pst.parameter_data
@@ -188,19 +207,20 @@ def setup_pest():
 
     pst.model_command = ["python forward_run.py"]
     pst.pestpp_options["forecasts"] = ','.join(forecast_names)
-    pst.write(PST_NAME)
 
     a = float(pp_space) * m.dis.delr.array[0] * 3.0
     v = pyemu.geostats.ExpVario(contribution=1.0,a=a)
     gs = pyemu.geostats.GeoStruct(variograms=[v],transform="log")
-    pp_files = [f for f in os.listdir(".") if f.endswith("pp.dat")]
-    #for pp_file in pp_files:
-    #    ok = pyemu.geostats.OrdinaryKrige(gs,pyemu.gw_utils.pp_file_to_dataframe(pp_file))
     ok = pyemu.geostats.OrdinaryKrige(gs,pyemu.gw_utils.pp_file_to_dataframe(pp_file))
     ok.calc_factors_grid(m.sr,var_filename="pp_var.ref")
     ok.to_grid_factors_file(pp_file+".fac")
-    plt.imshow(np.loadtxt("pp_var.ref"))
-    plt.savefig("pp_var.ref.png")
+    #plt.imshow(np.loadtxt("pp_var.ref"))
+    #plt.savefig("pp_var.ref.png")
+
+    #cov = pyemu.helpers.pilotpoint_prior_builder(pst,{gs:[pp_file+".tpl"]},sigma_range=6)
+    #pyemu.helpers.first_order_pearson_tikhonov(pst,cov)
+
+    pst.write(PST_NAME)
 
     fname = os.path.split(__file__)[-1].split(".")[0]
     with open("forward_run.py",'w') as f:
@@ -237,6 +257,7 @@ def setup_pest():
         f.write("items = lines[-1].strip().split()\ntravel_time = float(items[4]) - float(items[3])\n")
         f.write("with open('freyberg.travel', 'w') as ofp:\n")
         f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
+        f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
     pyemu.helpers.run("pestchek {0}".format(PST_NAME))
