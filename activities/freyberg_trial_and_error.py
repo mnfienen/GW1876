@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import flopy
 import pyemu
+import matplotlib.pyplot as plt
 
 PREFIX = "trialerror"
 EXE_DIR = os.path.join("..","bin")
@@ -32,8 +33,17 @@ def setup_model():
     m = flopy.modflow.Modflow.load(BASE_MODEL_NAM,model_ws=BASE_MODEL_DIR,check=False)
     m.change_model_ws(WORKING_DIR)
     m.name = MODEL_NAM.split(".")[0]
+
+    m.write_input()
+
+    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mf2005"))
+    m.run_model()
+    hyd_out = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".hyd.bin"))
+    shutil.copy2(hyd_out,hyd_out+'.truth')
+
     m.lpf.hk = m.lpf.hk.array.mean()
     m.lpf.hk[0].format.free = True
+
     wel_data_sp1 = m.wel.stress_period_data[0]
     #wel_data_sp1["flux"] = np.ceil(wel_data_sp1["flux"],order=)
     wel_data_sp1["flux"] = [round(f,-2) for f in wel_data_sp1["flux"]]
@@ -48,15 +58,9 @@ def setup_model():
     #m.output_binflag[output_idx] = False
     m.write_input()
 
-    m.exe_name = "mf2005"
+    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mf2005"))
     m.run_model()
 
-    # hack for modpath crap
-    mp_files = [f for f in os.listdir(BASE_MODEL_DIR) if ".mp" in f.lower()]
-    for mp_file in mp_files:
-        shutil.copy2(os.path.join(BASE_MODEL_DIR,mp_file),os.path.join(WORKING_DIR,mp_file))
-    shutil.copy2(os.path.join(BASE_MODEL_DIR,"freyberg.locations"),os.path.join(WORKING_DIR,"freyberg.locations"))
-    np.savetxt(os.path.join(WORKING_DIR,"ibound.ref"),m.bas6.ibound[0].array,fmt="%2d")
 
 def setup_pest():
 
@@ -66,7 +70,9 @@ def setup_pest():
 
     df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
 
-    df_hds = pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace('nam', 'hyd.bin'))
+    df_junk = pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace('nam', 'hyd.bin'))
+
+    df_hds, outfile = pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace('nam', 'hyd.bin.truth'))
 
     # setup rch parameters - history and future
     with open(MODEL_NAM.replace(".nam",".rch"),'r') as f_in:
@@ -122,7 +128,17 @@ def setup_pest():
     obs.loc[df_hds.obsnme,"weight"] = [1.0 if i.startswith("c") and i.endswith('19700102')
                                        else 0.0 for i in df_hds.obsnme]
 
-    forecast_names = [i for i in df_hds.obsnme  if i.startswith('f') and i.endswith('19700102')]
+    obs.loc[df_hds.obsnme, "obgnme"] = ['forecasthead' if i.startswith("f") and
+                                                          i.endswith('19700102') else
+                                        'head' for i in df_hds.obsnme]
+
+    obs['obgnme'] = ['calhead' if i.startswith("c") and j == 1 else k for i,j,k in zip(obs.obsnme,
+                                                                                       obs.weight,
+                                                                                       obs.obgnme)]
+
+
+
+    forecast_names = [i for i in df_hds.obsnme if i.startswith('f') and i.endswith('19700102')]
     forecast_names.append('flx_river_l_19750102')
     pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     pst.control_data.noptmax = 0
@@ -210,6 +226,68 @@ def run_respsurf(par_names=None):
     os.chdir(WORKING_DIR)
     pyemu.helpers.start_slaves('.', 'sweep', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
     os.chdir("..")
+
+def plot_response_surface():
+    df_in = pd.read_csv(os.path.join(WORKING_DIR, "sweep_in.csv"))
+    df_out = pd.read_csv(os.path.join(WORKING_DIR, "sweep_out.csv"))
+    resp_surf = np.zeros((NUM_STEPS_RESPSURF, NUM_STEPS_RESPSURF))
+
+    c = 0
+    for i, v1 in enumerate(df_in.hk1.values):
+        for j, v2 in enumerate(df_in.rch_0.values):
+            resp_surf[j, i] = df_out.loc[c, "phi"]
+            c += 1
+    fig = plt.figure(figsize=(10, 10))
+    ax = plt.subplot(111)
+    X, Y = np.meshgrid(hk_values, fx_values)
+    #resp_surf = np.ma.masked_where(resp_surf > 5, resp_surf)
+    p = ax.pcolor(X, Y, resp_surf, alpha=0.5, cmap="spectral")
+    plt.colorbar(p)
+    c = ax.contour(X, Y, resp_surf, levels=[0.1, 0.2, 0.5, 1, 2, 5], colors='k')
+    plt.clabel(c)
+    ax.set_xlim(hk_values.min(), hk_values.max())
+    ax.set_ylim(rch_values.min(), frch_values.max())
+    ax.set_xlabel("hk1 ($\\frac{L}{T}$)")
+    ax.set_ylabel("rch ($L$)")
+
+def rerun_new_pars(hk1=5.5, rch_0 = 1.0):
+    pst = pyemu.Pst(os.path.join(WORKING_DIR,PST_NAME))
+    pst.control_data.noptmax = 0
+    pars = pst.parameter_data
+    pars.loc[pars.parnme == 'hk1', 'parval1']   = hk1
+    pars.loc[pars.parnme == 'rch_0', 'parval1'] = rch_0
+    pst.write(os.path.join(WORKING_DIR,'onerun.pst'))
+    os.chdir(WORKING_DIR)
+    pyemu.helpers.run('pestpp onerun.pst')
+    os.chdir('..')
+
+    newpst = pyemu.Pst(os.path.join(WORKING_DIR,'onerun.pst'))
+    res = newpst.res
+
+    fig = plt.figure(figsize=(12,6))
+    ax = fig.add_subplot(121)
+    cal = res.loc[res.group == 'calhead']
+    plt.plot(cal.measured, cal.modelled, '.')
+    minmin = np.min([cal.measured.min(),cal.modelled.min()])
+    maxmax = np.max([cal.measured.max(), cal.modelled.max()])
+    plt.plot([minmin, maxmax],[minmin,maxmax], 'r')
+    plt.xlabel('measured')
+    plt.ylabel('modeled')
+    plt.title('Calibration')
+
+    ax = fig.add_subplot(122)
+    fore = res.loc[res.group == 'forecasthead']
+    plt.plot(fore.measured, fore.modelled, '.')
+    minmin = np.min([fore.measured.min(), fore.modelled.min()])
+    maxmax = np.max([fore.measured.max(), fore.modelled.max()])
+    plt.plot([minmin, maxmax],[minmin,maxmax], 'r')
+    plt.xlabel('measured')
+    plt.ylabel('modeled')
+    plt.title('Forecast')
+
+    plt.show()
+
+    
 
 def run_ies():
     pass
