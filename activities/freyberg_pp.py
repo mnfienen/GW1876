@@ -46,7 +46,6 @@ def setup_model():
     hyd_out = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".hyd.bin"))
     shutil.copy2(hyd_out,hyd_out+'.truth')
 
-
     m.lpf.hk = m.lpf.hk.array.mean()
     m.lpf.hk[0].format.free = True
 
@@ -191,21 +190,24 @@ def setup_pest():
     obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
     print(obs.loc[c_names,"obsval"])
     obs.loc[c_names,"obsval"] += noise
-    obs.loc[c_names,"weight"] = 0.5
+    obs.loc[c_names,"weight"] = 5.0
     print(obs.loc[c_names,"obsval"])
     og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
     obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
 
     # set some parameter attribs
     par = pst.parameter_data
+    par.loc[:,"parval1"] = 1.0
+    par.loc[:,"parubnd"] = 1.25
+    par.loc[:,"parlbnd"] = 0.75
     par.loc[df_pp.parnme,"parval1"] = 5.0
     par.loc[df_pp.parnme,"parlbnd"] = 0.5
     par.loc[df_pp.parnme,"parubnd"] = 50.0
-    par.loc[df_wel.parnme,"parval1"] = 1.0
-    par.loc[df_wel.parnme,"parubnd"] = 1.25
-    par.loc[df_wel.parnme,"parlbnd"] = 0.75
+    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
+    par.loc[df_pp.parnme,"pargp"] = "hk"
 
     pst.model_command = ["python forward_run.py"]
+    pst.control_data.pestmode = "regularization"
     pst.pestpp_options["forecasts"] = ','.join(forecast_names)
 
     a = float(pp_space) * m.dis.delr.array[0] * 3.0
@@ -217,8 +219,12 @@ def setup_pest():
     #plt.imshow(np.loadtxt("pp_var.ref"))
     #plt.savefig("pp_var.ref.png")
 
+    # first order Tikhonov
     #cov = pyemu.helpers.pilotpoint_prior_builder(pst,{gs:[pp_file+".tpl"]},sigma_range=6)
     #pyemu.helpers.first_order_pearson_tikhonov(pst,cov)
+
+    # zero order Tikhonov
+    pyemu.helpers.zero_order_tikhonov(pst)
 
     pst.write(PST_NAME)
 
