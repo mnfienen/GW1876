@@ -702,24 +702,15 @@ def setup_pest_pp():
     os.chdir("..")
 
 
-def run_pe(working_dir,pst_name=None):
-    if pst_name is None:
-        pst_name = PST_NAME
-    #os.system("pestpp {0} 1>_pestpp_stdout 2>_pestpp_stderr".format(PST_NAME))
-    #pyemu.helpers.run("pestpp {0} 1>_pestpp_stdout 2>_pestpp_stderr".format(PST_NAME))
+def run_pe(working_dir,pst_name):
     os.chdir(working_dir)
-    #pyemu.helpers.run("pestpp {0}".format(PST_NAME))
     pyemu.helpers.start_slaves('.','pestpp',pst_name,num_slaves=NUM_SLAVES,master_dir='.')
-    pst = pyemu.Pst(PST_NAME)
-    pst.parrep(PST_NAME.replace(".pst",".parb"))
+    pst = pyemu.Pst(pst_name)
+    pst.parrep(pst_name.replace(".pst",".parb"))
     pst.control_data.noptmax = 0
-    pst.write(PST_NAME.replace(".pst",".final.pst"))
+    pst.write(pst_name.replace(".pst",".final.pst"))
     pyemu.helpers.run("pestpp {0}".format(pst_name.replace(".pst",".final.pst")))
     os.chdir("..")
-    #m = flopy.modflow.Modflow.load(MODEL_NAM,model_ws=WORKING_DIR)
-    #m.lpf.hk[0].plot(colorbar=True)
-
-
 
 #
 # def run_gsa():
