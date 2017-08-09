@@ -36,18 +36,26 @@ def setup_model():
 
     print(os.listdir(BASE_MODEL_DIR))
     m = flopy.modflow.Modflow.load(BASE_MODEL_NAM,model_ws=BASE_MODEL_DIR,check=False)
+    m.version = "mfnwt"
     m.change_model_ws(WORKING_DIR)
     m.name = MODEL_NAM.split(".")[0]
-
+    m.remove_package("pcg")
+    flopy.modflow.ModflowUpw(m,hk=m.lpf.hk,vka=m.lpf.vka,
+                             ss=m.lpf.ss,sy=m.lpf.ss,
+                             laytyp=m.lpf.laytyp)
+    m.remove_package("lpf")
+    flopy.modflow.ModflowNwt(m)
     m.write_input()
 
-    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mf2005"))
+    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
     hyd_out = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".hyd.bin"))
     shutil.copy2(hyd_out,hyd_out+'.truth')
+    list_file = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".list"))
+    shutil.copy2(list_file,list_file+".truth")
 
-    m.lpf.hk = m.lpf.hk.array.mean()
-    m.lpf.hk[0].format.free = True
+    m.upw.hk = m.upw.hk.array.mean()
+    m.upw.hk[0].format.free = True
 
     wel_data_sp1 = m.wel.stress_period_data[0]
     #wel_data_sp1["flux"] = np.ceil(wel_data_sp1["flux"],order=)
@@ -92,6 +100,7 @@ def setup_pest():
     df_hyd.index = df_hyd.obsnme
 
     # setup list file water budget obs
+    shutil.copy2(m.name+".list.truth",m.name+".list")
     df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
 
     # setup potential water budget obs
@@ -118,6 +127,10 @@ def setup_pest():
     # df_po.index = df_po.obsnme
 
     # set particle travel time obs
+    endpoint_file = 'freyberg.mpenpt'
+    lines = open(endpoint_file, 'r').readlines()
+    items = lines[-1].strip().split()
+    travel_time = float(items[4]) - float(items[3])
     with open("freyberg.travel.ins",'w') as f:
         f.write("pif ~\n")
         f.write("l1 w !travel_time!\n")
@@ -192,7 +205,7 @@ def setup_pest():
     obs.loc[c_names,"weight"] = 5.0
     og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
     obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
-
+    obs.loc["travel_time","obsval"] = travel_time
     # set some parameter attribs
     par = pst.parameter_data
     par.loc[:,"parval1"] = 1.0
@@ -271,14 +284,27 @@ def run_pe():
     os.chdir(WORKING_DIR)
     #pyemu.helpers.run("pestpp {0}".format(PST_NAME))
     pyemu.helpers.start_slaves('.','pestpp',PST_NAME,num_slaves=NUM_SLAVES,master_dir='.')
+    pst = pyemu.Pst(PST_NAME)
+    pst.parrep(PST_NAME.replace(".pst",".parb"))
+    pst.control_data.noptmax = 0
+    pst.write(PST_NAME.replace(".pst",".final.pst"))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME.replace(".pst",".final.pst")))
     os.chdir("..")
+    #m = flopy.modflow.Modflow.load(MODEL_NAM,model_ws=WORKING_DIR)
+    #m.lpf.hk[0].plot(colorbar=True)
+
 
 def run_fosm():
     jco = os.path.join(WORKING_DIR,PST_NAME.replace('.pst','.jcb'))
     assert os.path.exists(jco),"jco not found:{0}".format(jco)
     sc = pyemu.Schur(jco=jco)
     par_sum = sc.get_parameter_summary()
+    par = sc.pst.parameter_data
+    #par_sum.loc[par.parnme,"prior_expt"] = par.parval1
+    #sc.pst.parrep(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".parb")))
+    #par_sum.loc[par.parnme,"post_expt"] = par.parval1
     par_sum.to_csv(jco+'par.csv')
+
     fore_sum = sc.get_forecast_summary()
     fore_sum.to_csv(jco+".fore.csv")
 
@@ -288,6 +314,7 @@ def run_fosm():
         ident = ev.get_identifiability_dataframe(sing_val)
         ident.sort_values(by="ident",inplace=True,ascending=False)
         ident.to_csv(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".ident.{0}.csv").format(sing_val)))
+        ident.ident.iloc[:15].plot(kind="bar")
 
 
 def run_dataworth():
@@ -318,35 +345,12 @@ def run_mc():
     df_obs.loc[:,pst.nnz_obs_names].to_csv(os.path.join(WORKING_DIR,PST_NAME+".mc.obs.csv"))
 
 def run_gsa():
-    with open(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".gsa")),'w') as f:
-        f.write("METHOD(MORRIS)\n")
-        f.write("MORRIS_R(4)\n")
-        f.write("MORRIS_P(4)\n")
-        f.write("MORRIS_DELTA(.666)\n")
-        f.write("MORRIS_POOLED_OBS(FALSE)\n")
-    #os.chdir(WORKING_DIR)
-    #pyemu.helpers.run("gsa {0}".format(PST_NAME))
-    #os.chdir("..")
-    #os.chdir(WORKING_DIR)
-    #pyemu.helpers.start_slaves('.','gsa',PST_NAME,num_slaves=NUM_SLAVES,master_dir='.')
-    #os.chdir("..")
+    os.chdir(WORKING_DIR)
+    pyemu.helpers.start_slaves('.','gsa',PST_NAME,num_slaves=NUM_SLAVES,master_dir='.')
+    os.chdir("..")
     df = pd.read_csv(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".msn")),skipinitialspace=True)
     print(df.columns)
     df.loc[:,"parnme"] = df.parameter_name.apply(lambda x: x.lower().replace("log(",''.replace(')','')))
-    # ax = plt.subplot(111)
-    # for parnme,mn,std in zip(df.parnme,df.sen_mean,df.sen_std_dev):
-    #     if mn < 1.0e-10 or std < 1.0e-10:
-    #         continue
-    #     x,y = pyemu.helpers.gaussian_distribution(mn,std)
-    #     print(parnme,x.min(),x.max())
-    #     ax.fill_between(x,0,y,alpha=0.5,facecolor='b')
-
-    plt.scatter(df.sen_mean_abs,df.sen_std_dev/df.sen_mean_abs)
-    ax = plt.gca()
-    ax.set_xlabel('mean abs(sensitivity)')
-    ax.set_ylabel('coefficient of variation abs(sensitivity)')
-    ax.grid()
-    plt.savefig(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".gsa.png")))
 
 
 
@@ -378,10 +382,10 @@ def run_ies():
 
 
 if __name__ == "__main__":
-    #setup_model()
+    setup_model()
     #setup_pest()
     #run_pe()
-    run_fosm()
+    #run_fosm()
     #run_dataworth()
     #run_respsurf()
     #run_gsa()
