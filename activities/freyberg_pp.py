@@ -39,11 +39,11 @@ def setup_model():
     m.version = "mfnwt"
     m.change_model_ws(WORKING_DIR)
     m.name = MODEL_NAM.split(".")[0]
-    m.remove_package("pcg")
+    m.remove_package("PCG")
     flopy.modflow.ModflowUpw(m,hk=m.lpf.hk,vka=m.lpf.vka,
                              ss=m.lpf.ss,sy=m.lpf.ss,
-                             laytyp=m.lpf.laytyp)
-    m.remove_package("lpf")
+                             laytyp=m.lpf.laytyp,ipakcb=53)
+    m.remove_package("LPF")
     flopy.modflow.ModflowNwt(m)
     m.write_input()
 
@@ -72,7 +72,7 @@ def setup_model():
     #m.output_binflag[output_idx] = False
     m.write_input()
 
-    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mf2005"))
+    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
 
     # hack for modpath crap
@@ -134,6 +134,8 @@ def setup_pest():
     with open("freyberg.travel.ins",'w') as f:
         f.write("pif ~\n")
         f.write("l1 w !travel_time!\n")
+    with open("freyberg.travel","w") as f:
+        f.write("travel_time {0}\n".format(travel_time))
 
     forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
     forecast_names.append("travel_time")
@@ -205,7 +207,7 @@ def setup_pest():
     obs.loc[c_names,"weight"] = 5.0
     og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
     obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
-    obs.loc["travel_time","obsval"] = travel_time
+    #obs.loc["travel_time","obsval"] = travel_time
     # set some parameter attribs
     par = pst.parameter_data
     par.loc[:,"parval1"] = 1.0
@@ -220,7 +222,9 @@ def setup_pest():
     pst.model_command = ["python forward_run.py"]
     pst.control_data.pestmode = "regularization"
     pst.pestpp_options["forecasts"] = ','.join(forecast_names)
-
+    pst.pestpp_options["n_iter_base"] = -1
+    pst.pestpp_options["n_iter_super"] = 3
+    pst.control_data.noptmax = 0
     a = float(pp_space) * m.dis.delr.array[0] * 3.0
     v = pyemu.geostats.ExpVario(contribution=1.0,a=a)
     gs = pyemu.geostats.GeoStruct(variograms=[v],transform="log")
@@ -237,7 +241,7 @@ def setup_pest():
     # zero order Tikhonov
     pyemu.helpers.zero_order_tikhonov(pst)
 
-    pst.write(PST_NAME)
+    pst.write(PST_NAME.replace(".pst",".init.pst"))
 
     with open("forward_run.py",'w') as f:
         f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
@@ -255,7 +259,7 @@ def setup_pest():
         f.write("        f.write('        '+df_t.loc[:,names].to_string(index=None,header=None,formatters=wel_fmt)+'\\n')\n")
         f.write("shutil.copy2('WEL_0002.dat','WEL_0003.dat')\n")
         f.write("pyemu.gw_utils.fac2real('hkpp.dat',factors_file='hkpp.dat.fac',out_file='hk_layer_1.ref')\n")
-        f.write("pyemu.helpers.run('mf2005 {0} >_mf2005.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
         f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
         f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
@@ -271,6 +275,9 @@ def setup_pest():
 
     #os.system("pestchek {0}".format(PST_NAME))
     pyemu.helpers.run("pestchek {0}".format(PST_NAME))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME.replace(".pst",".init.pst")))
+    pst.control_data.noptmax = 8
+    pst.write(PST_NAME)
     os.chdir("..")
 
 
@@ -278,17 +285,19 @@ def run():
     pass
 
 
-def run_pe():
+def run_pe(pst_name=None):
+    if pst_name is None:
+        pst_name = PST_NAME
     #os.system("pestpp {0} 1>_pestpp_stdout 2>_pestpp_stderr".format(PST_NAME))
     #pyemu.helpers.run("pestpp {0} 1>_pestpp_stdout 2>_pestpp_stderr".format(PST_NAME))
     os.chdir(WORKING_DIR)
     #pyemu.helpers.run("pestpp {0}".format(PST_NAME))
-    pyemu.helpers.start_slaves('.','pestpp',PST_NAME,num_slaves=NUM_SLAVES,master_dir='.')
+    pyemu.helpers.start_slaves('.','pestpp',pst_name,num_slaves=NUM_SLAVES,master_dir='.')
     pst = pyemu.Pst(PST_NAME)
     pst.parrep(PST_NAME.replace(".pst",".parb"))
     pst.control_data.noptmax = 0
     pst.write(PST_NAME.replace(".pst",".final.pst"))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME.replace(".pst",".final.pst")))
+    pyemu.helpers.run("pestpp {0}".format(pst_name.replace(".pst",".final.pst")))
     os.chdir("..")
     #m = flopy.modflow.Modflow.load(MODEL_NAM,model_ws=WORKING_DIR)
     #m.lpf.hk[0].plot(colorbar=True)
@@ -383,7 +392,7 @@ def run_ies():
 
 if __name__ == "__main__":
     setup_model()
-    #setup_pest()
+    setup_pest()
     #run_pe()
     #run_fosm()
     #run_dataworth()
