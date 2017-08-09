@@ -12,12 +12,16 @@ EXE_DIR = os.path.join("..","bin")
 WORKING_DIR_PP = 'freyberg_pp'
 WORKING_DIR_GR = "freyberg_gr"
 WORKING_DIR_ZN = "freyberg_zn"
+WORKING_DIR_KR = "freyberg_kr"
+WORKING_DIR_UN = "freyberg_un"
 BASE_MODEL_DIR = os.path.join("..","models","Freyberg","Freyberg_Truth")
 BASE_MODEL_NAM = "freyberg.truth.nam"
 MODEL_NAM = "freyberg.nam"
 PST_NAME_PP = "freyberg_pp.pst"
 PST_NAME_GR = "freyberg_gr.pst"
 PST_NAME_ZN = "freyberg_zn.pst"
+PST_NAME_KR = "freyberg_kr.pst"
+PST_NAME_UN = "freyberg_un.pst"
 NUM_SLAVES = 10
 NUM_STEPS_RESPSURF = 50
 EXE_PREF = ''
@@ -89,6 +93,238 @@ def setup_model(working_dir):
 
     m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
+
+def setup_pest_un():
+    setup_model(WORKING_DIR_UN)
+    os.chdir(WORKING_DIR_UN)
+
+    # setup hk pilot point parameters
+    m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
+    with open("hk_layer_1.ref.tpl",'w') as f:
+        f.write("ptf ~\n")
+        for i in range(m.nrow):
+            for j in range(m.ncol):
+                f.write(" ~     hk   ~")
+            f.write("\n")
+
+    # setup hyd mod
+    pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
+    pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
+    df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
+    df_hyd.index = df_hyd.obsnme
+
+    # setup list file water budget obs
+    shutil.copy2(m.name+".list.truth",m.name+".list")
+    df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
+
+    # set particle travel time obs
+    endpoint_file = 'freyberg.mpenpt'
+    lines = open(endpoint_file, 'r').readlines()
+    items = lines[-1].strip().split()
+    travel_time = float(items[4]) - float(items[3])
+    with open("freyberg.travel.ins",'w') as f:
+        f.write("pif ~\n")
+        f.write("l1 w !travel_time!\n")
+    with open("freyberg.travel","w") as f:
+        f.write("travel_time {0}\n".format(travel_time))
+
+    forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
+    forecast_names.append("travel_time")
+
+
+    # build lists of tpl, in, ins, and out files
+    tpl_files = [f for f in os.listdir(".") if f.endswith(".tpl")]
+    in_files = [f.replace(".tpl","") for f in tpl_files]
+
+    ins_files = [f for f in os.listdir(".") if f.endswith(".ins")]
+    out_files = [f.replace(".ins","") for f in ins_files]
+
+    # build a control file
+    pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
+                                            ins_files,out_files)
+
+    # set some observation attribues
+    obs = pst.observation_data
+    obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
+    obs.loc[df_wb.obsnme,"weight"] = 0.0
+    obs.loc[forecast_names,"weight"] = 0.0
+    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
+    #obs.loc[df_po.obsnme,"weight"] = 0.0
+    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
+    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
+    noise = np.random.normal(0.0,2.0,c_names.shape[0])
+    obs.loc[df_hyd.obsnme,"weight"] = 0.0
+    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
+    obs.loc[c_names,"obsval"] += noise
+    obs.loc[c_names,"weight"] = 5.0
+    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
+    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
+    #obs.loc["travel_time","obsval"] = travel_time
+    # set some parameter attribs
+    par = pst.parameter_data
+    par.loc[:,"parval1"] = 1.0
+    par.loc[:,"parubnd"] = 1.25
+    par.loc[:,"parlbnd"] = 0.75
+    hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
+    par.loc[hk_names,"parval1"] = 5.0
+    par.loc[hk_names,"parlbnd"] = 0.5
+    par.loc[hk_names,"parubnd"] = 50.0
+    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
+
+    pst.model_command = ["python forward_run.py"]
+    pst.control_data.pestmode = "regularization"
+    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
+    pst.control_data.noptmax = 0
+
+    pst.write(PST_NAME_UN.replace(".pst",".init.pst"))
+
+    with open("forward_run.py",'w') as f:
+        f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
+        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
+        f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
+        f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
+        f.write("f = open('freyberg.hds.dat','wb')\n")
+        f.write("for data in hds.get_alldata():\n")
+        f.write("    data = data.flatten()\n")
+        f.write("    np.savetxt(f,data,fmt='%15.6E')\n")
+        f.write("endpoint_file = 'freyberg.mpenpt'\nlines = open(endpoint_file, 'r').readlines()\n")
+        f.write("items = lines[-1].strip().split()\ntravel_time = float(items[4]) - float(items[3])\n")
+        f.write("with open('freyberg.travel', 'w') as ofp:\n")
+        f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
+        f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
+
+    #os.system("pestchek {0}".format(PST_NAME))
+    pyemu.helpers.run("pestchek {0}".format(PST_NAME_UN))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
+    pst.control_data.noptmax = 8
+    pst.write(PST_NAME_UN)
+    os.chdir("..")
+
+
+
+def setup_pest_kr():
+    setup_model(WORKING_DIR_KR)
+    os.chdir(WORKING_DIR_KR)
+
+    # setup hk pilot point parameters
+    m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
+    with open("hk_layer_1.ref.tpl",'w') as f:
+        f.write("ptf ~\n")
+        for i in range(m.nrow):
+            for j in range(m.ncol):
+                f.write(" ~     hk   ~")
+            f.write("\n")
+
+    # setup hyd mod
+    pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
+    pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
+    df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
+    df_hyd.index = df_hyd.obsnme
+
+    # setup list file water budget obs
+    shutil.copy2(m.name+".list.truth",m.name+".list")
+    df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
+
+    # set particle travel time obs
+    endpoint_file = 'freyberg.mpenpt'
+    lines = open(endpoint_file, 'r').readlines()
+    items = lines[-1].strip().split()
+    travel_time = float(items[4]) - float(items[3])
+    with open("freyberg.travel.ins",'w') as f:
+        f.write("pif ~\n")
+        f.write("l1 w !travel_time!\n")
+    with open("freyberg.travel","w") as f:
+        f.write("travel_time {0}\n".format(travel_time))
+
+    forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
+    forecast_names.append("travel_time")
+
+
+    # setup rch parameters - history and future
+    f_in = open(MODEL_NAM.replace(".nam",".rch"),'r')
+    f_tpl = open(MODEL_NAM.replace(".nam",".rch.tpl"),'w')
+    f_tpl.write("ptf ~\n")
+    r_count = 0
+    for line in f_in:
+        raw = line.strip().split()
+        if "open" in line.lower() and r_count < 2:
+            raw[2] = "~  rch_{0}   ~".format(r_count)
+            r_count += 1
+        line = ' '.join(raw)
+        f_tpl.write(line+'\n')
+    f_in.close()
+    f_tpl.close()
+
+    # build lists of tpl, in, ins, and out files
+    tpl_files = [f for f in os.listdir(".") if f.endswith(".tpl")]
+    in_files = [f.replace(".tpl","") for f in tpl_files]
+
+    ins_files = [f for f in os.listdir(".") if f.endswith(".ins")]
+    out_files = [f.replace(".ins","") for f in ins_files]
+
+    # build a control file
+    pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
+                                            ins_files,out_files)
+
+    # set some observation attribues
+    obs = pst.observation_data
+    obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
+    obs.loc[df_wb.obsnme,"weight"] = 0.0
+    obs.loc[forecast_names,"weight"] = 0.0
+    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
+    #obs.loc[df_po.obsnme,"weight"] = 0.0
+    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
+    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
+    noise = np.random.normal(0.0,2.0,c_names.shape[0])
+    obs.loc[df_hyd.obsnme,"weight"] = 0.0
+    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
+    obs.loc[c_names,"obsval"] += noise
+    obs.loc[c_names,"weight"] = 5.0
+    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
+    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
+    #obs.loc["travel_time","obsval"] = travel_time
+    # set some parameter attribs
+    par = pst.parameter_data
+    par.loc[:,"parval1"] = 1.0
+    par.loc[:,"parubnd"] = 1.25
+    par.loc[:,"parlbnd"] = 0.75
+    hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
+    par.loc[hk_names,"parval1"] = 5.0
+    par.loc[hk_names,"parlbnd"] = 0.5
+    par.loc[hk_names,"parubnd"] = 50.0
+    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
+
+    pst.model_command = ["python forward_run.py"]
+    pst.control_data.pestmode = "regularization"
+    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
+    pst.control_data.noptmax = 0
+
+    pst.write(PST_NAME_KR.replace(".pst",".init.pst"))
+
+    with open("forward_run.py",'w') as f:
+        f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
+        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
+        f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
+        f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
+        f.write("f = open('freyberg.hds.dat','wb')\n")
+        f.write("for data in hds.get_alldata():\n")
+        f.write("    data = data.flatten()\n")
+        f.write("    np.savetxt(f,data,fmt='%15.6E')\n")
+        f.write("endpoint_file = 'freyberg.mpenpt'\nlines = open(endpoint_file, 'r').readlines()\n")
+        f.write("items = lines[-1].strip().split()\ntravel_time = float(items[4]) - float(items[3])\n")
+        f.write("with open('freyberg.travel', 'w') as ofp:\n")
+        f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
+        f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
+
+    #os.system("pestchek {0}".format(PST_NAME))
+    pyemu.helpers.run("pestchek {0}".format(PST_NAME_KR))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME_KR.replace(".pst",".init.pst")))
+    pst.control_data.noptmax = 8
+    pst.write(PST_NAME_KR)
+    os.chdir("..")
+
 
 def setup_pest_zn():
     setup_model(WORKING_DIR_ZN)
@@ -187,13 +423,6 @@ def setup_pest_zn():
     pst.control_data.pestmode = "regularization"
     pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     pst.control_data.noptmax = 0
-
-    # first order Tikhonov
-    #cov = pyemu.helpers.pilotpoint_prior_builder(pst,{gs:[pp_file+".tpl"]},sigma_range=6)
-    #pyemu.helpers.first_order_pearson_tikhonov(pst,cov)
-
-    # zero order Tikhonov
-    pyemu.helpers.zero_order_tikhonov(pst)
 
     pst.write(PST_NAME_GR.replace(".pst",".init.pst"))
 
@@ -619,6 +848,8 @@ def run_pe(working_dir,pst_name=None):
 
 
 if __name__ == "__main__":
-    #setup_pest_pp()
-    #setup_pest_gr()
+    setup_pest_pp()
+    setup_pest_gr()
     setup_pest_zn()
+    setup_pest_kr()
+    setup_pest_un()
