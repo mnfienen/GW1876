@@ -37,7 +37,7 @@ def setup_model():
     m.remove_package("PCG")
     flopy.modflow.ModflowUpw(m,hk=m.lpf.hk,vka=m.lpf.vka,
                              ss=m.lpf.ss,sy=m.lpf.ss,
-                             laytyp=m.lpf.laytyp)
+                             laytyp=m.lpf.laytyp,ipakcb=53)
     m.remove_package("LPF")
     flopy.modflow.ModflowNwt(m)
     m.write_input()
@@ -77,6 +77,10 @@ def setup_model():
     shutil.copy2(os.path.join(BASE_MODEL_DIR,"freyberg.locations"),os.path.join(WORKING_DIR,"freyberg.locations"))
     np.savetxt(os.path.join(WORKING_DIR,"ibound.ref"),m.bas6.ibound[0].array,fmt="%2d")
 
+    pyemu.helpers.run('mp6 freyberg.mpsim')
+    shutil.copy2('freyberg.mpenpt','freyberg.mpenpt.truth')
+
+
 def setup_pest():
 
     os.chdir(WORKING_DIR)
@@ -89,7 +93,7 @@ def setup_pest():
 
     df_hds, outfile = pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace('nam', 'hyd.bin.truth'))
 
-    # setup rch parameters - history and future
+    # setup rch parameters - only for calibration period
     with open(MODEL_NAM.replace(".nam",".rch"),'r') as f_in:
         with open(MODEL_NAM.replace(".nam",".rch.tpl"),'w') as f_tpl:
             f_tpl.write("ptf ~\n")
@@ -102,7 +106,7 @@ def setup_pest():
                 line = ' '.join(raw)
                 f_tpl.write(line+'\n')
 
-
+    # set up HK1 parameter
     with open(MODEL_NAM.replace(".nam", ".upw"), 'r') as f_in:
         with open(MODEL_NAM.replace(".nam", ".upw.tpl"), 'w') as f_tpl:
             f_tpl.write("ptf ~\n")
@@ -113,7 +117,7 @@ def setup_pest():
                 line = ' '.join(raw)
                 f_tpl.write(line + '\n')
 
-    endpoint_file = 'freyberg.mpenpt'
+    endpoint_file = 'freyberg.mpenpt.truth'
     lines = open(endpoint_file, 'r').readlines()
     items = lines[-1].strip().split()
     travel_time = float(items[4]) - float(items[3])
@@ -177,7 +181,8 @@ def setup_pest():
 
     with open("forward_run.py",'w') as f:
         f.write("import os\nimport numpy as np\nimport pyemu\nimport flopy\nimport os\n")
-        f.write("for cf in ['freyberg.travel")
+        f.write("for cf in ['freyberg.travel','freyberg.hyd.bin','freyberg.list']:\n")
+        f.write("    try:\n        os.remove(cf)\n    except:\n        pass\n")
         f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
         f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
