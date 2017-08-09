@@ -24,9 +24,7 @@ PST_NAME_KR = "freyberg_kr.pst"
 PST_NAME_UN = "freyberg_un.pst"
 NUM_SLAVES = 10
 NUM_STEPS_RESPSURF = 50
-EXE_PREF = ''
-if "window" not in platform.platform().lower():
-    EXE_PREF = "./"
+
 
 def setup_model(working_dir):
 
@@ -94,6 +92,43 @@ def setup_model(working_dir):
     m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
 
+def _get_base_pst(df_wb,df_hyd):
+    forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
+    forecast_names.append("travel_time")
+
+
+    # build lists of tpl, in, ins, and out files
+    tpl_files = [f for f in os.listdir(".") if f.endswith(".tpl")]
+    in_files = [f.replace(".tpl","") for f in tpl_files]
+
+    ins_files = [f for f in os.listdir(".") if f.endswith(".ins")]
+    out_files = [f.replace(".ins","") for f in ins_files]
+
+    # build a control file
+    pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
+                                            ins_files,out_files)
+
+    # set some observation attribues
+    obs = pst.observation_data
+    obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
+    obs.loc[df_wb.obsnme,"weight"] = 0.0
+    obs.loc[forecast_names,"weight"] = 0.0
+    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
+    #obs.loc[df_po.obsnme,"weight"] = 0.0
+    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
+    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
+    np.random.seed(pyemu.en.SEED)
+    noise = np.random.normal(0.0,2.0,c_names.shape[0])
+    obs.loc[df_hyd.obsnme,"weight"] = 0.0
+    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
+    obs.loc[c_names,"obsval"] += noise
+    obs.loc[c_names,"weight"] = 5.0
+    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
+    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
+    #obs.loc["travel_time","obsval"] = travel_time
+    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
+    return pst
+
 def setup_pest_un():
     setup_model(WORKING_DIR_UN)
     os.chdir(WORKING_DIR_UN)
@@ -128,38 +163,8 @@ def setup_pest_un():
     with open("freyberg.travel","w") as f:
         f.write("travel_time {0}\n".format(travel_time))
 
-    forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
-    forecast_names.append("travel_time")
+    pst = _get_base_pst(df_wb,df_hyd)
 
-
-    # build lists of tpl, in, ins, and out files
-    tpl_files = [f for f in os.listdir(".") if f.endswith(".tpl")]
-    in_files = [f.replace(".tpl","") for f in tpl_files]
-
-    ins_files = [f for f in os.listdir(".") if f.endswith(".ins")]
-    out_files = [f.replace(".ins","") for f in ins_files]
-
-    # build a control file
-    pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
-                                            ins_files,out_files)
-
-    # set some observation attribues
-    obs = pst.observation_data
-    obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
-    obs.loc[df_wb.obsnme,"weight"] = 0.0
-    obs.loc[forecast_names,"weight"] = 0.0
-    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
-    #obs.loc[df_po.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
-    noise = np.random.normal(0.0,2.0,c_names.shape[0])
-    obs.loc[df_hyd.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    obs.loc[c_names,"obsval"] += noise
-    obs.loc[c_names,"weight"] = 5.0
-    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
-    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
-    #obs.loc["travel_time","obsval"] = travel_time
     # set some parameter attribs
     par = pst.parameter_data
     par.loc[:,"parval1"] = 1.0
@@ -173,7 +178,6 @@ def setup_pest_un():
 
     pst.model_command = ["python forward_run.py"]
     pst.control_data.pestmode = "regularization"
-    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     pst.control_data.noptmax = 0
 
     pst.write(PST_NAME_UN.replace(".pst",".init.pst"))
@@ -237,10 +241,6 @@ def setup_pest_kr():
     with open("freyberg.travel","w") as f:
         f.write("travel_time {0}\n".format(travel_time))
 
-    forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
-    forecast_names.append("travel_time")
-
-
     # setup rch parameters - history and future
     f_in = open(MODEL_NAM.replace(".nam",".rch"),'r')
     f_tpl = open(MODEL_NAM.replace(".nam",".rch.tpl"),'w')
@@ -256,34 +256,8 @@ def setup_pest_kr():
     f_in.close()
     f_tpl.close()
 
-    # build lists of tpl, in, ins, and out files
-    tpl_files = [f for f in os.listdir(".") if f.endswith(".tpl")]
-    in_files = [f.replace(".tpl","") for f in tpl_files]
+    pst = _get_base_pst(df_wb,df_hyd)
 
-    ins_files = [f for f in os.listdir(".") if f.endswith(".ins")]
-    out_files = [f.replace(".ins","") for f in ins_files]
-
-    # build a control file
-    pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
-                                            ins_files,out_files)
-
-    # set some observation attribues
-    obs = pst.observation_data
-    obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
-    obs.loc[df_wb.obsnme,"weight"] = 0.0
-    obs.loc[forecast_names,"weight"] = 0.0
-    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
-    #obs.loc[df_po.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
-    noise = np.random.normal(0.0,2.0,c_names.shape[0])
-    obs.loc[df_hyd.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    obs.loc[c_names,"obsval"] += noise
-    obs.loc[c_names,"weight"] = 5.0
-    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
-    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
-    #obs.loc["travel_time","obsval"] = travel_time
     # set some parameter attribs
     par = pst.parameter_data
     par.loc[:,"parval1"] = 1.0
@@ -297,7 +271,6 @@ def setup_pest_kr():
 
     pst.model_command = ["python forward_run.py"]
     pst.control_data.pestmode = "regularization"
-    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     pst.control_data.noptmax = 0
 
     pst.write(PST_NAME_KR.replace(".pst",".init.pst"))
@@ -361,9 +334,6 @@ def setup_pest_zn():
     with open("freyberg.travel","w") as f:
         f.write("travel_time {0}\n".format(travel_time))
 
-    forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
-    forecast_names.append("travel_time")
-
 
     # setup rch parameters - history and future
     f_in = open(MODEL_NAM.replace(".nam",".rch"),'r')
@@ -380,34 +350,8 @@ def setup_pest_zn():
     f_in.close()
     f_tpl.close()
 
-    # build lists of tpl, in, ins, and out files
-    tpl_files = [f for f in os.listdir(".") if f.endswith(".tpl")]
-    in_files = [f.replace(".tpl","") for f in tpl_files]
+    pst = _get_base_pst(df_wb,df_hyd)
 
-    ins_files = [f for f in os.listdir(".") if f.endswith(".ins")]
-    out_files = [f.replace(".ins","") for f in ins_files]
-
-    # build a control file
-    pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
-                                            ins_files,out_files)
-
-    # set some observation attribues
-    obs = pst.observation_data
-    obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
-    obs.loc[df_wb.obsnme,"weight"] = 0.0
-    obs.loc[forecast_names,"weight"] = 0.0
-    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
-    #obs.loc[df_po.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
-    noise = np.random.normal(0.0,2.0,c_names.shape[0])
-    obs.loc[df_hyd.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    obs.loc[c_names,"obsval"] += noise
-    obs.loc[c_names,"weight"] = 5.0
-    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
-    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
-    #obs.loc["travel_time","obsval"] = travel_time
     # set some parameter attribs
     par = pst.parameter_data
     par.loc[:,"parval1"] = 1.0
@@ -421,7 +365,6 @@ def setup_pest_zn():
 
     pst.model_command = ["python forward_run.py"]
     pst.control_data.pestmode = "regularization"
-    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     pst.control_data.noptmax = 0
 
     pst.write(PST_NAME_GR.replace(".pst",".init.pst"))
@@ -482,9 +425,6 @@ def setup_pest_gr():
     with open("freyberg.travel","w") as f:
         f.write("travel_time {0}\n".format(travel_time))
 
-    forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
-    forecast_names.append("travel_time")
-
     # setup wel parameters - history and future
     wel_fmt = {"l":lambda x: '{0:10.0f}'.format(x)}
     wel_fmt["r"] = wel_fmt['l']
@@ -524,35 +464,8 @@ def setup_pest_gr():
         f_tpl.write(line+'\n')
     f_in.close()
     f_tpl.close()
+    pst = _get_base_pst(df_wb,df_hyd)
 
-    # build lists of tpl, in, ins, and out files
-    tpl_files = [f for f in os.listdir(".") if f.endswith(".tpl")]
-    in_files = [f.replace(".tpl","") for f in tpl_files]
-
-    ins_files = [f for f in os.listdir(".") if f.endswith(".ins")]
-    out_files = [f.replace(".ins","") for f in ins_files]
-
-    # build a control file
-    pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
-                                            ins_files,out_files)
-
-    # set some observation attribues
-    obs = pst.observation_data
-    obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
-    obs.loc[df_wb.obsnme,"weight"] = 0.0
-    obs.loc[forecast_names,"weight"] = 0.0
-    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
-    #obs.loc[df_po.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
-    noise = np.random.normal(0.0,2.0,c_names.shape[0])
-    obs.loc[df_hyd.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    obs.loc[c_names,"obsval"] += noise
-    obs.loc[c_names,"weight"] = 5.0
-    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
-    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
-    #obs.loc["travel_time","obsval"] = travel_time
     # set some parameter attribs
     par = pst.parameter_data
     par.loc[:,"parval1"] = 1.0
@@ -566,7 +479,6 @@ def setup_pest_gr():
 
     pst.model_command = ["python forward_run.py"]
     pst.control_data.pestmode = "regularization"
-    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     pst.pestpp_options["n_iter_base"] = -1
     pst.pestpp_options["n_iter_super"] = 3
     pst.control_data.noptmax = 0
@@ -649,8 +561,6 @@ def setup_pest_pp():
     with open("freyberg.travel","w") as f:
         f.write("travel_time {0}\n".format(travel_time))
 
-    forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
-    forecast_names.append("travel_time")
 
     # setup wel parameters - history and future
     wel_fmt = {"l":lambda x: '{0:10.0f}'.format(x)}
@@ -692,34 +602,8 @@ def setup_pest_pp():
     f_in.close()
     f_tpl.close()
 
-    # build lists of tpl, in, ins, and out files
-    tpl_files = [f for f in os.listdir(".") if f.endswith(".tpl")]
-    in_files = [f.replace(".tpl","") for f in tpl_files]
+    pst = _get_base_pst(df_wb,df_hyd)
 
-    ins_files = [f for f in os.listdir(".") if f.endswith(".ins")]
-    out_files = [f.replace(".ins","") for f in ins_files]
-
-    # build a control file
-    pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
-                                            ins_files,out_files)
-
-    # set some observation attribues
-    obs = pst.observation_data
-    obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
-    obs.loc[df_wb.obsnme,"weight"] = 0.0
-    obs.loc[forecast_names,"weight"] = 0.0
-    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
-    #obs.loc[df_po.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
-    noise = np.random.normal(0.0,2.0,c_names.shape[0])
-    obs.loc[df_hyd.obsnme,"weight"] = 0.0
-    obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    obs.loc[c_names,"obsval"] += noise
-    obs.loc[c_names,"weight"] = 5.0
-    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
-    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
-    #obs.loc["travel_time","obsval"] = travel_time
     # set some parameter attribs
     par = pst.parameter_data
     par.loc[:,"parval1"] = 1.0
@@ -733,7 +617,6 @@ def setup_pest_pp():
 
     pst.model_command = ["python forward_run.py"]
     pst.control_data.pestmode = "regularization"
-    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     pst.pestpp_options["n_iter_base"] = -1
     pst.pestpp_options["n_iter_super"] = 3
     pst.control_data.noptmax = 0
@@ -848,8 +731,8 @@ def run_pe(working_dir,pst_name=None):
 
 
 if __name__ == "__main__":
-    setup_pest_pp()
-    setup_pest_gr()
-    setup_pest_zn()
-    setup_pest_kr()
-    setup_pest_un()
+    #setup_pest_pp()
+    #setup_pest_gr()
+    #setup_pest_zn()
+    #setup_pest_kr()
+    #setup_pest_un()
