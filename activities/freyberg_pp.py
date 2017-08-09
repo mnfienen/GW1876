@@ -36,20 +36,26 @@ def setup_model():
 
     print(os.listdir(BASE_MODEL_DIR))
     m = flopy.modflow.Modflow.load(BASE_MODEL_NAM,model_ws=BASE_MODEL_DIR,check=False)
+    m.version = "mfnwt"
     m.change_model_ws(WORKING_DIR)
     m.name = MODEL_NAM.split(".")[0]
-
+    m.remove_package("pcg")
+    flopy.modflow.ModflowUpw(m,hk=m.lpf.hk,vka=m.lpf.vka,
+                             ss=m.lpf.ss,sy=m.lpf.ss,
+                             laytyp=m.lpf.laytyp)
+    m.remove_package("lpf")
+    flopy.modflow.ModflowNwt(m)
     m.write_input()
 
-    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mf2005"))
+    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
     hyd_out = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".hyd.bin"))
     shutil.copy2(hyd_out,hyd_out+'.truth')
     list_file = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".list"))
     shutil.copy2(list_file,list_file+".truth")
 
-    m.lpf.hk = m.lpf.hk.array.mean()
-    m.lpf.hk[0].format.free = True
+    m.upw.hk = m.upw.hk.array.mean()
+    m.upw.hk[0].format.free = True
 
     wel_data_sp1 = m.wel.stress_period_data[0]
     #wel_data_sp1["flux"] = np.ceil(wel_data_sp1["flux"],order=)
@@ -345,7 +351,7 @@ def run_gsa():
     df = pd.read_csv(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".msn")),skipinitialspace=True)
     print(df.columns)
     df.loc[:,"parnme"] = df.parameter_name.apply(lambda x: x.lower().replace("log(",''.replace(')','')))
-    
+
 
 
 def run_respsurf(par_names=None):
@@ -376,10 +382,10 @@ def run_ies():
 
 
 if __name__ == "__main__":
-    #setup_model()
+    setup_model()
     #setup_pest()
     #run_pe()
-    run_fosm()
+    #run_fosm()
     #run_dataworth()
     #run_respsurf()
     #run_gsa()
