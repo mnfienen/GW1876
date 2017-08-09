@@ -8,13 +8,13 @@ import matplotlib.pyplot as plt
 import flopy
 import pyemu
 
-EXE_DIR = os.path.join("..","bin")
+EXE_DIR = os.path.join("..","..",""bin")
 WORKING_DIR_PP = 'freyberg_pp'
 WORKING_DIR_GR = "freyberg_gr"
 WORKING_DIR_ZN = "freyberg_zn"
 WORKING_DIR_KR = "freyberg_kr"
 WORKING_DIR_UN = "freyberg_un"
-BASE_MODEL_DIR = os.path.join("..","models","Freyberg","Freyberg_Truth")
+BASE_MODEL_DIR = os.path.join("..","..","models","Freyberg","Freyberg_Truth")
 BASE_MODEL_NAM = "freyberg.truth.nam"
 MODEL_NAM = "freyberg.nam"
 PST_NAME_PP = "freyberg_pp.pst"
