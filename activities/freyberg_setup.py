@@ -132,7 +132,7 @@ def _get_base_pst(df_wb,df_hyd):
                                         'head' for i in df_hyd.obsnme]
 
 
-    obs['obgnme'] = ['calhead' if i.startswith("c") and j == 1 else k for i,j,k in zip(obs.obsnme,
+    obs['obgnme'] = ['calhead' if i.startswith("c") and j > 0  else k for i,j,k in zip(obs.obsnme,
                                                                                        obs.weight,
                                                                                        obs.obgnme)]
 
