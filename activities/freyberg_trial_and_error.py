@@ -44,6 +44,19 @@ def setup_model():
 
     m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
+
+    # hack for modpath crap
+    mp_files = [f for f in os.listdir(BASE_MODEL_DIR) if ".mp" in f.lower()]
+    for mp_file in mp_files:
+        shutil.copy2(os.path.join(BASE_MODEL_DIR,mp_file),os.path.join(WORKING_DIR,mp_file))
+    shutil.copy2(os.path.join(BASE_MODEL_DIR,"freyberg.locations"),os.path.join(WORKING_DIR,"freyberg.locations"))
+    np.savetxt(os.path.join(WORKING_DIR,"ibound.ref"),m.bas6.ibound[0].array,fmt="%2d")
+
+    os.chdir(WORKING_DIR)
+    pyemu.helpers.run("mp6 {0}".format(MODEL_NAM.replace('.nam','.mpsim')))
+    os.chdir("..")
+    ept_file = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".mpenpt"))
+    shutil.copy2(ept_file,ept_file+".truth")
     hyd_out = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".hyd.bin"))
     shutil.copy2(hyd_out,hyd_out+'.truth')
     list_file = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".list"))
@@ -70,15 +83,6 @@ def setup_model():
     m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
 
-    # hack for modpath crap
-    mp_files = [f for f in os.listdir(BASE_MODEL_DIR) if ".mp" in f.lower()]
-    for mp_file in mp_files:
-        shutil.copy2(os.path.join(BASE_MODEL_DIR,mp_file),os.path.join(WORKING_DIR,mp_file))
-    shutil.copy2(os.path.join(BASE_MODEL_DIR,"freyberg.locations"),os.path.join(WORKING_DIR,"freyberg.locations"))
-    np.savetxt(os.path.join(WORKING_DIR,"ibound.ref"),m.bas6.ibound[0].array,fmt="%2d")
-
-    pyemu.helpers.run('mp6 freyberg.mpsim')
-    shutil.copy2('freyberg.mpenpt','freyberg.mpenpt.truth')
 
 
 def setup_pest():
@@ -160,7 +164,7 @@ def setup_pest():
                                        else 0.0 for i in df_hds.obsnme]
 
     obs.loc[df_hds.obsnme, "obgnme"] = ['forecasthead' if i.startswith("f") and
-                                                          i.endswith('19750102') else
+                                                          i.endswith('19750101') else
                                         'head' for i in df_hds.obsnme]
 
 
@@ -168,8 +172,8 @@ def setup_pest():
                                                                                        obs.weight,
                                                                                        obs.obgnme)]
 
-    obs.loc['flx_river_l_19750102', 'ognme'] = 'forecastflux'
-    obs.loc['travel_time', 'obgnme'] = 'forecasttravel'
+    obs.loc['flx_river_l_19750102', 'obgnme'] = 'foreflux'
+    obs.loc['travel_time', 'obgnme'] = 'foretrav'
     obs.loc["travel_time", "obsval"] = travel_time
 
     forecast_names = [i for i in df_hds.obsnme if i.startswith('f') and i.endswith('19750102')]
@@ -296,16 +300,27 @@ def rerun_new_pars(hk1=5.5, rch_0 = 1.0):
     pars = pst.parameter_data
     pars.loc[pars.parnme == 'hk1', 'parval1']   = hk1
     pars.loc[pars.parnme == 'rch_0', 'parval1'] = rch_0
+    pars.loc['hk1','parlbnd'] = hk1 / 2
+    pars.loc['hk1', 'parubnd'] = hk1 * 2
+    pars.loc['rch_0','parlbnd'] = rch_0 / 2
+    pars.loc['rch_0','parubnd'] = rch_0 * 2
     pst.write(os.path.join(WORKING_DIR,'onerun.pst'))
+
+    if os.path.exists(os.path.join(WORKING_DIR,'onerun.rei')):
+        os.remove(os.path.join(WORKING_DIR,'onerun.rei'))
     os.chdir(WORKING_DIR)
     pyemu.helpers.run('pestpp onerun.pst')
     os.chdir('..')
 
+    if not os.path.exists(os.path.join(WORKING_DIR, 'onerun.rei')):
+        print('Hey! your model blew up. Rein back in those parameters :-)!')
+        return
+
     newpst = pyemu.Pst(os.path.join(WORKING_DIR,'onerun.pst'))
     res = newpst.res
 
-    fig = plt.figure(figsize=(12,6))
-    ax = fig.add_subplot(121)
+    fig = plt.figure(figsize=(12,5))
+    ax1 = fig.add_subplot(131)
     cal = res.loc[res.group == 'calhead']
     plt.plot(cal.measured, cal.modelled, '.')
     minmin = np.min([cal.measured.min(),cal.modelled.min()])
@@ -313,9 +328,10 @@ def rerun_new_pars(hk1=5.5, rch_0 = 1.0):
     plt.plot([minmin, maxmax],[minmin,maxmax], 'r')
     plt.xlabel('measured')
     plt.ylabel('modeled')
-    plt.title('Calibration')
+    plt.title('Calibration Head')
+    ax1.set_aspect('equal')
 
-    ax = fig.add_subplot(122)
+    ax2 = fig.add_subplot(132)
     fore = res.loc[res.group == 'forecasthead']
     plt.plot(fore.measured, fore.modelled, '.')
     minmin = np.min([fore.measured.min(), fore.modelled.min()])
@@ -323,7 +339,17 @@ def rerun_new_pars(hk1=5.5, rch_0 = 1.0):
     plt.plot([minmin, maxmax],[minmin,maxmax], 'r')
     plt.xlabel('measured')
     plt.ylabel('modeled')
-    plt.title('Forecast')
+    plt.title('Forecast Head')
+    ax2.set_aspect('equal')
+
+    ax3 = fig.add_subplot(133)
+    fore_trav = res.loc[res.group == 'foretrav']
+    fore_flux = res.loc[res.group == 'foreflux']
+    res_fore = res.loc[((res.group == 'foreflux') | (res.group == 'foretrav'))][
+        ['measured', 'modelled']].plot(kind='bar', ax=ax3, rot=45)
+    plt.title('Forecast Travel and Flux')
+
+    plt.tight_layout()
 
     plt.show()
 
