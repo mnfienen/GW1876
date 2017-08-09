@@ -49,10 +49,23 @@ def setup_model():
 
     m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
+
+    # hack for modpath crap
+    mp_files = [f for f in os.listdir(BASE_MODEL_DIR) if ".mp" in f.lower()]
+    for mp_file in mp_files:
+        shutil.copy2(os.path.join(BASE_MODEL_DIR,mp_file),os.path.join(WORKING_DIR,mp_file))
+    shutil.copy2(os.path.join(BASE_MODEL_DIR,"freyberg.locations"),os.path.join(WORKING_DIR,"freyberg.locations"))
+    np.savetxt(os.path.join(WORKING_DIR,"ibound.ref"),m.bas6.ibound[0].array,fmt="%2d")
+    os.chdir(WORKING_DIR)
+    pyemu.helpers.run("mp6 {0}".format(MODEL_NAM.replace('.nam','.mpsim')))
+    os.chdir("..")
+    ept_file = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".mpenpt"))
+    shutil.copy2(ept_file,ept_file+".truth")
     hyd_out = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".hyd.bin"))
     shutil.copy2(hyd_out,hyd_out+'.truth')
     list_file = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".list"))
     shutil.copy2(list_file,list_file+".truth")
+
 
     m.upw.hk = m.upw.hk.array.mean()
     m.upw.hk[0].format.free = True
@@ -75,12 +88,6 @@ def setup_model():
     m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
 
-    # hack for modpath crap
-    mp_files = [f for f in os.listdir(BASE_MODEL_DIR) if ".mp" in f.lower()]
-    for mp_file in mp_files:
-        shutil.copy2(os.path.join(BASE_MODEL_DIR,mp_file),os.path.join(WORKING_DIR,mp_file))
-    shutil.copy2(os.path.join(BASE_MODEL_DIR,"freyberg.locations"),os.path.join(WORKING_DIR,"freyberg.locations"))
-    np.savetxt(os.path.join(WORKING_DIR,"ibound.ref"),m.bas6.ibound[0].array,fmt="%2d")
 
 def setup_pest():
 
@@ -392,7 +399,7 @@ def run_ies():
 
 if __name__ == "__main__":
     setup_model()
-    setup_pest()
+    #setup_pest()
     #run_pe()
     #run_fosm()
     #run_dataworth()
