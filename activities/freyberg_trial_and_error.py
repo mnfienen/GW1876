@@ -14,8 +14,8 @@ BASE_MODEL_DIR = os.path.join("..","models","Freyberg","Freyberg_Truth")
 BASE_MODEL_NAM = "freyberg.truth.nam"
 MODEL_NAM = "freyberg.nam"
 PST_NAME = WORKING_DIR+".pst"
-NUM_SLAVES = 10
-NUM_STEPS_RESPSURF = 50
+NUM_SLAVES = 20
+NUM_STEPS_RESPSURF = 10
 
 def setup_model():
 
@@ -158,13 +158,14 @@ def setup_pest():
     obs = pst.observation_data
     obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
     obs.loc[df_wb.obsnme,"weight"] = 0.0
-    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'weight'] = 0.01
     obs.loc[df_hds.obsnme,"obgnme"] = 'head'
     obs.loc[df_hds.obsnme,"weight"] = [1.0 if i.startswith("c") and i.endswith('19700102')
                                        else 0.0 for i in df_hds.obsnme]
 
-    obs.loc[df_hds.obsnme, "obgnme"] = ['forecasthead' if i.startswith("f") and
+    obs.loc[df_hds.obsnme, "obgnme"] = ['forehead' if i.startswith("f") and
                                                           i.endswith('19750101') else
+                                        'pothead' if i.startswith('p') and
+                                                        i.endswith('19700102') else
                                         'head' for i in df_hds.obsnme]
 
 
@@ -172,9 +173,13 @@ def setup_pest():
                                                                                        obs.weight,
                                                                                        obs.obgnme)]
 
-    obs.loc['flx_river_l_19750102', 'obgnme'] = 'foreflux'
+    obs.loc['flx_river_l_19750101', 'obgnme'] = 'foreflux'
     obs.loc['travel_time', 'obgnme'] = 'foretrav'
     obs.loc["travel_time", "obsval"] = travel_time
+    obs.loc["travel_time", "weight"] = 0.0
+
+    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'weight'] = 0.1
+    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'obgnme'] = 'calflux'
 
     forecast_names = [i for i in df_hds.obsnme if i.startswith('f') and i.endswith('19750102')]
     forecast_names.append('flx_river_l_19750102')
