@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import flopy
 import pyemu
 
-EXE_DIR = os.path.join("..","..",""bin")
+EXE_DIR = os.path.join("..","..","bin")
 WORKING_DIR_PP = 'freyberg_pp'
 WORKING_DIR_GR = "freyberg_gr"
 WORKING_DIR_ZN = "freyberg_zn"
