@@ -93,7 +93,9 @@ def setup_model(working_dir):
     m.run_model()
 
 def _get_base_pst(df_wb,df_hyd):
-    forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
+    #forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
+    forecast_names = [i for i in df_hyd.obsnme if i.startswith('f') and i.endswith('19750102')]
+    forecast_names.append('flx_river_l_19750102')
     forecast_names.append("travel_time")
 
 
@@ -110,11 +112,10 @@ def _get_base_pst(df_wb,df_hyd):
 
     # set some observation attribues
     obs = pst.observation_data
+
     obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
     obs.loc[df_wb.obsnme,"weight"] = 0.0
     obs.loc[forecast_names,"weight"] = 0.0
-    #obs.loc[df_po.obsnme,"obsval"] = df_po.obsval
-    #obs.loc[df_po.obsnme,"weight"] = 0.0
     obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
     c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
     np.random.seed(pyemu.en.SEED)
@@ -123,8 +124,36 @@ def _get_base_pst(df_wb,df_hyd):
     obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
     obs.loc[c_names,"obsval"] += noise
     obs.loc[c_names,"weight"] = 5.0
-    og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
-    obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
+    obs.loc[df_hyd.obsnme,"obgnme"] = 'head'
+    obs.loc[df_hyd.obsnme, "obgnme"] = ['forehead' if i.startswith("f") and
+                                                          i.endswith('19750101') else
+                                        'pothead' if i.startswith('p') and
+                                                        i.endswith('19700102') else
+                                        'head' for i in df_hyd.obsnme]
+
+
+    obs['obgnme'] = ['calhead' if i.startswith("c") and j == 1 else k for i,j,k in zip(obs.obsnme,
+                                                                                       obs.weight,
+                                                                                       obs.obgnme)]
+
+    obs.loc['flx_river_l_19750101', 'obgnme'] = 'foreflux'
+    obs.loc['travel_time', 'obgnme'] = 'foretrav'
+
+    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'weight'] = 0.1
+    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'obgnme'] = 'calflux'
+
+    # obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
+    # obs.loc[df_wb.obsnme,"weight"] = 0.0
+    # obs.loc[forecast_names,"weight"] = 0.0
+    # c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
+    # np.random.seed(pyemu.en.SEED)
+    # noise = np.random.normal(0.0,2.0,c_names.shape[0])
+    # obs.loc[df_hyd.obsnme,"weight"] = 0.0
+    # obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
+    # obs.loc[c_names,"obsval"] += noise
+    # obs.loc[c_names,"weight"] = 5.0
+    # og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
+    # obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
     #obs.loc["travel_time","obsval"] = travel_time
     pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     return pst
@@ -731,8 +760,8 @@ def run_pe(working_dir,pst_name=None):
 
 
 if __name__ == "__main__":
-    #setup_pest_pp()
-    #setup_pest_gr()
-    #setup_pest_zn()
-    #setup_pest_kr()
-    #setup_pest_un()
+    setup_pest_pp()
+    setup_pest_gr()
+    setup_pest_zn()
+    setup_pest_kr()
+    setup_pest_un()
