@@ -31,18 +31,26 @@ def setup_model():
 
     print(os.listdir(BASE_MODEL_DIR))
     m = flopy.modflow.Modflow.load(BASE_MODEL_NAM,model_ws=BASE_MODEL_DIR,check=False)
+    m.version = "mfnwt"
     m.change_model_ws(WORKING_DIR)
     m.name = MODEL_NAM.split(".")[0]
-
+    m.remove_package("PCG")
+    flopy.modflow.ModflowUpw(m,hk=m.lpf.hk,vka=m.lpf.vka,
+                             ss=m.lpf.ss,sy=m.lpf.ss,
+                             laytyp=m.lpf.laytyp)
+    m.remove_package("LPF")
+    flopy.modflow.ModflowNwt(m)
     m.write_input()
 
-    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mf2005"))
+    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
     hyd_out = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".hyd.bin"))
     shutil.copy2(hyd_out,hyd_out+'.truth')
+    list_file = os.path.join(WORKING_DIR,MODEL_NAM.replace(".nam",".list"))
+    shutil.copy2(list_file,list_file+".truth")
 
-    m.lpf.hk = m.lpf.hk.array.mean()
-    m.lpf.hk[0].format.free = True
+    m.upw.hk = m.upw.hk.array.mean()
+    m.upw.hk[0].format.free = True
 
     wel_data_sp1 = m.wel.stress_period_data[0]
     #wel_data_sp1["flux"] = np.ceil(wel_data_sp1["flux"],order=)
@@ -52,15 +60,22 @@ def setup_model():
 
     r = np.round(m.rch.rech[0].array.mean(),5)
     m.rch.rech[0] = r
+    m.rch.rech[0].format.free = True
     m.external_path = '.'
     #m.oc.chedfm = "(20f16.6)"
     #output_idx = m.output_fnames.index("freyberg.hds")
     #m.output_binflag[output_idx] = False
     m.write_input()
 
-    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mf2005"))
+    m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
 
+    # hack for modpath crap
+    mp_files = [f for f in os.listdir(BASE_MODEL_DIR) if ".mp" in f.lower()]
+    for mp_file in mp_files:
+        shutil.copy2(os.path.join(BASE_MODEL_DIR,mp_file),os.path.join(WORKING_DIR,mp_file))
+    shutil.copy2(os.path.join(BASE_MODEL_DIR,"freyberg.locations"),os.path.join(WORKING_DIR,"freyberg.locations"))
+    np.savetxt(os.path.join(WORKING_DIR,"ibound.ref"),m.bas6.ibound[0].array,fmt="%2d")
 
 def setup_pest():
 
@@ -88,8 +103,8 @@ def setup_pest():
                 f_tpl.write(line+'\n')
 
 
-    with open(MODEL_NAM.replace(".nam", ".lpf"), 'r') as f_in:
-        with open(MODEL_NAM.replace(".nam", ".lpf.tpl"), 'w') as f_tpl:
+    with open(MODEL_NAM.replace(".nam", ".upw"), 'r') as f_in:
+        with open(MODEL_NAM.replace(".nam", ".upw.tpl"), 'w') as f_tpl:
             f_tpl.write("ptf ~\n")
             for line in f_in:
                 raw = line.strip().split()
@@ -97,6 +112,18 @@ def setup_pest():
                     raw = ['CONSTANT', '~  hk1   ~']
                 line = ' '.join(raw)
                 f_tpl.write(line + '\n')
+
+    endpoint_file = 'freyberg.mpenpt'
+    lines = open(endpoint_file, 'r').readlines()
+    items = lines[-1].strip().split()
+    travel_time = float(items[4]) - float(items[3])
+
+    with open('freyberg.travel', 'w') as ofp:
+        ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\n'))
+
+    with open("freyberg.travel.ins",'w') as f:
+        f.write("pif ~\n")
+        f.write("l1 w !travel_time!\n")
 
     tpl_files = [f for f in os.listdir(".") if f.endswith(".tpl")]
     in_files = [f.replace(".tpl", "") for f in tpl_files]
@@ -107,7 +134,7 @@ def setup_pest():
     pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
                                             ins_files,out_files)
 
-    hk_start = m.lpf.hk.array.mean()
+    hk_start = m.upw.hk.array.mean()
 
 
     pars = pst.parameter_data
@@ -132,11 +159,14 @@ def setup_pest():
                                                           i.endswith('19750102') else
                                         'head' for i in df_hds.obsnme]
 
+
     obs['obgnme'] = ['calhead' if i.startswith("c") and j == 1 else k for i,j,k in zip(obs.obsnme,
                                                                                        obs.weight,
                                                                                        obs.obgnme)]
 
-
+    obs.loc['flx_river_l_19750102', 'ognme'] = 'forecastflux'
+    obs.loc['travel_time', 'obgnme'] = 'forecasttravel'
+    obs.loc["travel_time", "obsval"] = travel_time
 
     forecast_names = [i for i in df_hds.obsnme if i.startswith('f') and i.endswith('19750102')]
     forecast_names.append('flx_river_l_19750102')
@@ -146,8 +176,9 @@ def setup_pest():
     pst.write(PST_NAME)
 
     with open("forward_run.py",'w') as f:
-        f.write("import os\nimport numpy as np\nimport pyemu\nimport flopy\n")
-        f.write("pyemu.helpers.run('mf2005 {0} >_mf2005.stdout')\n".format(MODEL_NAM))
+        f.write("import os\nimport numpy as np\nimport pyemu\nimport flopy\nimport os\n")
+        f.write("for cf in ['freyberg.travel")
+        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
         f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('{0}')\n".format(MODEL_NAM.replace(".nam",".hyd.bin")))
