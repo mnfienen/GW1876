@@ -14,8 +14,8 @@ BASE_MODEL_DIR = os.path.join("..","models","Freyberg","Freyberg_Truth")
 BASE_MODEL_NAM = "freyberg.truth.nam"
 MODEL_NAM = "freyberg.nam"
 PST_NAME = WORKING_DIR+".pst"
-NUM_SLAVES = 20
-NUM_STEPS_RESPSURF = 10
+NUM_SLAVES = 15
+NUM_STEPS_RESPSURF = 15
 
 def setup_model():
 
@@ -89,9 +89,11 @@ def setup_pest():
 
     os.chdir(WORKING_DIR)
 
-    m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
+    m = flopy.modflow.Modflow.load(MODEL_NAM, check=False)
 
     df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
+
+    os.rename(m.name+".list.truth.ins", m.name+".list.ins")
 
     df_junk = pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace('nam', 'hyd.bin'))
 
@@ -147,12 +149,12 @@ def setup_pest():
 
     pars = pst.parameter_data
     pars.loc[pars.parnme == 'hk1', 'parval1'] = hk_start
-    pars.loc[pars.parnme == 'hk1', 'parlbnd'] = hk_start / 10.0
-    pars.loc[pars.parnme == 'hk1', 'parubnd'] = hk_start * 10.0
+    pars.loc[pars.parnme == 'hk1', 'parlbnd'] = 3
+    pars.loc[pars.parnme == 'hk1', 'parubnd'] = 12
 
     pars.loc[pars.parnme == 'rch_0', 'parval1'] = 1.0
-    pars.loc[pars.parnme == 'rch_0', 'parlbnd'] = 0.5
-    pars.loc[pars.parnme == 'rch_0', 'parubnd'] = 1.5
+    pars.loc[pars.parnme == 'rch_0', 'parlbnd'] = 0.8
+    pars.loc[pars.parnme == 'rch_0', 'parubnd'] = 1.2
 
 
     obs = pst.observation_data
@@ -280,22 +282,23 @@ def plot_response_surface():
     df_in = pd.read_csv(os.path.join(WORKING_DIR, "sweep_in.csv"))
     df_out = pd.read_csv(os.path.join(WORKING_DIR, "sweep_out.csv"))
     resp_surf = np.zeros((NUM_STEPS_RESPSURF, NUM_STEPS_RESPSURF))
-
+    hk_values = df_in.hk1.unique()
+    rch_values = df_in.rch_0.unique()
     c = 0
-    for i, v1 in enumerate(df_in.hk1.values):
-        for j, v2 in enumerate(df_in.rch_0.values):
+    for i, v1 in enumerate(hk_values):
+        for j, v2 in enumerate(rch_values):
             resp_surf[j, i] = df_out.loc[c, "phi"]
             c += 1
     fig = plt.figure(figsize=(10, 10))
     ax = plt.subplot(111)
-    X, Y = np.meshgrid(hk_values, fx_values)
+    X, Y = np.meshgrid(hk_values, rch_values)
     #resp_surf = np.ma.masked_where(resp_surf > 5, resp_surf)
-    p = ax.pcolor(X, Y, resp_surf, alpha=0.5, cmap="spectral")
+    p = ax.pcolor(X, Y, resp_surf, alpha=0.5, cmap="nipy_spectral")
     plt.colorbar(p)
     c = ax.contour(X, Y, resp_surf, levels=[0.1, 0.2, 0.5, 1, 2, 5], colors='k')
     plt.clabel(c)
     ax.set_xlim(hk_values.min(), hk_values.max())
-    ax.set_ylim(rch_values.min(), frch_values.max())
+    ax.set_ylim(rch_values.min(), rch_values.max())
     ax.set_xlabel("hk1 ($\\frac{L}{T}$)")
     ax.set_ylabel("rch ($L$)")
 
