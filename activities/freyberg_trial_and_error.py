@@ -129,7 +129,7 @@ def setup_pest():
                                        else 0.0 for i in df_hds.obsnme]
 
     obs.loc[df_hds.obsnme, "obgnme"] = ['forecasthead' if i.startswith("f") and
-                                                          i.endswith('19700102') else
+                                                          i.endswith('19750102') else
                                         'head' for i in df_hds.obsnme]
 
     obs['obgnme'] = ['calhead' if i.startswith("c") and j == 1 else k for i,j,k in zip(obs.obsnme,
@@ -138,7 +138,7 @@ def setup_pest():
 
 
 
-    forecast_names = [i for i in df_hds.obsnme if i.startswith('f') and i.endswith('19700102')]
+    forecast_names = [i for i in df_hds.obsnme if i.startswith('f') and i.endswith('19750102')]
     forecast_names.append('flx_river_l_19750102')
     pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     pst.control_data.noptmax = 0
@@ -148,9 +148,13 @@ def setup_pest():
     with open("forward_run.py",'w') as f:
         f.write("import os\nimport numpy as np\nimport pyemu\nimport flopy\n")
         f.write("pyemu.helpers.run('mf2005 {0} >_mf2005.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('{0}')\n".format(MODEL_NAM.replace(".nam",".hyd.bin")))
-
+        f.write("endpoint_file = 'freyberg.mpenpt'\nlines = open(endpoint_file, 'r').readlines()\n")
+        f.write("items = lines[-1].strip().split()\ntravel_time = float(items[4]) - float(items[3])\n")
+        f.write("with open('freyberg.travel', 'w') as ofp:\n")
+        f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
     pyemu.helpers.run("pestchek {0}".format(PST_NAME))
     os.chdir("..")
 
@@ -287,7 +291,6 @@ def rerun_new_pars(hk1=5.5, rch_0 = 1.0):
 
     plt.show()
 
-    
 
 def run_ies():
     pass
