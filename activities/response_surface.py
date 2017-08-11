@@ -5,13 +5,14 @@ import pyemu
 import matplotlib.pyplot as plt
 import freyberg_setup as frey_mod
 
+EXE_DIR = os.path.join("..","..","bin")
 WORKING_DIR = frey_mod.WORKING_DIR_KR
 MODEL_NAM = "freyberg.nam"
 PST_NAME = frey_mod.PST_NAME_KR
-NUM_SLAVES = 15
-NUM_STEPS_RESPSURF = frey_mod.NUM_STEPS_RESPSURF
+NUM_SLAVES = 20
+NUM_STEPS_RESPSURF = 40
 
-def run_respsurf(par_names=None, pstfile=None):
+def run_respsurf(par_names=None, pstfile=None, WORKING_DIR=frey_mod.WORKING_DIR_KR):
     if pstfile is None:
         PST_NAME = frey_mod.PST_NAME_KR
     else:
@@ -44,7 +45,7 @@ def run_respsurf(par_names=None, pstfile=None):
     pyemu.helpers.start_slaves('.', 'sweep', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
     os.chdir("..")
 
-def plot_response_surface(parnames, pstfile):
+def plot_response_surface(parnames, pstfile, WORKING_DIR=frey_mod.WORKING_DIR_KR, nanthresh=None):
     p1,p2 = parnames
     df_in = pd.read_csv(os.path.join(WORKING_DIR, pstfile.replace('.pst',"sweep_in.csv")))
     df_out = pd.read_csv(os.path.join(WORKING_DIR, pstfile.replace('.pst',"sweep_out.csv")))
@@ -59,17 +60,26 @@ def plot_response_surface(parnames, pstfile):
     fig = plt.figure(figsize=(5,5))
     ax = plt.subplot(111)
     X, Y = np.meshgrid(p1_values, p2_values)
-    #resp_surf = np.ma.masked_where(resp_surf > 5, resp_surf)
+    if nanthresh is not None:
+        resp_surf = np.ma.masked_where(resp_surf > nanthresh, resp_surf)
     p = ax.pcolor(X, Y, resp_surf, alpha=0.5, cmap="nipy_spectral")
     plt.colorbar(p)
     c = ax.contour(X, Y, resp_surf,
                    levels=np.array([0.001, 0.01, 0.02, 0.05, .1, .2, .5])*np.max(resp_surf),
                    colors='k')
-    plt.title('min $\Phi$ = {0:.2f}'.format(np.min(resp_surf)))
-    
+    plt.title('min $\Phi$ = {0:.2f}'.format(np.nanmin(resp_surf)))
+
     plt.clabel(c)
     ax.set_xlim(p1_values.min(), p1_values.max())
     ax.set_ylim(p2_values.min(), p2_values.max())
     ax.set_xlabel(p1)
     ax.set_ylabel(p2)
-    return resp_surf
+    return fig, ax
+
+def add_trajectory_to_plot(fig,ax,casename, title, working_dir, pst_name):
+    obfun = pd.read_csv(os.path.join(working_dir,pst_name.replace('.pst','.{}.iobj'.format(casename))))
+    pars=pd.read_csv(os.path.join(working_dir,pst_name.replace('.pst','.{}.ipar'.format(casename))))
+    ax.plot(pars.hk1.values,pars.cal_flux.values, 'kx-')
+    ax.set_title(title)
+    plt.savefig('response_surface_{}.png'.format(casename))
+    return pars, obfun
