@@ -23,7 +23,7 @@ PST_NAME_ZN = "freyberg_zn.pst"
 PST_NAME_KR = "freyberg_kr.pst"
 PST_NAME_UN = "freyberg_un.pst"
 NUM_SLAVES = 10
-NUM_STEPS_RESPSURF = 50
+NUM_STEPS_RESPSURF = 25
 
 
 def setup_model(working_dir):
