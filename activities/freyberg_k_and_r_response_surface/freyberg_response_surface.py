@@ -9,7 +9,7 @@ WORKING_DIR = frey_mod.WORKING_DIR_KR
 MODEL_NAM = "freyberg.nam"
 PST_NAME = frey_mod.PST_NAME_KR
 NUM_SLAVES = 15
-NUM_STEPS_RESPSURF = 10
+NUM_STEPS_RESPSURF = frey_mod.NUM_STEPS_RESPSURF
 
 def run_respsurf(par_names=None, pstfile=None):
     if pstfile is None:
@@ -62,7 +62,11 @@ def plot_response_surface(parnames, pstfile):
     #resp_surf = np.ma.masked_where(resp_surf > 5, resp_surf)
     p = ax.pcolor(X, Y, resp_surf, alpha=0.5, cmap="nipy_spectral")
     plt.colorbar(p)
-    c = ax.contour(X, Y, resp_surf, levels=[0.1, 0.2, 0.5, 1, 2, 5], colors='k')
+    c = ax.contour(X, Y, resp_surf,
+                   levels=np.array([0.001, 0.01, 0.02, 0.05, .1, .2, .5])*np.max(resp_surf),
+                   colors='k')
+    plt.title('min $\Phi$ = {0:.2f}'.format(np.min(resp_surf)))
+    
     plt.clabel(c)
     ax.set_xlim(p1_values.min(), p1_values.max())
     ax.set_ylim(p2_values.min(), p2_values.max())
