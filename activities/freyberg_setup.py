@@ -228,10 +228,10 @@ def setup_pest_un():
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_UN))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_UN)
+    pyemu.helpers.run("pestchek {0}".format(PST_NAME_UN))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
     os.chdir("..")
 
 
@@ -321,10 +321,11 @@ def setup_pest_kr():
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_KR))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_KR.replace(".pst",".init.pst")))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_KR)
+    pyemu.helpers.run("pestchek {0}".format(PST_NAME_KR))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME_KR.replace(".pst",".init.pst")))
+    
     os.chdir("..")
 
 
@@ -415,10 +416,11 @@ def setup_pest_zn():
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_GR))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_GR.replace(".pst",".init.pst")))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_GR)
+    pyemu.helpers.run("pestchek {0}".format(PST_NAME_GR))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME_GR.replace(".pst",".init.pst")))
+    
     os.chdir("..")
 
 def setup_pest_gr():
@@ -551,10 +553,11 @@ def setup_pest_gr():
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_GR))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_GR.replace(".pst",".init.pst")))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_GR)
+    pyemu.helpers.run("pestchek {0}".format(PST_NAME_GR))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME_GR.replace(".pst",".init.pst")))
+    
     os.chdir("..")
 
 
@@ -695,10 +698,11 @@ def setup_pest_pp():
         f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
     #os.system("pestchek {0}".format(PST_NAME))
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_PP))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_PP.replace(".pst",".init.pst")))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_PP)
+    pyemu.helpers.run("pestchek {0}".format(PST_NAME_PP))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME_PP.replace(".pst",".init.pst")))
+    
     os.chdir("..")
 
 
