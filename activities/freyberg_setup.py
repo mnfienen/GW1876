@@ -397,7 +397,7 @@ def setup_pest_zn():
     pst.control_data.pestmode = "regularization"
     pst.control_data.noptmax = 0
 
-    pst.write(PST_NAME_GR.replace(".pst",".init.pst"))
+    pst.write(PST_NAME_ZN.replace(".pst",".init.pst"))
 
     with open("forward_run.py",'w') as f:
         f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
@@ -417,7 +417,7 @@ def setup_pest_zn():
 
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
-    pst.write(PST_NAME_GR)
+    pst.write(PST_NAME_ZN)
     pyemu.helpers.run("pestchek {0}".format(PST_NAME_GR))
     pyemu.helpers.run("pestpp {0}".format(PST_NAME_GR.replace(".pst",".init.pst")))
     
