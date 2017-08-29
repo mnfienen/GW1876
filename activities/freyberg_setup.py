@@ -561,6 +561,7 @@ def setup_pest_gr():
     os.chdir("..")
 
 
+
 def setup_pest_pp():
     setup_model(WORKING_DIR_PP)
     os.chdir(WORKING_DIR_PP)
@@ -752,6 +753,29 @@ def run_pe(working_dir,pst_name):
 #
 # def run_ies():
 #     pass
+
+
+def build_prior_pp():
+    v = pyemu.geostats.ExpVario(contribution=1.0,a=2000.0)
+    gs = pyemu.geostats.GeoStruct(variograms=[v])
+    pst_pp = pyemu.Pst(os.path.join(WORKING_DIR_PP,PST_NAME_PP))
+    pp_tpl = os.path.join(WORKING_DIR_PP,[tpl for tpl in pst_pp.template_files if "pp" in tpl][0])
+    cov_pp = pyemu.helpers.pilotpoint_prior_builder(pst_pp,{gs:pp_tpl},sigma_range=4)
+    return cov_pp
+
+def build_prior_gr():
+    v = pyemu.geostats.ExpVario(contribution=1.0,a=2000.0)
+    gs = pyemu.geostats.GeoStruct(variograms=[v])
+    pst_gr = pyemu.Pst(os.path.join(WORKING_DIR_GR,PST_NAME_GR))
+    par = pst_gr.parameter_data
+    hk_par = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),:]
+    hk_par.loc[:,"i"] = hk_par.parnme.apply(lambda x: int(x.split('_')[1].replace("i",'')))
+    hk_par.loc[:,"j"] = hk_par.parnme.apply(lambda x: int(x.split('_')[2].replace("j",'')))
+    m = flopy.modflow.Modflow.load(MODEL_NAM,model_ws=WORKING_DIR_GR,load_only=[])
+    hk_par.loc[:,"x"] = hk_par.apply(lambda x: m.sr.xcentergrid[x.i,x.j],axis=1)
+    hk_par.loc[:,"y"] = hk_par.apply(lambda x: m.sr.ycentergrid[x.i,x.j],axis=1)
+    cov_gr = pyemu.helpers.pilotpoint_prior_builder(pst_gr,struct_dict={gs:hk_par})
+    return cov_gr
 
 
 if __name__ == "__main__":
