@@ -205,10 +205,16 @@ def setup_pest_un():
     par.loc[hk_names,"parubnd"] = 50.0
     par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
 
+
+    obs = pst.observation_data
+    obs.loc[obs.obsnme.apply(lambda x: x.startswith("flx")),"weight"] = 0.0
+
     pst.model_command = ["python forward_run.py"]
     pst.control_data.pestmode = "regularization"
     pst.control_data.noptmax = 0
-
+    pst.pestpp_options["lambda_scale_fac"] = 1.0
+    pst.pestpp_options["upgrade_augment"] = "false"
+    pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
     pst.write(PST_NAME_UN.replace(".pst",".init.pst"))
 
     with open("forward_run.py",'w') as f:
@@ -298,6 +304,10 @@ def setup_pest_kr():
     par.loc[hk_names,"parubnd"] = 50.0
     par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
 
+    pst.pestpp_options["lambda_scale_fac"] = 1.0
+    pst.pestpp_options["upgrade_augment"] = "false"
+    pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
+    
     pst.model_command = ["python forward_run.py"]
     pst.control_data.pestmode = "regularization"
     pst.control_data.noptmax = 0
@@ -393,8 +403,11 @@ def setup_pest_zn():
     par.loc[hk_names,"parubnd"] = 50.0
     par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
 
+    pst.pestpp_options["lambda_scale_fac"] = 1.0
+    pst.pestpp_options["upgrade_augment"] = "false"
+    pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
+    
     pst.model_command = ["python forward_run.py"]
-    pst.control_data.pestmode = "regularization"
     pst.control_data.noptmax = 0
 
     pst.write(PST_NAME_ZN.replace(".pst",".init.pst"))
@@ -418,8 +431,8 @@ def setup_pest_zn():
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_ZN)
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_GR))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_GR.replace(".pst",".init.pst")))
+    pyemu.helpers.run("pestchek {0}".format(PST_NAME_ZN))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME_ZN.replace(".pst",".init.pst")))
     
     os.chdir("..")
 
@@ -507,7 +520,10 @@ def setup_pest_gr():
     par.loc[hk_names,"parlbnd"] = 0.5
     par.loc[hk_names,"parubnd"] = 50.0
     par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
-
+    pst.pestpp_options["lambda_scale_fac"] = 1.0
+    pst.pestpp_options["upgrade_augment"] = "false"
+    pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
+    
     pst.model_command = ["python forward_run.py"]
     pst.control_data.pestmode = "regularization"
     pst.pestpp_options["n_iter_base"] = -1
@@ -652,6 +668,10 @@ def setup_pest_pp():
     pst.control_data.pestmode = "regularization"
     pst.pestpp_options["n_iter_base"] = -1
     pst.pestpp_options["n_iter_super"] = 3
+    pst.pestpp_options["lambda_scale_fac"] = 1.0
+    pst.pestpp_options["upgrade_augment"] = "false"
+    pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
+    
     pst.control_data.noptmax = 0
     a = float(pp_space) * m.dis.delr.array[0] * 3.0
     v = pyemu.geostats.ExpVario(contribution=1.0,a=a)
