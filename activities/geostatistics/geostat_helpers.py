@@ -69,14 +69,45 @@ def field_scatterplot(x,y,z=None, s=100, xlim=1000, ylim=1000, title=None):
     ax.set_aspect('equal')
     return ax
 
-def grid_plot(X,Y,Z):
+def grid_plot(X,Y,Z, vlims=None, title=None):
     plt.figure(figsize=(6,6))
     ax = plt.gca()
-    im = ax.pcolormesh(X,Y,Z)
+    if vlims is None:
+        im = ax.pcolormesh(X,Y,Z)
+    else:
+        im = ax.pcolormesh(X, Y, Z,vmin=vlims[0], vmax=vlims[1])
     ax.set_aspect('equal')
     divider = make_axes_locatable(ax)
     cax = divider.append_axes("right", size="5%", pad=0.05)    
-    plt.colorbar(im, cax=cax)    
+    plt.colorbar(im, cax=cax)
+    if title is not None:
+        plt.suptitle(title)
     return ax    
     
-    
+
+def geostat_interpolate(X,Y,interp_data, data_df):
+    '''
+
+    :param X: grid of X grid locations
+    :param Y: grid of Y grid locations
+    :param interp_data: dataframe of interpolation data greated by pyemu.geostats.OrdinaryKrige.calc_factors()
+    :param data_df: xd, yd, zd, and names of points
+
+    :return: Z -- an interpolated field
+    '''
+
+    dims = X.shape
+    X = X.ravel()
+    Y = Y.ravel()
+    Z = np.zeros_like(X)
+    i = 0
+    for cp in interp_data.index:
+        # alot going on in the next line! Get the locations from sample_df of the names for current point (cp)
+        # then sort the results to be the same order as ifacts
+        # then grab the zd values
+        # make it 2d to take advantage of vectorization later
+        cpts = np.atleast_2d(data_df.loc[data_df.name.isin(interp_data.loc[cp].inames)].loc[
+            interp_data.loc[cp].inames].zd.values)
+        Z[i] = np.squeeze(cpts.dot(np.atleast_2d(interp_data.loc[cp].ifacts).T))
+        i+=1
+    return Z.reshape(dims)
