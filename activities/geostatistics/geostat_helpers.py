@@ -2,6 +2,46 @@ import numpy as np
 from scipy.interpolate import griddata, NearestNDInterpolator
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+import pyemu
+import pandas as pd
+
+contribution=100.0
+a=350.0
+
+
+def data_cooker(domain_pts=50, n_sample_pts=50):
+    # make a "true" variogram
+    print('Initializing a variogram model')
+    v = pyemu.geostats.SphVario(contribution=contribution, a=a)
+    gs = pyemu.geostats.GeoStruct(variograms=v)
+
+    # make a domain on which to work
+    print('Making the domain')
+    x = np.linspace(1, 1000, domain_pts)
+    y = x.copy()
+    X, Y = np.meshgrid(x, y)
+
+    # get the covariance matrix as a realization over the domain
+    print('Initializing covariance model')
+    Q = gs.covariance_matrix(X.ravel(), Y.ravel(), names=[str(i) for i in range(len(Y.ravel()))])
+
+    # draw from it to obtain the truth
+    print('Drawing from the Geostatistical Model')
+    Z = Q.draw(mean=100).reshape(X.shape)
+
+    # sample some "true" values from that domain and add some noise to them
+    xd = np.random.uniform(0, 1000, n_sample_pts)
+    yd = np.random.uniform(0, 1000, n_sample_pts)
+    names = ['p{0}'.format(i) for i in range(n_sample_pts)]
+    zd = sample_from_grid(X, Y, Z, xd, yd)
+
+    data_mean = np.mean(Z)
+    noise_level = data_mean/10
+
+    zd_noisy = zd +  np.random.randn(len(zd)) * noise_level
+    sample_df = pd.DataFrame({'x': xd, 'y': yd, 'z':zd, 'z_noisy':zd_noisy, 'name': names})
+
+    return X, Y, Z, v, gs, sample_df
 
 
 # get sampled points using nearest neighbor from a grid of data
@@ -30,7 +70,7 @@ def plot_empirical_variogram(x,y,data, nbins=25):
     X,Y = np.meshgrid(x,y)
     h = np.sqrt((X-X.T)**2 + (Y-Y.T)**2).ravel()
     d,d1 = np.meshgrid(data, data)
-    gam = (1/2*(d-d.T)**2).ravel()
+    gam = (1/2.0*(d-d.T)**2).ravel()
     if nbins>0:
         
         bindiffs = np.ones(nbins)*np.max(h)/2/nbins
@@ -44,11 +84,13 @@ def plot_empirical_variogram(x,y,data, nbins=25):
             empirical_vario.append(np.mean(gam[cinds]))
         h=bincenters
         gam = np.array(empirical_vario)
+
     fig = plt.figure(figsize=(6,6))
     ax = fig.add_subplot(111)
     plt.scatter(h,gam)
     plt.xlabel('Separation Distance')
     plt.ylabel('Empirical Variogram')
+    plt.grid('on')
     return h, gam, ax
 
 # scatter plotter for nice-looking plots
@@ -107,7 +149,7 @@ def geostat_interpolate(X,Y,interp_data, data_df):
         # then grab the zd values
         # make it 2d to take advantage of vectorization later
         cpts = np.atleast_2d(data_df.loc[data_df.name.isin(interp_data.loc[cp].inames)].loc[
-            interp_data.loc[cp].inames].zd.values)
+            interp_data.loc[cp].inames].z.values)
         Z[i] = np.squeeze(cpts.dot(np.atleast_2d(interp_data.loc[cp].ifacts).T))
         i+=1
     return Z.reshape(dims)
