@@ -210,7 +210,6 @@ def setup_pest_un():
     obs.loc[obs.obsnme.apply(lambda x: x.startswith("flx")),"weight"] = 0.0
 
     pst.model_command = ["python forward_run.py"]
-    pst.control_data.pestmode = "regularization"
     pst.control_data.noptmax = 0
     pst.pestpp_options["lambda_scale_fac"] = 1.0
     pst.pestpp_options["upgrade_augment"] = "false"
@@ -298,18 +297,22 @@ def setup_pest_kr():
     par.loc[:,"parval1"] = 1.0
     par.loc[:,"parubnd"] = 1.25
     par.loc[:,"parlbnd"] = 0.75
+    par.loc["rch_1","partrans"] = "fixed"
+    par.loc["rch_0","partrans"] = "fixed"
     hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
     par.loc[hk_names,"parval1"] = 5.0
     par.loc[hk_names,"parlbnd"] = 0.5
     par.loc[hk_names,"parubnd"] = 50.0
     par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
 
+    obs = pst.observation_data
+    obs.loc[obs.obsnme.apply(lambda x: x.startswith("flx")),"weight"] = 0.0
+
     pst.pestpp_options["lambda_scale_fac"] = 1.0
     pst.pestpp_options["upgrade_augment"] = "false"
     pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
     
     pst.model_command = ["python forward_run.py"]
-    pst.control_data.pestmode = "regularization"
     pst.control_data.noptmax = 0
 
     pst.write(PST_NAME_KR.replace(".pst",".init.pst"))
