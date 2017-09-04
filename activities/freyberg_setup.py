@@ -107,7 +107,7 @@ def _get_base_pst(df_wb,df_hyd):
     out_files = [f.replace(".ins","") for f in ins_files]
 
     # build a control file
-    pst = pyemu.pst_utils.pst_from_io_files(tpl_files,in_files,
+    pst = pyemu.Pst.from_io_files(tpl_files,in_files,
                                             ins_files,out_files)
 
     # set some observation attribues
