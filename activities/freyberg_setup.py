@@ -681,7 +681,7 @@ def build_prior_pp():
     gs = pyemu.geostats.GeoStruct(variograms=[v])
     pst_pp = pyemu.Pst(os.path.join(WORKING_DIR_PP,PST_NAME_PP))
     pp_tpl = os.path.join(WORKING_DIR_PP,[tpl for tpl in pst_pp.template_files if "pp" in tpl][0])
-    cov_pp = pyemu.helpers.pilotpoint_prior_builder(pst_pp,{gs:pp_tpl},sigma_range=4)
+    cov_pp = pyemu.helpers.geostatistical_prior_builder(pst_pp,{gs:pp_tpl},sigma_range=6)
     return cov_pp
 
 def build_prior_gr():
@@ -695,7 +695,7 @@ def build_prior_gr():
     m = flopy.modflow.Modflow.load(MODEL_NAM,model_ws=WORKING_DIR_GR,load_only=[])
     hk_par.loc[:,"x"] = hk_par.apply(lambda x: m.sr.xcentergrid[x.i,x.j],axis=1)
     hk_par.loc[:,"y"] = hk_par.apply(lambda x: m.sr.ycentergrid[x.i,x.j],axis=1)
-    cov_gr = pyemu.helpers.pilotpoint_prior_builder(pst_gr,struct_dict={gs:hk_par})
+    cov_gr = pyemu.helpers.geostatistical_prior_builder(pst_gr,struct_dict={gs:hk_par},sigma_range=6)
     return cov_gr
 
 
