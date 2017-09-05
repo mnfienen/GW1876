@@ -50,10 +50,9 @@ def setup_model(working_dir):
     m.remove_package("LPF")
     flopy.modflow.ModflowNwt(m)
     m.write_input()
-
     m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
+    #repair_hyd(m)
     m.run_model()
-
     # hack for modpath crap
     mp_files = [f for f in os.listdir(BASE_MODEL_DIR) if ".mp" in f.lower()]
     for mp_file in mp_files:
@@ -92,7 +91,59 @@ def setup_model(working_dir):
     m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     m.run_model()
 
-def _get_base_pst(df_wb,df_hyd):
+def repair_hyd(m):
+    os.remove(os.path.join(m.model_ws,m.name+".hyd"))
+    obs = pd.read_csv(os.path.join(BASE_MODEL_DIR,"obs_loc.csv"))
+    obs.loc[:,"rc"] = obs.apply(lambda x: (x.row,x.col),axis=1)
+    obs_rc = list(obs.rc)
+    ib = m.bas6.ibound[0].array
+    lines = []
+    for i in range(m.nrow):
+        for j in range(m.ncol):
+            if ib[i,j] == 0:
+                continue
+            x,y = m.sr.xcentergrid[i,j],m.sr.ycentergrid[i,j]
+            r,c = i+1,j+1
+            if (r,c) in obs_rc:
+                prefixes = ['c','f']
+            else:
+                prefixes = ['p']
+            for prefix in prefixes:
+                name = "{0}r{1:02d}c{2:02d}".\
+                    format(prefix,r,c)
+                line = "BAS HD I 1 {0:7.3f} {1:7.3f} {2}\n".\
+                    format(x,y,name)
+                lines.append(line)
+    with open(os.path.join(m.model_ws,m.name+".hyd"),'w') as f:
+        f.write("{0} {1} -1.0e+10\n".format(len(lines),536))
+        for line in lines:
+            f.write(line)
+
+
+def _get_base_pst(m):
+
+     # setup hyd mod
+    pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
+    pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
+    df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
+    df_hyd.index = df_hyd.obsnme
+
+    # setup list file water budget obs
+    shutil.copy2(m.name+".list.truth",m.name+".list")
+    df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
+
+    # set particle travel time obs
+    endpoint_file = 'freyberg.mpenpt'
+    lines = open(endpoint_file, 'r').readlines()
+    items = lines[-1].strip().split()
+    travel_time = float(items[4]) - float(items[3])
+    with open("freyberg.travel.ins",'w') as f:
+        f.write("pif ~\n")
+        f.write("l1 w !travel_time!\n")
+    with open("freyberg.travel","w") as f:
+        f.write("travel_time {0}\n".format(travel_time))
+
+
     #forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
     forecast_names = [i for i in df_hyd.obsnme if i.startswith('f') and i.endswith('19750102')]
     forecast_names.append('flx_river_l_19750102')
@@ -162,7 +213,7 @@ def setup_pest_un():
     setup_model(WORKING_DIR_UN)
     os.chdir(WORKING_DIR_UN)
 
-    # setup hk pilot point parameters
+    # setup hk parameters
     m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
     with open("hk_layer_1.ref.tpl",'w') as f:
         f.write("ptf ~\n")
@@ -171,28 +222,8 @@ def setup_pest_un():
                 f.write(" ~     hk   ~")
             f.write("\n")
 
-    # setup hyd mod
-    pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
-    pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
-    df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
-    df_hyd.index = df_hyd.obsnme
 
-    # setup list file water budget obs
-    shutil.copy2(m.name+".list.truth",m.name+".list")
-    df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
-
-    # set particle travel time obs
-    endpoint_file = 'freyberg.mpenpt'
-    lines = open(endpoint_file, 'r').readlines()
-    items = lines[-1].strip().split()
-    travel_time = float(items[4]) - float(items[3])
-    with open("freyberg.travel.ins",'w') as f:
-        f.write("pif ~\n")
-        f.write("l1 w !travel_time!\n")
-    with open("freyberg.travel","w") as f:
-        f.write("travel_time {0}\n".format(travel_time))
-
-    pst = _get_base_pst(df_wb,df_hyd)
+    pst = _get_base_pst(m)
 
     # set some parameter attribs
     par = pst.parameter_data
@@ -245,7 +276,7 @@ def setup_pest_kr():
     setup_model(WORKING_DIR_KR)
     os.chdir(WORKING_DIR_KR)
 
-    # setup hk pilot point parameters
+    # setup hk parameters
     m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
     with open("hk_layer_1.ref.tpl",'w') as f:
         f.write("ptf ~\n")
@@ -253,27 +284,6 @@ def setup_pest_kr():
             for j in range(m.ncol):
                 f.write(" ~     hk   ~")
             f.write("\n")
-
-    # setup hyd mod
-    pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
-    pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
-    df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
-    df_hyd.index = df_hyd.obsnme
-
-    # setup list file water budget obs
-    shutil.copy2(m.name+".list.truth",m.name+".list")
-    df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
-
-    # set particle travel time obs
-    endpoint_file = 'freyberg.mpenpt'
-    lines = open(endpoint_file, 'r').readlines()
-    items = lines[-1].strip().split()
-    travel_time = float(items[4]) - float(items[3])
-    with open("freyberg.travel.ins",'w') as f:
-        f.write("pif ~\n")
-        f.write("l1 w !travel_time!\n")
-    with open("freyberg.travel","w") as f:
-        f.write("travel_time {0}\n".format(travel_time))
 
     # setup rch parameters - history and future
     f_in = open(MODEL_NAM.replace(".nam",".rch"),'r')
@@ -290,7 +300,7 @@ def setup_pest_kr():
     f_in.close()
     f_tpl.close()
 
-    pst = _get_base_pst(df_wb,df_hyd)
+    pst = _get_base_pst(m)
 
     # set some parameter attribs
     par = pst.parameter_data
@@ -346,7 +356,7 @@ def setup_pest_zn():
     setup_model(WORKING_DIR_ZN)
     os.chdir(WORKING_DIR_ZN)
 
-    # setup hk pilot point parameters
+    # setup hk parameters
     m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
     shutil.copy2(os.path.join('..',BASE_MODEL_DIR,"hk.zones"),"hk.zones")
     zone_arr = np.loadtxt("hk.zones",dtype=int)
@@ -356,27 +366,6 @@ def setup_pest_zn():
             for j in range(m.ncol):
                 f.write(" ~  hk_z{0:02d}   ~".format(zone_arr[i,j]))
             f.write("\n")
-    # setup hyd mod
-    pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
-    pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
-    df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
-    df_hyd.index = df_hyd.obsnme
-
-    # setup list file water budget obs
-    shutil.copy2(m.name+".list.truth",m.name+".list")
-    df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
-
-    # set particle travel time obs
-    endpoint_file = 'freyberg.mpenpt'
-    lines = open(endpoint_file, 'r').readlines()
-    items = lines[-1].strip().split()
-    travel_time = float(items[4]) - float(items[3])
-    with open("freyberg.travel.ins",'w') as f:
-        f.write("pif ~\n")
-        f.write("l1 w !travel_time!\n")
-    with open("freyberg.travel","w") as f:
-        f.write("travel_time {0}\n".format(travel_time))
-
 
     # setup rch parameters - history and future
     f_in = open(MODEL_NAM.replace(".nam",".rch"),'r')
@@ -393,7 +382,7 @@ def setup_pest_zn():
     f_in.close()
     f_tpl.close()
 
-    pst = _get_base_pst(df_wb,df_hyd)
+    pst = _get_base_pst(m)
 
     # set some parameter attribs
     par = pst.parameter_data
@@ -451,26 +440,6 @@ def setup_pest_gr():
             for j in range(m.ncol):
                 f.write(" ~  hk_i{0:02d}_j{1:02d}   ~".format(i,j))
             f.write("\n")
-    # setup hyd mod
-    pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
-    pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
-    df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
-    df_hyd.index = df_hyd.obsnme
-
-    # setup list file water budget obs
-    shutil.copy2(m.name+".list.truth",m.name+".list")
-    df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
-
-    # set particle travel time obs
-    endpoint_file = 'freyberg.mpenpt'
-    lines = open(endpoint_file, 'r').readlines()
-    items = lines[-1].strip().split()
-    travel_time = float(items[4]) - float(items[3])
-    with open("freyberg.travel.ins",'w') as f:
-        f.write("pif ~\n")
-        f.write("l1 w !travel_time!\n")
-    with open("freyberg.travel","w") as f:
-        f.write("travel_time {0}\n".format(travel_time))
 
     # setup wel parameters - history and future
     wel_fmt = {"l":lambda x: '{0:10.0f}'.format(x)}
@@ -511,7 +480,7 @@ def setup_pest_gr():
         f_tpl.write(line+'\n')
     f_in.close()
     f_tpl.close()
-    pst = _get_base_pst(df_wb,df_hyd)
+    pst = _get_base_pst(m)
 
     # set some parameter attribs
     par = pst.parameter_data
@@ -584,35 +553,12 @@ def setup_pest_gr():
 def setup_pest_pp():
     setup_model(WORKING_DIR_PP)
     os.chdir(WORKING_DIR_PP)
-
     # setup hk pilot point parameters
     m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
     pp_space = 4
     df_pp = pyemu.gw_utils.setup_pilotpoints_grid(ml=m,prefix_dict={0:["hk"]},
                                           every_n_cell=pp_space)
     pp_file = "hkpp.dat"
-
-    # setup hyd mod
-    pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
-    pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
-    df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
-    df_hyd.index = df_hyd.obsnme
-
-    # setup list file water budget obs
-    shutil.copy2(m.name+".list.truth",m.name+".list")
-    df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
-
-    # set particle travel time obs
-    endpoint_file = 'freyberg.mpenpt'
-    lines = open(endpoint_file, 'r').readlines()
-    items = lines[-1].strip().split()
-    travel_time = float(items[4]) - float(items[3])
-    with open("freyberg.travel.ins",'w') as f:
-        f.write("pif ~\n")
-        f.write("l1 w !travel_time!\n")
-    with open("freyberg.travel","w") as f:
-        f.write("travel_time {0}\n".format(travel_time))
-
 
     # setup wel parameters - history and future
     wel_fmt = {"l":lambda x: '{0:10.0f}'.format(x)}
@@ -654,7 +600,7 @@ def setup_pest_pp():
     f_in.close()
     f_tpl.close()
 
-    pst = _get_base_pst(df_wb,df_hyd)
+    pst = _get_base_pst(m)
 
     # set some parameter attribs
     par = pst.parameter_data
@@ -668,7 +614,7 @@ def setup_pest_pp():
     par.loc[df_pp.parnme,"pargp"] = "hk"
 
     pst.model_command = ["python forward_run.py"]
-    pst.control_data.pestmode = "regularization"
+    #pst.control_data.pestmode = "regularization"
     pst.pestpp_options["n_iter_base"] = -1
     pst.pestpp_options["n_iter_super"] = 3
     pst.pestpp_options["lambda_scale_fac"] = 1.0
@@ -688,7 +634,7 @@ def setup_pest_pp():
     #pyemu.helpers.first_order_pearson_tikhonov(pst,cov)
 
     # zero order Tikhonov
-    pyemu.helpers.zero_order_tikhonov(pst)
+    #pyemu.helpers.zero_order_tikhonov(pst)
 
     pst.write(PST_NAME_PP.replace(".pst",".init.pst"))
 
@@ -730,54 +676,6 @@ def setup_pest_pp():
     os.chdir("..")
 
 
-def run_pe(working_dir,pst_name):
-    os.chdir(working_dir)
-    pyemu.helpers.start_slaves('.','pestpp',pst_name,num_slaves=NUM_SLAVES,master_dir='.')
-    pst = pyemu.Pst(pst_name)
-    pst.parrep(pst_name.replace(".pst",".parb"))
-    pst.control_data.noptmax = 0
-    pst.write(pst_name.replace(".pst",".final.pst"))
-    pyemu.helpers.run("pestpp {0}".format(pst_name.replace(".pst",".final.pst")))
-    os.chdir("..")
-
-#
-# def run_gsa():
-#     os.chdir(WORKING_DIR)
-#     pyemu.helpers.start_slaves('.','gsa',PST_NAME,num_slaves=NUM_SLAVES,master_dir='.')
-#     os.chdir("..")
-#     df = pd.read_csv(os.path.join(WORKING_DIR,PST_NAME.replace(".pst",".msn")),skipinitialspace=True)
-#     print(df.columns)
-#     df.loc[:,"parnme"] = df.parameter_name.apply(lambda x: x.lower().replace("log(",''.replace(')','')))
-#
-#
-
-# def run_respsurf(par_names=None):
-#     pst = pyemu.Pst(os.path.join(WORKING_DIR,PST_NAME))
-#     par = pst.parameter_data
-#     icount = 0
-#     if par_names is None:
-#         parnme1 = par.parnme[0]
-#         parnme2 = par.parnme[1]
-#     else:
-#         parnme1 = par_names[0]
-#         parnme2 = par_names[1]
-#     p1 = np.linspace(par.loc[parnme1,"parlbnd"],par.loc[parnme1,"parubnd"],NUM_STEPS_RESPSURF).tolist()
-#     p2 = np.linspace(par.loc[parnme2,"parlbnd"],par.loc[parnme2,"parubnd"],NUM_STEPS_RESPSURF).tolist()
-#     p1_vals,p2_vals = [],[]
-#     for p in p1:
-#         p1_vals.extend(list(np.zeros(NUM_STEPS_RESPSURF)+p))
-#         p2_vals.extend(p2)
-#     df = pd.DataFrame({parnme1:p1_vals,parnme2:p2_vals})
-#     df.to_csv(os.path.join(WORKING_DIR,"sweep_in.csv"))
-#
-#     os.chdir(WORKING_DIR)
-#     pyemu.helpers.start_slaves('.', 'sweep', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
-#     os.chdir("..")
-#
-# def run_ies():
-#     pass
-
-
 def build_prior_pp():
     v = pyemu.geostats.ExpVario(contribution=1.0,a=2000.0)
     gs = pyemu.geostats.GeoStruct(variograms=[v])
@@ -803,7 +701,7 @@ def build_prior_gr():
 
 if __name__ == "__main__":
     setup_pest_pp()
-    setup_pest_gr()
-    setup_pest_zn()
-    setup_pest_kr()
-    setup_pest_un()
+    #setup_pest_gr()
+    #setup_pest_zn()
+    #setup_pest_kr()
+    #setup_pest_un()
