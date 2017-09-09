@@ -119,7 +119,6 @@ def repair_hyd(m):
         for line in lines:
             f.write(line)
 
-
 def _get_base_pst(m):
 
      # setup hyd mod
@@ -208,6 +207,91 @@ def _get_base_pst(m):
     #obs.loc["travel_time","obsval"] = travel_time
     pst.pestpp_options["forecasts"] = ','.join(forecast_names)
     return pst
+
+
+def setup_pest_un_bareass():
+    setup_model(WORKING_DIR_UN)
+    os.chdir(WORKING_DIR_UN)
+
+    # setup hk parameters
+    m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
+    with open("hk_layer_1.ref.tpl",'w') as f:
+        f.write("ptf ~\n")
+        for i in range(m.nrow):
+            for j in range(m.ncol):
+                f.write(" ~     hk   ~")
+            f.write("\n")
+
+
+    pst = _get_base_pst(m)
+    obs = pst.observation_data
+    keep = list(obs.loc[obs.obgnme=="calhead","obsnme"])
+    keep.append(obs.loc[obs.obgnme=="forehead","obsnme"].iloc[0])
+    keep.append("travel_time")
+    pst.observation_data = obs.loc[keep,:]
+    pst.instruction_files = [f for f in pst.instruction_files if "hyd" in f or "travel" in f]
+    pst.output_files = [f for f in pst.output_files if "hyd" in f or "travel" in f]
+    pst.pestpp_options.pop("forecasts")
+
+    lines = []
+    hyd_name = "freyberg.hyd.bin.dat.ins"
+    with open(hyd_name,'r') as f:
+        [f.readline() for _ in range(2)]
+        for line in f:
+            n = line.strip().split()[-1].replace("!","").lower()
+            if n in keep:
+                lines.append(line)
+            else:
+                lines.append("l1 \n")
+    with open(hyd_name,"w") as f:
+        f.write("pif ~\n")
+        f.write("l1\n")
+        [f.write(line) for line in lines]
+
+    # set some parameter attribs
+    par = pst.parameter_data
+    par.loc[:,"parval1"] = 1.0
+    par.loc[:,"parubnd"] = 1.25
+    par.loc[:,"parlbnd"] = 0.75
+    hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
+    par.loc[hk_names,"parval1"] = 5.0
+    par.loc[hk_names,"parlbnd"] = 0.5
+    par.loc[hk_names,"parubnd"] = 50.0
+    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
+
+
+    obs = pst.observation_data
+    obs.loc[obs.obsnme.apply(lambda x: x.startswith("flx")),"weight"] = 0.0
+
+    pst.model_command = ["python forward_run.py"]
+    pst.control_data.noptmax = 0
+    pst.pestpp_options["lambda_scale_fac"] = 1.0
+    pst.pestpp_options["upgrade_augment"] = "false"
+    pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
+    pst.write(PST_NAME_UN.replace(".pst",".init.pst"))
+
+    with open("forward_run.py",'w') as f:
+        f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
+        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
+        f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
+        f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
+        f.write("f = open('freyberg.hds.dat','wb')\n")
+        f.write("for data in hds.get_alldata():\n")
+        f.write("    data = data.flatten()\n")
+        f.write("    np.savetxt(f,data,fmt='%15.6E')\n")
+        f.write("endpoint_file = 'freyberg.mpenpt'\nlines = open(endpoint_file, 'r').readlines()\n")
+        f.write("items = lines[-1].strip().split()\ntravel_time = float(items[4]) - float(items[3])\n")
+        f.write("with open('freyberg.travel', 'w') as ofp:\n")
+        f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
+        f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
+
+    #os.system("pestchek {0}".format(PST_NAME))
+    pst.control_data.noptmax = 8
+    pst.write(PST_NAME_UN)
+    pyemu.helpers.run("pestchek {0}".format(PST_NAME_UN))
+    pyemu.helpers.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
+    os.chdir("..")
 
 def setup_pest_un():
     setup_model(WORKING_DIR_UN)
@@ -548,8 +632,6 @@ def setup_pest_gr():
     
     os.chdir("..")
 
-
-
 def setup_pest_pp():
     setup_model(WORKING_DIR_PP)
     os.chdir(WORKING_DIR_PP)
@@ -700,7 +782,8 @@ def build_prior_gr():
 
 
 if __name__ == "__main__":
-    setup_pest_pp()
+    setup_pest_un_bareass()
+    #setup_pest_pp()
     #setup_pest_gr()
     #setup_pest_zn()
     #setup_pest_kr()
