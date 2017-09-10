@@ -160,6 +160,17 @@ def _get_base_pst(m):
     pst = pyemu.Pst.from_io_files(tpl_files,in_files,
                                             ins_files,out_files)
 
+    par = pst.parameter_data
+    par.loc[:,"parval1"] = 1.0
+    par.loc[:,"parubnd"] = 2.0
+    par.loc[:,"parlbnd"] = 0.5
+    hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
+    par.loc[hk_names,"parval1"] = 5.0
+    par.loc[hk_names,"parlbnd"] = 0.5
+    par.loc[hk_names,"parubnd"] = 50.0
+    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
+
+
     # set some observation attribues
     obs = pst.observation_data
 
@@ -250,15 +261,7 @@ def setup_pest_un_bareass():
 
     # set some parameter attribs
     par = pst.parameter_data
-    par.loc[:,"parval1"] = 1.0
-    par.loc[:,"parubnd"] = 1.25
-    par.loc[:,"parlbnd"] = 0.75
-    hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
-    par.loc[hk_names,"parval1"] = 5.0
-    par.loc[hk_names,"parlbnd"] = 0.5
-    par.loc[hk_names,"parubnd"] = 50.0
-    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
-
+    
 
     obs = pst.observation_data
     obs.loc[obs.obsnme.apply(lambda x: x.startswith("flx")),"weight"] = 0.0
@@ -309,18 +312,7 @@ def setup_pest_un():
 
     pst = _get_base_pst(m)
 
-    # set some parameter attribs
-    par = pst.parameter_data
-    par.loc[:,"parval1"] = 1.0
-    par.loc[:,"parubnd"] = 1.25
-    par.loc[:,"parlbnd"] = 0.75
-    hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
-    par.loc[hk_names,"parval1"] = 5.0
-    par.loc[hk_names,"parlbnd"] = 0.5
-    par.loc[hk_names,"parubnd"] = 50.0
-    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
-
-
+    
     obs = pst.observation_data
     obs.loc[obs.obsnme.apply(lambda x: x.startswith("flx")),"weight"] = 0.0
 
@@ -386,18 +378,8 @@ def setup_pest_kr():
 
     pst = _get_base_pst(m)
 
-    # set some parameter attribs
     par = pst.parameter_data
-    par.loc[:,"parval1"] = 1.0
-    par.loc[:,"parubnd"] = 1.25
-    par.loc[:,"parlbnd"] = 0.75
-    par.loc["rch_1","partrans"] = "fixed"
-    par.loc["rch_0","partrans"] = "fixed"
-    hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
-    par.loc[hk_names,"parval1"] = 5.0
-    par.loc[hk_names,"parlbnd"] = 0.5
-    par.loc[hk_names,"parubnd"] = 50.0
-    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
+    par.loc[["rch_0","rch_1"],"partrans"] = "fixed"
 
     obs = pst.observation_data
     obs.loc[obs.obsnme.apply(lambda x: x.startswith("flx")),"weight"] = 0.0
@@ -468,17 +450,7 @@ def setup_pest_zn():
 
     pst = _get_base_pst(m)
 
-    # set some parameter attribs
-    par = pst.parameter_data
-    par.loc[:,"parval1"] = 1.0
-    par.loc[:,"parubnd"] = 1.25
-    par.loc[:,"parlbnd"] = 0.75
-    hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
-    par.loc[hk_names,"parval1"] = 5.0
-    par.loc[hk_names,"parlbnd"] = 0.5
-    par.loc[hk_names,"parubnd"] = 50.0
-    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
-
+    
     pst.pestpp_options["lambda_scale_fac"] = 1.0
     pst.pestpp_options["upgrade_augment"] = "false"
     pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
@@ -567,15 +539,6 @@ def setup_pest_gr():
     pst = _get_base_pst(m)
 
     # set some parameter attribs
-    par = pst.parameter_data
-    par.loc[:,"parval1"] = 1.0
-    par.loc[:,"parubnd"] = 1.25
-    par.loc[:,"parlbnd"] = 0.75
-    hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
-    par.loc[hk_names,"parval1"] = 5.0
-    par.loc[hk_names,"parlbnd"] = 0.5
-    par.loc[hk_names,"parubnd"] = 50.0
-    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
     pst.pestpp_options["lambda_scale_fac"] = 1.0
     pst.pestpp_options["upgrade_augment"] = "false"
     pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
@@ -686,13 +649,9 @@ def setup_pest_pp():
 
     # set some parameter attribs
     par = pst.parameter_data
-    par.loc[:,"parval1"] = 1.0
-    par.loc[:,"parubnd"] = 1.25
-    par.loc[:,"parlbnd"] = 0.75
     par.loc[df_pp.parnme,"parval1"] = 5.0
     par.loc[df_pp.parnme,"parlbnd"] = 0.5
     par.loc[df_pp.parnme,"parubnd"] = 50.0
-    par.loc[:,"pargp"] = par.parnme.apply(lambda x: x.split('_')[0])
     par.loc[df_pp.parnme,"pargp"] = "hk"
 
     pst.model_command = ["python forward_run.py"]
