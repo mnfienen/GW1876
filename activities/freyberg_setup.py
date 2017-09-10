@@ -200,7 +200,7 @@ def _get_base_pst(m):
     obs.loc['flx_river_l_19750101', 'obgnme'] = 'foreflux'
     obs.loc['travel_time', 'obgnme'] = 'foretrav'
 
-    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'weight'] = 0.1
+    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'weight'] = 0.05
     obs.loc[obs.obsnme == 'flx_river_l_19700102', 'obgnme'] = 'calflux'
 
     # obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
