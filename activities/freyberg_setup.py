@@ -127,6 +127,27 @@ def _get_base_pst(m):
     df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
     df_hyd.index = df_hyd.obsnme
 
+    lines = []
+    keep_dict = {'p':"19700102","c":"19700102","f":"19750101"}
+    hyd_name = "freyberg.hyd.bin.dat.ins"
+    keep_names = []
+    with open(hyd_name,'r') as f:
+        [f.readline() for _ in range(2)]
+        for line in f:
+            n = line.strip().split()[-1].replace("!","").lower()
+            keep = keep_dict[n[0]]
+            if n.endswith(keep):
+                lines.append(line)
+                keep_names.append(n)
+            else:
+                lines.append("l1 \n")
+    with open(hyd_name,"w") as f:
+        f.write("pif ~\n")
+        f.write("l1\n")
+        [f.write(line) for line in lines]
+    df_hyd = df_hyd.loc[keep_names,:]
+
+
     # setup list file water budget obs
     shutil.copy2(m.name+".list.truth",m.name+".list")
     df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
@@ -144,7 +165,7 @@ def _get_base_pst(m):
 
 
     #forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
-    forecast_names = [i for i in df_hyd.obsnme if i.startswith('f') and i.endswith('19750102')]
+    forecast_names = [i for i in df_hyd.obsnme if i.startswith('f') and i.endswith('19750101')]
     forecast_names.append('flx_river_l_19750102')
     forecast_names.append("travel_time")
 
@@ -191,7 +212,7 @@ def _get_base_pst(m):
                                         'pothead' if i.startswith('p') and
                                                         i.endswith('19700102') else
                                         'head' for i in df_hyd.obsnme]
-
+    print(obs.loc[obs.obgnme=="forehead",:])
 
     obs['obgnme'] = ['calhead' if i.startswith("c") and j > 0  else k for i,j,k in zip(obs.obsnme,
                                                                                        obs.weight,
@@ -244,20 +265,20 @@ def setup_pest_un_bareass():
     pst.output_files = [f for f in pst.output_files if "hyd" in f or "travel" in f]
     pst.pestpp_options.pop("forecasts")
 
-    lines = []
-    hyd_name = "freyberg.hyd.bin.dat.ins"
-    with open(hyd_name,'r') as f:
-        [f.readline() for _ in range(2)]
-        for line in f:
-            n = line.strip().split()[-1].replace("!","").lower()
-            if n in keep:
-                lines.append(line)
-            else:
-                lines.append("l1 \n")
-    with open(hyd_name,"w") as f:
-        f.write("pif ~\n")
-        f.write("l1\n")
-        [f.write(line) for line in lines]
+    # lines = []
+    # hyd_name = "freyberg.hyd.bin.dat.ins"
+    # with open(hyd_name,'r') as f:
+    #     [f.readline() for _ in range(2)]
+    #     for line in f:
+    #         n = line.strip().split()[-1].replace("!","").lower()
+    #         if n in keep:
+    #             lines.append(line)
+    #         else:
+    #             lines.append("l1 \n")
+    # with open(hyd_name,"w") as f:
+    #     f.write("pif ~\n")
+    #     f.write("l1\n")
+    #     [f.write(line) for line in lines]
 
     # set some parameter attribs
     par = pst.parameter_data
@@ -742,8 +763,8 @@ def build_prior_gr():
 
 if __name__ == "__main__":
     setup_pest_un_bareass()
-    #setup_pest_pp()
-    #setup_pest_gr()
-    #setup_pest_zn()
-    #setup_pest_kr()
-    #setup_pest_un()
+    setup_pest_pp()
+    setup_pest_gr()
+    setup_pest_zn()
+    setup_pest_kr()
+    setup_pest_un()
