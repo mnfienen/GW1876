@@ -105,7 +105,7 @@ def plot_jacobian_spatial(jac,cobs, figsize=(4,7)):
     plt.plot(parlox.X,parlox.Y,'kd',markersize=.8)
     scalefactor=5
     if 'flux' not in cobs:
-        coblox = obslox.loc[cobs]
+        coblox = obslox.loc[cobs.replace('_19700102', '')]
         plt.plot(coblox.X,coblox.Y,'kx', markersize=10)
         scalefactor=1000
     plt.scatter(parlox.X,parlox.Y, s=np.abs(sens.values)*scalefactor, c=sens.values, cmap='viridis')
