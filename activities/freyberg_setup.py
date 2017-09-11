@@ -254,31 +254,35 @@ def setup_pest_un_bareass():
                 f.write(" ~     hk   ~")
             f.write("\n")
 
-
     pst = _get_base_pst(m)
+    hyd_name = "freyberg.hyd.bin.dat.ins"
+    keep = []
+    lines = []
+    with open(hyd_name,'r') as f:
+        [f.readline() for _ in range(2)]
+        for line in f:
+            if '!' in line:
+                n = line.strip().split()[-1].replace("!","").lower()
+                if n.startswith("p"):
+                    lines.append("l1 \n")
+                else:
+                    keep.append(n)
+                    lines.append(line)
+            else:
+                lines.append(line)
+    with open(hyd_name,"w") as f:
+        f.write("pif ~\n")
+        f.write("l1\n")
+        [f.write(line) for line in lines]
+
     obs = pst.observation_data
-    keep = list(obs.loc[obs.obgnme=="calhead","obsnme"])
-    keep.append(obs.loc[obs.obgnme=="forehead","obsnme"].iloc[0])
     keep.append("travel_time")
     pst.observation_data = obs.loc[keep,:]
     pst.instruction_files = [f for f in pst.instruction_files if "hyd" in f or "travel" in f]
     pst.output_files = [f for f in pst.output_files if "hyd" in f or "travel" in f]
     pst.pestpp_options.pop("forecasts")
 
-    # lines = []
-    # hyd_name = "freyberg.hyd.bin.dat.ins"
-    # with open(hyd_name,'r') as f:
-    #     [f.readline() for _ in range(2)]
-    #     for line in f:
-    #         n = line.strip().split()[-1].replace("!","").lower()
-    #         if n in keep:
-    #             lines.append(line)
-    #         else:
-    #             lines.append("l1 \n")
-    # with open(hyd_name,"w") as f:
-    #     f.write("pif ~\n")
-    #     f.write("l1\n")
-    #     [f.write(line) for line in lines]
+
 
     # set some parameter attribs
     par = pst.parameter_data
@@ -763,8 +767,8 @@ def build_prior_gr():
 
 if __name__ == "__main__":
     setup_pest_un_bareass()
-    setup_pest_pp()
-    setup_pest_gr()
-    setup_pest_zn()
-    setup_pest_kr()
-    setup_pest_un()
+    # setup_pest_pp()
+    # setup_pest_gr()
+    # setup_pest_zn()
+    # setup_pest_kr()
+    # setup_pest_un()
