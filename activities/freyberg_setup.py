@@ -45,7 +45,7 @@ def setup_model(working_dir):
     m.name = MODEL_NAM.split(".")[0]
     m.remove_package("PCG")
     flopy.modflow.ModflowUpw(m,hk=m.lpf.hk,vka=m.lpf.vka,
-                             ss=m.lpf.ss,sy=m.lpf.ss,
+                             ss=m.lpf.ss,sy=m.lpf.sy,
                              laytyp=m.lpf.laytyp,ipakcb=53)
     m.remove_package("LPF")
     flopy.modflow.ModflowNwt(m)
