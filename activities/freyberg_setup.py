@@ -54,6 +54,8 @@ def setup_model(working_dir):
     #repair_hyd(m)
     m.run_model()
     # hack for modpath crap
+
+
     mp_files = [f for f in os.listdir(BASE_MODEL_DIR) if ".mp" in f.lower()]
     for mp_file in mp_files:
         shutil.copy2(os.path.join(BASE_MODEL_DIR,mp_file),os.path.join(working_dir,mp_file))
@@ -119,7 +121,7 @@ def repair_hyd(m):
         for line in lines:
             f.write(line)
 
-def _get_base_pst(m):
+def _get_base_pst(m, make_porosity_tpl=False):
 
      # setup hyd mod
     pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
@@ -146,8 +148,16 @@ def _get_base_pst(m):
         f.write("l1\n")
         [f.write(line) for line in lines]
     df_hyd = df_hyd.loc[keep_names,:]
-
-
+    # make the modpath porosity template file if requested
+    if make_porosity_tpl is True:
+        inbas = open(os.path.join(m.model_ws, MODEL_NAM.replace(".nam", ".mpbas"))).readlines()
+        with open(os.path.join(m.model_ws, MODEL_NAM.replace(".nam", ".mpbas.tpl")), 'w') as ofp:
+            ofp.write('ptf ~\n')
+            for line in inbas:
+                if 'CONSTANT' not in line.upper():
+                    ofp.write(line.strip() + '\n')
+                else:
+                    ofp.write('CONSTANT    ~  porosity ~\n')
     # setup list file water budget obs
     shutil.copy2(m.name+".list.truth",m.name+".list")
     df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
@@ -185,6 +195,16 @@ def _get_base_pst(m):
     par.loc[:,"parval1"] = 1.0
     par.loc[:,"parubnd"] = 2.0
     par.loc[:,"parlbnd"] = 0.5
+    ''' 
+    par.loc['rch_1', "parval1"] = 1.0
+    par.loc['rch_1', "parubnd"] = 3.0
+    par.loc['rch_1', "parlbnd"] = 0.25
+    '''
+    if 'porosity' in par.index:
+        par.loc['porosity', "parval1"] = 0.01
+        par.loc['porosity', "parubnd"] = 0.02
+        par.loc['porosity', "parlbnd"] = 0.005
+
     hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
     par.loc[hk_names,"parval1"] = 5.0
     par.loc[hk_names,"parlbnd"] = 0.5
@@ -241,7 +261,7 @@ def _get_base_pst(m):
     return pst
 
 
-def setup_pest_un_bareass():
+def setup_pest_un_bareass(make_porosity_tpl=False):
     setup_model(WORKING_DIR_UN)
     os.chdir(WORKING_DIR_UN)
 
@@ -254,7 +274,7 @@ def setup_pest_un_bareass():
                 f.write(" ~     hk   ~")
             f.write("\n")
 
-    pst = _get_base_pst(m)
+    pst = _get_base_pst(m, make_porosity_tpl)
     hyd_name = "freyberg.hyd.bin.dat.ins"
     keep = []
     lines = []
@@ -321,7 +341,7 @@ def setup_pest_un_bareass():
     pyemu.helpers.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
     os.chdir("..")
 
-def setup_pest_un():
+def setup_pest_un(make_porosity_tpl=False):
     setup_model(WORKING_DIR_UN)
     os.chdir(WORKING_DIR_UN)
 
@@ -335,7 +355,7 @@ def setup_pest_un():
             f.write("\n")
 
 
-    pst = _get_base_pst(m)
+    pst = _get_base_pst(m, make_porosity_tpl)
 
     
     obs = pst.observation_data
@@ -373,7 +393,7 @@ def setup_pest_un():
 
 
 
-def setup_pest_kr():
+def setup_pest_kr(make_porosity_tpl=False):
     setup_model(WORKING_DIR_KR)
     os.chdir(WORKING_DIR_KR)
 
@@ -401,7 +421,7 @@ def setup_pest_kr():
     f_in.close()
     f_tpl.close()
 
-    pst = _get_base_pst(m)
+    pst = _get_base_pst(m, make_porosity_tpl)
 
     par = pst.parameter_data
     par.loc[["rch_0","rch_1"],"partrans"] = "fixed"
@@ -443,7 +463,7 @@ def setup_pest_kr():
     os.chdir("..")
 
 
-def setup_pest_zn():
+def setup_pest_zn(make_porosity_tpl=False):
     setup_model(WORKING_DIR_ZN)
     os.chdir(WORKING_DIR_ZN)
 
@@ -473,7 +493,7 @@ def setup_pest_zn():
     f_in.close()
     f_tpl.close()
 
-    pst = _get_base_pst(m)
+    pst = _get_base_pst(m, make_porosity_tpl)
 
     
     pst.pestpp_options["lambda_scale_fac"] = 1.0
@@ -509,7 +529,7 @@ def setup_pest_zn():
     
     os.chdir("..")
 
-def setup_pest_gr():
+def setup_pest_gr(make_porosity_tpl=False):
     setup_model(WORKING_DIR_GR)
     os.chdir(WORKING_DIR_GR)
 
@@ -561,7 +581,7 @@ def setup_pest_gr():
         f_tpl.write(line+'\n')
     f_in.close()
     f_tpl.close()
-    pst = _get_base_pst(m)
+    pst = _get_base_pst(m, make_porosity_tpl)
 
     # set some parameter attribs
     pst.pestpp_options["lambda_scale_fac"] = 1.0
@@ -620,7 +640,7 @@ def setup_pest_gr():
     
     os.chdir("..")
 
-def setup_pest_pp():
+def setup_pest_pp(make_porosity_tpl=False):
     setup_model(WORKING_DIR_PP)
     os.chdir(WORKING_DIR_PP)
     # setup hk pilot point parameters
@@ -670,7 +690,7 @@ def setup_pest_pp():
     f_in.close()
     f_tpl.close()
 
-    pst = _get_base_pst(m)
+    pst = _get_base_pst(m, make_porosity_tpl)
 
     # set some parameter attribs
     par = pst.parameter_data
