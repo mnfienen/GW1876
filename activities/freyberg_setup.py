@@ -26,6 +26,8 @@ NUM_SLAVES = 10
 NUM_STEPS_RESPSURF = 25
 
 
+name_function = lambda x: x[6:]
+
 def setup_model(working_dir):
 
     if "window" in platform.platform().lower():
@@ -124,20 +126,24 @@ def repair_hyd(m):
 def _get_base_pst(m, make_porosity_tpl=False):
 
      # setup hyd mod
+
     pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
     pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
     df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
     df_hyd.index = df_hyd.obsnme
 
     lines = []
-    keep_dict = {'p':"19700102","c":"19700102","f":"19750101"}
+    keep_dict = {'pr':"19700102","cr":"19700102","fr":"19750101"}
     hyd_name = "freyberg.hyd.bin.dat.ins"
     keep_names = []
     with open(hyd_name,'r') as f:
         [f.readline() for _ in range(2)]
         for line in f:
-            n = line.strip().split()[-1].replace("!","").lower()
-            keep = keep_dict[n[0]]
+            n = line.strip().split()[-1].replace("!","")
+            for k in keep_dict.keys():
+                if k in n:
+                    break
+            keep = keep_dict[k]
             if n.endswith(keep):
                 lines.append(line)
                 keep_names.append(n)
@@ -175,7 +181,8 @@ def _get_base_pst(m, make_porosity_tpl=False):
 
 
     #forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
-    forecast_names = [i for i in df_hyd.obsnme if i.startswith('f') and i.endswith('19750101')]
+
+    forecast_names = [i for i in df_hyd.obsnme.values if "fr" in i]# and i.endswith('19750101')]
     forecast_names.append('flx_river_l_19750102')
     forecast_names.append("travel_time")
 
@@ -219,7 +226,7 @@ def _get_base_pst(m, make_porosity_tpl=False):
     obs.loc[df_wb.obsnme,"weight"] = 0.0
     obs.loc[forecast_names,"weight"] = 0.0
     obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
-    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: x.startswith("cr") and "19700102" in x),"obsnme"]
+    c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: "cr" in x and "19700102" in x),"obsnme"]
     np.random.seed(pyemu.en.SEED)
     noise = np.random.normal(0.0,2.0,c_names.shape[0])
     obs.loc[df_hyd.obsnme,"weight"] = 0.0
@@ -227,14 +234,14 @@ def _get_base_pst(m, make_porosity_tpl=False):
     obs.loc[c_names,"obsval"] += noise
     obs.loc[c_names,"weight"] = 5.0
     obs.loc[df_hyd.obsnme,"obgnme"] = 'head'
-    obs.loc[df_hyd.obsnme, "obgnme"] = ['forehead' if i.startswith("f") and
+    obs.loc[df_hyd.obsnme, "obgnme"] = ['forehead' if "fr" in i and
                                                           i.endswith('19750101') else
-                                        'pothead' if i.startswith('p') and
+                                        'pothead' if "pr" in i and
                                                         i.endswith('19700102') else
                                         'head' for i in df_hyd.obsnme]
     print(obs.loc[obs.obgnme=="forehead",:])
 
-    obs['obgnme'] = ['calhead' if i.startswith("c") and j > 0  else k for i,j,k in zip(obs.obsnme,
+    obs['obgnme'] = ['calhead' if "cr" in i and j > 0  else k for i,j,k in zip(obs.obsnme,
                                                                                        obs.weight,
                                                                                        obs.obgnme)]
 
@@ -542,6 +549,20 @@ def setup_pest_gr(make_porosity_tpl=False):
                 f.write(" ~  hk_i{0:02d}_j{1:02d}   ~".format(i,j))
             f.write("\n")
 
+    with open("rech_0.ref.tpl", 'w') as f:
+        f.write("ptf ~\n")
+        for i in range(m.nrow):
+            for j in range(m.ncol):
+                f.write(" ~  r0_i{0:02d}_j{1:02d}   ~".format(i, j))
+            f.write("\n")
+
+    with open("rech_1.ref.tpl", 'w') as f:
+        f.write("ptf ~\n")
+        for i in range(m.nrow):
+            for j in range(m.ncol):
+                f.write(" ~  r1_i{0:02d}_j{1:02d}   ~".format(i, j))
+            f.write("\n")
+
     # setup wel parameters - history and future
     wel_fmt = {"l":lambda x: '{0:10.0f}'.format(x)}
     wel_fmt["r"] = wel_fmt['l']
@@ -568,20 +589,32 @@ def setup_pest_gr(make_porosity_tpl=False):
     df_wel.index = df_wel.parnme
 
     # setup rch parameters - history and future
-    f_in = open(MODEL_NAM.replace(".nam",".rch"),'r')
-    f_tpl = open(MODEL_NAM.replace(".nam",".rch.tpl"),'w')
-    f_tpl.write("ptf ~\n")
-    r_count = 0
-    for line in f_in:
-        raw = line.strip().split()
-        if "open" in line.lower() and r_count < 2:
-            raw[2] = "~  rch_{0}   ~".format(r_count)
-            r_count += 1
-        line = ' '.join(raw)
-        f_tpl.write(line+'\n')
-    f_in.close()
-    f_tpl.close()
+    # f_in = open(MODEL_NAM.replace(".nam",".rch"),'r')
+    # f_tpl = open(MODEL_NAM.replace(".nam",".rch.tpl"),'w')
+    # f_tpl.write("ptf ~\n")
+    # r_count = 0
+    # for line in f_in:
+    #     raw = line.strip().split()
+    #     if "open" in line.lower() and r_count < 2:
+    #         raw[2] = "~  rch_{0}   ~".format(r_count)
+    #         r_count += 1
+    #     line = ' '.join(raw)
+    #     f_tpl.write(line+'\n')
+    # f_in.close()
+    # f_tpl.close()
     pst = _get_base_pst(m, make_porosity_tpl)
+
+    par = pst.parameter_data
+    rarr = np.loadtxt("rech_0.ref")
+    r = par.loc[par.pargp=="r0","parnme"]
+    par.loc[r,"parval1"] = np.round(rarr.mean(),decimals=5)
+    par.loc[r,"parubnd"] = par.loc[r,"parval1"] * 1.1
+    par.loc[r,"parlbnd"] = par.loc[r,"parval1"] * 0.9
+
+    r = par.loc[par.pargp == "r1", "parnme"]
+    par.loc[r, "parval1"] = 0.00009
+    par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.1
+    par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.9
 
     # set some parameter attribs
     pst.pestpp_options["lambda_scale_fac"] = 1.0
@@ -786,9 +819,10 @@ def build_prior_gr():
 
 
 if __name__ == "__main__":
-    setup_pest_un_bareass()
+    #setup_pest_un_bareass()
     # setup_pest_pp()
-    # setup_pest_gr()
+    #setup_pest_gr()
+    build_prior_gr()
     # setup_pest_zn()
     # setup_pest_kr()
     # setup_pest_un()
