@@ -1,6 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pyemu
+import matplotlib as mpl
+
+#--modify default matplotlib settings
+mpl.rcParams['font.sans-serif']          = 'Univers 57 Condensed'
+mpl.rcParams['font.serif']               = 'Times'
+mpl.rcParams['pdf.compression']          = 0
+mpl.rcParams['pdf.fonttype']             = 42
+#--figure text sizes
+mpl.rcParams['legend.fontsize']  = 12
+mpl.rcParams['axes.labelsize']   = 12
+mpl.rcParams['xtick.labelsize']  = 12
+mpl.rcParams['ytick.labelsize']  = 12
 
 def gaussian_multiply(mu1,std1,mu2,std2):
     var1,var2 = std1**2,std2**2
@@ -9,7 +21,7 @@ def gaussian_multiply(mu1,std1,mu2,std2):
     return mean, np.sqrt(variance)
 
 
-def plot_posterior(prior_mean, prior_std, likeli_mean, likeli_std, legend=True):
+def plot_posterior(prior_mean, prior_std, likeli_mean, likeli_std, legend=True, savefigure=False):
     plt.figure()
 
     post_mean, post_std = gaussian_multiply(prior_mean, prior_std, likeli_mean, likeli_std)
@@ -25,5 +37,10 @@ def plot_posterior(prior_mean, prior_std, likeli_mean, likeli_std, legend=True):
     if legend:
         plt.legend();
     ax = plt.gca()
-    ax.set_xlabel("hk ($\\frac{m}{d}$)")
+    ax.set_xlabel("Property")
+    ax.set_ylabel("Probability")
+
+
+    if savefigure:
+        plt.savefig('probs.pdf')
     plt.show()
