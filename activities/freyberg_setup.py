@@ -123,7 +123,7 @@ def repair_hyd(m):
         for line in lines:
             f.write(line)
 
-def _get_base_pst(m, make_porosity_tpl=False):
+def _get_base_pst(m, make_porosity_tpl=True):
 
      # setup hyd mod
 
@@ -275,7 +275,7 @@ def _get_base_pst(m, make_porosity_tpl=False):
     return pst
 
 
-def setup_pest_un_bareass(make_porosity_tpl=False):
+def setup_pest_un_bareass(make_porosity_tpl=True):
     setup_model(WORKING_DIR_UN)
     os.chdir(WORKING_DIR_UN)
 
@@ -355,7 +355,7 @@ def setup_pest_un_bareass(make_porosity_tpl=False):
     pyemu.helpers.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
     os.chdir("..")
 
-def setup_pest_un(make_porosity_tpl=False):
+def setup_pest_un(make_porosity_tpl=True):
     setup_model(WORKING_DIR_UN)
     os.chdir(WORKING_DIR_UN)
 
@@ -407,7 +407,7 @@ def setup_pest_un(make_porosity_tpl=False):
 
 
 
-def setup_pest_kr(make_porosity_tpl=False):
+def setup_pest_kr(make_porosity_tpl=True):
     setup_model(WORKING_DIR_KR)
     os.chdir(WORKING_DIR_KR)
 
@@ -478,7 +478,7 @@ def setup_pest_kr(make_porosity_tpl=False):
     os.chdir("..")
 
 
-def setup_pest_zn(make_porosity_tpl=False):
+def setup_pest_zn(make_porosity_tpl=True):
     setup_model(WORKING_DIR_ZN)
     os.chdir(WORKING_DIR_ZN)
 
@@ -545,7 +545,7 @@ def setup_pest_zn(make_porosity_tpl=False):
     
     os.chdir("..")
 
-def setup_pest_gr(make_porosity_tpl=False):
+def setup_pest_gr(make_porosity_tpl=True):
     setup_model(WORKING_DIR_GR)
     os.chdir(WORKING_DIR_GR)
 
@@ -669,7 +669,7 @@ def setup_pest_gr(make_porosity_tpl=False):
     
     os.chdir("..")
 
-def setup_pest_pp(make_porosity_tpl=False):
+def setup_pest_pp(make_porosity_tpl=True):
     setup_model(WORKING_DIR_PP)
     os.chdir(WORKING_DIR_PP)
     # setup hk pilot point parameters
