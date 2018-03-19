@@ -202,11 +202,18 @@ def _get_base_pst(m, make_porosity_tpl=False):
     par.loc[:,"parval1"] = 1.0
     par.loc[:,"parubnd"] = 2.0
     par.loc[:,"parlbnd"] = 0.5
-    ''' 
-    par.loc['rch_1', "parval1"] = 1.0
-    par.loc['rch_1', "parubnd"] = 3.0
-    par.loc['rch_1', "parlbnd"] = 0.25
-    '''
+    
+    if "rch_1" in par.index:
+        par.loc['rch_1', "parval1"] = 1.0
+        par.loc['rch_1', "parubnd"] = 3.0
+        par.loc['rch_1', "parlbnd"] = 0.25
+
+    wel_future_pars = par.loc[par.parnme.apply(lambda x: x.startswith("w1")),"parnme"]
+    if wel_future_pars.shape[0] > 0:
+        par.loc[wel_future_pars,"parlbnd"] = 0.1
+        par.loc[wel_future_pars,"parubnd"] = 10.0
+
+    
     if 'porosity' in par.index:
         par.loc['porosity', "parval1"] = 0.01
         par.loc['porosity', "parubnd"] = 0.02
