@@ -420,9 +420,10 @@ def setup_pest_kr(make_porosity_tpl=False):
     r_count = 0
     for line in f_in:
         raw = line.strip().split()
-        if "open" in line.lower() and r_count < 2:
+        if "open" in line.lower():# and r_count < 2:
             raw[2] = "~  rch_{0}   ~".format(r_count)
-            r_count += 1
+            if r_count < 1:
+                r_count += 1
         line = ' '.join(raw)
         f_tpl.write(line+'\n')
     f_in.close()
@@ -492,9 +493,10 @@ def setup_pest_zn(make_porosity_tpl=False):
     r_count = 0
     for line in f_in:
         raw = line.strip().split()
-        if "open" in line.lower() and r_count < 2:
+        if "open" in line.lower():# and r_count < 2:
             raw[2] = "~  rch_{0}   ~".format(r_count)
-            r_count += 1
+            if r_count < 1:
+                r_count += 1
         line = ' '.join(raw)
         f_tpl.write(line+'\n')
     f_in.close()
@@ -588,20 +590,7 @@ def setup_pest_gr(make_porosity_tpl=False):
     df_wel = pd.concat(w_dfs)
     df_wel.index = df_wel.parnme
 
-    # setup rch parameters - history and future
-    # f_in = open(MODEL_NAM.replace(".nam",".rch"),'r')
-    # f_tpl = open(MODEL_NAM.replace(".nam",".rch.tpl"),'w')
-    # f_tpl.write("ptf ~\n")
-    # r_count = 0
-    # for line in f_in:
-    #     raw = line.strip().split()
-    #     if "open" in line.lower() and r_count < 2:
-    #         raw[2] = "~  rch_{0}   ~".format(r_count)
-    #         r_count += 1
-    #     line = ' '.join(raw)
-    #     f_tpl.write(line+'\n')
-    # f_in.close()
-    # f_tpl.close()
+
     pst = _get_base_pst(m, make_porosity_tpl)
 
     par = pst.parameter_data
@@ -715,9 +704,10 @@ def setup_pest_pp(make_porosity_tpl=False):
     r_count = 0
     for line in f_in:
         raw = line.strip().split()
-        if "open" in line.lower() and r_count < 2:
+        if "open" in line.lower():# and r_count < 2:
             raw[2] = "~  rch_{0}   ~".format(r_count)
-            r_count += 1
+            if r_count < 1:
+                r_count += 1
         line = ' '.join(raw)
         f_tpl.write(line+'\n')
     f_in.close()
@@ -822,7 +812,7 @@ if __name__ == "__main__":
     #setup_pest_un_bareass()
     # setup_pest_pp()
     #setup_pest_gr()
-    build_prior_gr()
+    #build_prior_gr()
     # setup_pest_zn()
-    # setup_pest_kr()
+    setup_pest_kr()
     # setup_pest_un()
