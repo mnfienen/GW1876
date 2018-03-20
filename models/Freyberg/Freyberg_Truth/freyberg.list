@@ -102,7 +102,7 @@
  STRESS PERIOD     LENGTH       TIME STEPS     MULTIPLIER FOR DELT    SS FLAG
  ----------------------------------------------------------------------------
         1         1.000000          1                    1.000         SS
-        2         1825.000          1                    1.000         TR
+        2         3650.000          1                    1.000         TR
         3         1.000000          1                    1.000         SS
 
  COMBINED STEADY-STATE AND TRANSIENT SIMULATION
@@ -356,14 +356,14 @@
  HD   C      1   1.87500E+03   9.37500E+03  HDC001pr03c08       
  HD   C      1   2.12500E+03   9.37500E+03  HDC001pr03c09       
  HD   C      1   2.37500E+03   9.37500E+03  HDC001cr03c10       
- HD   C      1   2.37500E+03   9.37500E+03  HDC001fr03c10       
+ HD   C      1   2.37500E+03   9.37500E+03  HDC001pr03c10       
  HD   C      1   2.62500E+03   9.37500E+03  HDC001pr03c11       
  HD   C      1   2.87500E+03   9.37500E+03  HDC001pr03c12       
  HD   C      1   3.12500E+03   9.37500E+03  HDC001pr03c13       
  HD   C      1   3.37500E+03   9.37500E+03  HDC001pr03c14       
  HD   C      1   3.62500E+03   9.37500E+03  HDC001pr03c15       
  HD   C      1   3.87500E+03   9.37500E+03  HDC001cr03c16       
- HD   C      1   3.87500E+03   9.37500E+03  HDC001fr03c16       
+ HD   C      1   3.87500E+03   9.37500E+03  HDC001pr03c16       
  HD   C      1   4.12500E+03   9.37500E+03  HDC001pr03c17       
  HD   C      1   4.37500E+03   9.37500E+03  HDC001pr03c18       
  HD   C      1   4.62500E+03   9.37500E+03  HDC001pr03c19       
@@ -377,7 +377,7 @@
  HD   C      1   1.62500E+03   9.12500E+03  HDC001pr04c07       
  HD   C      1   1.87500E+03   9.12500E+03  HDC001pr04c08       
  HD   C      1   2.12500E+03   9.12500E+03  HDC001cr04c09       
- HD   C      1   2.12500E+03   9.12500E+03  HDC001fr04c09       
+ HD   C      1   2.12500E+03   9.12500E+03  HDC001pr04c09       
  HD   C      1   2.37500E+03   9.12500E+03  HDC001pr04c10       
  HD   C      1   2.62500E+03   9.12500E+03  HDC001pr04c11       
  HD   C      1   2.87500E+03   9.12500E+03  HDC001pr04c12       
@@ -392,7 +392,7 @@
  HD   C      1   1.25000E+02   8.87500E+03  HDC001pr05c01       
  HD   C      1   3.75000E+02   8.87500E+03  HDC001pr05c02       
  HD   C      1   6.25000E+02   8.87500E+03  HDC001pr05c03       
- HD   C      1   8.75000E+02   8.87500E+03  HDC001pr05c04       
+ HD   C      1   8.75000E+02   8.87500E+03  HDC001fr05c04       
  HD   C      1   1.12500E+03   8.87500E+03  HDC001pr05c05       
  HD   C      1   1.37500E+03   8.87500E+03  HDC001pr05c06       
  HD   C      1   1.62500E+03   8.87500E+03  HDC001pr05c07       
@@ -488,7 +488,7 @@
  HD   C      1   4.87500E+03   7.87500E+03  HDC001pr09c20       
  HD   C      1   1.25000E+02   7.62500E+03  HDC001pr10c01       
  HD   C      1   3.75000E+02   7.62500E+03  HDC001cr10c02       
- HD   C      1   3.75000E+02   7.62500E+03  HDC001fr10c02       
+ HD   C      1   3.75000E+02   7.62500E+03  HDC001pr10c02       
  HD   C      1   6.25000E+02   7.62500E+03  HDC001pr10c03       
  HD   C      1   8.75000E+02   7.62500E+03  HDC001pr10c04       
  HD   C      1   2.12500E+03   7.62500E+03  HDC001pr10c09       
@@ -558,7 +558,7 @@
  HD   C      1   2.12500E+03   6.62500E+03  HDC001pr14c09       
  HD   C      1   2.37500E+03   6.62500E+03  HDC001pr14c10       
  HD   C      1   2.62500E+03   6.62500E+03  HDC001cr14c11       
- HD   C      1   2.62500E+03   6.62500E+03  HDC001fr14c11       
+ HD   C      1   2.62500E+03   6.62500E+03  HDC001pr14c11       
  HD   C      1   2.87500E+03   6.62500E+03  HDC001pr14c12       
  HD   C      1   3.12500E+03   6.62500E+03  HDC001pr14c13       
  HD   C      1   3.37500E+03   6.62500E+03  HDC001pr14c14       
@@ -690,7 +690,7 @@
  HD   C      1   2.12500E+03   4.62500E+03  HDC001pr22c09       
  HD   C      1   2.37500E+03   4.62500E+03  HDC001pr22c10       
  HD   C      1   2.62500E+03   4.62500E+03  HDC001cr22c11       
- HD   C      1   2.62500E+03   4.62500E+03  HDC001fr22c11       
+ HD   C      1   2.62500E+03   4.62500E+03  HDC001pr22c11       
  HD   C      1   2.87500E+03   4.62500E+03  HDC001pr22c12       
  HD   C      1   3.12500E+03   4.62500E+03  HDC001pr22c13       
  HD   C      1   3.37500E+03   4.62500E+03  HDC001pr22c14       
@@ -715,7 +715,7 @@
  HD   C      1   3.37500E+03   4.37500E+03  HDC001pr23c14       
  HD   C      1   3.62500E+03   4.37500E+03  HDC001pr23c15       
  HD   C      1   3.87500E+03   4.37500E+03  HDC001cr23c16       
- HD   C      1   3.87500E+03   4.37500E+03  HDC001fr23c16       
+ HD   C      1   3.87500E+03   4.37500E+03  HDC001pr23c16       
  HD   C      1   4.12500E+03   4.37500E+03  HDC001pr23c17       
  HD   C      1   4.37500E+03   4.37500E+03  HDC001pr23c18       
  HD   C      1   4.62500E+03   4.37500E+03  HDC001pr23c19       
@@ -745,7 +745,7 @@
  HD   C      1   6.25000E+02   3.87500E+03  HDC001pr25c03       
  HD   C      1   8.75000E+02   3.87500E+03  HDC001pr25c04       
  HD   C      1   1.12500E+03   3.87500E+03  HDC001cr25c05       
- HD   C      1   1.12500E+03   3.87500E+03  HDC001fr25c05       
+ HD   C      1   1.12500E+03   3.87500E+03  HDC001pr25c05       
  HD   C      1   1.37500E+03   3.87500E+03  HDC001pr25c06       
  HD   C      1   1.62500E+03   3.87500E+03  HDC001pr25c07       
  HD   C      1   1.87500E+03   3.87500E+03  HDC001pr25c08       
@@ -788,7 +788,7 @@
  HD   C      1   1.12500E+03   3.37500E+03  HDC001pr27c05       
  HD   C      1   1.37500E+03   3.37500E+03  HDC001pr27c06       
  HD   C      1   1.62500E+03   3.37500E+03  HDC001cr27c07       
- HD   C      1   1.62500E+03   3.37500E+03  HDC001fr27c07       
+ HD   C      1   1.62500E+03   3.37500E+03  HDC001pr27c07       
  HD   C      1   1.87500E+03   3.37500E+03  HDC001pr27c08       
  HD   C      1   2.12500E+03   3.37500E+03  HDC001pr27c09       
  HD   C      1   2.37500E+03   3.37500E+03  HDC001pr27c10       
@@ -858,7 +858,7 @@
  HD   C      1   3.37500E+03   2.62500E+03  HDC001pr30c14       
  HD   C      1   3.62500E+03   2.62500E+03  HDC001pr30c15       
  HD   C      1   3.87500E+03   2.62500E+03  HDC001cr30c16       
- HD   C      1   3.87500E+03   2.62500E+03  HDC001fr30c16       
+ HD   C      1   3.87500E+03   2.62500E+03  HDC001pr30c16       
  HD   C      1   4.12500E+03   2.62500E+03  HDC001pr30c17       
  HD   C      1   4.37500E+03   2.62500E+03  HDC001pr30c18       
  HD   C      1   4.62500E+03   2.62500E+03  HDC001pr30c19       
@@ -928,7 +928,7 @@
  HD   C      1   1.37500E+03   1.62500E+03  HDC001pr34c06       
  HD   C      1   1.62500E+03   1.62500E+03  HDC001pr34c07       
  HD   C      1   1.87500E+03   1.62500E+03  HDC001cr34c08       
- HD   C      1   1.87500E+03   1.62500E+03  HDC001fr34c08       
+ HD   C      1   1.87500E+03   1.62500E+03  HDC001pr34c08       
  HD   C      1   2.12500E+03   1.62500E+03  HDC001pr34c09       
  HD   C      1   2.37500E+03   1.62500E+03  HDC001pr34c10       
  HD   C      1   2.62500E+03   1.62500E+03  HDC001pr34c11       
@@ -949,7 +949,7 @@
  HD   C      1   2.12500E+03   1.37500E+03  HDC001pr35c09       
  HD   C      1   2.37500E+03   1.37500E+03  HDC001pr35c10       
  HD   C      1   2.62500E+03   1.37500E+03  HDC001cr35c11       
- HD   C      1   2.62500E+03   1.37500E+03  HDC001fr35c11       
+ HD   C      1   2.62500E+03   1.37500E+03  HDC001pr35c11       
  HD   C      1   2.87500E+03   1.37500E+03  HDC001pr35c12       
  HD   C      1   3.12500E+03   1.37500E+03  HDC001pr35c13       
  HD   C      1   3.37500E+03   1.37500E+03  HDC001pr35c14       
@@ -1215,14 +1215,14 @@
 1
  A TOTAL OF 718 HYDROGRAPH POINTS HAVE BEEN PREPARED.
 1
-                            STRESS PERIOD NO.    2, LENGTH =   1825.000    
+                            STRESS PERIOD NO.    2, LENGTH =   3650.000    
                             -----------------------------------------------
 
                               NUMBER OF TIME STEPS =     1
 
                                MULTIPLIER FOR DELT =     1.000
 
-                            INITIAL TIME STEP SIZE =   1825.000    
+                            INITIAL TIME STEP SIZE =   3650.000    
 
  WELL NO.  LAYER   ROW   COL   STRESS RATE         
  --------------------------------------------------
@@ -1242,8 +1242,8 @@
  SOLVING FOR HEAD 
 
     ------------------------------------------------
-       NWT REQUIRED           12 OUTER ITERATIONS 
-       AND A TOTAL OF        184 INNER ITERATIONS.
+       NWT REQUIRED           13 OUTER ITERATIONS 
+       AND A TOTAL OF        218 INNER ITERATIONS.
     ------------------------------------------------
 
  OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    1
@@ -1264,25 +1264,25 @@
 
            IN:                                      IN:
            ---                                      ---
-             STORAGE =     2620482.5000               STORAGE =        1435.8809
+             STORAGE =     4477041.0000               STORAGE =        1226.5865
        CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
                WELLS =           0.0000                 WELLS =           0.0000
-            RECHARGE =     7140614.5000              RECHARGE =        3909.3750
-      STREAM LEAKAGE =     1300951.7500        STREAM LEAKAGE =         712.0384
+            RECHARGE =    14275224.0000              RECHARGE =        3909.3750
+      STREAM LEAKAGE =     2176536.7500        STREAM LEAKAGE =         595.9055
 
-            TOTAL IN =    11062049.0000              TOTAL IN =        6057.2944
+            TOTAL IN =    20928800.0000              TOTAL IN =        5731.8672
 
           OUT:                                     OUT:
           ----                                     ----
              STORAGE =           0.0000               STORAGE =           0.0000
-       CONSTANT HEAD =     5415942.0000         CONSTANT HEAD =        2965.7842
-               WELLS =     4347960.0000                 WELLS =        2381.3999
+       CONSTANT HEAD =    10062430.0000         CONSTANT HEAD =        2755.9023
+               WELLS =     8694015.0000                 WELLS =        2381.3999
             RECHARGE =           0.0000              RECHARGE =           0.0000
-      STREAM LEAKAGE =     1298936.7500        STREAM LEAKAGE =         710.5427
+      STREAM LEAKAGE =     2174275.7500        STREAM LEAKAGE =         595.0903
 
-           TOTAL OUT =    11062839.0000             TOTAL OUT =        6057.7266
+           TOTAL OUT =    20930720.0000             TOTAL OUT =        5732.3926
 
-            IN - OUT =        -790.0000              IN - OUT =          -0.4321
+            IN - OUT =       -1920.0000              IN - OUT =          -0.5254
 
  PERCENT DISCREPANCY =          -0.01     PERCENT DISCREPANCY =          -0.01
 
@@ -1294,9 +1294,9 @@
          TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    2
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH 1.57680E+08 2.62800E+06  43800.      1825.0      4.9966    
- STRESS PERIOD TIME 1.57680E+08 2.62800E+06  43800.      1825.0      4.9966    
-         TOTAL TIME 1.57766E+08 2.62944E+06  43824.      1826.0      4.9993    
+   TIME STEP LENGTH 3.15360E+08 5.25600E+06  87600.      3650.0      9.9932    
+ STRESS PERIOD TIME 3.15360E+08 5.25600E+06  87600.      3650.0      9.9932    
+         TOTAL TIME 3.15446E+08 5.25744E+06  87624.      3651.0      9.9959    
 1
 1
                             STRESS PERIOD NO.    3, LENGTH =   1.000000    
@@ -1326,8 +1326,8 @@
  SOLVING FOR HEAD 
 
     ------------------------------------------------
-       NWT REQUIRED           15 OUTER ITERATIONS 
-       AND A TOTAL OF        426 INNER ITERATIONS.
+       NWT REQUIRED           14 OUTER ITERATIONS 
+       AND A TOTAL OF        417 INNER ITERATIONS.
     ------------------------------------------------
 
  OUTPUT CONTROL FOR STRESS PERIOD    3   TIME STEP    1
@@ -1347,25 +1347,25 @@
 
            IN:                                      IN:
            ---                                      ---
-             STORAGE =     2620482.5000               STORAGE =           0.0000
+             STORAGE =     4477041.0000               STORAGE =           0.0000
        CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
                WELLS =           0.0000                 WELLS =           0.0000
-            RECHARGE =     7144524.0000              RECHARGE =        3909.3750
-      STREAM LEAKAGE =     1300951.7500        STREAM LEAKAGE =           0.0000
+            RECHARGE =    14279133.0000              RECHARGE =        3909.3750
+      STREAM LEAKAGE =     2176536.7500        STREAM LEAKAGE =           0.0000
 
-            TOTAL IN =    11065958.0000              TOTAL IN =        3909.3750
+            TOTAL IN =    20932710.0000              TOTAL IN =        3909.3750
 
           OUT:                                     OUT:
           ----                                     ----
              STORAGE =           0.0000               STORAGE =           0.0000
-       CONSTANT HEAD =     5417470.0000         CONSTANT HEAD =        1527.9617
-               WELLS =     4350341.5000                 WELLS =        2381.3999
+       CONSTANT HEAD =    10063958.0000         CONSTANT HEAD =        1527.9363
+               WELLS =     8696396.0000                 WELLS =        2381.3999
             RECHARGE =           0.0000              RECHARGE =           0.0000
-      STREAM LEAKAGE =     1298936.7500        STREAM LEAKAGE =           0.0000
+      STREAM LEAKAGE =     2174275.7500        STREAM LEAKAGE =           0.0000
 
-           TOTAL OUT =    11066749.0000             TOTAL OUT =        3909.3616
+           TOTAL OUT =    20934630.0000             TOTAL OUT =        3909.3362
 
-            IN - OUT =        -791.0000              IN - OUT =       1.3428E-02
+            IN - OUT =       -1920.0000              IN - OUT =       3.8818E-02
 
  PERCENT DISCREPANCY =          -0.01     PERCENT DISCREPANCY =           0.00
 
@@ -1379,9 +1379,9 @@
                     -----------------------------------------------------------
    TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
  STRESS PERIOD TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
-         TOTAL TIME 1.57853E+08 2.63088E+06  43848.      1827.0      5.0021    
+         TOTAL TIME 3.15533E+08 5.25888E+06  87648.      3652.0      9.9986    
 1
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2018/03/20 15:23:12
- Elapsed run time:  0.058 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2018/03/20 21:21:43
+ Elapsed run time:  0.069 Seconds
 

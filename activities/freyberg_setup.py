@@ -32,7 +32,7 @@ SFR_SEG_GROUPS = {"headwaters":list(np.arange(1,16))}
 for i in range(40):
     SFR_SEG_GROUPS["seg_{0:02d}".format(i+1)] = i+1
 
-FORECAST_NAMES = ["travel_time","fa_headwaters_0001"]
+FORECAST_NAMES = ["travel_time","fa_headwaters_0001", "c001fr16c17_19791231","c001fr05c04_19791231"]
 
 FLUX_OBS = "fo_seg_40_0000"
 
@@ -142,7 +142,7 @@ def _get_base_pst(m, make_porosity_tpl=True):
     df_hyd.index = df_hyd.obsnme
 
     lines = []
-    keep_dict = {'pr':"19700102","cr":"19700102","fr":"19750101"}
+    keep_dict = {'pr':"19700102","cr":"19700102","fr":"19791231"}
     hyd_name = "freyberg.hyd.bin.dat.ins"
     keep_names = []
     with open(hyd_name,'r') as f:
@@ -263,7 +263,7 @@ def _get_base_pst(m, make_porosity_tpl=True):
     obs.loc[c_names,"weight"] = 5.0
     obs.loc[df_hyd.obsnme,"obgnme"] = 'head'
     obs.loc[df_hyd.obsnme, "obgnme"] = ['forehead' if "fr" in i and
-                                                          i.endswith('19750101') else
+                                                          i.endswith('19791231') else
                                         'pothead' if "pr" in i and
                                                         i.endswith('19700102') else
                                         'head' for i in df_hyd.obsnme]
@@ -371,6 +371,7 @@ def setup_pest_un_bareass(make_porosity_tpl=True):
         f.write("with open('freyberg.travel', 'w') as ofp:\n")
         f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
+        f.write("pyemu.gw_utils.apply_sfr_obs()\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
@@ -491,6 +492,7 @@ def setup_pest_kr(make_porosity_tpl=True):
         f.write("with open('freyberg.travel', 'w') as ofp:\n")
         f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
+        f.write("pyemu.gw_utils.apply_sfr_obs()\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
@@ -558,6 +560,7 @@ def setup_pest_zn(make_porosity_tpl=True):
         f.write("with open('freyberg.travel', 'w') as ofp:\n")
         f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
+        f.write("pyemu.gw_utils.apply_sfr_obs()\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
@@ -682,6 +685,7 @@ def setup_pest_gr(make_porosity_tpl=True):
         f.write("with open('freyberg.travel', 'w') as ofp:\n")
         f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
+        f.write("pyemu.gw_utils.apply_sfr_obs()\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
@@ -697,7 +701,7 @@ def setup_pest_pp(make_porosity_tpl=True):
     # setup hk pilot point parameters
     m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
     pp_space = 4
-    df_pp = pyemu.gw_utils.setup_pilotpoints_grid(ml=m,prefix_dict={0:["hk"]},
+    df_pp = pyemu.pp_utils.setup_pilotpoints_grid(ml=m,prefix_dict={0:["hk"]},
                                           every_n_cell=pp_space)
     pp_file = "hkpp.dat"
 
@@ -763,7 +767,7 @@ def setup_pest_pp(make_porosity_tpl=True):
     a = float(pp_space) * m.dis.delr.array[0] * 3.0
     v = pyemu.geostats.ExpVario(contribution=1.0,a=a)
     gs = pyemu.geostats.GeoStruct(variograms=[v],transform="log")
-    ok = pyemu.geostats.OrdinaryKrige(gs,pyemu.gw_utils.pp_file_to_dataframe(pp_file))
+    ok = pyemu.geostats.OrdinaryKrige(gs,pyemu.pp_utils.pp_file_to_dataframe(pp_file))
     ok.calc_factors_grid(m.sr,var_filename="pp_var.ref")
     ok.to_grid_factors_file(pp_file+".fac")
 
@@ -791,7 +795,7 @@ def setup_pest_pp(make_porosity_tpl=True):
         f.write("    with open(wel_file,'w') as f:\n")
         f.write("        f.write('        '+df_t.loc[:,names].to_string(index=None,header=None,formatters=wel_fmt)+'\\n')\n")
         f.write("shutil.copy2('WEL_0002.dat','WEL_0003.dat')\n")
-        f.write("pyemu.gw_utils.fac2real('hkpp.dat',factors_file='hkpp.dat.fac',out_file='hk_layer_1.ref')\n")
+        f.write("pyemu.geostats.fac2real('hkpp.dat',factors_file='hkpp.dat.fac',out_file='hk_layer_1.ref')\n")
         f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
         f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
@@ -805,6 +809,8 @@ def setup_pest_pp(make_porosity_tpl=True):
         f.write("with open('freyberg.travel', 'w') as ofp:\n")
         f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
+        f.write("pyemu.gw_utils.apply_sfr_obs()\n")
+
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_PP)
@@ -839,10 +845,10 @@ def build_prior_gr():
 
 if __name__ == "__main__":
     #setup_pest_un_bareass()
-    # setup_pest_pp()
+    #setup_pest_pp()
     #setup_pest_gr()
     #build_prior_gr()
-    # setup_pest_zn()
+    #setup_pest_zn()
     #setup_pest_kr()
     setup_pest_un()
-    #get_truth_sfr_obs()
+    get_truth_sfr_obs()
