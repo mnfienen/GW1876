@@ -28,6 +28,20 @@ NUM_STEPS_RESPSURF = 25
 
 name_function = lambda x: x[6:]
 
+SFR_SEG_GROUPS = {"headwaters":list(np.arange(1,16))}
+for i in range(40):
+    SFR_SEG_GROUPS["seg_{0:02d}".format(i+1)] = i+1
+
+FORECAST_NAMES = ["travel_time","fa_headwaters_0001"]
+
+FLUX_OBS = "fo_seg_40_0000"
+
+SFR_TRUTH = os.path.join(BASE_MODEL_DIR, "freyberg.sfo.processed.obf.truth")
+
+def get_truth_sfr_obs():
+    pyemu.gw_utils.setup_sfr_obs(os.path.join(BASE_MODEL_DIR,"freyberg.sfo"),seg_group_dict=SFR_SEG_GROUPS)
+    shutil.copy2(SFR_TRUTH.replace(".truth",""),SFR_TRUTH)
+
 def setup_model(working_dir):
 
     if "window" in platform.platform().lower():
@@ -40,17 +54,10 @@ def setup_model(working_dir):
     for exe_file in exe_files:
         shutil.copy2(os.path.join(EXE_DIR,exe_file),os.path.join(working_dir,exe_file))
 
-    print(os.listdir(BASE_MODEL_DIR))
-    m = flopy.modflow.Modflow.load(BASE_MODEL_NAM,model_ws=BASE_MODEL_DIR,check=False)
+    m = flopy.modflow.Modflow.load(BASE_MODEL_NAM,model_ws=BASE_MODEL_DIR,check=False,forgive=False)
     m.version = "mfnwt"
-    m.change_model_ws(working_dir)
+    m.change_model_ws(working_dir,reset_external=True)
     m.name = MODEL_NAM.split(".")[0]
-    m.remove_package("PCG")
-    flopy.modflow.ModflowUpw(m,hk=m.lpf.hk,vka=m.lpf.vka,
-                             ss=m.lpf.ss,sy=m.lpf.sy,
-                             laytyp=m.lpf.laytyp,ipakcb=53)
-    m.remove_package("LPF")
-    flopy.modflow.ModflowNwt(m)
     m.write_input()
     m.exe_name = os.path.abspath(os.path.join(m.model_ws,"mfnwt"))
     #repair_hyd(m)
@@ -73,6 +80,8 @@ def setup_model(working_dir):
     shutil.copy2(hyd_out,hyd_out+'.truth')
     list_file = os.path.join(working_dir,MODEL_NAM.replace(".nam",".list"))
     shutil.copy2(list_file,list_file+".truth")
+    sfo_file = os.path.join(working_dir,MODEL_NAM.replace('.nam',".sfo"))
+    shutil.copy2(sfo_file, sfo_file + ".truth")
 
     m.upw.hk = m.upw.hk.array.mean()
     m.upw.hk[0].format.free = True
@@ -123,10 +132,10 @@ def repair_hyd(m):
         for line in lines:
             f.write(line)
 
+
 def _get_base_pst(m, make_porosity_tpl=True):
 
      # setup hyd mod
-
     pyemu.gw_utils.modflow_hydmod_to_instruction_file(MODEL_NAM.replace(".nam",".hyd.bin"))
     pyemu.gw_utils.modflow_read_hydmod_file(MODEL_NAM.replace(".nam",".hyd.bin.truth"))
     df_hyd = pd.read_csv(MODEL_NAM.replace(".nam",".hyd.bin.truth.dat"),delim_whitespace=True)
@@ -154,6 +163,7 @@ def _get_base_pst(m, make_porosity_tpl=True):
         f.write("l1\n")
         [f.write(line) for line in lines]
     df_hyd = df_hyd.loc[keep_names,:]
+
     # make the modpath porosity template file if requested
     if make_porosity_tpl is True:
         inbas = open(os.path.join(m.model_ws, MODEL_NAM.replace(".nam", ".mpbas"))).readlines()
@@ -164,6 +174,12 @@ def _get_base_pst(m, make_porosity_tpl=True):
                     ofp.write(line.strip() + '\n')
                 else:
                     ofp.write('CONSTANT    ~  porosity ~\n')
+
+    # set up sfr obs
+    shutil.copy2("freyberg.sfo.truth","freyberg.sfo")
+    df_sfr = pyemu.gw_utils.setup_sfr_obs("freyberg.sfo",seg_group_dict=SFR_SEG_GROUPS)
+
+
     # setup list file water budget obs
     shutil.copy2(m.name+".list.truth",m.name+".list")
     df_wb = pyemu.gw_utils.setup_mflist_budget_obs(m.name+".list")
@@ -180,11 +196,10 @@ def _get_base_pst(m, make_porosity_tpl=True):
         f.write("travel_time {0}\n".format(travel_time))
 
 
-    #forecast_names = list(df_wb.loc[df_wb.obsnme.apply(lambda x: "riv" in x and "flx" in x),"obsnme"])
+    #forecast_names = [i for i in df_hyd.obsnme.values if "fr" in i]# and i.endswith('19750101')]
+    #forecast_names.append('flx_river_l_19750102')
+    #forecast_names.append("travel_time")
 
-    forecast_names = [i for i in df_hyd.obsnme.values if "fr" in i]# and i.endswith('19750101')]
-    forecast_names.append('flx_river_l_19750102')
-    forecast_names.append("travel_time")
 
 
     # build lists of tpl, in, ins, and out files
@@ -229,9 +244,15 @@ def _get_base_pst(m, make_porosity_tpl=True):
     # set some observation attribues
     obs = pst.observation_data
 
+    # # load the SFR truth
+    # df_sfr = pd.read_csv(SFR_TRUTH,delim_whitespace=True,header=None,names=["obsnme","obsval"])
+    # df_sfr.loc[:,"obgnme"] = df_sfr.obsnme.apply(lambda x: x[:2])
+    obs.loc[df_sfr.obsnme,"obsval"] = df_sfr.obsval
+    obs.loc[df_sfr.obsnme,"obgnme"] = df_sfr.obgnme
+    obs.loc[df_sfr.obsnme, "weight"] = 0.0
     obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
     obs.loc[df_wb.obsnme,"weight"] = 0.0
-    obs.loc[forecast_names,"weight"] = 0.0
+    obs.loc[FORECAST_NAMES,"weight"] = 0.0
     obs.loc[df_hyd.obsnme,"obsval"] = df_hyd.obsval
     c_names = df_hyd.loc[df_hyd.obsnme.apply(lambda x: "cr" in x and "19700102" in x),"obsnme"]
     np.random.seed(pyemu.en.SEED)
@@ -252,11 +273,15 @@ def _get_base_pst(m, make_porosity_tpl=True):
                                                                                        obs.weight,
                                                                                        obs.obgnme)]
 
-    obs.loc['flx_river_l_19750101', 'obgnme'] = 'foreflux'
-    obs.loc['travel_time', 'obgnme'] = 'foretrav'
+    #obs.loc['flx_river_l_19750101', 'obgnme'] = 'foreflux'
+    #obs.loc['travel_time', 'obgnme'] = 'foretrav'
 
-    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'weight'] = 0.05
-    obs.loc[obs.obsnme == 'flx_river_l_19700102', 'obgnme'] = 'calflux'
+    obs.loc[FORECAST_NAMES,"obgnme"] = "forecast"
+
+    obs.loc[FLUX_OBS,"weight"] = 0.05
+    obs.loc[FLUX_OBS,"obgnme"] = "calflux"
+    #obs.loc[obs.obsnme == 'flx_river_l_19700102', 'weight'] = 0.05
+    #obs.loc[obs.obsnme == 'flx_river_l_19700102', 'obgnme'] = 'calflux'
 
     # obs.loc[df_wb.obsnme,"obgnme"] = df_wb.obgnme
     # obs.loc[df_wb.obsnme,"weight"] = 0.0
@@ -271,9 +296,8 @@ def _get_base_pst(m, make_porosity_tpl=True):
     # og_dict = {'c':"cal_wl","f":"fore_wl","p":"pot_wl"}
     # obs.loc[df_hyd.obsnme,"obgnme"] = df_hyd.obsnme.apply(lambda x: og_dict[x.split('_')[0][0]])
     #obs.loc["travel_time","obsval"] = travel_time
-    pst.pestpp_options["forecasts"] = ','.join(forecast_names)
+    pst.pestpp_options["forecasts"] = ','.join(FORECAST_NAMES)
     return pst
-
 
 def setup_pest_un_bareass(make_porosity_tpl=True):
     setup_model(WORKING_DIR_UN)
@@ -397,6 +421,7 @@ def setup_pest_un(make_porosity_tpl=True):
         f.write("with open('freyberg.travel', 'w') as ofp:\n")
         f.write("    ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\\n'))\n")
         f.write("pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')\n")
+        f.write("pyemu.gw_utils.apply_sfr_obs()\n")
 
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
@@ -404,8 +429,6 @@ def setup_pest_un(make_porosity_tpl=True):
     pyemu.helpers.run("pestchek {0}".format(PST_NAME_UN))
     pyemu.helpers.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
     os.chdir("..")
-
-
 
 def setup_pest_kr(make_porosity_tpl=True):
     setup_model(WORKING_DIR_KR)
@@ -476,7 +499,6 @@ def setup_pest_kr(make_porosity_tpl=True):
     pyemu.helpers.run("pestpp {0}".format(PST_NAME_KR.replace(".pst",".init.pst")))
     
     os.chdir("..")
-
 
 def setup_pest_zn(make_porosity_tpl=True):
     setup_model(WORKING_DIR_ZN)
@@ -821,5 +843,6 @@ if __name__ == "__main__":
     #setup_pest_gr()
     #build_prior_gr()
     # setup_pest_zn()
-    setup_pest_kr()
-    # setup_pest_un()
+    #setup_pest_kr()
+    setup_pest_un()
+    #get_truth_sfr_obs()
