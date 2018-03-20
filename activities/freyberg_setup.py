@@ -38,9 +38,59 @@ FLUX_OBS = "fo_seg_40_0000"
 
 SFR_TRUTH = os.path.join(BASE_MODEL_DIR, "freyberg.sfo.processed.obf.truth")
 
+
+def repair_sfr():
+    m = flopy.modflow.Modflow.load(BASE_MODEL_NAM,model_ws=BASE_MODEL_DIR,load_only=["sfr"])
+    sfr = m.sfr
+    df = pd.DataFrame.from_records(sfr.segment_data[0])
+
+    # the total domain length is 10,000 meters - keep that in mind here
+    start = 25 #upgradient bottom
+    end = 15 # downgradient bottom
+
+    elevup = np.linspace(start,end,df.shape[0]+1)
+    elevdn = elevup[1:]
+    elevup = elevup[:-1]
+    df.loc[:,"elevup"] = elevup
+    df.loc[:, "elevdn"] = elevdn
+
+    print(df.loc[:,["elevup","elevdn"]])
+    sfr.segment_data[0]["elevup"][:] = elevup
+    sfr.segment_data[0]["elevdn"][:] = elevdn
+    sfr.write_file()
+
+def reset_strt():
+    strt_file = os.path.join(BASE_MODEL_DIR,"strt.ref")
+    strt = np.loadtxt(strt_file).reshape((40,20))
+    strt[strt<33] = 33
+    np.savetxt(strt_file,strt,fmt="%15.6E")
+
 def get_truth_sfr_obs():
     pyemu.gw_utils.setup_sfr_obs(os.path.join(BASE_MODEL_DIR,"freyberg.sfo"),seg_group_dict=SFR_SEG_GROUPS)
     shutil.copy2(SFR_TRUTH.replace(".truth",""),SFR_TRUTH)
+
+def run_truth():
+    bd = os.getcwd()
+    os.chdir(BASE_MODEL_DIR)
+    pyemu.helpers.run('mfnwt freyberg.truth.nam >_mfnwt.stdout')
+    pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')
+    pyemu.gw_utils.apply_mflist_budget_obs('freyberg.list')
+    hds = flopy.utils.HeadFile('freyberg.hds')
+    f = open('freyberg.hds.dat', 'wb')
+    for data in hds.get_alldata():
+        data = data.flatten()
+        np.savetxt(f, data, fmt='%15.6E')
+    endpoint_file = 'freyberg.mpenpt'
+    lines = open(endpoint_file, 'r').readlines()
+    items = lines[-1].strip().split()
+    travel_time = float(items[4]) - float(items[3])
+    with open('freyberg.travel', 'w') as ofp:
+        ofp.write('travetime {0:15.6e}{1}'.format(travel_time, '\n'))
+    pyemu.gw_utils.modflow_read_hydmod_file('freyberg.hyd.bin')
+    pyemu.gw_utils.setup_sfr_obs("freyberg.sfo", seg_group_dict=SFR_SEG_GROUPS)
+    pyemu.gw_utils.apply_sfr_obs()
+    os.chdir(bd)
+    shutil.copy2(SFR_TRUTH.replace(".truth", ""), SFR_TRUTH)
 
 def setup_model(working_dir):
 
@@ -90,10 +140,12 @@ def setup_model(working_dir):
     #wel_data_sp1["flux"] = np.ceil(wel_data_sp1["flux"],order=)
     wel_data_sp1["flux"] = [round(f,-2) for f in wel_data_sp1["flux"]]
     wel_data_sp2 = wel_data_sp1.copy()
-    wel_data_sp2["flux"] *= 1.2
+    wel_data_sp2["flux"] *= 1.0
 
     r = np.round(m.rch.rech[0].array.mean(),5)
     m.rch.rech[0] = r
+    m.rch.rech[1] = r
+    m.rch.rech[2] = r
     m.rch.rech[0].format.free = True
     m.external_path = '.'
     #m.oc.chedfm = "(20f16.6)"
@@ -849,6 +901,9 @@ if __name__ == "__main__":
     #setup_pest_gr()
     #build_prior_gr()
     #setup_pest_zn()
-    #setup_pest_kr()
-    setup_pest_un()
-    get_truth_sfr_obs()
+    repair_sfr()
+    run_truth()
+    setup_pest_kr()
+    #setup_pest_un()
+    #get_truth_sfr_obs()
+    #reset_strt()
