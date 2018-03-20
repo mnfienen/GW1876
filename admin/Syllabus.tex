@@ -1,0 +1,312 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5cm,bmargin=1.5cm,lmargin=1.5cm,rmargin=1.5cm}
+\begin{document}
+
+\title{Applied Groundwater Model Calibration and Uncertainty Analysis Curriculum }
+
+\author{Michael N. Fienen, Jeremy T. White and Randall J. Hunt }
+
+\date{April 23-27, 2018}
+
+\maketitle
+\textbf{remove before flight} -- link to old syllabus with some notes
+
+
+https://docs.google.com/document/d/12xPPWcSAGryn1aWi3tZ8-Nrk45SKbXDzIcIKXEqdd5s/edit
+
+\textbf{MONDAY}
+\begin{enumerate}
+
+\item \textbf{Introductions of students/instructors {[}MNF{]}.} Goals for
+the week and framing 
+\begin{enumerate}
+\item The mechanics and theory 
+\item Learning by doing 
+\item Please speak up! Everyone learns from discussion 
+\item Work in pairs 
+\item Python, GUIs, and all that 
+\item Why no date demarcations on the schedule
+\end{enumerate}
+
+\item \textbf{Shortish Historical Background \#1 and Introductory material}
+{[}RJH{]}. What is \textquotedblleft inverse\textquotedblright ? How
+did we get here? The concepts of model usage, forecasting, how type
+of forecast influences uncertainty, learning, uncertainty analysis
+and the role of calibration. PE is a tool to an endpoint - not inviolate.
+A perfect fit for Stepwise modeling: a tool for automated trial-and-error,
+and tweak at end. MAIN COURSE POINT: There is no model of a part of
+the world, it is ALWAYS a simplification of reality and our job is
+to tune the simplifications for the forecasts of interest
+
+\item \textbf{Logistics and airing of the IT grievances }{[}MNF{]}: 
+\begin{enumerate}
+\item Did everyone get the software installed? 
+\item Pull the class from github and make a copy 
+\item Git tutorial MNF 
+\end{enumerate}
+
+\item \textbf{intro\_to\_regression} {[}MNF{]} Linear regression overview-{}-{}-illustration
+with fitting a polynomial to noisy data including the role of SSE
+(response curve), degrees of freedom, the gradient of that surface
+(Jacobian) overfitting (give fish) MAIN COURSE POINT: Not magic, automated
+trial-and-error (Maths!!!). The models will get more involved, need
+a more powerful tool (PEST++) 
+
+\item \textbf{freyberg\_model\_intro} {[}MNF{]}: Introduce Freyberg model
+outlining the role of forecasts, the increase in parameterization.
+Introduce forecasts of interest: head, sw-gw flux, travel time
+
+\item \textbf{freyberg\_trialerror} {[}JTW{]} Messing around with a pre-setup
+version of the Freyberg model using trial and error to explore fitting
+a couple parameters looking at both calibration and forecast implications.
+Find parameter values that best fit the calibration heads, and also
+parameters that fit the travel time forecast 
+
+\item \textbf{freyberg\_pest\_setup} {[}RJH{]}: Mechanics and Details on
+PEST++, how to run, control file (refer to annotated print out), model
+run command (mention importance of a forward run script), TPL and
+INS files and controlling MODFLOW; PESTCHEK: use TEMPCHEK and INSCHEK
+to write simple input and output for the freyberg single K model.
+Run PESTCHEK and then run PEST++. Have control file made for simple
+1 par case, specify par and obs names. Show how forecasts can be observations
+in control file. 
+
+\item \textbf{freyberg\_pestcheck\_trouble} {[}RJH{]} fix a troubled PEST
+control file (trouble.pst), see an error that is not caught but by
+PESTCHEK but is caught when PEST++ is run, make them uncomment a PEST++
+comment line to get their forecast back in the rec file 
+
+\item \textbf{Why we model} {[}JTW{]} Outlining forecasts to be made in
+first model runs and relate to why we model, and why looking at calibration
+is often not enough for good forecasts. Underscore MAIN COURSE POINT:
+we are focused on forecasts- model purpose. What does parameter estimation
+teach us about the model and its forecasts? Tie back to previous example/activity 
+\begin{enumerate}
+\item Models are built because of uncertainty Quantities of interest(QOIs)/forecasts/predictions
+can\textquoteright t be observed To properly \textquotedblleft model\textquotedblright ,
+we should then have a \textquotedblleft learning\textquotedblright{}
+framework: Learning == reduction in uncertainty Model analyses combine
+information our knowledge about the system Observations of the system
+(deterministic) parameter estimation is a small piece of modeling
+analyses Part of the \textquotedblleft learning\textquotedblright -from-observations
+process But parameter estimation itself does not help us learn about
+QOIs Before \textquotedblleft calibration\textquotedblright{} the
+QOIs a have a single \textquotedblleft value\textquotedblright{} After
+\textquotedblleft calibration\textquotedblright{} the QOIs have a
+(new) single \textquotedblleft value\textquotedblright{} Tuesday 
+\end{enumerate}
+
+\item \textbf{introduction\_to\_GLM }{[}MNF{]} Derivation of the Gauss-Levenberg-Marquardt
+Algorithm part I. The maths
+
+\textbf{TUESDAY}
+
+\item \textbf{freyberg\_k} {[}RJH{]} Review the PEST++ control file...refer
+to annotated print out (provided) (need to decide balance of details
+day 1 - day 2 ). Use PEST++ to calibrate with only a single hydraulic
+conductivity (K) zone and head observations: we provide fully hooked-up
+MODFLOW files. We will walk through the pest setup components (TPL,
+INS, PST). Look at .rec file for parameter and forecast uncertainty.
+Explore how parameter bounds and observation weights influence the
+resulting forecast uncertainty. Reintroduce parameter estimation conceptually
+(tying back to regression, and highlighting forecasts). Parameter
+estimation is just a means to extract info from obs and store in parameters...we
+don\textquoteright t know how that information flowed until uncertainty
+analysis. GUI equivalent - hit the wall. 
+
+\item \textbf{Short Interlude - what does a response surface tell us?} {[}RJH{]}
+Quick and dirty activity, intro on response function, setup grid-based
+sampling and use sweep util to gen runs - allow them to specify their
+own weights for obs and PI - should give different response surface
+- nonuniqueness!!! 
+
+\item \textbf{xsec\_response\_surface\_GLM} {[}MNF{]} Derivation of the Gauss-Levenberg-Marquardt
+Algorithm part I: response surface. Discussion of the
+algorithm in terms of the response surface, GLM, Use previous response
+surface to show steepest vs newton direction and how lambda works
+and why lambda is a regularization device. 
+
+\item \textbf{freyberg\_k\_and\_r} {[}JTW{]} use PEST++ to calibrate both
+K and recharge (R) with head observations. Have premade files for
+this. DIY - have students add recharge parameter. With so many head
+targets why isn\textquoteright t this overdetermined? Why did forecast
+uncertainty go up? 
+
+\item \textbf{freyberg\_k\_and\_r\_response\_surface} {[}MNF{]} Correlation
+and non-uniqueness in regression-{}-Response surface illustration
+(using the Freyberg model): the need for diverse data. Discuss how
+the flux observation made a more unique solution and what this additional
+information does to uncertainty \textemdash{} going toward a good
+compromise (MAIN COURSE POINT: observations don\textquoteright t cost
+us runs; good practice put in as many observation types as possible).
+Show updated response surface with lovely bullseye replacing banana
+canyon 
+
+\item \textbf{freyberg\_k\_and\_r\_fluxobs} {[}RJH{]} use PEST++ to calibrate
+K and R with a flux observation and heads (we provide all files).
+MAIN COURSE POINT: Burning silicon can\textquoteright t make up for
+poorly thought out problems 
+
+\item \textbf{Adding a flux target in GWV GUI digression} {[}RJH{]} example
+of PEST++ file generation, GUI only as starting point. Include fluxobs
+unfix \textquotedblleft rch\_1\textquotedblright{} and look at how
+including future climate uncertainty impacts forecast uncertainty.
+Recharge is most sensitive parameter for calibration, makes sense
+it is important for forecasting the future. Fixing it implies we know
+the future perfectly. 
+
+\item \textbf{freyberg\_reweighting} {[}MNF{]} The role of weighting and
+how to balance objective function. Doing it at the beginning - not
+the end (pyEMU, pie charts, weight-o-matic). Tie back to previous
+response surface activity. 
+
+\item \textbf{intro\_to\_sweep} {[}JTW{]} Show that response surface was
+not a built-in PEST utility. Sweep is general and allows you to setup
+whatever parameter sweep you want. Demo with a single parameter set
+csv. Demo YAMR - have students rerun k+r calibration, manually starting
+master and workers.
+
+\item \textbf{freyberg\_k\_and\_r\_mc} {[}RJH{]} run MC on the K and R model
+but drawing from prior \textemdash{} talk about nonuniqueness and
+rejection sampling (GLUE). MAIN COURSE POINT: MC is a stakeholder
+friendly, easy-to-understand uncertainty technique, but incurs a huge
+computational burden for real problems. How many realizations are
+\textquotedblleft acceptable\textquotedblright{} in terms of phi?
+How does the best \textquotedblleft phi\textquotedblright{} compare
+to the calibrated phi? Including Monte Carlo analysis-{}-{}-we can\textquoteright t
+calibrate future recharge, but we can quantify how much it matters.
+The posterior for rch\_1 is the same as the prior - why is that? 
+
+\textbf{WEDNESDAY}
+
+\item \textbf{freyberg\_zones} {[}MNF{]} Set up zones for K and calibrate
+with PEST++. Using a given zonation and a zone-burner python script. 
+\item \textbf{freyberg\_global\_sensitivity} {[}RJH{]} How can we extend
+diagnosis with SVD -{}- which parameters are informed by the data?
+Scale, offset, tying, fixing. What matters? 
+
+\item \textbf{intro\_to\_bayes} {[}MNF{]} Really, calibration is a small
+component of Bayes\textquoteright{} Rule (and model usage)\textemdash parameters
+are conditional on information (types and amounts of information)
+and model structure (\textquotedblleft calibrated\textquotedblright{}
+parameters aren\textquoteright t transferable)- if forecast depends
+on those parameters, then we learn about the forecast. Put another
+way, discuss the process in terms of learning as a reduction in uncertainty. 
+
+\item \textbf{freyberg\_zones\_DIY\_mc} {[}JTW{]} run both FOSM and MC on
+the zoned freyberg model - Compare FOSM and MC for both performance
+and results. Also explore identifiability 
+
+\item \textbf{intro\_to\_FOSM} {[}JTW{]} FOSM as an alternative to MC (rejection
+sampling). Implications of \textquotedblleft implied\textquotedblright{}
+calibration, linearization, speed. MAIN COURSE POINT: MC is often
+easy to communicate results, but FOSM is much cheaper. How can FOSM
+be completed before history matching? It\textquoteright s magic!
+
+\item \textbf{intro\_to\_dataworth} {[}MNF{]} FOSM- huh, good god y\textquoteright all.
+What is it good for? Absolutely nothing! Quantification of prior and
+posterior forecast uncertainty (the value of calibration), but more
+importantly, data worth considerations. Linearity assumption may not
+be a good approximation in all cases, but still useful to eval the
+value of different calibration, different data, etc. What parameters
+are important to uncertainty in forecasts (modern alternative to \textquotedblleft sensitivity
+analysis\textquotedblright{} (USGS-type)) PEST lingo = PREDUNC/GENLINPRED 
+
+\item \textbf{freyberg\_zones\_dw} {[}MNF{]} Data worth with the zoned model.
+Next best observation location to measure to reduce forecast uncertainty.
+We provide an alternate zonation option. Discuss the ramifications
+of various zonations on both forecasts The value of flexibility in
+parameter fields with special emphasis on avoiding overfitting-{}-we
+fit to extract maximum info from the observations while also capturing
+parameter contributions to forecast uncertainty.
+
+\item \textbf{GUI\_demo\_with\_GW\_Vistas} {[}RJH{]} Overview of how to
+use GW Vistas for setting up, running, and postprocessing zoned model. 
+
+\item \textbf{intro\_to\_geostatistics} {[}MNF{]} Exploring the idea of
+a model of spatial correlation (e.g. covariance matrix). Variograms
+as a basis for interpolation, the use of factors, \textquotedblleft spatially
+weighted averaging\textquotedblright , all this wrapped up in Kriging.
+Function for creation and viz. In pyemu. Namecheck sGems, Surfer,
+TPRogs
+
+\textbf{THURSDAY}
+
+\item \textbf{intro\_to\_pyemu} {[}JTW/MNF{]} The mechanics behind the beast.
+Control file handling and manipulation, matrix/cov/jco handling. Res
+handling, etc. Setting up the interface with flopy models. Pilot points,
+geostats, prior info construction, starting local slaves. FOSM (schur
+and error variance), MC/ensemble handling, various output setup and
+apply routines (hob, hyd, list file, hds).
+
+\item \textbf{freyberg\_pilot\_points\_1} {[}JTW{]} Create a pilot point
+network and run pestpp. YAMR for parallel processing on laptops. Cover
+the implementation of setting a pp network and setting geostats factors.
+No regularization...way over fit Perhaps need a brief intro to pilot
+points to explain the concept, history, importance of representative
+starting values, and high parameter flexibility does not equal high
+complexity
+
+\item \textbf{intro\_to\_singular\_value\_decomposition} {[}MNF{]} an aside
+backing up the theory and practice of SVD and a little on SVDA because
+now that we are moving to PP land we need a crutch. Concepts of relinearization
+- think of a boss analogy. Make sure to discuss fundamental subspaces.
+Give chain of PEST developments that were caused by pilot points.
+Also TSVD and \textquotedblleft super parameters\textquotedblright{}
+Need to talk about TSVD as a regularization device - the MAP implementation
+of GLM Need thought experiments with MAXSING and EIGTHRESH - what
+happens conceptually with these...
+
+\item \textbf{freyberg\_sensitivity\_identifiability} {[}RJH{]} How can
+we extend diagnosis with SVD -{}- which parameters are informed by
+the data? What matters? What\textquoteright s the value of ID vs.
+Sensitivity. Correlation issues. Compare the two. 
+
+\item \textbf{intro\_to\_regularization} {[}RJH{]} introduction to the concepts,
+theory and implementation of Tikhonov regularization. Need to talk
+about TSVD as a regularization - they will see this in the next exercise
+Bringing in geostats concepts. Need to talk about constrained optimization
+with Lagrange multiplier? 
+
+\item \textbf{freyberg\_pilot\_points\_2} {[}RJH{]} Add prior information
+and switch to regularization mode. What happens now? Talk about overfitting:
+parameters and forecasts. 
+
+\item \textbf{freyberg\_pp\_GUI} {[}RJH{]} GUI digression for creating PP
+network with regularization; debug file of steps. Maybe some discussion
+of other approaches 
+
+\item \textbf{parallel\_processing }{[}JTW/MNF{]} As an aside, while running
+the above, show YAMR manually, maybe HTCondor too. 
+
+\textbf{FRIDAY}
+
+\item \textbf{freyberg\_pp\_dw} {[}JTW{]} Revisiting FOSM and data worth
+with the pilot point model-{}-fare thee well artifacts. Diagonal prior
+was based on bounds. Have a full prior built for use also - plot for
+demystification. Why does uncertainty go up when a non-diagonal prior
+is used? 
+
+\item \textbf{freyberg\_pp\_monte\_carlo }and \textbf{freyberg\_pp\_advanced\_monte\_carlo}
+{[}JTW{]} Monte Carlo with various sampling strategies to increase
+number of realization retained. Three strategies are: 0) sample Schur-derived
+posterior, 1) vanilla style with the prior full covariance. 
+
+\item \textbf{Discussion} {[}ALL{]} what other model inputs could be parameters
+(what is not known perfectly)? The importance of parameterization:
+\textquotedblleft If it\textquoteright s not a parameter, it must
+be known perfectly\textquotedblright . What are other sources of uncertainty?
+Future stresses as parameters? 
+
+\item \textbf{freyberg\_grid\_ies} {[}JTW{]} iterative ensemble smoothers.
+Allow all BCs, future stresses, etc. to be parameters and explore
+uncertainty with FOSM. Use the pyemu example freyberg notebook for
+this. JTW
+\end{enumerate}
+
+\end{document}

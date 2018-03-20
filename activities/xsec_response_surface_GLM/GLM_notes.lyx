@@ -528,7 +528,7 @@ The Levenberg-Marquardt Adjustment
 Given the relationship
 \begin_inset Formula 
 \[
-\boxed{\mathbf{\hat{\beta}}_{i+1}=\mathbf{\hat{\beta}}_{i}+\left(\mathbf{X}^{T}\mathbf{QX}\right)^{-1}\mathbf{X}^{T}\mathbf{Q}\mathbf{y}}
+\boxed{\mathbf{\hat{\beta}}_{i+1}=\mathbf{\hat{\beta}}_{i}+\left(\mathbf{X}^{T}\mathbf{QX}\right)^{-1}\mathbf{X}^{T}\mathbf{Q}\mathbf{\left(\mathbf{y}-\mathbf{X\hat{\beta_{i}}}\right)}}
 \]
 
 \end_inset
@@ -563,7 +563,7 @@ This gets implemented by adding a weighted diagional (identity) matrix to
  the normal equations like
 \begin_inset Formula 
 \[
-\boxed{\mathbf{\hat{\beta}}_{i+1}=\mathbf{\hat{\beta}}_{i}+\left(\mathbf{X}^{T}\mathbf{QX}+\lambda\mathbf{I}\right)^{-1}\mathbf{X}^{T}\mathbf{Q}\mathbf{y}}
+\boxed{\mathbf{\hat{\beta}}_{i+1}=\mathbf{\hat{\beta}}_{i}+\left(\mathbf{X}^{T}\mathbf{QX}+\lambda\mathbf{I}\right)^{-1}\mathbf{X}^{T}\mathbf{Q}\left(\mathbf{y}-\mathbf{X\hat{\beta_{i}}}\right)}
 \]
 
 \end_inset

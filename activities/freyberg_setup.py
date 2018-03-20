@@ -147,6 +147,9 @@ def setup_model(working_dir):
     m.rch.rech[1] = r
     m.rch.rech[2] = r
     m.rch.rech[0].format.free = True
+    m.rch.rech[1].format.free = True
+    m.rch.rech[2].format.free = True
+
     m.external_path = '.'
     #m.oc.chedfm = "(20f16.6)"
     #output_idx = m.output_fnames.index("freyberg.hds")
@@ -634,7 +637,7 @@ def setup_pest_gr(make_porosity_tpl=True):
             for j in range(m.ncol):
                 f.write(" ~  hk_i{0:02d}_j{1:02d}   ~".format(i,j))
             f.write("\n")
-
+    m.rch.rech.format = "(FREE)"
     with open("rech_0.ref.tpl", 'w') as f:
         f.write("ptf ~\n")
         for i in range(m.nrow):
@@ -648,6 +651,13 @@ def setup_pest_gr(make_porosity_tpl=True):
             for j in range(m.ncol):
                 f.write(" ~  r1_i{0:02d}_j{1:02d}   ~".format(i, j))
             f.write("\n")
+
+        with open("rech_2.ref.tpl", 'w') as f:
+            f.write("ptf ~\n")
+            for i in range(m.nrow):
+                for j in range(m.ncol):
+                    f.write(" ~  r1_i{0:02d}_j{1:02d}   ~".format(i, j))
+                f.write("\n")
 
     # setup wel parameters - history and future
     wel_fmt = {"l":lambda x: '{0:10.0f}'.format(x)}
@@ -898,12 +908,12 @@ def build_prior_gr():
 if __name__ == "__main__":
     #setup_pest_un_bareass()
     #setup_pest_pp()
-    #setup_pest_gr()
+    setup_pest_gr()
     #build_prior_gr()
     #setup_pest_zn()
-    repair_sfr()
-    run_truth()
-    setup_pest_kr()
+    #repair_sfr()
+    #run_truth()
+    #setup_pest_kr()
     #setup_pest_un()
     #get_truth_sfr_obs()
     #reset_strt()
