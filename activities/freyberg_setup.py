@@ -637,7 +637,21 @@ def setup_pest_gr(make_porosity_tpl=True):
             for j in range(m.ncol):
                 f.write(" ~  hk_i{0:02d}_j{1:02d}   ~".format(i,j))
             f.write("\n")
-    m.rch.rech.format = "(FREE)"
+
+    with open("ss_layer_1.ref.tpl",'w') as f:
+        f.write("ptf ~\n")
+        for i in range(m.nrow):
+            for j in range(m.ncol):
+                f.write(" ~  ss_i{0:02d}_j{1:02d}   ~".format(i,j))
+            f.write("\n")
+
+    with open("sy_layer_1.ref.tpl",'w') as f:
+        f.write("ptf ~\n")
+        for i in range(m.nrow):
+            for j in range(m.ncol):
+                f.write(" ~  sy_i{0:02d}_j{1:02d}   ~".format(i,j))
+            f.write("\n")
+
     with open("rech_0.ref.tpl", 'w') as f:
         f.write("ptf ~\n")
         for i in range(m.nrow):
@@ -696,8 +710,8 @@ def setup_pest_gr(make_porosity_tpl=True):
 
     r = par.loc[par.pargp == "r1", "parnme"]
     par.loc[r, "parval1"] = 0.00009
-    par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.1
-    par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.9
+    par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.2
+    par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.8
 
     # set some parameter attribs
     pst.pestpp_options["lambda_scale_fac"] = 1.0
