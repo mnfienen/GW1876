@@ -919,6 +919,11 @@ def build_prior_gr():
     return cov_gr
 
 
+def plot_model(working_dir):
+    os.chdir(working_dir)
+    # setup hk pilot point parameters
+    m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
+    hdobj = 
 if __name__ == "__main__":
     #setup_pest_un_bareass()
     #setup_pest_pp()
