@@ -921,7 +921,7 @@ def build_prior_gr():
     return cov_gr
 
 
-def plot_model(working_dir):
+def plot_model(working_dir, pst_name):
 
     '''
 
@@ -933,7 +933,7 @@ def plot_model(working_dir):
     m = flopy.modflow.Modflow.load(MODEL_NAM, check=False)
 
     hdsobj = flopy.utils.binaryfile.HeadFile(MODEL_NAM.replace('.nam', '.hds'))
-    fig = plt.figure(figsize=(6, 6))
+    fig = plt.figure(figsize=(8,8))
     ax = plt.subplot(121, aspect="equal")
     m.upw.hk.plot(axes=[ax], colorbar="K m/d", alpha=0.3)
     m.wel.stress_period_data.plot(axes=[ax])
@@ -941,7 +941,7 @@ def plot_model(working_dir):
 
 
     # plot obs locations
-    obspst = pyemu.Pst('freyberg_un.pst').observation_data
+    obspst = pyemu.Pst(pst_name).observation_data
     inobs = obspst.loc[obspst.obgnme == 'calhead']
 
     obs = [re.findall('\d+', i)for i in inobs.obsnme]
