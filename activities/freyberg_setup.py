@@ -1,10 +1,12 @@
 import os
+import re
 import sys
 import shutil
 import platform
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle as rect
 import flopy
 import pyemu
 
@@ -918,6 +920,81 @@ def build_prior_gr():
     cov_gr = pyemu.helpers.geostatistical_prior_builder(pst_gr,struct_dict={gs:hk_par},sigma_range=6)
     return cov_gr
 
+
+def plot_model(working_dir, pst_name):
+
+    '''
+
+    plot up the main characteristics of the model
+    '''
+    cwd = os.getcwd()
+    os.chdir(working_dir)
+    # setup hk pilot point parameters
+    m = flopy.modflow.Modflow.load(MODEL_NAM, check=False)
+
+    hdsobj = flopy.utils.binaryfile.HeadFile(MODEL_NAM.replace('.nam', '.hds'))
+    fig = plt.figure(figsize=(8,8))
+    ax = plt.subplot(121, aspect="equal")
+    m.upw.hk.plot(axes=[ax], colorbar="K m/d", alpha=0.3)
+    m.wel.stress_period_data.plot(axes=[ax])
+    m.sfr.stress_period_data.plot(axes=[ax])
+
+
+    # plot obs locations
+    obspst = pyemu.Pst(pst_name).observation_data
+    inobs = obspst.loc[obspst.obgnme == 'calhead']
+
+    obs = [re.findall('\d+', i)for i in inobs.obsnme]
+    obs_r, obs_c = [], []
+    for i in obs:
+        obs_r.append(int(i[1])), obs_c.append(int(i[2]))
+    obs_x = [m.sr.xcentergrid[r - 1, c - 1] for r, c in zip(obs_r, obs_c)]
+    obs_y = [m.sr.ycentergrid[r - 1, c - 1] for r, c in zip(obs_r, obs_c)]
+    ax.scatter(obs_x, obs_y, marker='.', label="obs")
+
+    # plot names on the pumping well locations
+    wel_data = m.wel.stress_period_data[0]
+    wel_x = m.sr.xcentergrid[wel_data["i"], wel_data["j"]]
+    wel_y = m.sr.ycentergrid[wel_data["i"], wel_data["j"]]
+    for i, (x, y) in enumerate(zip(wel_x, wel_y)):
+        ax.text(x, y, "{0}".format(i + 1), ha="center", va="center")
+
+    ax.set_ylabel("y")
+    ax.set_xlabel("x")
+
+    #ax.add_patch(rect((0, 0), 0, 0, label="well", ec="none", fc="r"))
+    #ax.add_patch(rect((0, 0), 0, 0, label="river", ec="none", fc="g"))
+
+    #ax.legend(bbox_to_anchor=(1.5, 1.0), frameon=False)
+
+    ax = plt.subplot(122, aspect="equal")
+    m.wel.stress_period_data.plot(axes=[ax])
+    m.sfr.stress_period_data.plot(axes=[ax])
+    hds = hdsobj.get_data(kstpkper=(0, 0))
+    ib = m.bas6.ibound.array
+    hds[ib != 1] = np.nan
+    minh = np.nanmin(hds[0,:,:])
+    maxh = np.nanmax(hds[0,:,:])
+    modelmap = flopy.plot.ModelMap(model=m, sr=m.dis.sr)
+    quadmesh = modelmap.plot_ibound()
+    linecollection = modelmap.plot_grid(alpha=.5)
+
+    contours = modelmap.contour_array(hds[0,:,:], linewidths=1.5, levels=np.linspace(minh,maxh,25))
+    cb = plt.colorbar(contours, shrink=0.5)
+
+    # load the pathline data
+    # construct maximum travel time to plot (200 years - MODFLOW time unit is seconds)
+    travel_time_max = 200. * 365.25 * 24. * 60. * 60.
+    ctt = '<={}'.format(travel_time_max)
+    pthfile = 'freyberg.mppthln'
+    pthobj = flopy.utils.PathlineFile(pthfile)
+    plines = pthobj.get_alldata()
+    modelmap.plot_pathline(plines, layer='all', colors='red', linewidths=2, travel_time=ctt);
+
+    ax.set_ylabel("y")
+    ax.set_xlabel("x")
+    plt.tight_layout()
+    os.chdir(cwd)
 
 if __name__ == "__main__":
     #setup_pest_un_bareass()
