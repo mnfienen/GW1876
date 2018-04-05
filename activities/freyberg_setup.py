@@ -706,12 +706,22 @@ def setup_pest_gr(make_porosity_tpl=True):
     par = pst.parameter_data
     rarr = np.loadtxt("rech_0.ref")
     r = par.loc[par.pargp=="r0","parnme"]
-    par.loc[r,"parval1"] = np.round(rarr.mean(),decimals=5)
+    par.loc[r,"parval1"] = 1.4e-4
     par.loc[r,"parubnd"] = par.loc[r,"parval1"] * 1.1
     par.loc[r,"parlbnd"] = par.loc[r,"parval1"] * 0.9
 
     r = par.loc[par.pargp == "r1", "parnme"]
-    par.loc[r, "parval1"] = 0.00009
+    par.loc[r, "parval1"] = 1.4e-4
+    par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.2
+    par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.8
+
+    r = par.loc[par.pargp == "ss", "parnme"]
+    par.loc[r, "parval1"] = 1.4e-4
+    par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.2
+    par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.8
+
+    r = par.loc[par.pargp == "sy", "parnme"]
+    par.loc[r, "parval1"] = 0.25
     par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.2
     par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.8
 
