@@ -627,7 +627,7 @@ def setup_pest_zn(make_porosity_tpl=True):
     
     os.chdir("..")
 
-def setup_pest_gr(make_porosity_tpl=True):
+def setup_pest_gr(make_porosity_tpl=False):
     setup_model(WORKING_DIR_GR)
     os.chdir(WORKING_DIR_GR)
 
@@ -668,12 +668,28 @@ def setup_pest_gr(make_porosity_tpl=True):
                 f.write(" ~  r1_i{0:02d}_j{1:02d}   ~".format(i, j))
             f.write("\n")
 
-        with open("rech_2.ref.tpl", 'w') as f:
-            f.write("ptf ~\n")
-            for i in range(m.nrow):
-                for j in range(m.ncol):
-                    f.write(" ~  r1_i{0:02d}_j{1:02d}   ~".format(i, j))
-                f.write("\n")
+    with open("rech_2.ref.tpl", 'w') as f:
+        f.write("ptf ~\n")
+        for i in range(m.nrow):
+            for j in range(m.ncol):
+                f.write(" ~  r1_i{0:02d}_j{1:02d}   ~".format(i, j))
+            f.write("\n")
+
+    lines = open("freyberg.mpbas",'r').readlines()
+    pr_file = "prsity.ref"
+    with open("freyberg.mpbas",'w') as f:
+        for line in lines:
+            if "constant" in line.lower():
+                f.write("open/close {0} 1.0 (FREE)\n".format(pr_file))
+            else:
+                f.write(line)
+    with open("{0}.tpl".format(pr_file), 'w') as f:
+        f.write("ptf ~\n")
+        for i in range(m.nrow):
+            for j in range(m.ncol):
+                f.write(" ~  pr_i{0:02d}_j{1:02d}   ~".format(i, j))
+            f.write("\n")
+     
 
     # setup wel parameters - history and future
     wel_fmt = {"l":lambda x: '{0:10.0f}'.format(x)}
@@ -725,6 +741,11 @@ def setup_pest_gr(make_porosity_tpl=True):
     par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.2
     par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.8
 
+    r = par.loc[par.pargp == "pr", "parnme"]
+    par.loc[r, "parval1"] = 0.1
+    par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.2
+    par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.8
+
     # set some parameter attribs
     pst.pestpp_options["lambda_scale_fac"] = 1.0
     pst.pestpp_options["upgrade_augment"] = "false"
@@ -741,7 +762,7 @@ def setup_pest_gr(make_porosity_tpl=True):
     #pyemu.helpers.first_order_pearson_tikhonov(pst,cov)
 
     # zero order Tikhonov
-    pyemu.helpers.zero_order_tikhonov(pst)
+    #pyemu.helpers.zero_order_tikhonov(pst)
 
     pst.write(PST_NAME_GR.replace(".pst",".init.pst"))
 
