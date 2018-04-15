@@ -731,7 +731,7 @@ def setup_pest_gr(make_porosity_tpl=True):
     pst.pestpp_options["lambdas"] = "0.1,1.0,10.0"
     
     pst.model_command = ["python forward_run.py"]
-    pst.control_data.pestmode = "regularization"
+    pst.control_data.pestmode = "estimation"
     pst.pestpp_options["n_iter_base"] = -1
     pst.pestpp_options["n_iter_super"] = 3
     pst.control_data.noptmax = 0

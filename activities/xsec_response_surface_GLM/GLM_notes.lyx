@@ -189,7 +189,7 @@ Residuals are defined then as
 The sum of squared errors is
 \begin_inset Formula 
 \[
-\mathbf{\epsilon}^{T}\mathbf{\epsilon=}\left(\mathbf{y}\mathbf{-}X\beta\right)^{T}\left(\mathbf{y}\mathbf{\mathbf{-}}X\beta\right)
+\mathbf{\epsilon}^{T}\mathbf{\epsilon=}\left(\mathbf{y}\mathbf{-}\mathbf{X}\beta\right)^{T}\left(\mathbf{y}\mathbf{\mathbf{-}}\mathbf{X}\beta\right)
 \]
 
 \end_inset
@@ -206,7 +206,7 @@ So, like with any function, if we want to find the parameters that minimize
  and set it to zero
 \begin_inset Formula 
 \[
-\frac{\partial\mathbf{\epsilon}^{T}\mathbf{\epsilon}}{\partial\mathbf{\beta}^{T}}=\left(\mathbf{y}\mathbf{-}X\beta\right)^{T}\left(\mathbf{y\mathbf{-}}X\beta\right)=0
+\frac{\partial\mathbf{\epsilon}^{T}\mathbf{\epsilon}}{\partial\mathbf{\beta}^{T}}=\left(\mathbf{y}\mathbf{-}\mathbf{X}\beta\right)^{T}\left(\mathbf{y\mathbf{-}}\mathbf{X}\beta\right)=0
 \]
 
 \end_inset
@@ -218,7 +218,7 @@ So, like with any function, if we want to find the parameters that minimize
 multiplying out the terms
 \begin_inset Formula 
 \[
-\left(\mathbf{y}\mathbf{-}X\beta\right)^{T}\left(\mathbf{y}\mathbf{-}X\beta\right)
+\left(\mathbf{y}\mathbf{-}\mathbf{X}\beta\right)^{T}\left(\mathbf{y}\mathbf{-}\mathbf{X}\beta\right)
 \]
 
 \end_inset
@@ -369,7 +369,7 @@ However, this also puts signficant faith in each observation used.
  This gets incorporated into the sum of squared errors formulation, replacing
 \begin_inset Formula 
 \[
-\mathbf{\epsilon}^{T}\mathbf{\epsilon=}\left(\mathbf{y}\mathbf{-}X\beta\right)^{T}\left(\mathbf{y}\mathbf{\mathbf{-}}X\beta\right)
+\mathbf{\epsilon}^{T}\mathbf{\epsilon=}\left(\mathbf{y}\mathbf{-}\mathbf{X}\beta\right)^{T}\left(\mathbf{y}\mathbf{\mathbf{-}}\mathbf{X}\beta\right)
 \]
 
 \end_inset
@@ -381,7 +381,7 @@ However, this also puts signficant faith in each observation used.
 with 
 \begin_inset Formula 
 \[
-\mathbf{\Phi=}\left(\mathbf{y}\mathbf{-}X\beta\right)^{T}\mathbf{Q}\left(\mathbf{y}\mathbf{\mathbf{-}}X\beta\right)
+\mathbf{\Phi=}\left(\mathbf{y}\mathbf{-}\mathbf{X}\beta\right)^{T}\mathbf{Q}\left(\mathbf{y}\mathbf{\mathbf{\mathbf{-}}X}\beta\right)
 \]
 
 \end_inset
@@ -753,6 +753,14 @@ In practice,
 \end_inset
 
  the most.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{cc}
+ss & \Phi=\left(\mathbf{y}-\mathbf{Jx}\right)^{T}\mathbf{Q}^{-1}\left(\mathbf{y}-\mathbf{Jx}\right)\end{array}$
+\end_inset
+
+
 \end_layout
 
 \end_body

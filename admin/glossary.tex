@@ -9,21 +9,43 @@
 \maketitle
 
 \begin{description}
-\item [Parameters] Variable input values for models, typically representing system properties and forcings. Values to be estimated in the history matching process
-\item [Observation] Measured system state values. These values are used to compare with model outputs collocated in space and time. The term is often used to mean \emph{both} field measurements and outputs from the model. 
+\item [Parameters] Variable input values for models, typically representing system properties and forcings. Values to be estimated in the history matching process. Typically identified as $k$, $p$, or $x$ ($\mathbf{k}$, $\mathbf{p}$ or $\mathbf{x}$ for multiple parameters in a vector).
+\item [Observation] Measured system state values. These values are used to compare with model outputs collocated in space and time. The term is often used to mean \emph{both} field measurements and outputs from the model. When referring to a measured value, observations are typically identified by the variables $y$ or $o$  ($\mathbf{y}$ or $\mathbf{o}$ for multiple parameters in a vector)
+\item [Modeled Equivalent] A modeled value collocated in time and space with an observation. There are various ways to identify a single or multiple modeled equivalent values (and, to make things confusing, they are often \emph{also} called ``observations"!)  \newline{}
+\textbf{Single values} 
+\begin{enumerate}
+\item $f\left(x\right)$
+\item $X\left(\beta\right)$
+\item $M\left(p\right)$
+\end{enumerate}
+\textbf{Multiple values}
+\begin{enumerate}
+\item $\mathbf{X}\beta$
+\item $\mathbf{M}\mathbf{p}$
+\end{enumerate}
 \item [Forecasts] Model outputs for which field observations are not available. Typically these values are simulated under an uncertain future condition.
-\item [Phi]
-\item [Residuals]
+\item [Phi] Objective function, defined as the weighted sum of squares of residuals. Phi (aka $\mathbf{\Phi}$) is typically calculated as
+\begin{equation}
+\begin{array}{ccc}
+ \Phi=\sum_{i=1}^{n}\left(\frac{y_{i}-f\left(x_{i}\right)}{w_{i}}\right)^{2} & or & \Phi=\left(\mathbf{y}-\mathbf{Jx}\right)^{T}\mathbf{Q}^{-1}\left(\mathbf{y}-\mathbf{Jx}\right)
+ \end{array}
+\end{equation}
+\item [Residuals] The difference between observation values and modeled equivalents $r_i=y_i-f\left(x_i\right)$
+\item [Sensitivity]
+\item [Jacobian Matrix]
 \item [FOSM]
 \item [Gaussian (multivariate)]
+\item [Weight] 
 \item [Weight Covariance matrix (correlation matrix)]
 \item [Parametric uncertainty]
 \item [Measurement noise]
 \item [Structural (model) error]
 \item [Monte Carlo Ensemble]
-\item [Posterior (multivariate distro)]
-\item [Prior (multivariate distro)]
-\item [Likelihood (multivariate distro)] 
+\item [Bayes' Theorem]
+\item [Posterior (multivariate distribution)]
+\item [Schur Complement]
+\item [Prior (multivariate distribution)]
+\item [Likelihood (multivariate distribution)] 
 
 \end{description}
 
