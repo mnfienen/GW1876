@@ -242,7 +242,7 @@ note that
 \begin_inset Formula $\mathbf{\beta}^{T}\mathbf{X}^{T}\mathbf{y}$
 \end_inset
 
- and
+ and 
 \begin_inset Formula $\mathbf{y}^{T}\mathbf{X\beta}$
 \end_inset
 
