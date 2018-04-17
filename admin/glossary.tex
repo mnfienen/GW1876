@@ -22,6 +22,9 @@
 \begin{enumerate}
 \item $\mathbf{X}\beta$
 \item $\mathbf{M}\mathbf{p}$
+\item $\mathbf{NOBS}$ Number of observations/simulated equivalents in the inverse model setup
+\item $\mathbf{NPAR}$ Number of adjustable input parameters in the inverse model setup
+
 \end{enumerate}
 \item [Forecasts] Model outputs for which field observations are not available. Typically these values are simulated under an uncertain future condition.
 \item [Phi] Objective function, defined as the weighted sum of squares of residuals. Phi (aka $\mathbf{\Phi}$) is typically calculated as
@@ -31,8 +34,10 @@
  \end{array}
 \end{equation}
 \item [Residuals] The difference between observation values and modeled equivalents $r_i=y_i-f\left(x_i\right)$
-\item [Sensitivity]
-\item [Jacobian Matrix]
+\item [Sensitivity] The incremental change of an observation (modeled equivalent, actually) due to an incremental change in a parameter. Typically expressed as a finite-difference approximation of a partial derivative: $\frac{\partial y}{\partial x}$
+\item [Jacobian Matrix] A matrix of the sensitivity of all observations in an inverse model to all parameters. This is often shown as a matrix by various names $\mathbf{X}$, $\mathbf{J}$, or $\mathbf{H}$. Each element of the matrix is a single sensitivity value  $\frac{\partial y_i}{\partial x_j}$ for $i\in NOBS$, $j \in NPAR$
+\item [Regularization] A preferred condition pertaining to parameters, the deviation from which, elicits a penalty added to the objective function. This serves as a balance 
+\item [PHIMLIM] A PEST input parameter the governs the strength with which regularization is applied to the objective function. I high value of PHIMLIM indicates a strong penalty for deviation from preferred parameter conditions as 
 \item [FOSM]
 \item [Gaussian (multivariate)]
 \item [Weight] 

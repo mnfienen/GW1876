@@ -48,7 +48,7 @@ def plot_truth(xplot,x,y_data, poly_func):
     plt.plot(xplot, poly_func(xplot), '-.', lw=2)
     plt.plot(x,y_data,'o')
     plt.legend(('True y', 'Noisy y'), loc='best')
-    plt.grid('on')
+    plt.grid()
     plt.show()
 
 def plot_best_fit(x, poly_func, func_fit_best, y_data, offset=0.25):
@@ -56,7 +56,7 @@ def plot_best_fit(x, poly_func, func_fit_best, y_data, offset=0.25):
     xfitlox = np.linspace(x[0] - offset, x[-1] + offset, 100)
     plt.plot(xfitlox, poly_func(xfitlox), '-.', lw=2)
     plt.plot(x, y_data, 'o')
-    plt.grid('on')
+    plt.grid()
     plt.plot(xfitlox, func_fit_best(xfitlox), 'r-', lw=2)
     plt.legend(('True y', 'Noisy y', 'y_fit'), loc='best')
     plt.show()
@@ -103,7 +103,7 @@ def plot_prediction(x, y_data, poly_func, func_fit_best):
     plt.plot(x_pred,func_fit_best(x_pred), 'x')
     plt.title('SSE data = {0:.3f} SSE pred = {1:.3f}'.format(datafit,predfit))
     plt.legend(('True y', 'Noisy y', 'y_fit', 'y_pred_true', 'y_pred_fit'), loc='best')
-    plt.grid('on')
+    plt.grid()
 
     for i in range(best_degree):
         y_fit_pars = np.polyfit(x,y_data,i+1)
@@ -153,10 +153,10 @@ def surface_sse(a, b, A, B, SSE_AB):
 def plot_jacobian(sol):
     fig, ax = fig, (ax0, ax1) = plt.subplots(nrows=2)
     ax0.plot(sol.jac[:, 0], '.-')
-    ax0.grid('on')
+    ax0.grid()
     ax0.set_title('Jacobian for parameter a')
     ax1.plot(sol.jac[:, 1], '.-')
-    plt.grid('on')
+    plt.grid()
     ax1.set_title('Jacobian for parameter b')
     ax1.set_xlabel('Observation Number')
     plt.tight_layout()
@@ -196,7 +196,7 @@ def plot_poly(cdegree, y_fit_pars_best, poly_func, x, x_pred,x_predlocations, y_
 
     plt.plot(x_pred, poly_func(x_pred), 'o', markerfacecolor='w')
     plt.title('Free Scale')
-    plt.grid('on')
+    plt.grid()
 
     #
     ax = fig.add_subplot(122)
@@ -213,7 +213,7 @@ def plot_poly(cdegree, y_fit_pars_best, poly_func, x, x_pred,x_predlocations, y_
     plt.plot(xplot_fine, func_fit(xplot_fine), 'k-')
 
     plt.plot(x_pred, poly_func(x_pred), 'o', markerfacecolor='w')
-    plt.grid('on')
+    plt.grid()
     plt.title('Restricted Scale')
     plt.show()
 
