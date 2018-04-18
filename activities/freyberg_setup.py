@@ -10,6 +10,8 @@ from matplotlib.patches import Rectangle as rect
 import flopy
 import pyemu
 
+plt.rcParams['font.size']=10
+
 EXE_DIR = os.path.join("..","..","bin")
 WORKING_DIR_PP = 'freyberg_pp'
 WORKING_DIR_GR = "freyberg_gr"

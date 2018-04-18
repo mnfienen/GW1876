@@ -90,7 +90,7 @@ def plot_empirical_variogram(x,y,data, nbins=25):
     plt.scatter(h,gam)
     plt.xlabel('Separation Distance')
     plt.ylabel('Empirical Variogram')
-    plt.grid('on')
+    plt.grid()
     return h, gam, ax
 
 # scatter plotter for nice-looking plots
