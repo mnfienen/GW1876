@@ -587,7 +587,7 @@ def write_sfr_template(onepar=True):
             f_tpl.write(f_sfr.readline())
             for i in range(nrch):
                 line = f_sfr.readline()
-                print(line)
+                #print(line)
                 f_tpl.write(line)
                 if onepar:
                     pname = "sfr"
@@ -595,8 +595,8 @@ def write_sfr_template(onepar=True):
                     pname = "sfr_{0}".format(i)
                 line1 = f_sfr.readline().strip().split()
                 line2 = f_sfr.readline().strip().split()
-                print(line1)
-                print(line2)
+                #print(line1)
+                #print(line2)
                 line1[0] = "~     {0}   ~".format(pname)
                 line2[0] = "~     {0}   ~".format(pname)
                 line1 = ' '.join(line1) + '\n'
