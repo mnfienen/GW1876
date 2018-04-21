@@ -14,7 +14,9 @@ It would be really nice if a totally consistent set of symbols was used in the m
 First of all, though, one thing that is consistent (mostly!) is the general linear algebra notation used throughout the class.
 \begin{description}
 \item[scalar values] Lowercase, non-bold font indicates a scalar (single) value: $x$, $y$, $z$
-\item[vectors] lkjh
+\item[vectors] Lowercase, bold font indicates a vector of values: $\mathbf{x}$, $\mathbf{y}$, $\mathbf{z}$ 
+\item[matrices] Uppercase, bold font indicates a matrix of values: $\mathbf{X}$, $\mathbf{Q}$, $\mathbf{J}$ A matrix with $<\cdot>^{T}$ indicates a matrix transpose. A matrix with $<\cdot>^{-1}$ indicates a matrix inverse.
+\item[matrix multiplication] Then, matrix multiplication (with either other matrices or vectors) is expressed simply by adjacent matrices: $\mathbf{Xy}$, $\mathbf{X}^T\mathbf{Q}^{-1}\mathbf{X}$
 \end{description}
 \section*{Glossary of terms and equations}
 \begin{description}
@@ -36,7 +38,7 @@ First of all, though, one thing that is consistent (mostly!) is the general line
 
 \end{enumerate}
 \item [Forecasts] Model outputs for which field observations are not available. Typically these values are simulated under an uncertain future condition.
-\item [Phi] Objective function, defined as the weighted sum of squares of residuals. Phi (aka $\mathbf{\Phi}$) is typically calculated as
+\item [Phi] Objective function, defined as the weighted sum of squares of residuals. Phi (aka $\Phi$) is typically calculated as
 \begin{equation}
 \begin{array}{ccc}
  \Phi=\sum_{i=1}^{n}\left(\frac{y_{i}-f\left(x_{i}\right)}{w_{i}}\right)^{2} & or & \Phi=\left(\mathbf{y}-\mathbf{Jx}\right)^{T}\mathbf{Q}^{-1}\left(\mathbf{y}-\mathbf{Jx}\right)
@@ -59,9 +61,9 @@ f(\mathbf{x} | \mathbf{\mu},\mathbf{\Sigma})=\frac{1}{\sqrt{(2\pi)^k\left|\mathb
 \end{equation}
 where $\mu$ is a $k$-length vector of mean values, $\mathbf{\Sigma}$ is the covariance matrix, and $\left|\mathbf{\Sigma}\right|$ is the determinant of the covariance matrix
 \item [Weight] A value which a residual is divided by when constructing the sum of squared residuals. In principal, $w\approx\frac{1}{\sigma}$ where $\sigma$ is an approximation of the expected error between model output and collocated observation values. While the symbol $\sigma$ implies a standard deviation, it is important to note that measurement error only makes up a portion of this error. Other aspects such as structural error (e.g. inadequacy inherent in all models to perfectly simulate the natural world) also contribute to this expected level of error.
-\item [Weight Covariance matrix (correlation matrix)]
-\item [Parametric uncertainty]
-\item [Measurement noise]
+\item [Weight Covariance matrix (correlation matrix)] In practice, this is usually a $NOBS\times NOBS$ diagonal matrix with values of weights on the diagonal representing the inverse of the observation covariance. This implies a lack of correlation among the observations. A full covariance matrix would indicate correlation among the observations which, in reality, is present but, in practice, is rarely characterized. The weight matrix is often identified as $\mathbf{R}^{-1}$ or $\mathbf{\Sigma_\epsilon}^{-1}$
+\item [Parameter Covariance matrix] The uncertainty of parameters can be expressed as a matrix as well. This is formed also as a diagonal matrix from the bounds around parameter values (assuming that the range between the bounds indicates $4\sigma$ (e.g. 95\% of a normal distribution). In \texttt{pyemu}, some functions accept a \texttt{sigma\_range} argument which can override the $4\sigma$ assumption. In many cases of our applications, parameters are spatially distributed (e.g. hydraulic conductivity fields) so a 
+\item [Measurement noise/error]
 \item [Structural (model) error]
 \item [Monte Carlo Ensemble]
 \item [Bayes' Theorem]
