@@ -293,6 +293,12 @@ def _get_base_pst(m, make_porosity_tpl=True):
         par.loc['porosity', "parubnd"] = 0.02
         par.loc['porosity', "parlbnd"] = 0.005
 
+
+    sfr_pars = par.loc[par.parnme.apply(lambda x: x.startswith("sfr")),"parnme"]
+    par.loc[sfr_pars,"parval1"] = 0.1
+    par.loc[sfr_pars,"parubnd"] = 10.0
+    par.loc[sfr_pars,"parlbnd"] = 0.1
+
     hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
     par.loc[hk_names,"parval1"] = 5.0
     par.loc[hk_names,"parlbnd"] = 0.5
@@ -561,6 +567,51 @@ def setup_pest_kr(make_porosity_tpl=True):
     
     os.chdir("..")
 
+
+def write_sfr_template(onepar=True):
+    sfr_file = "freyberg.sfr"
+    tpl_file = sfr_file+".tpl"
+    f_tpl = open(tpl_file,'w')
+    f_sfr = open(sfr_file,'r')
+    f_tpl.write('ptf ~\n')
+
+    while True:
+        line = f_sfr.readline()
+        if line == '':
+            break
+        f_tpl.write(line)
+        if not line.startswith("#"):
+            nrch = abs(int(line.split()[0]))
+            for i in range(nrch):
+                f_tpl.write(f_sfr.readline())
+            f_tpl.write(f_sfr.readline())
+            for i in range(nrch):
+                line = f_sfr.readline()
+                print(line)
+                f_tpl.write(line)
+                if onepar:
+                    pname = "sfr"
+                else:
+                    pname = "sfr_{0}".format(i)
+                line1 = f_sfr.readline().strip().split()
+                line2 = f_sfr.readline().strip().split()
+                print(line1)
+                print(line2)
+                line1[0] = "~     {0}   ~".format(pname)
+                line2[0] = "~     {0}   ~".format(pname)
+                line1 = ' '.join(line1) + '\n'
+                line2 = ' '.join(line2) + '\n'
+                f_tpl.write(line1)
+                f_tpl.write(line2)
+            while True:
+                line = f_sfr.readline()
+                if line == '':
+                    f_tpl.close()
+                    f_sfr.close()
+                    return
+                f_tpl.write(line)
+
+
 def setup_pest_zn(make_porosity_tpl=True):
     setup_model(WORKING_DIR_ZN)
     os.chdir(WORKING_DIR_ZN)
@@ -592,6 +643,8 @@ def setup_pest_zn(make_porosity_tpl=True):
     f_in.close()
     f_tpl.close()
 
+
+    write_sfr_template()
     pst = _get_base_pst(m, make_porosity_tpl)
 
     
@@ -632,6 +685,8 @@ def setup_pest_zn(make_porosity_tpl=True):
 def setup_pest_gr(make_porosity_tpl=False):
     setup_model(WORKING_DIR_GR)
     os.chdir(WORKING_DIR_GR)
+
+    write_sfr_template(onepar=False)
 
     # setup hk pilot point parameters
     m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
@@ -809,6 +864,9 @@ def setup_pest_gr(make_porosity_tpl=False):
 def setup_pest_pp(make_porosity_tpl=True):
     setup_model(WORKING_DIR_PP)
     os.chdir(WORKING_DIR_PP)
+
+    write_sfr_template(onepar=True)
+
     # setup hk pilot point parameters
     m = flopy.modflow.Modflow.load(MODEL_NAM,check=False)
     pp_space = 4
