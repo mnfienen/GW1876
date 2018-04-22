@@ -2,6 +2,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
 \usepackage{geometry}
+\usepackage{amsmath}
 \geometry{verbose,tmargin=1.5cm,bmargin=1.5cm,lmargin=1.5cm,rmargin=1.5cm}
 
 \begin{document}
@@ -20,9 +21,9 @@ First of all, though, one thing that is consistent (mostly!) is the general line
 \end{description}
 \section*{Glossary of terms and equations}
 \begin{description}
-\item [Parameters] Variable input values for models, typically representing system properties and forcings. Values to be estimated in the history matching process. Typically identified as $k$, $p$, or $x$ ($\mathbf{k}$, $\mathbf{p}$ or $\mathbf{x}$ for multiple parameters in a vector).
+\item [Parameters] Variable input values for models, typically representing system properties and forcings. Values to be estimated in the history matching process. Typically identified as $k$, $p$, or $x$, $\theta$, ($\mathbf{k}$, $\mathbf{p}$, $\boldsymbol{\theta}$ or $\mathbf{x}$ for multiple parameters in a vector).
 \item [Observation] Measured system state values. These values are used to compare with model outputs collocated in space and time. The term is often used to mean \emph{both} field measurements and outputs from the model. When referring to a measured value, observations are typically identified by the variables $y$ or $o$  ($\mathbf{y}$ or $\mathbf{o}$ for multiple parameters in a vector)
-\item [Modeled Equivalent] A modeled value collocated in time and space with an observation. There are various ways to identify a single or multiple modeled equivalent values (and, to make things confusing, they are often \emph{also} called ``observations"!)  \newline{}
+\item [Modeled Equivalent (aka Simulated Equivalent)] A modeled value collocated in time and space with an observation. There are various ways to identify a single or multiple modeled equivalent values (and, to make things confusing, they are often \emph{also} called ``observations''!)  \newline{}
 \textbf{Single values} 
 \begin{enumerate}
 \item $f\left(x\right)$
@@ -33,8 +34,8 @@ First of all, though, one thing that is consistent (mostly!) is the general line
 \begin{enumerate}
 \item $\mathbf{X}\beta$
 \item $\mathbf{M}\mathbf{p}$
-\item $\mathbf{NOBS}$ Number of observations/simulated equivalents in the inverse model setup
-\item $\mathbf{NPAR}$ Number of adjustable input parameters in the inverse model setup
+\item ${NOBS}$ Number of observations/simulated equivalents in the inverse model setup
+\item ${NPAR}$ Number of adjustable input parameters in the inverse model setup
 
 \end{enumerate}
 \item [Forecasts] Model outputs for which field observations are not available. Typically these values are simulated under an uncertain future condition.
@@ -44,12 +45,17 @@ First of all, though, one thing that is consistent (mostly!) is the general line
  \Phi=\sum_{i=1}^{n}\left(\frac{y_{i}-f\left(x_{i}\right)}{w_{i}}\right)^{2} & or & \Phi=\left(\mathbf{y}-\mathbf{Jx}\right)^{T}\mathbf{Q}^{-1}\left(\mathbf{y}-\mathbf{Jx}\right)
  \end{array}
 \end{equation}
+
+When regularization is included, an additional term is added, quantifying a penalty assessed for parameter sets that violate the preferred conditions regarding the parameter values. In such a case, the value of $\Phi$ as stated above is renamed $\Phi_m$ for ``measurement PHI'' and the additional regularization term is named $\Phi_r$. A scalar ($\gamma$) parameter controls the tradeoff between these two dual components of the total objective function $\Phi_t$
+\begin{equation}
+\Phi_t = \Phi_m + \gamma \Phi_r
+\end{equation}
+
 \item [Residuals] The difference between observation values and modeled equivalents $r_i=y_i-f\left(x_i\right)$
 \item [Sensitivity] The incremental change of an observation (modeled equivalent, actually) due to an incremental change in a parameter. Typically expressed as a finite-difference approximation of a partial derivative: $\frac{\partial y}{\partial x}$
 \item [Jacobian Matrix] A matrix of the sensitivity of all observations in an inverse model to all parameters. This is often shown as a matrix by various names $\mathbf{X}$, $\mathbf{J}$, or $\mathbf{H}$. Each element of the matrix is a single sensitivity value  $\frac{\partial y_i}{\partial x_j}$ for $i\in NOBS$, $j \in NPAR$
-\item [Regularization] A preferred condition pertaining to parameters, the deviation from which, elicits a penalty added to the objective function. This serves as a balance between the level of fit or ``measurement Phi"  $(\mathbf{\Phi_M})$ and the coherence with soft knowledge/previous conditions/prior knowledge/regularization $(\mathbf{\Phi_R})$. These terms can also be interpreted as the likelihood function and prior distribution in Bayes' theorem (see below) 
-\item [PHIMLIM] A PEST input parameter the governs the strength with which regularization is applied to the objective function. A high value of PHIMLIM indicates a strong penalty for deviation from preferred parameter conditions while a low value of PHIMLIM indicates a weak penalty. The reason this ``dial" is listed as a function of PHIM (e.g. $\mathbf{\Phi_M}$) is because it can then be interpreted as a limit on how well we want to fit the observation data.
-\item [FOSM] \emph{fill this in}
+\item [Regularization] A preferred condition pertaining to parameters, the deviation from which, elicits a penalty added to the objective function. This serves as a balance between the level of fit or ``measurement Phi''  $(\mathbf{\Phi_M})$ and the coherence with soft knowledge/previous conditions/prior knowledge/regularization $(\mathbf{\Phi_R})$. These terms can also be interpreted as the likelihood function and prior distribution in Bayes' theorem (see below) 
+\item [PHIMLIM] A PEST input parameter the governs the strength with which regularization is applied to the objective function. A high value of PHIMLIM indicates a strong penalty for deviation from preferred parameter conditions while a low value of PHIMLIM indicates a weak penalty. The reason this ``dial'' is listed as a function of PHIM (e.g. $\mathbf{\Phi_M}$) is because it can then be interpreted as a limit on how well we want to fit the observation data. PHIMLIM is actually controlling the value $\gamma$ shown above formally trading off $\Phi_m$ asnd $\Phi_r$.
 \item [Gaussian (multivariate)] The equation for Gaussian (Normal) distribution for a single variable ($x$) is 
 \begin{equation}
 f(x|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}\frac{\left(x-\mu\right)^2}{\sigma^2}}
@@ -59,21 +65,28 @@ The equation for a multivariate Gaussian for a vector of $k$ variables ($\mathbf
 \begin{equation}
 f(\mathbf{x} | \mathbf{\mu},\mathbf{\Sigma})=\frac{1}{\sqrt{(2\pi)^k\left|\mathbf{\Sigma}\right|}}e^{-\frac{1}{2}\left( \left(\mathbf{x}-\mathbf{\mu} \right)^T  \mathbf{\Sigma}^{-1}\left(\mathbf{x}-\mathbf{\mu} \right)\right)}
 \end{equation}
-where $\mu$ is a $k$-length vector of mean values, $\mathbf{\Sigma}$ is the covariance matrix, and $\left|\mathbf{\Sigma}\right|$ is the determinant of the covariance matrix
+where $\mu$ is a $k$-length vector of mean values, $\mathbf{\Sigma}$ is the covariance matrix, and $\left|\mathbf{\Sigma}\right|$ is the determinant of the covariance matrix.  
+These quantities are often abbreviated as $\mathcal{N}\left( \mu, \sigma \right)$ and $\mathcal{N}\left(\boldsymbol{\mu}, \boldsymbol{\Sigma} \right)$ for univariate and multivariate Gaussian distributions, respectively.
 \item [Weight or Epistemic Uncertainty] A value by which a residual is divided by when constructing the sum of squared residuals. In principal, $w\approx\frac{1}{\sigma}$ where $\sigma$ is an approximation of the expected error between model output and collocated observation values. While the symbol $\sigma$ implies a standard deviation, it is important to note that measurement error only makes up a portion of this error. Other aspects such as structural error (e.g. inadequacy inherent in all models to perfectly simulate the natural world) also contribute to this expected level of error. The reciprocal of weights are also called Epistemic Uncertainty terms.
 \item [Weight Covariance matrix (correlation matrix)] In practice, this is usually a $NOBS\times NOBS$ diagonal matrix with values of weights on the diagonal representing the inverse of the observation covariance. This implies a lack of correlation among the observations. A full covariance matrix would indicate correlation among the observations which, in reality, is present but, in practice, is rarely characterized. The weight matrix is often identified as $\mathbf{Q}^{-1}$ or $\mathbf{\Sigma_\epsilon}^{-1}$
-\item [Parameter Covariance matrix] The uncertainty of parameters can be expressed as a matrix as well. This is formed also as a diagonal matrix from the bounds around parameter values (assuming that the range between the bounds indicates $4\sigma$ (e.g. 95\% of a normal distribution). In \texttt{pyemu}, some functions accept a \texttt{sigma\_range} argument which can override the $4\sigma$ assumption. In many cases of our applications, parameters are spatially distributed (e.g. hydraulic conductivity fields) so a covariance matrix with off-diagonal terms can be formed to characterize not only their variance but also their correlation/covariance. We often use geostatistical variograms to characterize the covariance of parameters. The parameter covariance matrix is often identified as $C(\mathbf{p})$, $\mathbf{\Sigma_\theta}$, or $\mathbf{R}$.
+\item [Parameter Covariance matrix] The uncertainty of parameters can be expressed as a matrix as well. This is formed also as a diagonal matrix from the bounds around parameter values (assuming that the range between the bounds indicates $4\sigma$ (e.g. 95\% of a normal distribution).) In \texttt{pyemu}, some functions accept a \texttt{sigma\_range} argument which can override the $4\sigma$ assumption. In many cases of our applications, parameters are spatially distributed (e.g. hydraulic conductivity fields) so a covariance matrix with off-diagonal terms can be formed to characterize not only their variance but also their correlation/covariance. We often use geostatistical variograms to characterize the covariance of parameters. The parameter covariance matrix is often identified as $C(\mathbf{p})$, $\mathbf{\Sigma_\theta}$, or $\mathbf{R}$.
 \item [Measurement noise/error] Measurement noise is a contribution to Epistemic Uncertainty. This is the expected error of repeated measurements due to things like instrument error and also can be compounded by error of surveying a datum, location of an observation on a map, and other factors. 
 \item [Structural (model) error] Epistemic uncertainty is actually dominated by structural error relative to measurement noise. The structural error is the expected misfit between measured and modeled values at observation locations due to model inadequacy (including everything from model simplification due to the necessity of discretizing the domain, processes that are missing from the model, etc.)
-\item [Monte Carlo Parameter Realization] 
-\item [Monte Carlo Observation Realization] 
-\item [Monte Carlo Ensemble] 
-\item [Bayes' Theorem]
-\item [Posterior (multivariate distribution)]
-\item [Schur Complement]
-\item [Prior (multivariate distribution)]
-\item [Likelihood (multivariate distribution)] 
+\item [Monte Carlo Parameter Realization] A set of parameter values, often but not required to be a multi-Gaussian distribution, sampled from the mean values of specified parameter values (either starting values or, in some cases, optimal values following parameter estimation) with covariance from a set of variance values, or a covariance matrix. Can be identified as $\mathbf{\theta}$ 
+\item [Monte Carlo Observation Realization] A set of observation values, often but not required to be a multi-Gaussian distribution, sampled using the mean values of measured observations and variance from the observation weight covariance matrix. Can be identified as $\boldsymbol{d_{obs}}$
 
+\item [Monte Carlo Ensemble] A group of realizations of parameters ($\mathbf{\Theta}$), observations ($\mathbf{D_{obs}}$) and the simulated equivalent values $\mathbf{D_{sim}}$. Note that these three matrices are made up of column vectors representing all of the $\boldsymbol{\theta}$, $\mathbf{d_{obs}}$, and  $\mathbf{d_{sim}}$ vectors where $\mathbf{d_{sim}}$ 
+
+\item [Bayes' Theorem] $P\left(\boldsymbol{\theta}|\boldsymbol{d}\right)=\frac{\mathcal{L}\left(\textbf{d}|\boldsymbol{\theta}\right) P\left(\boldsymbol{\theta}\right)}{P\left(\textbf{d}\right)}$ ... $\underbrace{P\left(\boldsymbol{\theta}|\textbf{d}\right)}_{\text{posterior pdf}} \propto \underbrace{\mathcal{L}\left(\boldsymbol{d}|\boldsymbol{\theta}\right) }_{\text{likelihood function}}\underbrace{P\left(\boldsymbol{\theta}\right)}_{\text{prior pdf}}$  \newline{} where $\boldsymbol{\theta}$ is a vector of parameters, and $\mathbf{d}$ is a vector of observations
+It is computationally expedient to assume that these quantities can be characterized by multivariate Gaussian distributions and, thus, characterized only by their first two moments --- mean and covariance.
+\item [Posterior (multivariate distribution)] The posterior distribution is the updated distribution (mean and covariance) of parameter values $\boldsymbol{\theta}$  updated from their prior by an experiment (encapsulated in the likelihood function). In other words, information gleaned from observations $\mathbf{d}$ is used to update the initial values of the parameters.
+\item [Prior (multivariate distribution)] This distribution represents what we know about parameter values prior to any modeling. It is also called ``soft knowledge'' or ``expert knowledge''. This information is more than just starting values, but also encapsulates the understanding of uncertainty (characterized through the covariance) based on direct estimation of parameters (e.g. pumping tests, geologic maps, and grain size analysis, for example). In one interpretation of the objective function, this is also where the regularization information is contained.
+\item [Likelihood (multivariate distribution)]  This is a function describing how much is learned from the model. It is characterized by the misfit between modeled equivalents and observations.
+\item [FOSM (aka linear uncertainty analysis)] ``First Order Second Moment'' is a technique to use an assumption of Gaussian distributions to, analytically, calculate the covariance of model outputs considering both the prior covariance and the likelihood function. In other words, it's an analytical calculation of the posterior covariance of parameters using Bayes' Theoerem. The equation for this calculation is the Schur Complement. The key advantage of this is that we really only need a few quantities --- a Jacobian Matrix $\mathbf{J}$, the prior covariance of parameters $\boldsymbol{\Sigma_\theta}$, and the observation covariance $\boldsymbol{\Sigma_\epsilon}$
+\item [Schur Complement] The formula used to propagate uncertainty from prior through a ``notional'' calibration (via the Jacobian) to the posterior update.
+\begin{equation}
+\underbrace{\overline{\boldsymbol{\Sigma}}_{\boldsymbol{\theta}}}_{\substack{\text{what we} \\ \text{know now}}} = \underbrace{\boldsymbol{\Sigma}_{\boldsymbol{\theta}}}_{\substack{\text{what we} \\ \text{knew}}} - \underbrace{\boldsymbol{\Sigma}_{\boldsymbol{\theta}}\bf{J}^T\left[\bf{J}\boldsymbol{\Sigma}_{\boldsymbol{\theta}}\bf{J}^T + \boldsymbol{\Sigma}_{\boldsymbol{\epsilon}}\right]^{-1}\bf{J}\boldsymbol{\Sigma}_{\boldsymbol{\theta}}}_{\text{what we learned}}
+\end{equation}
 \end{description}
 
 \end{document}
