@@ -2,6 +2,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
 \usepackage{geometry}
+\usepackage{amsmath}
 \geometry{verbose,tmargin=1.5cm,bmargin=1.5cm,lmargin=1.5cm,rmargin=1.5cm}
 
 \begin{document}
@@ -20,9 +21,9 @@ First of all, though, one thing that is consistent (mostly!) is the general line
 \end{description}
 \section*{Glossary of terms and equations}
 \begin{description}
-\item [Parameters] Variable input values for models, typically representing system properties and forcings. Values to be estimated in the history matching process. Typically identified as $k$, $p$, or $x$ ($\mathbf{k}$, $\mathbf{p}$ or $\mathbf{x}$ for multiple parameters in a vector).
+\item [Parameters] Variable input values for models, typically representing system properties and forcings. Values to be estimated in the history matching process. Typically identified as $k$, $p$, or $x$, $\theta$, ($\mathbf{k}$, $\mathbf{p}$, $\boldsymbol{\theta}$ or $\mathbf{x}$ for multiple parameters in a vector).
 \item [Observation] Measured system state values. These values are used to compare with model outputs collocated in space and time. The term is often used to mean \emph{both} field measurements and outputs from the model. When referring to a measured value, observations are typically identified by the variables $y$ or $o$  ($\mathbf{y}$ or $\mathbf{o}$ for multiple parameters in a vector)
-\item [Modeled Equivalent] A modeled value collocated in time and space with an observation. There are various ways to identify a single or multiple modeled equivalent values (and, to make things confusing, they are often \emph{also} called ``observations"!)  \newline{}
+\item [Modeled Equivalent (aka Simulated Equivalent)] A modeled value collocated in time and space with an observation. There are various ways to identify a single or multiple modeled equivalent values (and, to make things confusing, they are often \emph{also} called ``observations"!)  \newline{}
 \textbf{Single values} 
 \begin{enumerate}
 \item $f\left(x\right)$
@@ -65,10 +66,10 @@ where $\mu$ is a $k$-length vector of mean values, $\mathbf{\Sigma}$ is the cova
 \item [Parameter Covariance matrix] The uncertainty of parameters can be expressed as a matrix as well. This is formed also as a diagonal matrix from the bounds around parameter values (assuming that the range between the bounds indicates $4\sigma$ (e.g. 95\% of a normal distribution). In \texttt{pyemu}, some functions accept a \texttt{sigma\_range} argument which can override the $4\sigma$ assumption. In many cases of our applications, parameters are spatially distributed (e.g. hydraulic conductivity fields) so a covariance matrix with off-diagonal terms can be formed to characterize not only their variance but also their correlation/covariance. We often use geostatistical variograms to characterize the covariance of parameters. The parameter covariance matrix is often identified as $C(\mathbf{p})$, $\mathbf{\Sigma_\theta}$, or $\mathbf{R}$.
 \item [Measurement noise/error] Measurement noise is a contribution to Epistemic Uncertainty. This is the expected error of repeated measurements due to things like instrument error and also can be compounded by error of surveying a datum, location of an observation on a map, and other factors. 
 \item [Structural (model) error] Epistemic uncertainty is actually dominated by structural error relative to measurement noise. The structural error is the expected misfit between measured and modeled values at observation locations due to model inadequacy (including everything from model simplification due to the necessity of discretizing the domain, processes that are missing from the model, etc.)
-\item [Monte Carlo Parameter Realization] 
-\item [Monte Carlo Observation Realization] 
-\item [Monte Carlo Ensemble] 
-\item [Bayes' Theorem]
+\item [Monte Carlo Parameter Realization] A set of parameter values, often but not required to be a multi-Gaussian distribution, sampled from the mean values of specified parameter values (either starting values or, in some cases, optimal values following parameter estimation) with covariance from a set of variance values, or a covariance matrix. Can be identified as $\mathbf{\theta}$ 
+\item [Monte Carlo Observation Realization] A set of observation values, often but not required to be a multi-Gaussian distribution, sampled using the mean values of measured observations and variance from the observation weight covariance matrix. Can be identified as $\boldsymbol{d_{obs}}$
+\item [Monte Carlo Ensemble] A group of realizations of parameters ($\mathbf{\Theta}$), observations ($\mathbf{D_{obs}}$) and the simulated equivalent values $\mathbf{D_{sim}}$. Note that these three matrices are made up of column vectors representing all of the $\boldsymbol{\theta}$, $\mathbf{d_{obs}}$, and  $\mathbf{d_{sim}}$ vectors where $\mathbf{d_{sim}}$ 
+\item [Bayes' Theorem] $P\left(\boldsymbol{\theta}|\boldsymbol{D}\right)=\frac{P\left(\textbf{D}|\boldsymbol{\theta}\right) P\left(\boldsymbol{\theta}\right)}{P\left(\textbf{D}\right)}$ ... $\underbrace{P\left(\boldsymbol{\theta}|\textbf{D}\right)}_{\text{posterior pdf}} \propto \underbrace{P\left(\boldsymbol{D}|\boldsymbol{\theta}\right) }_{\text{likelihood function}}\underbrace{P\left(\boldsymbol{\theta}\right)}_{\text{prior pdf}$
 \item [Posterior (multivariate distribution)]
 \item [Schur Complement]
 \item [Prior (multivariate distribution)]
