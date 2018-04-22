@@ -84,8 +84,8 @@ def rerun_new_pars(hk=5.5, rch_0 = 1.0):
     newpst = pyemu.Pst(os.path.join(WORKING_DIR,'onerun.pst'))
     res = newpst.res
 
-    fig = plt.figure(figsize=(12,5))
-    ax1 = fig.add_subplot(131)
+    fig = plt.figure(figsize=(12,12))
+    ax1 = fig.add_subplot(221)
     cal = res.loc[res.group == 'calhead']
     plt.plot(cal.measured, cal.modelled, '.')
     minmin = np.min([cal.measured.min(),cal.modelled.min()])
@@ -96,23 +96,34 @@ def rerun_new_pars(hk=5.5, rch_0 = 1.0):
     plt.title('Calibration Head')
     ax1.set_aspect('equal')
 
-    ax2 = fig.add_subplot(132)
-    fore = res.loc[res.group == 'forehead']
-    plt.plot(fore.measured, fore.modelled, '.')
-    minmin = np.min([fore.measured.min(), fore.modelled.min()])
-    maxmax = np.max([fore.measured.max(), fore.modelled.max()])
-    plt.plot([minmin, maxmax],[minmin,maxmax], 'r')
-    plt.xlabel('measured')
-    plt.ylabel('modeled')
-    plt.title('Forecast Head')
-    ax2.set_aspect('equal')
+    ax2 = fig.add_subplot(222)
+    fore = res.loc[res.apply(lambda x: x.name.startswith("c00") and x.group=="forecast",axis=1)]
+    fore.loc[:,["measured","modelled"]].plot(kind="bar",ax=ax2)
+    ax2.set_title("head forecasts")
+    #plt.plot(fore.measured, fore.modelled, '.')
+    #minmin = np.min([fore.measured.min(), fore.modelled.min()])
+    #maxmax = np.max([fore.measured.max(), fore.modelled.max()])
+    #plt.plot([minmin, maxmax],[minmin,maxmax], 'r')
+    
+    #plt.xlabel('measured')
+    #plt.ylabel('modeled')
+    #plt.title('Forecast Head')
+    #ax2.set_aspect('equal')
+    fore_trav = res.loc[res.name == 'travel_time']
+    fore_flux = res.loc[res.name == 'fa_headwaters_0001']
+    
+    ax3 = fig.add_subplot(223)
+    res.loc[res.name == 'travel_time',['measured', 'modelled']].plot(kind='bar', ax=ax3, rot=45)
+    ax3.set_title('travel time forecasts')
 
-    ax3 = fig.add_subplot(133)
-    fore_trav = res.loc[res.group == 'foretrav']
-    fore_flux = res.loc[res.group == 'foreflux']
-    res_fore = res.loc[((res.group == 'foreflux') | (res.group == 'foretrav'))][
-        ['measured', 'modelled']].plot(kind='bar', ax=ax3, rot=45)
-    plt.title('Forecast Travel and Flux')
+    #res.loc[((res.name == 'fa_headwaters_0001') | 
+    ax4 = fig.add_subplot(224)
+    res.loc[res.name == 'fa_headwaters_0001',['measured', 'modelled']].plot(kind='bar', ax=ax4, rot=45)
+    ax4.set_title('sw-gw flux forecasts')
+
+
+
+
 
     plt.tight_layout()
 
