@@ -29,7 +29,6 @@ PST_NAME_UN = "freyberg_un.pst"
 NUM_SLAVES = 10
 NUM_STEPS_RESPSURF = 25
 
-
 name_function = lambda x: x[6:]
 
 SFR_SEG_GROUPS = {"headwaters":list(np.arange(1,16))}

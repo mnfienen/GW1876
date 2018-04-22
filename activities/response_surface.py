@@ -45,7 +45,7 @@ def run_respsurf(par_names=None, pstfile=None, WORKING_DIR=frey_mod.WORKING_DIR_
     pyemu.helpers.start_slaves('.', 'sweep', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
     os.chdir("..")
 
-def plot_response_surface(parnames, pstfile, WORKING_DIR=frey_mod.WORKING_DIR_KR, nanthresh=None):
+def plot_response_surface(parnames, pstfile, WORKING_DIR=frey_mod.WORKING_DIR_KR, nanthresh=None,alpha=0.5, label=True):
     p1,p2 = parnames
     df_in = pd.read_csv(os.path.join(WORKING_DIR, pstfile.replace('.pst',"sweep_in.csv")))
     df_out = pd.read_csv(os.path.join(WORKING_DIR, pstfile.replace('.pst',"sweep_out.csv")))
@@ -62,14 +62,14 @@ def plot_response_surface(parnames, pstfile, WORKING_DIR=frey_mod.WORKING_DIR_KR
     X, Y = np.meshgrid(p1_values, p2_values)
     if nanthresh is not None:
         resp_surf = np.ma.masked_where(resp_surf > nanthresh, resp_surf)
-    p = ax.pcolor(X, Y, resp_surf, alpha=0.5, cmap="nipy_spectral")
+    p = ax.pcolor(X, Y, resp_surf, alpha=alpha, cmap="nipy_spectral")
     plt.colorbar(p)
     c = ax.contour(X, Y, resp_surf,
                    levels=np.array([0.001, 0.01, 0.02, 0.05, .1, .2, .5])*np.max(resp_surf),
                    colors='k')
     plt.title('min $\Phi$ = {0:.2f}'.format(np.nanmin(resp_surf)))
-
-    plt.clabel(c)
+    if label:
+        plt.clabel(c)
     ax.set_xlim(p1_values.min(), p1_values.max())
     ax.set_ylim(p2_values.min(), p2_values.max())
     ax.set_xlabel(p1)
