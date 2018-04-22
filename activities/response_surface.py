@@ -46,7 +46,8 @@ def run_respsurf(par_names=None, pstfile=None, WORKING_DIR=frey_mod.WORKING_DIR_
     os.chdir("..")
 
 def plot_response_surface(parnames, pstfile, WORKING_DIR=frey_mod.WORKING_DIR_KR,
-                          nanthresh=None,alpha=0.5, label=True, maxresp=None):
+                          nanthresh=None,alpha=0.5, label=True, maxresp=None,
+                          figsize=(5,5),levels=None):
     p1,p2 = parnames
     df_in = pd.read_csv(os.path.join(WORKING_DIR, pstfile.replace('.pst',"sweep_in.csv")))
     df_out = pd.read_csv(os.path.join(WORKING_DIR, pstfile.replace('.pst',"sweep_out.csv")))
@@ -58,7 +59,7 @@ def plot_response_surface(parnames, pstfile, WORKING_DIR=frey_mod.WORKING_DIR_KR
         for j, v2 in enumerate(p2_values):
             resp_surf[j, i] = df_out.loc[c, "phi"]
             c += 1
-    fig = plt.figure(figsize=(5,5))
+    fig = plt.figure(figsize=figsize)
     ax = plt.subplot(111)
     X, Y = np.meshgrid(p1_values, p2_values)
     if nanthresh is not None:
@@ -67,8 +68,10 @@ def plot_response_surface(parnames, pstfile, WORKING_DIR=frey_mod.WORKING_DIR_KR
     plt.colorbar(p)
     if maxresp is None:
         maxresp = np.max(resp_surf)
+    if levels is None:
+        levels = np.array([0.001, 0.01, 0.02, 0.05, .1, .2, .5])*maxresp
     c = ax.contour(X, Y, resp_surf,
-                   levels=np.array([0.001, 0.01, 0.02, 0.05, .1, .2, .5])*maxresp,
+                   levels=levels,
                    colors='k')
     plt.title('min $\Phi$ = {0:.2f}'.format(np.nanmin(resp_surf)))
     if label:
