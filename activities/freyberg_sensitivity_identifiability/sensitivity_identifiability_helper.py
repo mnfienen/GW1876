@@ -94,9 +94,10 @@ def plot_identifiability_spatial(ev, nsingular, makelabels=False,figsize=(5,8)):
     plt.ylim(0,10000)
     plt.axis('off')
 
-def plot_jacobian_spatial(jac,cobs, figsize=(4,7)):
+def plot_jacobian_spatial(jac, cobs, figsize=(4,7)):
     parlox,obslox = get_par_obs_lox()
-    sens = jac.df().loc[cobs]
+
+    sens = jac.df().loc[cobs].drop(['porosity','sfr'])
     sens.drop('rch_1', inplace=True)
     sens.drop('rch_0', inplace=True)
     [sens.drop(i, inplace=True) for i in sens.index if i.startswith('w')]
@@ -105,7 +106,7 @@ def plot_jacobian_spatial(jac,cobs, figsize=(4,7)):
     plt.plot(parlox.X,parlox.Y,'kd',markersize=.8)
     scalefactor=5
     if 'flux' not in cobs:
-        coblox = obslox.loc[cobs.replace('_19700102', '')]
+        coblox = obslox.loc[cobs.replace('_19700102', '').replace('c001','')]
         plt.plot(coblox.X,coblox.Y,'kx', markersize=10)
         scalefactor=1000
     plt.scatter(parlox.X,parlox.Y, s=np.abs(sens.values)*scalefactor, c=sens.values, cmap='viridis')
