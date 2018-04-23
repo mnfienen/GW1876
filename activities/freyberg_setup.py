@@ -783,7 +783,7 @@ def setup_pest_gr(make_porosity_tpl=False):
     par.loc[r,"parlbnd"] = par.loc[r,"parval1"] * 0.9
 
     r = par.loc[par.pargp == "r1", "parnme"]
-    par.loc[r, "parval1"] = 1.4e-4
+    par.loc[r, "parval1"] = 9e-5
     par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.2
     par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.8
 
