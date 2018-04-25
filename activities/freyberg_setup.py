@@ -296,7 +296,7 @@ def _get_base_pst(m, make_porosity_tpl=True):
     sfr_pars = par.loc[par.parnme.apply(lambda x: x.startswith("sfr")),"parnme"]
     par.loc[sfr_pars,"parval1"] = 0.1
     par.loc[sfr_pars,"parubnd"] = 10.0
-    par.loc[sfr_pars,"parlbnd"] = 0.1
+    par.loc[sfr_pars,"parlbnd"] = 0.01
 
     hk_names = par.loc[par.parnme.apply(lambda x: x.startswith("hk")),"parnme"]
     par.loc[hk_names,"parval1"] = 5.0
