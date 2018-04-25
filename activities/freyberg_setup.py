@@ -798,9 +798,9 @@ def setup_pest_gr(make_porosity_tpl=False):
     par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.8
 
     r = par.loc[par.pargp == "pr", "parnme"]
-    par.loc[r, "parval1"] = 0.1
-    par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.2
-    par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.8
+    par.loc[r, "parval1"] = 0.01
+    par.loc[r, "parubnd"] = par.loc[r, "parval1"] * 1.5
+    par.loc[r, "parlbnd"] = par.loc[r, "parval1"] * 0.5
 
     # set some parameter attribs
     pst.pestpp_options["lambda_scale_fac"] = 1.0
