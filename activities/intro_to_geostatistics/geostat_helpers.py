@@ -40,7 +40,7 @@ def data_cooker(domain_pts=50, n_sample_pts=50):
 
     zd_noisy = zd +  np.random.randn(len(zd)) * noise_level
     sample_df = pd.DataFrame({'x': xd, 'y': yd, 'z':zd, 'z_noisy':zd_noisy, 'name': names})
-
+    sample_df.index = sample_df['name']
     return X, Y, Z, v, gs, sample_df
 
 
