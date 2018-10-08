@@ -31,7 +31,7 @@ def run_respsurf(par_names=None):
     df.to_csv(os.path.join(WORKING_DIR,"sweep_in.csv"))
 
     os.chdir(WORKING_DIR)
-    pyemu.helpers.start_slaves('.', 'sweep', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
+    pyemu.helpers.start_slaves('.', 'pestpp-swp', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
     os.chdir("..")
 
 def plot_response_surface():
