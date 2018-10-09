@@ -74,7 +74,7 @@ def rerun_new_pars(hk=5.5, rch_0 = 1.0):
     if os.path.exists(os.path.join(WORKING_DIR,'onerun.rei')):
         os.remove(os.path.join(WORKING_DIR,'onerun.rei'))
     os.chdir(WORKING_DIR)
-    pyemu.helpers.run('pestpp onerun.pst')
+    pyemu.os_utils.run('pestpp onerun.pst')
     os.chdir('..')
 
     if not os.path.exists(os.path.join(WORKING_DIR, 'onerun.rei')):

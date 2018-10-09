@@ -15,7 +15,7 @@ def update_K(inpstname):
     # write out the PST file with a new name
     optpst.write(inpstname.replace('.pst', '_opt.pst'))
     # run the new version of the model
-    pyemu.helpers.run('pestpp {}'.format(inpstname.replace('.pst', '_opt.pst')))
+    pyemu.os_utils.run('pestpp {}'.format(inpstname.replace('.pst', '_opt.pst')))
 
 
 def plot_K_results(working_dir, inpstname):
