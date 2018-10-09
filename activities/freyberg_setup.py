@@ -75,8 +75,8 @@ def get_truth_sfr_obs():
 def run_truth():
     bd = os.getcwd()
     os.chdir(BASE_MODEL_DIR)
-    pyemu.helpers.run('mfnwt freyberg.truth.nam >_mfnwt.stdout')
-    pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')
+    pyemu.os_utils.run('mfnwt freyberg.truth.nam >_mfnwt.stdout')
+    pyemu.os_utils.run('mp6 freyberg.mpsim >_mp6.stdout')
     pyemu.gw_utils.apply_mflist_budget_obs('freyberg.list')
     hds = flopy.utils.HeadFile('freyberg.hds')
     f = open('freyberg.hds.dat', 'wb')
@@ -125,7 +125,7 @@ def setup_model(working_dir):
                  os.path.join(working_dir,"freyberg.locations"))
     np.savetxt(os.path.join(working_dir,"ibound.ref"),m.bas6.ibound[0].array,fmt="%2d")
     os.chdir(working_dir)
-    pyemu.helpers.run("mp6 {0}".format(MODEL_NAM.replace('.nam','.mpsim')))
+    pyemu.os_utils.run("mp6 {0}".format(MODEL_NAM.replace('.nam','.mpsim')))
     os.chdir("..")
     ept_file = os.path.join(working_dir,MODEL_NAM.replace(".nam",".mpenpt"))
     shutil.copy2(ept_file,ept_file+".truth")
@@ -422,8 +422,8 @@ def setup_pest_un_bareass(make_porosity_tpl=True):
 
     with open("forward_run.py",'w') as f:
         f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
-        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
-        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
+        f.write("pyemu.os_utils.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.os_utils.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
         f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
         f.write("f = open('freyberg.hds.dat','wb')\n")
@@ -440,8 +440,8 @@ def setup_pest_un_bareass(make_porosity_tpl=True):
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_UN)
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_UN))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
+    pyemu.os_utils.run("pestchek {0}".format(PST_NAME_UN))
+    pyemu.os_utils.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
     os.chdir("..")
 
 def setup_pest_un(make_porosity_tpl=True):
@@ -473,8 +473,8 @@ def setup_pest_un(make_porosity_tpl=True):
 
     with open("forward_run.py",'w') as f:
         f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
-        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
-        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
+        f.write("pyemu.os_utils.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.os_utils.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
         f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
         f.write("f = open('freyberg.hds.dat','wb')\n")
@@ -491,8 +491,8 @@ def setup_pest_un(make_porosity_tpl=True):
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_UN)
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_UN))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
+    pyemu.os_utils.run("pestchek {0}".format(PST_NAME_UN))
+    pyemu.os_utils.run("pestpp {0}".format(PST_NAME_UN.replace(".pst",".init.pst")))
     os.chdir("..")
 
 def setup_pest_kr(make_porosity_tpl=True):
@@ -543,8 +543,8 @@ def setup_pest_kr(make_porosity_tpl=True):
 
     with open("forward_run.py",'w') as f:
         f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
-        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
-        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
+        f.write("pyemu.os_utils.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.os_utils.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
         f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
         f.write("f = open('freyberg.hds.dat','wb')\n")
@@ -561,8 +561,8 @@ def setup_pest_kr(make_porosity_tpl=True):
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_KR)
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_KR))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_KR.replace(".pst",".init.pst")))
+    pyemu.os_utils.run("pestchek {0}".format(PST_NAME_KR))
+    pyemu.os_utils.run("pestpp {0}".format(PST_NAME_KR.replace(".pst",".init.pst")))
     
     os.chdir("..")
 
@@ -658,8 +658,8 @@ def setup_pest_zn(make_porosity_tpl=True):
 
     with open("forward_run.py",'w') as f:
         f.write("import os\nimport shutil\nimport pandas as pd\nimport numpy as np\nimport pyemu\nimport flopy\n")
-        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
-        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
+        f.write("pyemu.os_utils.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.os_utils.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
         f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
         f.write("f = open('freyberg.hds.dat','wb')\n")
@@ -676,8 +676,8 @@ def setup_pest_zn(make_porosity_tpl=True):
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_ZN)
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_ZN))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_ZN.replace(".pst",".init.pst")))
+    pyemu.os_utils.run("pestchek {0}".format(PST_NAME_ZN))
+    pyemu.os_utils.run("pestpp {0}".format(PST_NAME_ZN.replace(".pst",".init.pst")))
     
     os.chdir("..")
 
@@ -837,8 +837,8 @@ def setup_pest_gr(make_porosity_tpl=False):
         f.write("    with open(wel_file,'w') as f:\n")
         f.write("        f.write('        '+df_t.loc[:,names].to_string(index=None,header=None,formatters=wel_fmt)+'\\n')\n")
         f.write("shutil.copy2('WEL_0002.dat','WEL_0003.dat')\n")
-        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
-        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
+        f.write("pyemu.os_utils.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.os_utils.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
         f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
         f.write("f = open('freyberg.hds.dat','wb')\n")
@@ -855,8 +855,8 @@ def setup_pest_gr(make_porosity_tpl=False):
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_GR)
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_GR))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_GR.replace(".pst",".init.pst")))
+    pyemu.os_utils.run("pestchek {0}".format(PST_NAME_GR))
+    pyemu.os_utils.run("pestpp {0}".format(PST_NAME_GR.replace(".pst",".init.pst")))
     
     os.chdir("..")
 
@@ -964,8 +964,8 @@ def setup_pest_pp(make_porosity_tpl=True):
         f.write("        f.write('        '+df_t.loc[:,names].to_string(index=None,header=None,formatters=wel_fmt)+'\\n')\n")
         f.write("shutil.copy2('WEL_0002.dat','WEL_0003.dat')\n")
         f.write("pyemu.geostats.fac2real('hkpp.dat',factors_file='hkpp.dat.fac',out_file='hk_layer_1.ref')\n")
-        f.write("pyemu.helpers.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
-        f.write("pyemu.helpers.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
+        f.write("pyemu.os_utils.run('mfnwt {0} >_mfnwt.stdout')\n".format(MODEL_NAM))
+        f.write("pyemu.os_utils.run('mp6 freyberg.mpsim >_mp6.stdout')\n")
         f.write("pyemu.gw_utils.apply_mflist_budget_obs('{0}')\n".format(MODEL_NAM.replace(".nam",".list")))
         f.write("hds = flopy.utils.HeadFile('freyberg.hds')\n")
         f.write("f = open('freyberg.hds.dat','wb')\n")
@@ -982,8 +982,8 @@ def setup_pest_pp(make_porosity_tpl=True):
     #os.system("pestchek {0}".format(PST_NAME))
     pst.control_data.noptmax = 8
     pst.write(PST_NAME_PP)
-    pyemu.helpers.run("pestchek {0}".format(PST_NAME_PP))
-    pyemu.helpers.run("pestpp {0}".format(PST_NAME_PP.replace(".pst",".init.pst")))
+    pyemu.os_utils.run("pestchek {0}".format(PST_NAME_PP))
+    pyemu.os_utils.run("pestpp {0}".format(PST_NAME_PP.replace(".pst",".init.pst")))
     
     os.chdir("..")
 
@@ -1025,6 +1025,7 @@ def plot_model(working_dir, pst_name):
     hdsobj = flopy.utils.binaryfile.HeadFile(MODEL_NAM.replace('.nam', '.hds'))
     fig = plt.figure(figsize=(8,8))
     ax = plt.subplot(121, aspect="equal")
+    m.upw.hk = np.loadtxt(os.path.join('..',BASE_MODEL_DIR,'hk.truth.ref')).reshape((m.nrow,m.ncol))
     m.upw.hk.plot(axes=[ax], colorbar="K m/d", alpha=0.3)
     m.wel.stress_period_data.plot(axes=[ax])
     m.sfr.stress_period_data.plot(axes=[ax])
