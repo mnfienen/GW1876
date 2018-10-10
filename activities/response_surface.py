@@ -82,10 +82,10 @@ def plot_response_surface(parnames, pstfile, WORKING_DIR=frey_mod.WORKING_DIR_KR
     ax.set_ylabel(p2)
     return fig, ax
 
-def add_trajectory_to_plot(fig,ax,casename, title, working_dir, pst_name):
+def add_trajectory_to_plot(fig,ax,casename, title, working_dir, pst_name, pars2plot=['hk1','cal_flux']):
     obfun = pd.read_csv(os.path.join(working_dir,pst_name.replace('.pst','.{}.iobj'.format(casename))))
     pars=pd.read_csv(os.path.join(working_dir,pst_name.replace('.pst','.{}.ipar'.format(casename))))
-    ax.plot(pars.hk1.values,pars.cal_flux.values, 'kx-')
+    ax.plot(pars[pars2plot[0]].values,pars[pars2plot[1]].values, 'kx-')
     ax.set_title(title)
     plt.savefig('response_surface_{}.png'.format(casename))
     return pars, obfun
