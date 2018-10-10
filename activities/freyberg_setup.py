@@ -144,6 +144,10 @@ def setup_model(working_dir):
     wel_data_sp1["flux"] = [round(f,-2) for f in wel_data_sp1["flux"]]
     wel_data_sp2 = wel_data_sp1.copy()
     wel_data_sp2["flux"] *= 1.0
+    m.wel.specify = True
+    m.wel.phiramp = 0.01
+    m.wel.phiramp_unit = 42
+    m.add_external('reduced_pumping.dat', 42)
 
     r = np.round(m.rch.rech[0].array.mean(),5)
     m.rch.rech[0] = r
