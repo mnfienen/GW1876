@@ -42,7 +42,7 @@ def run_respsurf(par_names=None, pstfile=None, WORKING_DIR=frey_mod.WORKING_DIR_
     df.to_csv(os.path.join(WORKING_DIR,PST_NAME.replace('.pst',"sweep_in.csv")))
 
     os.chdir(WORKING_DIR)
-    pyemu.helpers.start_slaves('.', 'pestpp-swp', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
+    pyemu.os_utils.start_slaves('.', 'pestpp-swp', PST_NAME, num_slaves=NUM_SLAVES, master_dir='.')
     os.chdir("..")
 
 def plot_response_surface(parnames, pstfile, WORKING_DIR=frey_mod.WORKING_DIR_KR,
