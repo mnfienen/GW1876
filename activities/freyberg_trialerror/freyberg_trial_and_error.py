@@ -69,6 +69,11 @@ def rerun_new_pars(hk=5.5, rch_0 = 1.0):
     pars.loc['hk', 'parubnd'] = hk * 2
     pars.loc['rch_0','parlbnd'] = rch_0 / 2
     pars.loc['rch_0','parubnd'] = rch_0 * 2
+
+    obs = pst.observation_data
+    obs.loc[obs.obgnme=='calhead', 'weight'] = 1.0
+    obs.loc[obs.obgnme=='calflux', 'weight'] = 0.0
+
     pst.write(os.path.join(WORKING_DIR,'onerun.pst'))
 
     if os.path.exists(os.path.join(WORKING_DIR,'onerun.rei')):
@@ -83,7 +88,7 @@ def rerun_new_pars(hk=5.5, rch_0 = 1.0):
 
     newpst = pyemu.Pst(os.path.join(WORKING_DIR,'onerun.pst'))
     res = newpst.res
-
+    print('The root mean squared error is: {:.2f}'.format(np.sqrt(newpst.phi/pst.nnz_obs)))
     fig = plt.figure(figsize=(12,12))
     ax1 = fig.add_subplot(221)
     cal = res.loc[res.group == 'calhead']

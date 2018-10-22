@@ -1035,8 +1035,19 @@ def plot_model(working_dir, pst_name):
     m.sfr.stress_period_data.plot(axes=[ax])
 
 
-    # plot obs locations
+    # plot forecast head locations
     obspst = pyemu.Pst(pst_name).observation_data
+
+    forobs = obspst.loc[(obspst.obgnme == 'forecast') & (obspst.obsnme.str.startswith('c00'))]
+    obs = [re.findall('\d+', i)for i in forobs.obsnme]
+    obs_r, obs_c = [], []
+    for i in obs:
+        obs_r.append(int(i[1])), obs_c.append(int(i[2]))
+    obs_x = [m.sr.xcentergrid[r - 1, c - 1] for r, c in zip(obs_r, obs_c)]
+    obs_y = [m.sr.ycentergrid[r - 1, c - 1] for r, c in zip(obs_r, obs_c)]
+    ax.scatter(obs_x, obs_y, marker='x', color='blue', label="forecast")
+
+    # plot obs locations
     inobs = obspst.loc[obspst.obgnme == 'calhead']
 
     obs = [re.findall('\d+', i)for i in inobs.obsnme]
@@ -1045,7 +1056,8 @@ def plot_model(working_dir, pst_name):
         obs_r.append(int(i[1])), obs_c.append(int(i[2]))
     obs_x = [m.sr.xcentergrid[r - 1, c - 1] for r, c in zip(obs_r, obs_c)]
     obs_y = [m.sr.ycentergrid[r - 1, c - 1] for r, c in zip(obs_r, obs_c)]
-    ax.scatter(obs_x, obs_y, marker='.', label="obs")
+    ax.scatter(obs_x, obs_y, marker='.', color='blue', label="obs")
+
 
     # plot names on the pumping well locations
     wel_data = m.wel.stress_period_data[0]
