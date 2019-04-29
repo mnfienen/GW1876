@@ -1,8 +1,12 @@
-def redis_freyberg(fac=3):
+import os
+import numpy as np
+import pandas as pd
+import flopy
+import pyemu
 
-    model_ws = b_d
-    mf_nam = "freyberg.nam"
+def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
 
+   
     mf = flopy.modflow.Modflow.load(nam_file, model_ws=b_d, verbose=True, version="mfnwt", exe_name="mfnwt")
 
     def resample_arr(arr,fac):
@@ -24,7 +28,7 @@ def redis_freyberg(fac=3):
                              nper=perlen.shape[0],delr=delr,delc=delc,
                              top=resample_arr(mf.dis.top.array,fac),
                              botm=[resample_arr(a,fac) for a in mf.dis.botm.array],
-                             steady=False)
+                             steady=mf.dis.steady,perlen=mf.dis.perlen)
 
     flopy.modflow.ModflowBas(mfr,ibound=[resample_arr(a,fac) for a in mf.bas6.ibound.array],
                              strt=[resample_arr(a,fac) for a in mf.bas6.strt.array])
@@ -131,19 +135,30 @@ def redis_freyberg(fac=3):
     #flopy.modflow.ModflowLmt(mfr,output_file_format="formatted",package_flows=["SFR"])
 
     mfr.write_input()
-    mfr.run_model()
+    #mfr.run_model()
+    pyemu.os_utils.run("mfnwt {0}".format(nam_file),cwd=mfr.model_ws)
+
+
 
     cbb = flopy.utils.CellBudgetFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".cbc")), model=mfr)
     print(cbb.textlist)
 
+    # reset top to be a amplified reflection on water table
+    hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")), model=mfr)
+    mfr.dis.top = hds.get_data()[0,:,:] * 1.05
+
+    mfr.write_input()
+    #mfr.run_model()
+    pyemu.os_utils.run("mfnwt {0}".format(nam_file),cwd=mfr.model_ws)
 
     hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")), model=mfr)
-    hds.plot(colorbar=True)
-    plt.show()
+    #hds.plot(colorbar=True)
+    #plt.show()
 
     mlist = flopy.utils.MfListBudget(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".list")))
     df = mlist.get_dataframes(diff=True)[1]
-    df.plot()
-    plt.show()
+    #df.plot()
+    #plt.show()
+    return mfr
 
 
