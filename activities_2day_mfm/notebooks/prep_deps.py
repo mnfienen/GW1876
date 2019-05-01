@@ -50,6 +50,9 @@ def prep_for_deploy():
 
     for f,d in zip(["mfnwt.exe","mfnwt"],["win","mac"]):
         shutil.copy2(os.path.join(mfnwt_bin_dir,f),os.path.join("bin",d,f))
+    for f,d in zip(["mp6.exe","mp6"],["win","mac"]):
+        shutil.copy2(os.path.join(mfnwt_bin_dir,f),os.path.join("bin",d,f))
+
 
 
 def prep_template(t_d="template"):
