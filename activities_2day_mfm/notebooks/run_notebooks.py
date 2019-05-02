@@ -10,3 +10,5 @@ os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inpl
 os.system("jupyter nbconvert --to pdf pestpp-ies.ipynb")
 os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inplace pestpp-opt.ipynb")
 os.system("jupyter nbconvert --to pdf pestpp-opt.ipynb")
+os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inplace pestpp-ies_the_wrong_way.ipynb")
+os.system("jupyter nbconvert --to pdf pestpp-ies_the_wrong_way.ipynb")
