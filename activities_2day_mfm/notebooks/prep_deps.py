@@ -14,7 +14,7 @@ mfnwt_bin_dir = os.path.join("..","..","bin")
 
 
 if "linux" in platform.platform().lower():
-    raise NotImplementedError()
+    #raise NotImplementedError()
     os_d = "linux"
 elif "darwin" in platform.platform().lower():
     os_d = "mac"
