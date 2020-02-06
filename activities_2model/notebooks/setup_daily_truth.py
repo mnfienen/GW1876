@@ -161,7 +161,7 @@ def build_daily_model():
     m_tr.dis.start_datetime = model_start_datetime
 
     _ = flopy.modflow.ModflowBas(m_tr,ibound=m_org.bas6.ibound.array,strt=m_org.bas6.strt.array,hnoflo=m_org.bas6.hnoflo)
-    _ = flopy.modflow.ModflowUpw(m_tr,ipakcb=50,laytyp=m_org.upw.laytyp.array,hk=m_org.upw.hk.array,
+    _ = flopy.modflow.ModflowUpw(m_tr,ipakcb=50,laytyp=[1,0,0],hk=m_org.upw.hk.array,
                                  vka=m_org.upw.vka.array,ss=m_org.upw.ss.array,sy=m_org.upw.sy.array)
 
     _ = flopy.modflow.ModflowNwt(m_tr,headtol=0.01,fluxtol=1.0)
@@ -239,9 +239,9 @@ def build_daily_model():
     pyemu.os_utils.run("mfnwt {0}".format(tr_nam),cwd=tr_d)
 
     lst = flopy.utils.MfListBudget(os.path.join(tr_d,tr_nam+".list"))
-    flx,vol = lst.get_dataframes(diff=True,start_datetime=m_tr.start_datetime)
-    flx.plot(subplots=True,figsize=(20,20))
-    plt.show()
+    #flx,vol = lst.get_dataframes(diff=True,start_datetime=m_tr.start_datetime)
+    #flx.plot(subplots=True,figsize=(20,20))
+    #plt.show()
 
     mp_files = [f for f in os.listdir(org_d) if "mp" in f or "location" in f]
     [shutil.copy2(os.path.join(org_d,f),os.path.join(tr_d)) for f in mp_files]
@@ -409,13 +409,12 @@ def setup_interface_daily():
 
 
     pst_helper.pst.write(os.path.join(pst_helper.m.model_ws,nam_file.replace(".nam",".pst")))
-
-    lst = flopy.utils.MfListBudget(os.path.join("template","freyberg.list"))
-    df = lst.get_dataframes(diff=True,start_datetime=pst_helper.m.start_datetime)[0]
-    df.plot(kind="bar",figsize=(30,30), grid=True,subplots=True)
-    plt.show()
+    lst = flopy.utils.MfListBudget(os.path.join(pst_helper.m.model_ws,"freyberg.list"))
+    #df = lst.get_dataframes(diff=True,start_datetime=pst_helper.m.start_datetime)[0]
+    #df.plot(kind="bar",figsize=(30,30), grid=True,subplots=True)
+    #plt.show()
 
 if __name__ == "__main__":
     #build_daily_model()
     #setup_interface_daily()
-    run_draws_and_pick_truth(run=False)
+    run_draws_and_pick_truth(run=True)

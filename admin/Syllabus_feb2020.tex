@@ -1,0 +1,122 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+
+\usepackage{xcolor}
+\geometry{verbose,tmargin=1.5cm,bmargin=1.5cm,lmargin=1.5cm,rmargin=1.5cm}
+\begin{document}
+
+\title{Applied Groundwater Model Calibration and Uncertainty Analysis Curriculum }
+
+\author{Michael N. Fienen, Jeremy T. White and Randall J. Hunt }
+
+\date{Feb 2020}
+
+\maketitle
+
+\textbf{MONDAY}
+\begin{enumerate}
+
+\item \textbf{Introductions of students/instructors} Goals for
+the week and framing 
+\begin{enumerate}
+\item The mechanics and theory 
+\item Learning by doing 
+\item Please speak up! Everyone learns from discussion 
+\item Work in pairs 
+\item Python, GUIs, and all that 
+\end{enumerate}
+
+\item \textbf{Logistics and airing of the IT grievances }: 
+\begin{enumerate}
+\item Did everyone get the software installed? 
+\item Pull the class from github and make a copy 
+\item Brief Git tutorial (including modeling workflows with Git)
+\end{enumerate}
+
+\item \textbf{RRR} Long boring talk about modeling.
+
+\item \textbf{Demo with EAA model} run thru Edwards Aquifer modeling workflow?
+
+\item \textbf{Bayes and regression}
+
+\item \textbf{Freyberg model} Introduce the enhanced Freyberg model.
+Show "truth" observations, water budget, etc
+
+\item \textbf{Build a transient model notebook}. flopy/python review
+
+\item \textbf{Geostatistics, the Prior and pilot points} Exploring the idea of
+a model of spatial correlation (e.g. covariance matrix). Variograms
+as a basis for interpolation, the use of factors, \textquotedblleft spatially
+weighted averaging\textquotedblright , all this wrapped up in Kriging.
+Function for creation and viz. Spectral simulation for unconditional simulation.
+What are pilot points?  \textcolor{red}{probably need a notebook or two here}
+
+\textbf{TUESDAY}
+
+\item \textbf{Intro to pyemu} {\color{red} need an excersize here}
+
+\item \textbf{Setup pest interface notebook} "what just happened!?".  \textcolor{red}{Excersize: experiment with the 
+PstFromFlopy class to setup different pars and obs. competition: who can setup the most parameters?}
+
+\item \textbf{Prior Monte Carlo}. Do this before even setting obsvals or weights.
+mechanics of parallel run mgmt - including giveup setting, pestpp-swp.  The safety of Prior Monte Carlo.
+Learning from Prior Monte Carlo
+
+\item \textbf{GLM} Derivation of the Gauss-Levenberg-Marquardt
+Algorithm part I. The maths.  Vector and ensemble/Monte Carlo forms.  Regularized GLM. 
+The dangers of parameter adjustments...  
+
+\item \textbf{ WTF is up with transient modeling?}. Discussion about the allure and pitfalls
+of transient modeling, esp for history-matching.
+
+\item \textbf{Processing obs and setting weights notebook}.  Discussion about observation processing
+
+\textbf{WEDNESDAY}
+
+\item \textbf{PESTPP-GLM part 1 notebook: fill a base Jacobian}. Start this then cover FOSM theory
+
+\item \textbf{FOSM theory (including ident and sens) and dataworth} FOSM as an alternative to MC (rejection
+sampling). PEST lingo = PREDUNC/GENLINPRED.  Posterior residual-based weight adjust and implications.
+
+\item \textbf{Dataworth notebook} 
+
+\item \textbf{PESTPP-GLM part 2 notebook}. Actual parameter adjustments (scary!) and 
+posterior parameter and forecast estimation. {\textcolor{red} change the forecasts and do more dataworth}
+
+\item \textbf{GUI\_demo\_with\_GW\_Vistas} Overview of how to
+use GW Vistas for setting up, running, and postprocessing
+
+\textbf{THURSDAY}
+
+\item \textbf{Ensemble-based modeling analyses}. Considerations for using ensembles.
+parameter statistical moment changes instead of "sensitivity analysis".  Visualizing 
+obs vs sim. more comprehensive pest interface.  
+
+\item \textbf{PESTPP-IES notebook part 1}
+
+\item \textbf{Localization and PESTPP-IES notebook part 2}
+
+\item \textbf{Prior-data conflict - returning to Prior Monte Carlo} Bias-variance tradeoff. Pontification around
+the obession with a good fit vs the reality flawed models and noisey data.  Underfitting as a 
+strategy to avoid bias.
+
+\item \textbf{PESTPP-IES with PDC activated}
+
+\item \textbf{Class Project: ensemble-based scenario modeling} Create a 
+scenario model, setup a pest interface and run prior or posterior Monte Carlo (pestpp-swp)
+
+\textbf{FRIDAY}
+
+\item \textbf{Mgmt opt under uncertainty}
+
+\item \textbf{PESTPP-OPT notebook}
+
+\item \textbf{Discussion and wrap up}
+
+\end{enumerate}
+
+\end{document}
