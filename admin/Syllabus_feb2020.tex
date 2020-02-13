@@ -20,110 +20,119 @@
 \textbf{MONDAY}
 \begin{enumerate}
 
-\item \textbf{Introductions of students/instructors} Goals for
+\item \textbf{Introductions of students/instructors --- JDub} Goals for
 the week and framing 
 \begin{enumerate}
 \item The mechanics and theory 
 \item Learning by doing 
 \item Please speak up! Everyone learns from discussion 
-\item Work in pairs 
+\item Work in pairs  !!!
 \item Python, GUIs, and all that 
 \end{enumerate}
 
-\item \textbf{Logistics and airing of the IT grievances }: 
+\item \textbf{Logistics and airing of the IT grievances --- JDub}: 
 \begin{enumerate}
 \item Did everyone get the software installed? 
 \item Pull the class from github and make a copy 
 \item Brief Git tutorial (including modeling workflows with Git)
 \end{enumerate}
 
-\item \textbf{RRR} Long boring talk about modeling.
+\item \textbf{RRR --- JDub} Long boring talk about the false promise of reproducible modeling.
 
-\item \textbf{Regression}
+\item \textbf{Regression --- MNF} Notebook as simple machine learning
 
-\item \textbf{Demo with EAA model} run thru Edwards Aquifer modeling workflow?
+\item \textbf{Bayes Theorem and Inference --- MNF} Adding context to regression 
+
+\item \textbf{Demo with EAA model --- JDub} run thru Edwards Aquifer modeling workflow?
 
 
 
-\item \textbf{Freyberg model} Introduce the enhanced Freyberg model.
+\item \textbf{Freyberg model --- MNF} Introduce the enhanced Freyberg model.
 Show "truth" observations, water budget, etc
 
-\item \textbf{Build a transient model notebook}. flopy/python review
+
+\item \textbf{Connecting a model to PEST++ --- RJH} Steady-state GUI Style - how can you connect a model to PEST with a GUI?
+
+\item\textbf{run iES and viz in Excel and python --- RJH} All defaults, uncertainty from the start
+
+
 
 \textbf{TUESDAY}
 
-\item \textbf{Geostatistics, the Prior and pilot points} Exploring the idea of
+\item \textbf{Adding transience to a model notebook --- JDub/MNF}. flopy/python review
+
+\item \textbf{Intro to pyemu --- JDub/MNF} {show that can start in GUI and flip over to pyemu}
+
+\item \textbf{Geostatistics, the Prior and pilot points --- MNF} Part 1: more on pilot points: Exploring the idea of
 a model of spatial correlation (e.g. covariance matrix). Variograms
 as a basis for interpolation, the use of factors, \textquotedblleft spatially
 weighted averaging\textquotedblright , all this wrapped up in Kriging.
 Function for creation and viz. Spectral simulation for unconditional simulation.
-What are pilot points?  \textcolor{red}{probably need a notebook or two here}
+What are pilot points? Add storage pilot points low level in pyemu?
 
-\item \textbf{Connecting a model to PEST++} GUI Style - how can you connect a model to PEST with a GUI?
+\item \textbf{Setup pest interface notebook --- JDub} "what just happened!?".  \textcolor{red}{Excersize: experiment with the 
+PstFromFlopy class to setup different pars and obs. competition: who can setup the most parameters?} Think a giant macro that pulls together the various elements have seen to far.
 
-\item \textbf{Intro to pyemu} {\color{red} need an excersize here}
 
-\item \textbf{Setup pest interface notebook} "what just happened!?".  \textcolor{red}{Excersize: experiment with the 
-PstFromFlopy class to setup different pars and obs. competition: who can setup the most parameters?}
+\item \textbf{ WTF is up with transient modeling? --- RJH}. Discussion about the allure and pitfalls
+of transient modeling, esp for history-matching.
 
-\item \textbf{Bayes Theorem and Inference}
-
-\item \textbf{Prior Monte Carlo}. Do this before even setting obsvals or weights.
-mechanics of parallel run mgmt - including giveup setting, pestpp-swp.  The safety of Prior Monte Carlo.
-Learning from Prior Monte Carlo
+\item \textbf{Processing obs and setting weights notebook --- JDub}.  Discussion about observation processing
 
 \textbf{WEDNESDAY}
 
-\item \textbf{GLM} Derivation of the Gauss-Levenberg-Marquardt
-Algorithm part I. The maths.  Vector and ensemble/Monte Carlo forms.  Regularized GLM. 
-The dangers of parameter adjustments...  
-
-\item \textbf{ WTF is up with transient modeling?}. Discussion about the allure and pitfalls
-of transient modeling, esp for history-matching.
-
-\item \textbf{Processing obs and setting weights notebook}.  Discussion about observation processing
+\item \textbf{Prior Monte Carlo --- JDub/RJH}. Do this before even setting obsvals or weights.
+mechanics of parallel run mgmt - including giveup setting, pestpp-swp.  The safety of Prior Monte Carlo.
+Learning from Prior Monte Carlo. Discuss prior data conflict
 
 
 
-\item \textbf{PESTPP-GLM part 1 notebook: fill a base Jacobian}. Start this then cover FOSM theory
+\item \textbf{GLM --- MNF} Derivation of the Gauss-Levenberg-Marquardt
+Algorithm maths --- walking through the PDF with $\lambda$ images
 
-\item \textbf{FOSM theory (including ident and sens) and dataworth} FOSM as an alternative to MC (rejection
+
+
+
+
+\item \textbf{PESTPP-GLM part 1 notebook: fill a base Jacobian --- RJH}. Start this then cover FOSM theory
+
+\item \textbf{FOSM theory (including ident and sens) and dataworth --- JDub} FOSM as an alternative to MC (rejection
 sampling). PEST lingo = PREDUNC/GENLINPRED.  Posterior residual-based weight adjust and implications.
 
-\item \textbf{Dataworth notebook} 
+\item \textbf{Dataworth notebook --- MNF} 
 
-\item \textbf{PESTPP-GLM part 2 notebook}. Actual parameter adjustments (scary!) and 
-posterior parameter and forecast estimation. {\textcolor{red} change the forecasts and do more dataworth}
+\item \textbf{PESTPP-GLM part 2 notebook --- JDub}. Actual parameter adjustments (scary!) and 
+posterior parameter and forecast estimation. {change the forecasts and do more dataworth}
 
-\item \textbf{GUI\_demo\_with\_GW\_Vistas} Overview of how to
-use GW Vistas for setting up, running, and postprocessing
 
 \textbf{THURSDAY}
 
-\item \textbf{Ensemble-based modeling analyses}. Considerations for using ensembles.
+\item \textbf{Ensemble-based modeling analyses --- JDub}. Considerations for using ensembles.
 parameter statistical moment changes instead of "sensitivity analysis".  Visualizing 
 obs vs sim. more comprehensive pest interface.  
 
-\item \textbf{PESTPP-IES notebook part 1}
+\item \textbf{PESTPP-IES notebook part 1 --- MNF}
 
-\item \textbf{Localization and PESTPP-IES notebook part 2}
+\item \textbf{Localization and PESTPP-IES notebook part 2 --- JDub}
 
-\item \textbf{Prior-data conflict - returning to Prior Monte Carlo} Bias-variance tradeoff. Pontification around
+\item \textbf{Prior-data conflict - returning to Prior Monte Carlo --- JDub} Bias-variance tradeoff. Pontification around
 the obession with a good fit vs the reality flawed models and noisey data.  Underfitting as a 
 strategy to avoid bias.
 
-\item \textbf{PESTPP-IES with PDC activated}
+\item \textbf{PESTPP-IES with PDC activated --- MNF}
 
-\item \textbf{Class Project: ensemble-based scenario modeling} Create a 
+\item \textbf{Live Demo: ensemble-based scenario modeling --- JDub} Create a 
 scenario model, setup a pest interface and run prior or posterior Monte Carlo (pestpp-swp)
 
 \textbf{FRIDAY}
 
-\item \textbf{Mgmt opt under uncertainty}
+\item \textbf{Stuff we didn't get to yet}
 
-\item \textbf{PESTPP-OPT notebook}
+\item \textbf{Mgmt opt under uncertainty --- MNF}: examples from SIRE and Little Plover
 
-\item \textbf{Discussion and wrap up}
+\item \textbf{PESTPP-OPT notebook --- JDub}
+
+\item \textbf{Discussion and wrap up --- ALL}
 
 \end{enumerate}
 
