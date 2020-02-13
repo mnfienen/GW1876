@@ -27,7 +27,10 @@ def data_cooker(domain_pts=50, n_sample_pts=50):
 
     # draw from it to obtain the truth
     print('Drawing from the Geostatistical Model')
-    Z = Q.draw(mean=100).reshape(X.shape)
+    #Z = Q.draw(mean=100).reshape(X.shape)
+    ss = pyemu.geostats.SpecSim2d(np.ones_like(x),np.ones_like(y),gs)
+    Z = ss.draw_arrays(1)[0]
+
 
     # sample some "true" values from that domain and add some noise to them
     xd = np.random.uniform(0, 1000, n_sample_pts)
@@ -153,3 +156,6 @@ def geostat_interpolate(X,Y,interp_data, data_df):
         Z[i] = np.squeeze(cpts.dot(np.atleast_2d(interp_data.loc[cp].ifacts).T))
         i+=1
     return Z.reshape(dims)
+
+if __name__ == "__main__":
+    data_cooker()
