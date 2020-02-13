@@ -1,8 +1,16 @@
 import os
 
+os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inplace setup_transient_model.ipynb")
+os.system("jupyter nbconvert --to pdf setup_transient_model.ipynb")
+os.system("jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace setup_transient_model.ipynb")
+
 os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inplace setup_pest_interface.ipynb")
 os.system("jupyter nbconvert --to pdf setup_pest_interface.ipynb")
 os.system("jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace setup_pest_interface.ipynb")
+
+os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inplace process_obs_and_set_weights.ipynb")
+os.system("jupyter nbconvert --to pdf process_obs_and_set_weights.ipynb")
+os.system("jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace process_obs_and_set_weights.ipynb")
 
 os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inplace prior_montecarlo.ipynb")
 os.system("jupyter nbconvert --to pdf prior_montecarlo.ipynb")
