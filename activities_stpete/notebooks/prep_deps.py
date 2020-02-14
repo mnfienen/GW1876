@@ -66,6 +66,32 @@ def prep_template(t_d="template"):
             os.remove(os.path.join(t_d,f))
         shutil.copy2(os.path.join("bin",os_d,f),os.path.join(t_d,f))
     
+
+def prep_forecasts(t_d="template_history",pst_name="freyberg.pst",
+                   b_d=os.path.join("..","base_model_files")):
+    import pyemu
+    import flopy
+    import pandas as pd
+
+    m = flopy.modflow.Modflow.load("freyberg.nam",model_ws=t_d,check=False,load_only=["DIS"])
+    pst = pyemu.Pst(os.path.join(t_d,pst_name))
+    fore_csv = os.path.join(b_d,"forecast_truth.csv")
+    assert os.path.exists(fore_csv)
+    fore_df = pd.read_csv(fore_csv,index_col=0)
+    obs = pst.observation_data
+    obs_fore = obs.loc[pst.forecast_names,:].copy()
+    print(obs_fore)
+    for tag in ["hds","fa_hw","fa_tw","part_time","part_status"]:
+        truth_val = fore_df.loc[fore_df.index.map(lambda x: tag in x),"obsval"]
+        assert truth_val.shape[0] == 1,truth_val
+        truth_val = truth_val.values[0]
+        obs_name = obs_fore.loc[obs_fore.index.map(lambda x: tag in x),"obsnme"]
+        assert obs_name.shape[0] == 1,obs_name
+        obs.loc[obs_name,"obsval"] = truth_val
+    print(obs.loc[pst.forecast_names,:])
+    pst.write(os.path.join(t_d,pst_name))
+
 if __name__ == "__main__":
-    prep_for_deploy()  
+    prep_forecasts()
+    #prep_for_deploy()  
     #prep_template(t_d="temp")  

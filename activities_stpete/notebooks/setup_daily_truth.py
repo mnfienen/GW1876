@@ -50,7 +50,10 @@ def run_draws_and_pick_truth(run=True):
     obs.loc[:,"obsval"] = obs_df.loc[idx,pst.obs_names]
     obs.loc[obs.obsnme.apply(lambda x: "trgw" in x),"weight"] = 5.0  # this corresponds to an (expected) noise standard deviation of 20 cm...
     obs.loc[obs.obsnme.apply(lambda x: "fo_gage_1" in x),"weight"] = 0.01  # corresponding to an (expected) noise standard deviation of 100 m^3/d...
-    obs.loc[pst.nnz_obs_names,"weight"]
+    
+    b_d = os.path.join("..","base_model_files")
+    assert os.path.exists(b_d) 
+    obs.loc[pst.forecast_names,"obsval"].to_csv(os.path.join(b_d,"forecast_truth.csv"))
 
     np.random.seed(seed=0)
     nz_obs = obs.loc[pst.nnz_obs_names,:].copy()
@@ -68,18 +71,21 @@ def run_draws_and_pick_truth(run=True):
 
     # Just for fun, lets have some "model error"
     obs = pst.observation_data
-    obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsval"] -= 1.0
-    obs.loc[obs.obsnme.apply(lambda x: "trgw_015_016" in x),"obsval"] -= 1.0
+    obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsval"] -= 0.5
+    offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_015_016" in x),"obsnme"]
+    obs.loc[offset_names[:300],"obsval"] -= 1.5
+    obs.loc[offset_names[300:],"obsval"] += 1.5
+
 
     #add a trend to the flow obs
-    trend = np.linspace(1.0,0.5,fo_obs.shape[0])
+    trend = np.linspace(1.0,0.8,fo_obs.shape[0])
     pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
 
-    pst.write(os.path.join(m_d,"freyberg.pst"))
-    #pyemu.os_utils.run("pestpp-ies freyberg.pst",cwd=m_d)
+    #add some "spikes"
+    spike_idxs = np.random.randint(0,fo_obs.shape[0],20)
+    spike_names = fo_obs.obsnme.iloc[spike_idxs]
+    pst.observation_data.loc[spike_names,"obsval"] *= 3.5
 
-    b_d = os.path.join("..","base_model_files")
-    assert os.path.exists(b_d)
     out_obs = obs.loc[obs.obsnme.apply(lambda x: x in pst.nnz_obs_names or x in pst.forecast_names),:]
     out_obs.loc[:,"site"] = out_obs.obsnme
     temporal_obs = out_obs.loc[out_obs.obsnme.apply(lambda x: x.startswith("trgw") or x.startswith("fo_")),"obsnme"]
@@ -124,11 +130,6 @@ def run_draws_and_pick_truth(run=True):
             ax.set_title(nz_group)
             pdf.savefig()
             plt.close(fig)
-
-
-
-
-
 
 
 def build_daily_model():
@@ -301,7 +302,7 @@ def setup_interface_daily():
     pst_helper = pyemu.helpers.PstFromFlopyModel(nam_file,new_model_ws=t_d,org_model_ws="temp",
                                                  const_props=const_props,spatial_list_props=spatial_list_props,
                                                  temporal_list_props=temporal_list_props,remove_existing=True,
-                                                 grid_props=props,pp_props=props,sfr_pars=True,hds_kperk=hds_kperk,
+                                                 grid_props=props,pp_props=props,sfr_pars=["strk"],hds_kperk=hds_kperk,
                                                  sfr_obs=sfr_obs_dict,build_prior=False,model_exe_name="mfnwt",
                                                  pp_space=4)
     prep_deps.prep_template(t_d=pst_helper.new_model_ws)
@@ -361,7 +362,7 @@ def setup_interface_daily():
                    np.zeros((m.nrow,m.ncol))+0.001,fmt="%15.6E")
 
     par = pst.parameter_data  
-    tag_dict = {"hk":[0.1,10.0],"vka":[0.1,10],"strt":[0.95,1.05],"pr":[0.8,1.2]}
+    tag_dict = {"hk":[0.1,10.0],"vka":[0.1,10],"strt":[0.95,1.05],"pr":[0.8,1.2],"rech":[0.8,1.2]}
     for t,[l,u] in tag_dict.items():
         t_pars = par.loc[par.parnme.apply(lambda x: t in x ),"parnme"]
         par.loc[t_pars,"parubnd"] = u
@@ -381,10 +382,6 @@ def setup_interface_daily():
 
     pst = pyemu.Pst(os.path.join(pst_helper.m.model_ws,"freyberg.pst"))
 
-    if pst_helper.pst.npar < 15000:
-        cov = pst_helper.build_prior(fmt="coo",filename=os.path.join(pst_helper.new_model_ws,"prior_cov.jcb"))
-        cov = np.ma.masked_where(cov.x==0,cov.x)
-    
     pe = pst_helper.draw(100)   
     pe.enforce()  # always a good idea!
     pe.to_binary(os.path.join(pst_helper.new_model_ws,"prior.jcb"))
@@ -417,4 +414,4 @@ def setup_interface_daily():
 if __name__ == "__main__":
     #build_daily_model()
     #setup_interface_daily()
-    run_draws_and_pick_truth(run=True)
+    run_draws_and_pick_truth(run=False)
