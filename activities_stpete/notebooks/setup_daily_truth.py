@@ -66,7 +66,8 @@ def run_draws_and_pick_truth(run=True):
     np.random.seed(seed=1)
     fo_obs = nz_obs.loc[nz_obs.obsnme.apply(lambda x: "fo_" in x),:].copy()
     fo_snd = np.random.randn(fo_obs.shape[0])
-    fo_noise = fo_snd * (fo_obs.obsval * 0.2)
+    #fo_noise = fo_snd * (fo_obs.obsval * 0.2)
+    fo_noise = fo_snd * 1./fo_obs.weight
     pst.observation_data.loc[fo_obs.obsnme,"obsval"] += fo_noise
 
     # Just for fun, lets have some "model error"
