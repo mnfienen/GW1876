@@ -39,17 +39,17 @@ def run_draws_and_pick_truth(run=True):
     sorted_vals = obs_df.loc[:,forecast].sort_values()
 
 
-    idx = sorted_vals.index[60]
+    idx = sorted_vals.index[80]
     print(obs_df.loc[idx,forecast])
 
     obs_df.loc[idx,pst.nnz_obs_names]
 
     pst = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
     obs = pst.observation_data
-    obs.loc[:,"weight"] = 0.0
-    obs.loc[:,"obsval"] = obs_df.loc[idx,pst.obs_names]
-    obs.loc[obs.obsnme.apply(lambda x: "trgw" in x),"weight"] = 5.0  # this corresponds to an (expected) noise standard deviation of 20 cm...
-    obs.loc[obs.obsnme.apply(lambda x: "fo_gage_1" in x),"weight"] = 0.01  # corresponding to an (expected) noise standard deviation of 100 m^3/d...
+    pst.observation_data.loc[:,"weight"] = 0.0
+    pst.observation_data.loc[:,"obsval"] = obs_df.loc[idx,pst.obs_names]
+    pst.observation_data.loc[obs.obsnme.apply(lambda x: "trgw" in x),"weight"] = 5.0  # this corresponds to an (expected) noise standard deviation of 20 cm...
+    pst.observation_data.loc[obs.obsnme.apply(lambda x: "fo_gage_1" in x),"weight"] = 0.01  # corresponding to an (expected) noise standard deviation of 100 m^3/d...
     
     b_d = os.path.join("..","base_model_files")
     assert os.path.exists(b_d) 
@@ -71,20 +71,20 @@ def run_draws_and_pick_truth(run=True):
 
     # Just for fun, lets have some "model error"
     obs = pst.observation_data
-    obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsval"] -= 0.75
+    #obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsval"] += 0.5
     offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_015_016" in x),"obsnme"]
-    obs.loc[offset_names[:300],"obsval"] -= 1.5
-    obs.loc[offset_names[300:],"obsval"] += 1.5
+    #pst.observation_data.loc[offset_names[:300],"obsval"] -= 1.5
+    #pst.observation_data.loc[offset_names[300:],"obsval"] += 1.5
 
 
     #add a trend to the flow obs
-    trend = np.linspace(1.0,0.85,fo_obs.shape[0])
-    pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
+    trend = np.linspace(1.0,1.2,fo_obs.shape[0])
+    #pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
 
     #add some "spikes"
     spike_idxs = np.random.randint(0,fo_obs.shape[0],40)
     spike_names = fo_obs.obsnme.iloc[spike_idxs]
-    pst.observation_data.loc[spike_names,"obsval"] *= 3.5
+    #pst.observation_data.loc[spike_names,"obsval"] *= 3.5
 
     out_obs = obs.loc[obs.obsnme.apply(lambda x: x in pst.nnz_obs_names or x in pst.forecast_names),:]
     out_obs.loc[:,"site"] = out_obs.obsnme
