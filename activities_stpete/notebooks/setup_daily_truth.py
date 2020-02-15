@@ -39,7 +39,7 @@ def run_draws_and_pick_truth(run=True):
     sorted_vals = obs_df.loc[:,forecast].sort_values()
 
 
-    idx = sorted_vals.index[90]
+    idx = sorted_vals.index[60]
     print(obs_df.loc[idx,forecast])
 
     obs_df.loc[idx,pst.nnz_obs_names]
@@ -71,18 +71,18 @@ def run_draws_and_pick_truth(run=True):
 
     # Just for fun, lets have some "model error"
     obs = pst.observation_data
-    obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsval"] -= 0.5
+    obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsval"] -= 0.75
     offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_015_016" in x),"obsnme"]
     obs.loc[offset_names[:300],"obsval"] -= 1.5
     obs.loc[offset_names[300:],"obsval"] += 1.5
 
 
     #add a trend to the flow obs
-    trend = np.linspace(1.0,0.8,fo_obs.shape[0])
+    trend = np.linspace(1.0,0.85,fo_obs.shape[0])
     pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
 
     #add some "spikes"
-    spike_idxs = np.random.randint(0,fo_obs.shape[0],20)
+    spike_idxs = np.random.randint(0,fo_obs.shape[0],40)
     spike_names = fo_obs.obsnme.iloc[spike_idxs]
     pst.observation_data.loc[spike_names,"obsval"] *= 3.5
 
