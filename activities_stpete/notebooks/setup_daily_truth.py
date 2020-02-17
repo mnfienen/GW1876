@@ -79,7 +79,7 @@ def run_draws_and_pick_truth(run=True):
 
 
     #add a trend to the flow obs
-    trend = np.linspace(1.0,1.2,fo_obs.shape[0])
+    trend = np.linspace(1.0,0.7,fo_obs.shape[0])
     pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
 
     #add some "spikes"
