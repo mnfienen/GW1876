@@ -72,7 +72,7 @@ def run_draws_and_pick_truth(run=True):
 
     # Just for fun, lets have some "model error"
     obs = pst.observation_data
-    obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsval"] += 0.5
+    obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsval"] += 1.5
     offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_015_016" in x),"obsnme"]
     pst.observation_data.loc[offset_names[:300],"obsval"] -= 1.5
     pst.observation_data.loc[offset_names[300:],"obsval"] += 1.5
