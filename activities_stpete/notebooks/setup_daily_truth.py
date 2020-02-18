@@ -35,11 +35,12 @@ def run_draws_and_pick_truth(run=True):
     print('number of realization in the ensemble **after** dropping: ' + str(obs_df.shape[0]))
 
     forecast = pst.forecast_names[0]
+    #forecast = "part_time"
     print(forecast)
     sorted_vals = obs_df.loc[:,forecast].sort_values()
 
 
-    idx = sorted_vals.index[90]
+    idx = sorted_vals.index[80]
     print(obs_df.loc[idx,forecast])
 
     obs_df.loc[idx,pst.nnz_obs_names]
@@ -72,14 +73,12 @@ def run_draws_and_pick_truth(run=True):
 
     # Just for fun, lets have some "model error"
     obs = pst.observation_data
-    obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsval"] += 1.5
     offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_015_016" in x),"obsnme"]
     pst.observation_data.loc[offset_names[:300],"obsval"] -= 1.5
     pst.observation_data.loc[offset_names[300:],"obsval"] += 1.5
 
-
     #add a trend to the flow obs
-    trend = np.linspace(1.0,0.8,fo_obs.shape[0])
+    trend = np.linspace(1.0,0.7,fo_obs.shape[0])
     pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
 
     #add some "spikes"
