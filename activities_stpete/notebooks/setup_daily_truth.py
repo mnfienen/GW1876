@@ -26,6 +26,8 @@ def run_draws_and_pick_truth(run=True):
 
     m_d = "master_truth_sweep"
     if run:
+        pst.pestpp_options["overdue_giveup_fac"] = 1.5
+        pst.write(os.path.join(t_d,"freyberg.pst"))
         pyemu.os_utils.start_workers(t_d,"pestpp-swp","freyberg.pst",num_workers=num_workers,worker_root=".",master_dir=m_d)
 
     obs_df = pd.read_csv(os.path.join(m_d,"sweep_out.csv"),index_col=0)
@@ -40,7 +42,7 @@ def run_draws_and_pick_truth(run=True):
     sorted_vals = obs_df.loc[:,forecast].sort_values()
 
 
-    idx = sorted_vals.index[80]
+    idx = sorted_vals.index[50]
     print(obs_df.loc[idx,forecast])
 
     obs_df.loc[idx,pst.nnz_obs_names]
@@ -156,8 +158,9 @@ def build_daily_model():
     #print(perlen)
     model_start_datetime = "12-31-2015"
     assert len(perlen) == tr_nper + 1,len(perlen)
+    botm = [m_org.dis.botm[0].array,m_org.dis.botm[1].array,np.loadtxt(os.path.join(org_d,"truth_botm_layer_3.ref"))]
     _ = flopy.modflow.ModflowDis(m_tr,nper=tr_nper+1,nlay=m_org.nlay,nrow=m_org.nrow,ncol=m_org.ncol,delr=m_org.dis.delr.array,
-                            delc=m_org.dis.delc.array,top=m_org.dis.top.array,botm=m_org.dis.botm.array,steady=steady,
+                            delc=m_org.dis.delc.array,top=m_org.dis.top.array,botm=botm,steady=steady,
                             perlen=perlen)
     m_tr.dis.start_datetime = model_start_datetime
 
@@ -185,9 +188,7 @@ def build_daily_model():
 
     _ = flopy.modflow.ModflowWel(m_tr,stress_period_data=wel_data,ipakcb=50)
 
-
     _ = flopy.modflow.ModflowRch(m_tr,rech=rech,ipakcb=50)
-
 
     _ = flopy.modflow.ModflowDrn(m_tr,stress_period_data=m_org.drn.stress_period_data,ipakcb=50)
 
@@ -240,9 +241,9 @@ def build_daily_model():
     pyemu.os_utils.run("mfnwt {0}".format(tr_nam),cwd=tr_d)
 
     lst = flopy.utils.MfListBudget(os.path.join(tr_d,tr_nam+".list"))
-    #flx,vol = lst.get_dataframes(diff=True,start_datetime=m_tr.start_datetime)
-    #flx.plot(subplots=True,figsize=(20,20))
-    #plt.show()
+    flx,vol = lst.get_dataframes(diff=True,start_datetime=m_tr.start_datetime)
+    flx.plot(subplots=True,figsize=(20,20))
+    plt.savefig(os.path.join(tr_d,"lst.pdf"))
 
     mp_files = [f for f in os.listdir(org_d) if "mp" in f or "location" in f]
     [shutil.copy2(os.path.join(org_d,f),os.path.join(tr_d)) for f in mp_files]
@@ -257,8 +258,6 @@ def setup_interface_daily():
     b_d = "temp_daily"
     nam_file = "freyberg.nam"
     m = flopy.modflow.Modflow.load(nam_file,model_ws=b_d,check=False,forgive=False)
-
-
 
     # assign the executable name for the model
     m.exe_name = "mfnwt"
@@ -284,7 +283,7 @@ def setup_interface_daily():
     for kper in range(m.nper):
         const_props.append(["rch.rech",kper])
 
-    spatial_list_props = [["wel.flux",2],["drn.cond",0]]  # spatially by each list entry, across all stress periods
+    spatial_list_props = [["wel.flux",2],["drn.cond",0],["drn.cond",1],["drn.cond",2]]  # spatially by each list entry, across all stress periods
     temporal_list_props = [["wel.flux",kper] for kper in range(m.nper)]  # spatially uniform for each stress period
 
     spatial_list_props, temporal_list_props
@@ -407,9 +406,9 @@ def setup_interface_daily():
 
     pst_helper.pst.write(os.path.join(pst_helper.m.model_ws,nam_file.replace(".nam",".pst")))
     lst = flopy.utils.MfListBudget(os.path.join(pst_helper.m.model_ws,"freyberg.list"))
-    #df = lst.get_dataframes(diff=True,start_datetime=pst_helper.m.start_datetime)[0]
-    #df.plot(kind="bar",figsize=(30,30), grid=True,subplots=True)
-    #plt.show()
+    # df = lst.get_dataframes(diff=True,start_datetime=pst_helper.m.start_datetime)[0]
+    # df.plot(kind="bar",figsize=(30,30), grid=True,subplots=True)
+    # plt.show()
 
 if __name__ == "__main__":
     #build_daily_model()
