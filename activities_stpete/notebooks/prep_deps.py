@@ -93,6 +93,6 @@ def prep_forecasts(t_d="template_history",pst_name="freyberg.pst",
     pst.write(os.path.join(t_d,pst_name))
 
 if __name__ == "__main__":
-    prep_forecasts()
-    #prep_for_deploy()  
+    #prep_forecasts()
+    prep_for_deploy()  
     #prep_template(t_d="temp")  

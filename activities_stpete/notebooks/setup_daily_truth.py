@@ -37,12 +37,12 @@ def run_draws_and_pick_truth(run=True):
     print('number of realization in the ensemble **after** dropping: ' + str(obs_df.shape[0]))
 
     forecast = pst.forecast_names[0]
-    forecast = "part_time"
+    #forecast = "part_time"
     print(forecast)
     sorted_vals = obs_df.loc[:,forecast].sort_values()
 
 
-    idx = sorted_vals.index[10]
+    idx = sorted_vals.index[40]
     print(obs_df.loc[idx,forecast])
 
     obs_df.loc[idx,pst.nnz_obs_names]
@@ -165,10 +165,11 @@ def build_daily_model():
     m_tr.dis.start_datetime = model_start_datetime
 
     _ = flopy.modflow.ModflowBas(m_tr,ibound=m_org.bas6.ibound.array,strt=m_org.bas6.strt.array,hnoflo=m_org.bas6.hnoflo)
-    
-    # add some property differences to make the inverse problem harder...
-    _ = flopy.modflow.ModflowUpw(m_tr,ipakcb=50,laytyp=[1,0,0],hk=m_org.upw.hk.array,
-                                 vka=m_org.upw.vka.array*.01,ss=m_org.upw.ss.array*.1,sy=m_org.upw.sy.array*.25)
+
+    vka = [.3,0.03,3]
+    hk = [3,0.3,30.]
+    _ = flopy.modflow.ModflowUpw(m_tr,ipakcb=50,laytyp=[1,0,0],hk=hk,
+                                 vka=vka,ss=m_org.upw.ss.array,sy=m_org.upw.sy.array)
 
     _ = flopy.modflow.ModflowNwt(m_tr,headtol=0.01,fluxtol=1.0)
     _ = flopy.modflow.ModflowOc(m_tr,stress_period_data={(kper,0):["save head","save budget"] for kper in range(m_tr.nper)})
@@ -183,10 +184,9 @@ def build_daily_model():
     rech = {0:org_rch}
     for kper in range(1,m_tr.nper):
         kper_wel_data = org_wel_data.copy()
-        # also turn well flux to make things harder
-        kper_wel_data["flux"] *= 1.5 * wel_season_mults[kper-1]
+        kper_wel_data["flux"] *= 2.5 * wel_season_mults[kper-1]
         wel_data[kper] = kper_wel_data
-        rech[kper] = org_rch * season_mults[kper-1]
+        rech[kper] = 0.85 * org_rch * season_mults[kper-1]
 
 
     _ = flopy.modflow.ModflowWel(m_tr,stress_period_data=wel_data,ipakcb=50)
@@ -201,7 +201,6 @@ def build_daily_model():
     sdata = pd.DataFrame.from_records(m_org.sfr.segment_data[0])
     
     rdata = rdata.reindex(np.arange(m_tr.nrow))
-    
     upstrm = 34
     dwstrm = 33.5
     total_length = m_tr.dis.delc.array.max() * m_tr.nrow
@@ -224,6 +223,9 @@ def build_daily_model():
     sdata.loc[:,"elevdn"] = strtop - slope
     sdata.loc[:,"outseg"] = sdata.nseg + 1
     sdata.loc[m_tr.nrow-1,"outseg"] = 0
+    sdata.loc[:,"hcond1"] = 1.0
+    sdata.loc[:,"hcond2"] = 1.0
+
 
     sdata_dict = {0:sdata.to_records(index=False)}
     for kper in range(1,m_tr.nper):
@@ -249,21 +251,25 @@ def build_daily_model():
     plt.savefig(os.path.join(tr_d,"lst.pdf"))
 
     hds = flopy.utils.HeadFile(os.path.join(tr_d,tr_nam+".hds"))
-    data = hds.get_data()
-    fig,axes = plt.subplots(2,3,figsize=(10,10))
     top = m_tr.dis.top.array
     ibound = m_tr.bas6.ibound.array
-    for k in range(m_tr.nlay):
-        arr = data[k,:,:].copy()
-        dtw = top - arr
-        arr[ibound[k,:,:]<=0] = np.NaN
-        dtw[ibound[k,:,:]<=0] = np.NaN
-        cb = axes[0,k].imshow(arr)
-        plt.colorbar(cb,ax=axes[0,k])
-        cb = axes[1,k].imshow(dtw)
-        plt.colorbar(cb,ax=axes[1,k])
-    plt.savefig(os.path.join(tr_d,"hds.pdf"))
-    plt.close(fig)
+    with PdfPages(os.path.join(tr_d,"hds.pdf")) as pdf:
+        for kper in range(0,m_tr.nper,10): 
+            print(kper) 
+            data = hds.get_data(kstpkper=(0,kper))
+            fig,axes = plt.subplots(2,3,figsize=(10,10))
+            
+            for k in range(m_tr.nlay):
+                arr = data[k,:,:].copy()
+                dtw = top - arr
+                arr[ibound[k,:,:]<=0] = np.NaN
+                dtw[ibound[k,:,:]<=0] = np.NaN
+                cb = axes[0,k].imshow(arr)
+                plt.colorbar(cb,ax=axes[0,k])
+                cb = axes[1,k].imshow(dtw)
+                plt.colorbar(cb,ax=axes[1,k])
+            pdf.savefig()#os.path.join(tr_d,"hds.pdf"))
+            plt.close(fig)
 
     mp_files = [f for f in os.listdir(org_d) if "mp" in f or "location" in f]
     [shutil.copy2(os.path.join(org_d,f),os.path.join(tr_d)) for f in mp_files]
@@ -343,7 +349,7 @@ def setup_interface_daily():
     obs_locs = pd.read_csv(os.path.join("..","base_model_files","obs_loc.csv"))
     #build obs names that correspond to the obsnme values in the control file
     obs_locs.loc[:,"site"] = obs_locs.apply(lambda x: "trgw_{0:03d}_{1:03d}".format(x.row-1,x.col-1),axis=1)
-    kij_dict = {site:(0,r-1,c-1) for site,r,c in zip(obs_locs.site,obs_locs.row,obs_locs.col)}
+    kij_dict = {site:(2,r-1,c-1) for site,r,c in zip(obs_locs.site,obs_locs.row,obs_locs.col)}
 
 
     binary_file = os.path.join(pst_helper.m.model_ws,nam_file.replace(".nam",".hds"))
@@ -433,6 +439,6 @@ def setup_interface_daily():
 
 
 if __name__ == "__main__":
-    build_daily_model()
-    setup_interface_daily()
-    run_draws_and_pick_truth(run=True)
+    #build_daily_model()
+    #setup_interface_daily()
+    run_draws_and_pick_truth(run=False)
