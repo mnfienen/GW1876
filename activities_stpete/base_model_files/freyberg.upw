@@ -6,14 +6,14 @@
          0         0         0
          0         0         0
 CONSTANT    5.000000E+00                           #hk                            
-CONSTANT    5.000000E-01                           #vka                           
-CONSTANT    1.000000E-05                           #ss layer 1                    
-CONSTANT    1.000000E-02                           #sy layer 1                    
+CONSTANT    5.000000E-01                           #vk                            
+CONSTANT    1.000000E-05                           #ss                            
+CONSTANT    1.000000E-02                           #sy                            
 CONSTANT    1.000000E-01                           #hk                            
-CONSTANT    1.000000E-01                           #vka                           
-CONSTANT    1.000000E-05                           #ss layer 2                    
-CONSTANT    1.000000E-02                           #sy layer 2                    
+CONSTANT    1.000000E-01                           #vk                            
+CONSTANT    1.000000E-05                           #ss                            
+CONSTANT    1.000000E-02                           #sy                            
 CONSTANT    5.000000E+00                           #hk                            
-CONSTANT    5.000000E-01                           #vka                           
-CONSTANT    1.000000E-05                           #ss layer 3                    
-CONSTANT    1.000000E-02                           #sy layer 3                    
+CONSTANT    5.000000E-01                           #vk                            
+CONSTANT    1.000000E-05                           #ss                            
+CONSTANT    1.000000E-02                           #sy                            

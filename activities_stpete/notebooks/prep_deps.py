@@ -81,9 +81,10 @@ def prep_forecasts(t_d="template_history",pst_name="freyberg.pst",
     obs = pst.observation_data
     obs_fore = obs.loc[pst.forecast_names,:].copy()
     print(obs_fore)
+    print(fore_df)
     for tag in ["hds","fa_hw","fa_tw","part_time","part_status"]:
         truth_val = fore_df.loc[fore_df.index.map(lambda x: tag in x),"obsval"]
-        assert truth_val.shape[0] == 1,truth_val
+        assert truth_val.shape[0] == 1,tag
         truth_val = truth_val.values[0]
         obs_name = obs_fore.loc[obs_fore.index.map(lambda x: tag in x),"obsnme"]
         assert obs_name.shape[0] == 1,obs_name
@@ -92,6 +93,6 @@ def prep_forecasts(t_d="template_history",pst_name="freyberg.pst",
     pst.write(os.path.join(t_d,pst_name))
 
 if __name__ == "__main__":
-    #prep_forecasts()
-    prep_for_deploy()  
+    prep_forecasts()
+    #prep_for_deploy()  
     #prep_template(t_d="temp")  

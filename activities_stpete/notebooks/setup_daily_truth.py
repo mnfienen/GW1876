@@ -14,7 +14,7 @@ t_d = "template_daily"
 
 
 def run_draws_and_pick_truth(run=True):
-    num_workers = 20
+    num_workers = 15
     
     pst = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
 
@@ -37,12 +37,12 @@ def run_draws_and_pick_truth(run=True):
     print('number of realization in the ensemble **after** dropping: ' + str(obs_df.shape[0]))
 
     forecast = pst.forecast_names[0]
-    #forecast = "part_time"
+    forecast = "part_time"
     print(forecast)
     sorted_vals = obs_df.loc[:,forecast].sort_values()
 
 
-    idx = sorted_vals.index[50]
+    idx = sorted_vals.index[10]
     print(obs_df.loc[idx,forecast])
 
     obs_df.loc[idx,pst.nnz_obs_names]
@@ -165,8 +165,10 @@ def build_daily_model():
     m_tr.dis.start_datetime = model_start_datetime
 
     _ = flopy.modflow.ModflowBas(m_tr,ibound=m_org.bas6.ibound.array,strt=m_org.bas6.strt.array,hnoflo=m_org.bas6.hnoflo)
+    
+    # add some property differences to make the inverse problem harder...
     _ = flopy.modflow.ModflowUpw(m_tr,ipakcb=50,laytyp=[1,0,0],hk=m_org.upw.hk.array,
-                                 vka=m_org.upw.vka.array,ss=m_org.upw.ss.array,sy=m_org.upw.sy.array)
+                                 vka=m_org.upw.vka.array*.01,ss=m_org.upw.ss.array*.1,sy=m_org.upw.sy.array*.25)
 
     _ = flopy.modflow.ModflowNwt(m_tr,headtol=0.01,fluxtol=1.0)
     _ = flopy.modflow.ModflowOc(m_tr,stress_period_data={(kper,0):["save head","save budget"] for kper in range(m_tr.nper)})
@@ -181,7 +183,8 @@ def build_daily_model():
     rech = {0:org_rch}
     for kper in range(1,m_tr.nper):
         kper_wel_data = org_wel_data.copy()
-        kper_wel_data["flux"] *= wel_season_mults[kper-1]
+        # also turn well flux to make things harder
+        kper_wel_data["flux"] *= 1.5 * wel_season_mults[kper-1]
         wel_data[kper] = kper_wel_data
         rech[kper] = org_rch * season_mults[kper-1]
 
@@ -190,7 +193,7 @@ def build_daily_model():
 
     _ = flopy.modflow.ModflowRch(m_tr,rech=rech,ipakcb=50)
 
-    _ = flopy.modflow.ModflowDrn(m_tr,stress_period_data=m_org.drn.stress_period_data,ipakcb=50)
+    _ = flopy.modflow.ModflowGhb(m_tr,stress_period_data=m_org.ghb.stress_period_data,ipakcb=50)
 
     m_org.sfr.reach_data
 
@@ -245,6 +248,23 @@ def build_daily_model():
     flx.plot(subplots=True,figsize=(20,20))
     plt.savefig(os.path.join(tr_d,"lst.pdf"))
 
+    hds = flopy.utils.HeadFile(os.path.join(tr_d,tr_nam+".hds"))
+    data = hds.get_data()
+    fig,axes = plt.subplots(2,3,figsize=(10,10))
+    top = m_tr.dis.top.array
+    ibound = m_tr.bas6.ibound.array
+    for k in range(m_tr.nlay):
+        arr = data[k,:,:].copy()
+        dtw = top - arr
+        arr[ibound[k,:,:]<=0] = np.NaN
+        dtw[ibound[k,:,:]<=0] = np.NaN
+        cb = axes[0,k].imshow(arr)
+        plt.colorbar(cb,ax=axes[0,k])
+        cb = axes[1,k].imshow(dtw)
+        plt.colorbar(cb,ax=axes[1,k])
+    plt.savefig(os.path.join(tr_d,"hds.pdf"))
+    plt.close(fig)
+
     mp_files = [f for f in os.listdir(org_d) if "mp" in f or "location" in f]
     [shutil.copy2(os.path.join(org_d,f),os.path.join(tr_d)) for f in mp_files]
 
@@ -283,12 +303,12 @@ def setup_interface_daily():
     for kper in range(m.nper):
         const_props.append(["rch.rech",kper])
 
-    spatial_list_props = [["wel.flux",2],["drn.cond",0],["drn.cond",1],["drn.cond",2]]  # spatially by each list entry, across all stress periods
+    spatial_list_props = [["wel.flux",2],["ghb.cond",0],["ghb.cond",1],["ghb.cond",2]]  # spatially by each list entry, across all stress periods
     temporal_list_props = [["wel.flux",kper] for kper in range(m.nper)]  # spatially uniform for each stress period
 
     spatial_list_props, temporal_list_props
 
-    dry_kper = int(m.nper * 0.75)
+    dry_kper = int(m.nper * 0.85)
     hds_kperk = [[kper,k] for k in range(m.nlay) for kper in [0,dry_kper,m.nper-1]]
 
     hds_kperk
@@ -389,7 +409,7 @@ def setup_interface_daily():
     obs = pst_helper.pst.observation_data
     dts = pd.to_datetime(pst_helper.m.start_datetime) + pd.to_timedelta(np.cumsum(pst_helper.m.dis.perlen.array),unit='d')
     dts_str = list(dts.map(lambda x: x.strftime("%Y%m%d")).values)
-    dry_kper = int(pst_helper.m.nper * 0.75)
+    dry_kper = int(pst_helper.m.nper * 0.85)
     dry_dt = dts_str[dry_kper]
     print(dry_dt)
     swgw_forecasts = obs.loc[obs.obsnme.apply(lambda x: "fa" in x and ("hw" in x or "tw" in x) and dry_dt in x),"obsnme"].tolist()
@@ -410,7 +430,9 @@ def setup_interface_daily():
     # df.plot(kind="bar",figsize=(30,30), grid=True,subplots=True)
     # plt.show()
 
+
+
 if __name__ == "__main__":
-    #build_daily_model()
-    #setup_interface_daily()
-    run_draws_and_pick_truth(run=False)
+    build_daily_model()
+    setup_interface_daily()
+    run_draws_and_pick_truth(run=True)
