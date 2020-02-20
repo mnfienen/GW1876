@@ -54,7 +54,7 @@ def run_draws_and_pick_truth(run=True):
     sorted_vals = fore_df.loc[:,forecast].sort_values()
 
 
-    idx = sorted_vals.index[75]
+    idx = sorted_vals.index[25]
     print(fore_df.loc[idx,:])
     print(obs_df.loc[idx,pst.forecast_names])
 
