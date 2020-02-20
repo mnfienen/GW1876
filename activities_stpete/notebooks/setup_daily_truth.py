@@ -36,21 +36,33 @@ def run_draws_and_pick_truth(run=True):
     obs_df = obs_df.loc[obs_df.failed_flag==0,:]
     print('number of realization in the ensemble **after** dropping: ' + str(obs_df.shape[0]))
 
+    fore_df = obs_df.loc[:,["part_time","part_status"]]
+    for forecast in pst.forecast_names:
+        if forecast in fore_df.columns:
+            continue
+        print(forecast)
+        if forecast.startswith("fa"):
+            #find all days in the month-year of the forecast
+            fore_values = obs_df.loc[:,obs_df.columns.map(lambda x: forecast[:5] in x and forecast[7:12] in x)].mean(axis=1)
+            fore_df.loc[fore_values.index,forecast] = fore_values
+        else:
+            fore_df.loc[:,forecast] = obs_df.loc[:,forecast]
+    
     forecast = pst.forecast_names[0]
     #forecast = "part_time"
     print(forecast)
-    sorted_vals = obs_df.loc[:,forecast].sort_values()
+    sorted_vals = fore_df.loc[:,forecast].sort_values()
 
 
-    idx = sorted_vals.index[40]
-    print(obs_df.loc[idx,forecast])
-
-    obs_df.loc[idx,pst.nnz_obs_names]
+    idx = sorted_vals.index[75]
+    print(fore_df.loc[idx,:])
+    print(obs_df.loc[idx,pst.forecast_names])
 
     pst = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
     obs = pst.observation_data
     pst.observation_data.loc[:,"weight"] = 0.0
     pst.observation_data.loc[:,"obsval"] = obs_df.loc[idx,pst.obs_names]
+    pst.observation_data.loc[fore_df.columns,"obsval"] = fore_df.loc[idx,:].values
     pst.observation_data.loc[obs.obsnme.apply(lambda x: "trgw" in x),"weight"] = 5.0  # this corresponds to an (expected) noise standard deviation of 20 cm...
     pst.observation_data.loc[obs.obsnme.apply(lambda x: "fo_gage_1" in x),"weight"] = 0.01  # corresponding to an (expected) noise standard deviation of 100 m^3/d...
     
@@ -76,17 +88,44 @@ def run_draws_and_pick_truth(run=True):
     # Just for fun, lets have some "model error"
     obs = pst.observation_data
     offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_015_016" in x),"obsnme"]
-    pst.observation_data.loc[offset_names[:300],"obsval"] -= 1.5
-    pst.observation_data.loc[offset_names[300:],"obsval"] += 1.5
+    pst.observation_data.loc[offset_names[:300],"obsval"] -= 3
+    pst.observation_data.loc[offset_names[300:],"obsval"] += 3
+    offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsnme"]
+    trend = np.linspace(0.0,3.0,offset_names.shape[0])
+    #pst.observation_data.loc[offset_names[:100],"obsval"] -= 3
+    #pst.observation_data.loc[offset_names[600:],"obsval"] -= 3
+    pst.observation_data.loc[offset_names,"obsval"] += trend
 
     #add a trend to the flow obs
-    trend = np.linspace(1.0,0.7,fo_obs.shape[0])
+    trend = np.linspace(0.4,1.6,fo_obs.shape[0])
     pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
 
     #add some "spikes"
     spike_idxs = np.random.randint(0,fo_obs.shape[0],40)
     spike_names = fo_obs.obsnme.iloc[spike_idxs]
-    #pst.observation_data.loc[spike_names,"obsval"] *= 3.5
+    pst.observation_data.loc[spike_names,"obsval"] *= 3.5
+
+    nz_obs = pst.observation_data.loc[pst.nnz_obs_names,:].copy()
+    nz_obs.loc[:,"datetime"] = pd.to_datetime(nz_obs.obsnme.apply(lambda x: x.split("_")[-1]))
+    m = flopy.modflow.Modflow.load("freyberg.nam",model_ws=m_d,check=False)
+    with PdfPages(os.path.join(m_d,"obs_v_sim_truth.pdf")) as pdf:
+
+        for nz_group in pst.nnz_obs_groups:
+            nz_obs_group = nz_obs.loc[nz_obs.obgnme==nz_group,:]
+            fig,ax = plt.subplots(1,1,figsize=(10,2))
+            ax.plot(nz_obs_group.datetime,nz_obs_group.obsval,"r-")
+            ax.plot(nz_obs_group.datetime,obs_df.loc[idx,nz_obs_group.obsnme],"b-")
+            #ax.plot(nz_obs_group.datetime, pst_base.observation_data.loc[nz_obs_group.obsnme,"obsval"],"g-")
+            if (nz_group.startswith("trgw")):
+                i = int(nz_group.split('_')[1])
+                j = int(nz_group.split('_')[2])
+                t = m.dis.top.array[i,j]
+                ax.plot(ax.get_xlim(),[t,t],"k--")
+                
+            ax.set_title(nz_group)
+            pdf.savefig()
+            plt.close(fig)
+    
 
     out_obs = obs.loc[obs.obsnme.apply(lambda x: x in pst.nnz_obs_names or x in pst.forecast_names),:]
     out_obs.loc[:,"site"] = out_obs.obsnme
@@ -112,27 +151,9 @@ def run_draws_and_pick_truth(run=True):
     plt.savefig(os.path.join(m_d,"truth_water_bud.pdf"))
     plt.close("all")
 
-    nz_obs = pst.observation_data.loc[pst.nnz_obs_names,:].copy()
-    nz_obs.loc[:,"datetime"] = pd.to_datetime(nz_obs.obsnme.apply(lambda x: x.split("_")[-1]))
+    
     #pst_base = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
-    with PdfPages(os.path.join(m_d,"obs_v_sim_truth.pdf")) as pdf:
-
-        for nz_group in pst.nnz_obs_groups:
-            nz_obs_group = nz_obs.loc[nz_obs.obgnme==nz_group,:]
-            fig,ax = plt.subplots(1,1,figsize=(10,2))
-            ax.plot(nz_obs_group.datetime,nz_obs_group.obsval,"r-")
-            ax.plot(nz_obs_group.datetime,pst.res.loc[nz_obs_group.obsnme,"modelled"],"b-")
-            #ax.plot(nz_obs_group.datetime, pst_base.observation_data.loc[nz_obs_group.obsnme,"obsval"],"g-")
-            if (nz_group.startswith("trgw")):
-                i = int(nz_group.split('_')[1])
-                j = int(nz_group.split('_')[2])
-                t = m.dis.top.array[i,j]
-                ax.plot(ax.get_xlim(),[t,t],"k--")
-                
-            ax.set_title(nz_group)
-            pdf.savefig()
-            plt.close(fig)
-
+    
 
 def build_daily_model():
     org_d = os.path.join("..","base_model_files")
@@ -166,10 +187,9 @@ def build_daily_model():
 
     _ = flopy.modflow.ModflowBas(m_tr,ibound=m_org.bas6.ibound.array,strt=m_org.bas6.strt.array,hnoflo=m_org.bas6.hnoflo)
 
-    vka = [.3,0.03,3]
-    hk = [3,0.3,30.]
-    _ = flopy.modflow.ModflowUpw(m_tr,ipakcb=50,laytyp=[1,0,0],hk=hk,
-                                 vka=vka,ss=m_org.upw.ss.array,sy=m_org.upw.sy.array)
+    
+    _ = flopy.modflow.ModflowUpw(m_tr,ipakcb=50,laytyp=[1,0,0],hk=m_org.upw.hk.array,
+                                 vka=m_org.upw.vka.array,ss=m_org.upw.ss.array,sy=m_org.upw.sy.array)
 
     _ = flopy.modflow.ModflowNwt(m_tr,headtol=0.01,fluxtol=1.0)
     _ = flopy.modflow.ModflowOc(m_tr,stress_period_data={(kper,0):["save head","save budget"] for kper in range(m_tr.nper)})
@@ -184,9 +204,9 @@ def build_daily_model():
     rech = {0:org_rch}
     for kper in range(1,m_tr.nper):
         kper_wel_data = org_wel_data.copy()
-        kper_wel_data["flux"] *= 2.5 * wel_season_mults[kper-1]
+        kper_wel_data["flux"] *= wel_season_mults[kper-1]
         wel_data[kper] = kper_wel_data
-        rech[kper] = 0.85 * org_rch * season_mults[kper-1]
+        rech[kper] = org_rch * season_mults[kper-1]
 
 
     _ = flopy.modflow.ModflowWel(m_tr,stress_period_data=wel_data,ipakcb=50)
@@ -223,8 +243,6 @@ def build_daily_model():
     sdata.loc[:,"elevdn"] = strtop - slope
     sdata.loc[:,"outseg"] = sdata.nseg + 1
     sdata.loc[m_tr.nrow-1,"outseg"] = 0
-    sdata.loc[:,"hcond1"] = 1.0
-    sdata.loc[:,"hcond2"] = 1.0
 
 
     sdata_dict = {0:sdata.to_records(index=False)}
@@ -437,8 +455,101 @@ def setup_interface_daily():
     # plt.show()
 
 
+def revise_base_model():
+    b_d = os.path.join("..","base_model_files")
+    org_nam = "freyberg.nam"
+    nam_file = "freyberg.nam"
+    m = flopy.modflow.Modflow.load(nam_file,model_ws=b_d,check=False,forgive=False)
+
+    vka = [.3,0.03,3]
+    hk = [3,0.3,30.]
+    _ = flopy.modflow.ModflowUpw(m,ipakcb=50,laytyp=[1,0,0],hk=hk,
+                                 vka=vka,ss=m.upw.ss.array,sy=m.upw.sy.array)
+
+    
+    m.wel.stress_period_data[0]["flux"] *= 2.5
+    m.rch.rech[0] *= 0.85
+
+    rdata = pd.DataFrame.from_records(m.sfr.reach_data)
+    sdata = pd.DataFrame.from_records(m.sfr.segment_data[0])
+    
+    rdata = rdata.reindex(np.arange(m.nrow))
+    upstrm = 34
+    dwstrm = 33.5
+    total_length = m.dis.delc.array.max() * m.nrow
+    slope = (upstrm - dwstrm) / total_length
+    # print(rdata.dtype,slope)
+    strtop = np.linspace(upstrm, dwstrm, m.nrow)
+    # print(strtop)
+    rdata.loc[:,"strtop"] = strtop
+    rdata.loc[:,"slope"] = slope
+
+    #print(sdata.nseg)
+    sdata = sdata.reindex(np.arange(m.nrow))
+    for column in sdata.columns:
+        sdata.loc[:,column] = sdata.loc[0,column]
+    sdata.loc[:,"nseg"] = np.arange(m.nrow) + 1
+    sdata.loc[1:,"flow"] = 0
+    sdata.loc[:,"width1"] = 5.
+    sdata.loc[:,"width2"] = 5.
+    sdata.loc[:,"elevup"] = strtop
+    sdata.loc[:,"elevdn"] = strtop - slope
+    sdata.loc[:,"outseg"] = sdata.nseg + 1
+    sdata.loc[m.nrow-1,"outseg"] = 0
+    sdata.loc[:,"hcond1"] = 1.0
+    sdata.loc[:,"hcond2"] = 1.0
+
+
+    _ = flopy.modflow.ModflowSfr2(m,nstrm=m.nrow,nss=m.nrow,isfropt=m.sfr.isfropt,
+                              segment_data={0:sdata.to_records(index=False)},
+                              reach_data=rdata.to_records(index=False),ipakcb=m.sfr.ipakcb,
+                              istcb2=m.sfr.istcb2,reachinput=True)
+
+    # m.external_path = "."
+    m.change_model_ws("temp")
+    m.write_input()
+
+    prep_deps.prep_template("temp")
+
+    pyemu.os_utils.run("mfnwt {0}".format(m.name+".nam"),cwd="temp")
+
+    lst = flopy.utils.MfListBudget(os.path.join("temp",m.name+".list"))
+    flx,vol = lst.get_dataframes(diff=True,start_datetime=m.start_datetime)
+    flx.plot(subplots=True,figsize=(20,20))
+    plt.savefig(os.path.join("temp","lst.pdf"))
+
+    hds = flopy.utils.HeadFile(os.path.join("temp",m.name+".hds"))
+    top = m.dis.top.array
+    ibound = m.bas6.ibound.array
+    with PdfPages(os.path.join("temp","hds.pdf")) as pdf:
+        for kper in range(0,m.nper): 
+            print(kper) 
+            data = hds.get_data(kstpkper=(0,kper))
+            fig,axes = plt.subplots(2,3,figsize=(10,10))
+            
+            for k in range(m.nlay):
+                arr = data[k,:,:].copy()
+                dtw = top - arr
+                arr[ibound[k,:,:]<=0] = np.NaN
+                dtw[ibound[k,:,:]<=0] = np.NaN
+                cb = axes[0,k].imshow(arr)
+                plt.colorbar(cb,ax=axes[0,k])
+                cb = axes[1,k].imshow(dtw)
+                plt.colorbar(cb,ax=axes[1,k])
+            pdf.savefig()#os.path.join(tr_d,"hds.pdf"))
+            plt.close(fig)
+
+    mp_files = [f for f in os.listdir(b_d) if "mp" in f or "location" in f]
+    [shutil.copy2(os.path.join(b_d,f),os.path.join("temp",f)) for f in mp_files]
+
+    for k in range(m.nlay):
+        np.savetxt(os.path.join("temp","prsity_layer_{0}.ref".format(k+1)),np.zeros((m.nrow,m.ncol))+0.1,fmt="%15.6E")
+
+    pyemu.os_utils.run("mp6 freyberg.mpsim",cwd="temp")
+
 
 if __name__ == "__main__":
+    #revise_base_model()
     #build_daily_model()
     #setup_interface_daily()
     run_draws_and_pick_truth(run=False)
