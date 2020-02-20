@@ -1,8 +1,8 @@
 import os
 
-os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inplace setup_transient_model.ipynb")
-os.system("jupyter nbconvert --to pdf setup_transient_model.ipynb")
-os.system("jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace setup_transient_model.ipynb")
+os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inplace setup_transient_history.ipynb")
+os.system("jupyter nbconvert --to pdf setup_transient_history.ipynb")
+os.system("jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace setup_transient_history.ipynb")
 
 os.system("jupyter nbconvert --execute --ExecutePreprocessor.timeout=1800 --inplace setup_pest_interface.ipynb")
 os.system("jupyter nbconvert --to pdf setup_pest_interface.ipynb")
