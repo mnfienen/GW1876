@@ -1,0 +1,18 @@
+These notebooks must be run before the others:
+
+0) setup_transient_history.ipynb : builds the transient MODFLOW-NWT mode
+1) setup_pest_interace.ipynb : setups the PEST model independent interface around the model and creates the prior parameter ensemble
+2) process_obs_and_set_weights.ipynb : loads and time-series processes the daily observed data for use in the PEST control file.  Balances the weights
+
+Once these three have been run, any of the following can be run:
+
+ - pestpp-glm_part1.ipynb : reduce the number of adjustable parameters and fill a jacobian matrix
+ - pestpp-ies_part1.ipynb : run pestpp-ies in basic mode, then with automatic prior-data conflict detection and finally with total error covariance
+ - pestpp-glm_part2.ipynb : explore three localization strategies with pestpp-ies
+ - prior_monte_carlo.ipynb : run the prior parameter ensemble and post process
+
+ Once pestpp-glm_part1.ipynb has been run, you can run either of the following:
+
+ - pestpp-glm_part2.ipynb : run pestpp-glm using the previously filled jacobian for several super parameter iterations and with FOSM-based posterior monte carlo, then post process
+ - dataworth.ipynb : using the previously filled jacobian, do lots of FOSM based analyses to evaluate sources of forecast uncertainty and possible data collection strategies.  
+ 
