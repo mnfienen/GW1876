@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
+sys.path.append('..')
 import pyemu
 import matplotlib as mpl
 
