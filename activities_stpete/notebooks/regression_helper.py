@@ -215,6 +215,7 @@ def plot_poly(cdegree, y_fit_pars_best, poly_func, x, x_pred,x_predlocations, y_
     plt.plot(x_pred, poly_func(x_pred), 'o', markerfacecolor='w')
     plt.grid()
     plt.title('Restricted Scale')
+    plt.suptitle('Absolute Prediction Error = {:.4f}'.format(np.abs(poly_func(x_predlocations[-1]) - func_fit(x_predlocations[-1]))))
     plt.show()
 
 def plot_error_tradeoff(all_datafit, all_predfit, degree_range, best_degree):
