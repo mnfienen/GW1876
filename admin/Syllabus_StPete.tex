@@ -1,0 +1,117 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+
+\usepackage{xcolor}
+\geometry{verbose,tmargin=1.5cm,bmargin=1.5cm,lmargin=1.5cm,rmargin=1.5cm}
+\begin{document}
+
+\title{Applied Groundwater Model Calibration and Uncertainty Analysis Curriculum }
+
+\author{Jeremy T. White, Michael N. Fienen,  and Randall J. Hunt }
+
+\date{Feb 2020}
+
+\maketitle
+
+\textbf{MONDAY}
+\begin{enumerate}
+
+\item \textbf{Introductions of students/instructors --- JDub} Goals for
+the week and framing 
+\begin{enumerate}
+\item The mechanics and theory 
+\item Learning by doing 
+\item Please speak up! Everyone learns from discussion 
+\item Work in pairs  !!!
+\item Python, GUIs, and all that 
+\end{enumerate}
+
+\item \textbf{Logistics and airing of the IT grievances --- JDub}: 
+\begin{enumerate}
+\item Did everyone get the software installed? 
+\item Pull the class from github and make a copy 
+\item Brief Git tutorial (including modeling workflows with Git)
+\end{enumerate}
+
+\item \textbf{Regression --- MNF} Notebook as simple machine learning
+
+\item \textbf{Bayes Theorem and Inference --- MNF} Adding context to regression 
+
+\item \textbf{RRR --- JDub} Aspirational goals of groundwater modeling
+
+\item \textbf{Demo with EAA model --- JDub} Edwards Aquifer modeling workflow
+
+\item \textbf{Freyberg model --- MNF} Introduce the enhanced Freyberg model.
+Show "truth" observations, water budget, etc
+
+
+\item \textbf{Connecting a model to PEST++ --- RJH} Steady-state GUI Style - how can you connect a model to PEST with a GUI.
+
+%\item\textbf{run iES and viz in Excel and python --- RJH} All defaults, uncertainty from the start
+
+
+
+\textbf{TUESDAY}
+
+\item \textbf{Adding transience to a model notebook --- JDub/MNF}. flopy/python review
+
+\item \textbf{Intro to pyemu --- JDub/MNF}
+
+\item \textbf{Geostatistics, the Prior and pilot points --- MNF} Variograms as a basis for interpolation, the use of factors, \textquotedblleft spatially weighted averaging\textquotedblright , all this wrapped up in Kriging. Pilot points as a dimension reduction (``parameterization'') device.
+
+\item \textbf{Setup pest interface notebook --- JDub} Automating the construction of the PEST interface and associated components.  
+
+\item \textbf{Transient modeling discussion --- RJH} The allure and pitfalls
+of transient modeling, esp for history-matching.
+
+\item \textbf{Processing obs and setting weights notebook --- JDub}.  Discussion about observation processing to align with model stress periods and assigning meaningful weights.
+
+\textbf{WEDNESDAY}
+
+\item \textbf{Prior Monte Carlo --- JDub/RJH}. Mechanics of parallel run mgmt - including giveup setting, pestpp-swp and starting a worker manually.  The relative safety of Prior Monte Carlo.  Learning from Prior Monte Carlo. Foreshadowing of prior-data conflict
+
+\item \textbf{GLM --- MNF} Derivation of the Gauss-Levenberg-Marquardt
+Algorithm maths --- walking through the PDF with $\lambda$ images
+
+\item \textbf{PESTPP-GLM part 1 notebook: fill a base Jacobian --- RJH}. Start this then cover FOSM theory
+
+\item \textbf{FOSM theory (including ident and sens) and dataworth --- MNF} FOSM as an alternative to MC (rejection sampling). PEST lingo = PREDUNC/GENLINPRED.  Posterior residual-based weight adjust and implications.
+
+\item \textbf{Dataworth notebook --- JDub} 
+
+\item \textbf{Singular Value Decomposition --- MNF} Algorithm at the heart of alot of what we are doing.  Super parameters (parameter space reduction).
+
+\item \textbf{PESTPP-GLM part 2 notebook --- JDub}. Actual parameter adjustments (scary!) and 
+posterior parameter and forecast estimation. {change the forecasts and do more dataworth}
+
+
+\textbf{THURSDAY}
+
+\item \textbf{Ensemble-based modeling analyses --- JDub}. Considerations for using ensembles.
+parameter statistical moment changes instead of "sensitivity analysis".  Visualizing 
+obs vs sim. more comprehensive pest interface.  
+
+\item \textbf{PESTPP-IES notebook part 1 --- MNF}.  Vanilla IES, prior-data conflict and total error covariance workflows.
+
+\item \textbf{Localization and PESTPP-IES notebook part 2 --- JDub}.  using varies forms of localization
+
+\item \textbf{Live Demo: ensemble-based scenario modeling --- JDub} Create a 
+scenario model, setup a pest interface and run prior or posterior Monte Carlo (pestpp-swp)
+
+\textbf{FRIDAY}
+
+\item \textbf{Stuff we didn't get to yet}
+
+\item \textbf{Mgmt opt under uncertainty --- MNF}: examples from SIRE and Little Plover
+
+\item \textbf{PESTPP-OPT notebook --- JDub}: running PESTPP-OPT on the freyberg model to optimize GW use subject to SW-GW exchange constraints.
+
+\item \textbf{Discussion and wrap up --- ALL}
+
+\end{enumerate}
+
+\end{document}

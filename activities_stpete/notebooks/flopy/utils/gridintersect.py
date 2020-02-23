@@ -7,9 +7,9 @@ try:
     from shapely.strtree import STRtree
     from shapely.affinity import translate, rotate
 except ModuleNotFoundError:
-    print("Shapely is needed for grid intersect operations!"
-          "Please install shapely.")
-
+    #print("Shapely is needed for grid intersect operations!"
+    #      "Please install shapely.")
+    pass
 
 def parse_shapely_ix_result(collection, ix_result, shptyps=None):
     """Recursive function for parsing shapely intersection results.
