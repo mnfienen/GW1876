@@ -94,5 +94,5 @@ def prep_forecasts(t_d="template_history",pst_name="freyberg.pst",
 
 if __name__ == "__main__":
     #prep_forecasts()
-    prep_for_deploy()  
-    #prep_template(t_d="temp")  
+    #prep_for_deploy()  
+    prep_template(t_d="temp")  
