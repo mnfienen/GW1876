@@ -501,7 +501,7 @@ This can get expanded in a Taylor series to linearize it and then iterate
  using similar equations
 \begin_inset Formula 
 \[
-\boxed{\mathbf{\hat{\beta}}_{i+1}=\mathbf{\hat{\beta}}_{i}+\left(\mathbf{X}^{T}\mathbf{QX}\right)^{-1}\mathbf{X}^{T}\mathbf{Q}\mathbf{y}}
+\boxed{\mathbf{\hat{\beta}}_{i+1}=\mathbf{\hat{\beta}}_{i}+\left(\mathbf{X}^{T}\mathbf{QX}\right)^{-1}\mathbf{X}^{T}\mathbf{Q}\mathbf{\left(\mathbf{y}-\mathbf{X\hat{\beta_{i}}}\right)}}
 \]
 
 \end_inset
