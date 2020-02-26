@@ -1,0 +1,31 @@
+name: pyclass
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7
+  - numpy
+  - matplotlib
+  - xarray
+  - requests
+  - pandas
+  - xlrd
+  - gdal
+  - geopandas
+  - rtree
+  - descartes
+  - scipy
+  - pyproj>=2.0
+  - rasterio>=1.0
+  - rasterstats
+  - pyshp
+  - hydrofunctions
+  - jupyter
+  - notebook
+  - jupyterlab
+  - ipykernel
+  - pytest
+  - pip
+  - openpyxl
+  - flopy
+  - imageio
+
