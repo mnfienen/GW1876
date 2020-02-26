@@ -243,8 +243,6 @@ def build_daily_model():
     sdata.loc[:,"elevdn"] = strtop - slope
     sdata.loc[:,"outseg"] = sdata.nseg + 1
     sdata.loc[m_tr.nrow-1,"outseg"] = 0
-    sdata.loc[:,"roughch"] = 0.03
-    sdata.loc[0,"flow"] = 10.0
     print(sdata.columns)
 
     sdata_dict = {0:sdata.to_records(index=False)}
