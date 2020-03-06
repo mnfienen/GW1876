@@ -243,7 +243,7 @@ def build_daily_model():
     sdata.loc[:,"elevdn"] = strtop - slope
     sdata.loc[:,"outseg"] = sdata.nseg + 1
     sdata.loc[m_tr.nrow-1,"outseg"] = 0
-    print(sdata.columns)
+    
 
     sdata_dict = {0:sdata.to_records(index=False)}
     for kper in range(1,m_tr.nper):
@@ -551,5 +551,5 @@ def revise_base_model():
 if __name__ == "__main__":
     #revise_base_model()
     build_daily_model()
-    setup_interface_daily()
-    run_draws_and_pick_truth(run=True)
+    #setup_interface_daily()
+    #run_draws_and_pick_truth(run=True)
