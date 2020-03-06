@@ -15,7 +15,7 @@ t_d = "template_daily"
 
 
 def run_draws_and_pick_truth(run=True):
-    num_workers = 15
+    num_workers = 8
     
     pst = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
 
@@ -445,7 +445,7 @@ def setup_interface_daily():
 
     pst = pyemu.Pst(os.path.join(pst_helper.m.model_ws,"freyberg.pst"))
 
-    pe = pst_helper.draw(100)   
+    pe = pst_helper.draw(100,use_specsim=True)   
     pe.enforce()  # always a good idea!
     pe.to_binary(os.path.join(pst_helper.new_model_ws,"prior.jcb"))
     pst_helper.pst.write(os.path.join(pst_helper.m.model_ws,nam_file.replace(".nam",".pst")))
@@ -571,5 +571,5 @@ def revise_base_model():
 if __name__ == "__main__":
     #revise_base_model()
     #build_daily_model(redis_fac=5)
-    setup_interface_daily()
-    #run_draws_and_pick_truth(run=True)
+    #setup_interface_daily()
+    run_draws_and_pick_truth(run=True)
