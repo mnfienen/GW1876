@@ -269,9 +269,10 @@ def build_daily_model(redis_fac=1):
 
     if redis_fac != 1:
         assert redis_fac > 1
-        m_tr = redis.redis_freyberg(fac=redis_fac,b_d=tr_d,)
+        m_tr = redis.redis_freyberg(fac=redis_fac,b_d=tr_d,run=False)
         m_tr.change_model_ws(tr_d,reset_external=True)
         m_tr.write_input()
+        pyemu.os_utils.run("mfnwt {0}".format(tr_nam),cwd=tr_d)
    
 
     lst = flopy.utils.MfListBudget(os.path.join(tr_d,tr_nam+".list"))
@@ -305,6 +306,7 @@ def build_daily_model(redis_fac=1):
 
     for k in range(m_tr.nlay):
         np.savetxt(os.path.join(tr_d,"prsity_layer_{0}.ref".format(k+1)),np.zeros((m_tr.nrow,m_tr.ncol))+0.1,fmt="%15.6E")
+        np.savetxt(os.path.join(tr_d,"mp_ibound_{0}.ref".format(k+1)),m_tr.bas6.ibound[k].array,fmt='%3d')
 
     pyemu.os_utils.run("mp6 freyberg.mpsim",cwd=tr_d)
 
@@ -568,6 +570,6 @@ def revise_base_model():
 
 if __name__ == "__main__":
     #revise_base_model()
-    build_daily_model(redis_fac=5)
+    #build_daily_model(redis_fac=5)
     setup_interface_daily()
     #run_draws_and_pick_truth(run=True)

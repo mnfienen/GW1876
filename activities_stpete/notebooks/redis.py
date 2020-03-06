@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import flopy
 import pyemu
 
-def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
+def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam",run=True):
 
    
     mf = flopy.modflow.Modflow.load(nam_file, model_ws=b_d, verbose=True, version="mfnwt", exe_name="mfnwt")
@@ -46,7 +46,7 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
     flopy.modflow.ModflowUpw(mfr,laytyp=mf.upw.laytyp,hk=[resample_arr(a,fac) for a in mf.upw.hk.array],
                              vka=[resample_arr(a,fac) for a in mf.upw.vka.array],
                              ss=[resample_arr(a,fac) for a in mf.upw.ss.array],
-                             sy=[resample_arr(a,fac) for a in mf.upw.sy.array])
+                             sy=[resample_arr(a,fac) for a in mf.upw.sy.array],ipakcb=mf.upw.ipakcb)
     
     rech_data = {}
     for kper in range(mfr.nper):
@@ -68,7 +68,7 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
         wel_spd["j"] = (wel_spd["j"] * fac) + int(fac/2.0)
         wel_data[kper] = wel_spd
     
-    flopy.modflow.ModflowWel(mfr,stress_period_data=wel_data)
+    flopy.modflow.ModflowWel(mfr,stress_period_data=wel_data,ipakcb=mf.wel.ipakcb)
 
     #drn_spd = mf.drn.stress_period_data[0].copy()
     #drn_spd["i"] = (drn_spd["i"] * fac) + int(fac / 2.0)
@@ -87,7 +87,7 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
 
 
 
-    flopy.modflow.ModflowGhb(mfr,stress_period_data={0:drn_spd})
+    flopy.modflow.ModflowGhb(mfr,stress_period_data={0:drn_spd},ipakcb=mf.ghb.ipakcb)
 
     rdata = pd.DataFrame.from_records(mf.sfr.reach_data)
     sdata = pd.DataFrame.from_records(mf.sfr.segment_data[0])
@@ -145,50 +145,51 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
 
     mfr.write_input()
     #mfr.run_model()
-    pyemu.os_utils.run("mfnwt {0}".format(nam_file),cwd=mfr.model_ws)
+    if run:
+        pyemu.os_utils.run("mfnwt {0}".format(nam_file),cwd=mfr.model_ws)
 
 
 
-    # cbb = flopy.utils.CellBudgetFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".cbc")), model=mfr)
-    # print(cbb.textlist)
+        # cbb = flopy.utils.CellBudgetFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".cbc")), model=mfr)
+        # print(cbb.textlist)
 
-    # # reset top to be a amplified reflection on water table
-    # hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")), model=mfr)
-    # mfr.dis.top = hds.get_data()[0,:,:] * 1.05
+        # # reset top to be a amplified reflection on water table
+        # hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")), model=mfr)
+        # mfr.dis.top = hds.get_data()[0,:,:] * 1.05
 
-    # mfr.write_input()
-    # #mfr.run_model()
-    # pyemu.os_utils.run("mfnwt {0}".format(nam_file),cwd=mfr.model_ws)
+        # mfr.write_input()
+        # #mfr.run_model()
+        # pyemu.os_utils.run("mfnwt {0}".format(nam_file),cwd=mfr.model_ws)
 
-    hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")), model=mfr)
-    #hds.plot(colorbar=True)
-    #plt.show()
+        hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")), model=mfr)
+        #hds.plot(colorbar=True)
+        #plt.show()
 
-    lst = flopy.utils.MfListBudget(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".list")))
-    flx,vol = lst.get_dataframes(diff=True,start_datetime=mfr.start_datetime)
-    flx.plot(subplots=True,figsize=(20,20))
-    plt.savefig(os.path.join(redis_model_ws,"lst.pdf"))
+        lst = flopy.utils.MfListBudget(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".list")))
+        flx,vol = lst.get_dataframes(diff=True,start_datetime=mfr.start_datetime)
+        flx.plot(subplots=True,figsize=(20,20))
+        plt.savefig(os.path.join(redis_model_ws,"lst.pdf"))
 
-    hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")))
-    top = mfr.dis.top.array
-    ibound = mfr.bas6.ibound.array
-    with PdfPages(os.path.join(redis_model_ws,"hds.pdf")) as pdf:
-        for kper in range(0,mfr.nper,10): 
-            print(kper) 
-            data = hds.get_data(kstpkper=(0,kper))
-            fig,axes = plt.subplots(2,3,figsize=(10,10))
-        
-            for k in range(mfr.nlay):
-                arr = data[k,:,:].copy()
-                dtw = top - arr
-                arr[ibound[k,:,:]<=0] = np.NaN
-                dtw[ibound[k,:,:]<=0] = np.NaN
-                cb = axes[0,k].imshow(arr)
-                plt.colorbar(cb,ax=axes[0,k])
-                cb = axes[1,k].imshow(dtw)
-                plt.colorbar(cb,ax=axes[1,k])
-            pdf.savefig()#os.path.join(tr_d,"hds.pdf"))
-            plt.close(fig)
+        hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")))
+        top = mfr.dis.top.array
+        ibound = mfr.bas6.ibound.array
+        with PdfPages(os.path.join(redis_model_ws,"hds.pdf")) as pdf:
+            for kper in range(0,mfr.nper,10): 
+                print(kper) 
+                data = hds.get_data(kstpkper=(0,kper))
+                fig,axes = plt.subplots(2,3,figsize=(10,10))
+            
+                for k in range(mfr.nlay):
+                    arr = data[k,:,:].copy()
+                    dtw = top - arr
+                    arr[ibound[k,:,:]<=0] = np.NaN
+                    dtw[ibound[k,:,:]<=0] = np.NaN
+                    cb = axes[0,k].imshow(arr)
+                    plt.colorbar(cb,ax=axes[0,k])
+                    cb = axes[1,k].imshow(dtw)
+                    plt.colorbar(cb,ax=axes[1,k])
+                pdf.savefig()#os.path.join(tr_d,"hds.pdf"))
+                plt.close(fig)
     return mfr
 
 if __name__ == "__main__":
