@@ -1,6 +1,11 @@
 import os
 import numpy as np
 import pandas as pd
+from matplotlib.backends.backend_pdf import PdfPages
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+plt.rcParams['font.size']=12
+import matplotlib.pyplot as plt
 import flopy
 import pyemu
 
@@ -33,7 +38,7 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
     flopy.modflow.ModflowBas(mfr,ibound=[resample_arr(a,fac) for a in mf.bas6.ibound.array],
                              strt=[resample_arr(a,fac) for a in mf.bas6.strt.array])
 
-    flopy.modflow.ModflowNwt(mfr)
+    flopy.modflow.ModflowNwt(mfr,headtol=1.0e-5,fluxtol=10)
 
     oc_spd = {(iper,0):["save head","save budget"] for iper in range(mfr.nper)}
     flopy.modflow.ModflowOc(mfr,stress_period_data=oc_spd)
@@ -42,13 +47,11 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
                              vka=[resample_arr(a,fac) for a in mf.upw.vka.array],
                              ss=[resample_arr(a,fac) for a in mf.upw.ss.array],
                              sy=[resample_arr(a,fac) for a in mf.upw.sy.array])
-    #mfr.upw.hk = 30.
-    #mfr.upw.vka = 3
-    #mfr.upw.hk[1] = 0.1
-    #mfr.upw.vka[1] = 0.1
-    rech0 = resample_arr(mf.rch.rech[0].array,fac)
-    rech1 = resample_arr(mf.rch.rech[1].array,fac)
-    flopy.modflow.ModflowRch(mfr,rech={0:rech0,1:rech1})
+    
+    rech_data = {}
+    for kper in range(mfr.nper):
+        rech_data[kper] = resample_arr(mf.rch.rech[kper].array,fac)
+    flopy.modflow.ModflowRch(mfr,rech=rech_data)
 
     wel_spd0 = mf.wel.stress_period_data[0].copy()
     wel_spd0["i"] = (wel_spd0["i"] * fac) + int(fac/2.0)
@@ -58,16 +61,22 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
     wel_spd1["j"] = (wel_spd1["j"] * fac) + int(fac/2.0)
     #print(mf.wel.stress_period_data[0]["i"],wel_spd["i"])
     #print(39 * fac + int(fac/2.0))
-    wel_dat = {0:wel_spd0,1:wel_spd1}
-    flopy.modflow.ModflowWel(mfr,stress_period_data=wel_dat)
+    wel_data = {}
+    for kper in range(mfr.nper):
+        wel_spd = mf.wel.stress_period_data[kper].copy()
+        wel_spd["i"] = (wel_spd["i"] * fac) + int(fac/2.0)
+        wel_spd["j"] = (wel_spd["j"] * fac) + int(fac/2.0)
+        wel_data[kper] = wel_spd
+    
+    flopy.modflow.ModflowWel(mfr,stress_period_data=wel_data)
 
     #drn_spd = mf.drn.stress_period_data[0].copy()
     #drn_spd["i"] = (drn_spd["i"] * fac) + int(fac / 2.0)
     #drn_spd["j"] = (drn_spd["j"] * fac) + int(fac / 2.0)
     drn_spd = []
-    print(mf.drn.stress_period_data[0].dtype)
-    drn_stage = mf.drn.stress_period_data[0]["elev"][0]
-    drn_cond = mf.drn.stress_period_data[0]["cond"][0]
+    print(mf.ghb.stress_period_data[0].dtype)
+    drn_stage = mf.ghb.stress_period_data[0]["bhead"][0]
+    drn_cond = mf.ghb.stress_period_data[0]["cond"][0]
     i = mfr.nrow - 1
     ib = mfr.bas6.ibound[0].array
     for j in range(mfr.ncol):
@@ -78,7 +87,7 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
 
 
 
-    flopy.modflow.ModflowDrn(mfr,stress_period_data={0:drn_spd})
+    flopy.modflow.ModflowGhb(mfr,stress_period_data={0:drn_spd})
 
     rdata = pd.DataFrame.from_records(mf.sfr.reach_data)
     sdata = pd.DataFrame.from_records(mf.sfr.segment_data[0])
@@ -140,25 +149,48 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam"):
 
 
 
-    cbb = flopy.utils.CellBudgetFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".cbc")), model=mfr)
-    print(cbb.textlist)
+    # cbb = flopy.utils.CellBudgetFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".cbc")), model=mfr)
+    # print(cbb.textlist)
 
-    # reset top to be a amplified reflection on water table
-    hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")), model=mfr)
-    mfr.dis.top = hds.get_data()[0,:,:] * 1.05
+    # # reset top to be a amplified reflection on water table
+    # hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")), model=mfr)
+    # mfr.dis.top = hds.get_data()[0,:,:] * 1.05
 
-    mfr.write_input()
-    #mfr.run_model()
-    pyemu.os_utils.run("mfnwt {0}".format(nam_file),cwd=mfr.model_ws)
+    # mfr.write_input()
+    # #mfr.run_model()
+    # pyemu.os_utils.run("mfnwt {0}".format(nam_file),cwd=mfr.model_ws)
 
     hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")), model=mfr)
     #hds.plot(colorbar=True)
     #plt.show()
 
-    mlist = flopy.utils.MfListBudget(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".list")))
-    df = mlist.get_dataframes(diff=True)[1]
-    #df.plot()
-    #plt.show()
+    lst = flopy.utils.MfListBudget(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".list")))
+    flx,vol = lst.get_dataframes(diff=True,start_datetime=mfr.start_datetime)
+    flx.plot(subplots=True,figsize=(20,20))
+    plt.savefig(os.path.join(redis_model_ws,"lst.pdf"))
+
+    hds = flopy.utils.HeadFile(os.path.join(redis_model_ws, mfr.namefile.replace(".nam", ".hds")))
+    top = mfr.dis.top.array
+    ibound = mfr.bas6.ibound.array
+    with PdfPages(os.path.join(redis_model_ws,"hds.pdf")) as pdf:
+        for kper in range(0,mfr.nper,10): 
+            print(kper) 
+            data = hds.get_data(kstpkper=(0,kper))
+            fig,axes = plt.subplots(2,3,figsize=(10,10))
+        
+            for k in range(mfr.nlay):
+                arr = data[k,:,:].copy()
+                dtw = top - arr
+                arr[ibound[k,:,:]<=0] = np.NaN
+                dtw[ibound[k,:,:]<=0] = np.NaN
+                cb = axes[0,k].imshow(arr)
+                plt.colorbar(cb,ax=axes[0,k])
+                cb = axes[1,k].imshow(dtw)
+                plt.colorbar(cb,ax=axes[1,k])
+            pdf.savefig()#os.path.join(tr_d,"hds.pdf"))
+            plt.close(fig)
     return mfr
 
+if __name__ == "__main__":
+    redis_freyberg(5,b_d="temp_daily")
 

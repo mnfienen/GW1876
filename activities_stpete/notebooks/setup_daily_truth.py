@@ -9,6 +9,7 @@ plt.rcParams['font.size']=12
 import flopy
 import pyemu
 import prep_deps
+import redis
 
 t_d = "template_daily"
 
@@ -155,7 +156,7 @@ def run_draws_and_pick_truth(run=True):
     #pst_base = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
     
 
-def build_daily_model():
+def build_daily_model(redis_fac=1):
     org_d = os.path.join("..","base_model_files")
     org_nam = "freyberg.nam"
 
@@ -261,7 +262,17 @@ def build_daily_model():
 
     prep_deps.prep_template(tr_d)
 
+    
+
+
     pyemu.os_utils.run("mfnwt {0}".format(tr_nam),cwd=tr_d)
+
+    if redis_fac != 1:
+        assert redis_fac > 1
+        m_tr = redis.redis_freyberg(fac=redis_fac,b_d=tr_d,)
+        m_tr.change_model_ws(tr_d,reset_external=True)
+        m_tr.write_input()
+   
 
     lst = flopy.utils.MfListBudget(os.path.join(tr_d,tr_nam+".list"))
     flx,vol = lst.get_dataframes(diff=True,start_datetime=m_tr.start_datetime)
@@ -340,14 +351,18 @@ def setup_interface_daily():
     sfr_obs_dict = {}
     sfr_obs_dict["hw"] = np.arange(1,int(m.nrow/2))
     sfr_obs_dict["tw"] = np.arange(int(m.nrow/2),m.nrow)
-    sfr_obs_dict["gage_1"] = [39]
+    sfr_obs_dict["gage_1"] = [m.nrow-1]
+
+    # work out the redis factor
+    redis_fac = int(m.nrow / 40) 
+
 
     pst_helper = pyemu.helpers.PstFromFlopyModel(nam_file,new_model_ws=t_d,org_model_ws="temp",
                                                  const_props=const_props,spatial_list_props=spatial_list_props,
                                                  temporal_list_props=temporal_list_props,remove_existing=True,
                                                  grid_props=props,pp_props=props,sfr_pars=["strk"],hds_kperk=hds_kperk,
                                                  sfr_obs=sfr_obs_dict,build_prior=False,model_exe_name="mfnwt",
-                                                 pp_space=4)
+                                                 pp_space=4 * redis_fac)
     prep_deps.prep_template(t_d=pst_helper.new_model_ws)
 
     pst = pst_helper.pst
@@ -367,8 +382,11 @@ def setup_interface_daily():
     obs_locs = pd.read_csv(os.path.join("..","base_model_files","obs_loc.csv"))
     #build obs names that correspond to the obsnme values in the control file
     obs_locs.loc[:,"site"] = obs_locs.apply(lambda x: "trgw_{0:03d}_{1:03d}".format(x.row-1,x.col-1),axis=1)
+    # work out where the obs are in the redis'd model - we use org row col in the 
+    # obs names for aligning later...
+    obs_locs.loc[:,"row"] = (obs_locs.row * redis_fac) + int(redis_fac/2.0)
+    obs_locs.loc[:,"col"] = (obs_locs.col * redis_fac) + int(redis_fac/2.0)
     kij_dict = {site:(2,r-1,c-1) for site,r,c in zip(obs_locs.site,obs_locs.row,obs_locs.col)}
-
 
     binary_file = os.path.join(pst_helper.m.model_ws,nam_file.replace(".nam",".hds"))
     frun_line,tr_hds_df = pyemu.gw_utils.setup_hds_timeseries(binary_file,kij_dict=kij_dict,include_path=True,model=pst_helper.m)
@@ -550,6 +568,6 @@ def revise_base_model():
 
 if __name__ == "__main__":
     #revise_base_model()
-    build_daily_model()
-    #setup_interface_daily()
+    build_daily_model(redis_fac=5)
+    setup_interface_daily()
     #run_draws_and_pick_truth(run=True)
