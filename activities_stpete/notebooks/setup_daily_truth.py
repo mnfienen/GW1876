@@ -54,9 +54,9 @@ def run_draws_and_pick_truth(run=True):
     #forecast = "part_time"
     print(forecast)
 
-    with PdfPages(os.path.join(m_d,"forecast_histo.pdf")) as pdf:
+    with PdfPages(os.path.join(m_d,"forecast_histo_full.pdf")) as pdf:
         for forecast in pst.forecast_names:
-            fig,ax = plt.subplots(1,1,figsize=10,10)
+            fig,ax = plt.subplots(1,1,figsize=(10,10))
             fore_df.loc[:,forecast].hist(bins=20,ax=ax)
             ax.set_title(forecast)
             pdf.savefig()
@@ -74,7 +74,7 @@ def run_draws_and_pick_truth(run=True):
 
     with PdfPages(os.path.join(m_d,"forecast_histo.pdf")) as pdf:
         for forecast in pst.forecast_names:
-            fig,ax = plt.subplots(1,1,figsize=10,10)
+            fig,ax = plt.subplots(1,1,figsize=(10,10))
             fore_df.loc[:,forecast].hist(bins=20,ax=ax)
             ylim = ax.get_ylim()
             v = fore_df.loc[idx,forecast]
