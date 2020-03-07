@@ -19,14 +19,15 @@ def run_draws_and_pick_truth(run=True):
     
     pst = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
 
-    pe = pyemu.ParameterEnsemble.from_binary(pst=pst,filename=os.path.join(t_d,"prior.jcb"))
-    #pe.loc[:,should_fix] = 1.0
-    pe.to_csv(os.path.join(t_d,"sweep_in.csv"))
-    pe.shape
+    
 
 
     m_d = "master_truth_sweep"
     if run:
+        pe = pyemu.ParameterEnsemble.from_binary(pst=pst,filename=os.path.join(t_d,"prior.jcb"))
+        #pe.loc[:,should_fix] = 1.0
+        pe.to_csv(os.path.join(t_d,"sweep_in.csv"))
+        pe.shape
         pst.pestpp_options["overdue_giveup_fac"] = 1.5
         pst.write(os.path.join(t_d,"freyberg.pst"))
         pyemu.os_utils.start_workers(t_d,"pestpp-swp","freyberg.pst",num_workers=num_workers,worker_root=".",master_dir=m_d)
@@ -52,12 +53,35 @@ def run_draws_and_pick_truth(run=True):
     forecast = pst.forecast_names[0]
     #forecast = "part_time"
     print(forecast)
+
+    with PdfPages(os.path.join(m_d,"forecast_histo.pdf")) as pdf:
+        for forecast in pst.forecast_names:
+            fig,ax = plt.subplots(1,1,figsize=10,10)
+            fore_df.loc[:,forecast].hist(bins=20,ax=ax)
+            ax.set_title(forecast)
+            pdf.savefig()
+            plt.close(fig)
+
+    #only use forecasts where particle has reached an endpoint
+    fore_df = fore_df.loc[fore_df.part_status==2,:]
+    fore_df = fore_df.loc[fore_df.part_time>0,:]
     sorted_vals = fore_df.loc[:,forecast].sort_values()
 
-
-    idx = sorted_vals.index[25]
+    idx = sorted_vals.index[int(sorted_vals.shape[0]*.5)]
     print(fore_df.loc[idx,:])
     print(obs_df.loc[idx,pst.forecast_names])
+
+
+    with PdfPages(os.path.join(m_d,"forecast_histo.pdf")) as pdf:
+        for forecast in pst.forecast_names:
+            fig,ax = plt.subplots(1,1,figsize=10,10)
+            fore_df.loc[:,forecast].hist(bins=20,ax=ax)
+            ylim = ax.get_ylim()
+            v = fore_df.loc[idx,forecast]
+            ax.plot([v,v],ylim,"r-")
+            ax.set_title(forecast)
+            pdf.savefig()
+            plt.close(fig)
 
     pst = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
     obs = pst.observation_data
@@ -331,7 +355,7 @@ def setup_interface_daily():
     pyemu.os_utils.run("{0} {1}".format(m.exe_name,m.name+".nam"),cwd=m.model_ws)
 
     props = []
-    paks = ["upw.hk","upw.vka","upw.ss","upw.sy","bas6.strt","extra.prsity"]  #"extra" because not a modflow parameter
+    paks = ["upw.hk","upw.vka","upw.ss","upw.sy","extra.prsity"]  #"extra" because not a modflow parameter
     for k in range(m.nlay):
         props.extend([[p,k] for p in paks])
     const_props = props.copy()
@@ -341,12 +365,12 @@ def setup_interface_daily():
         const_props.append(["rch.rech",kper])
 
     spatial_list_props = [["wel.flux",2],["ghb.cond",0],["ghb.cond",1],["ghb.cond",2]]  # spatially by each list entry, across all stress periods
-    temporal_list_props = [["wel.flux",kper] for kper in range(m.nper)]  # spatially uniform for each stress period
+    temporal_list_props = [["wel.flux",kper] for kper in range(1,m.nper)]  # spatially uniform for each stress period
 
     spatial_list_props, temporal_list_props
 
     dry_kper = int(m.nper * 0.85)
-    hds_kperk = [[kper,k] for k in range(m.nlay) for kper in [0,dry_kper,m.nper-1]]
+    hds_kperk = [[kper,k] for k in range(m.nlay) for kper in [dry_kper,m.nper-1]]
 
     hds_kperk
 
@@ -571,5 +595,5 @@ def revise_base_model():
 if __name__ == "__main__":
     #revise_base_model()
     #build_daily_model(redis_fac=5)
-    #setup_interface_daily()
+    setup_interface_daily()
     run_draws_and_pick_truth(run=True)
