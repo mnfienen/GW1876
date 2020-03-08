@@ -217,10 +217,10 @@ def build_daily_model(redis_fac=1):
     _ = flopy.modflow.ModflowOc(m_tr,stress_period_data={(kper,0):["save head","save budget"] for kper in range(m_tr.nper)})
 
     angles = np.linspace(-np.pi, np.pi, tr_nper)
-    season_mults = 1.0 + 0.65*np.sin(1 + angles*2)
+    season_mults = 1.0 + 0.95*np.sin(1 + angles*2)
     season_mults = np.roll(season_mults,int(tr_nper / 8))
     wel_season_mults = np.roll(season_mults,int(tr_nper / 4))
-    
+
     org_wel_data = m_org.wel.stress_period_data[0]
     org_rch = m_org.rch.rech[0].array
     wel_data = {0:org_wel_data}
@@ -405,13 +405,14 @@ def setup_interface_daily():
 
     obs_locs = pd.read_csv(os.path.join("..","base_model_files","obs_loc.csv"))
     #build obs names that correspond to the obsnme values in the control file
-    obs_locs.loc[:,"site"] = obs_locs.apply(lambda x: "trgw_{0:03d}_{1:03d}".format(x.row-1,x.col-1),axis=1)
+    obs_locs.loc[:,"site"] = obs_locs.apply(lambda x: "trgw_02_{0:03d}_{1:03d}".format(x.row-1,x.col-1),axis=1)
     # work out where the obs are in the redis'd model - we use org row col in the 
     # obs names for aligning later...
     obs_locs.loc[:,"row"] = (obs_locs.row * redis_fac) + int(redis_fac/2.0)
     obs_locs.loc[:,"col"] = (obs_locs.col * redis_fac) + int(redis_fac/2.0)
     kij_dict = {site:(2,r-1,c-1) for site,r,c in zip(obs_locs.site,obs_locs.row,obs_locs.col)}
-
+    for site,r,c in zip(obs_locs.site,obs_locs.row,obs_locs.col):
+        kij_dict[site.replace("_02_","_00_")] = (0,r-1,c-1)
     binary_file = os.path.join(pst_helper.m.model_ws,nam_file.replace(".nam",".hds"))
     frun_line,tr_hds_df = pyemu.gw_utils.setup_hds_timeseries(binary_file,kij_dict=kij_dict,include_path=True,model=pst_helper.m)
     pst_helper.frun_post_lines.append(frun_line)
@@ -594,5 +595,5 @@ def revise_base_model():
 if __name__ == "__main__":
     #revise_base_model()
     #build_daily_model(redis_fac=3)
-    #setup_interface_daily()
+    setup_interface_daily()
     run_draws_and_pick_truth(run=True)
