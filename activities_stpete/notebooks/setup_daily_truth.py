@@ -19,9 +19,6 @@ def run_draws_and_pick_truth(run=True):
     
     pst = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
 
-    
-
-
     m_d = "master_truth_sweep"
     if run:
         pe = pyemu.ParameterEnsemble.from_binary(pst=pst,filename=os.path.join(t_d,"prior.jcb"))
@@ -50,7 +47,7 @@ def run_draws_and_pick_truth(run=True):
         else:
             fore_df.loc[:,forecast] = obs_df.loc[:,forecast]
     
-    forecast = pst.forecast_names[0]
+    forecast = pst.forecast_names[1]
     #forecast = "part_time"
     print(forecast)
 
@@ -67,7 +64,7 @@ def run_draws_and_pick_truth(run=True):
     fore_df = fore_df.loc[fore_df.part_time>0,:]
     sorted_vals = fore_df.loc[:,forecast].sort_values()
 
-    idx = sorted_vals.index[int(sorted_vals.shape[0]*.5)]
+    idx = sorted_vals.index[int(sorted_vals.shape[0]*.25)]
     print(fore_df.loc[idx,:])
     print(obs_df.loc[idx,pst.forecast_names])
 
@@ -216,11 +213,12 @@ def build_daily_model(redis_fac=1):
     _ = flopy.modflow.ModflowUpw(m_tr,ipakcb=50,laytyp=[1,0,0],hk=m_org.upw.hk.array,
                                  vka=m_org.upw.vka.array,ss=m_org.upw.ss.array,sy=m_org.upw.sy.array)
 
-    _ = flopy.modflow.ModflowNwt(m_tr,headtol=0.01,fluxtol=1.0)
+    _ = flopy.modflow.ModflowNwt(m_tr)#,headtol=0.01,fluxtol=1.0)
     _ = flopy.modflow.ModflowOc(m_tr,stress_period_data={(kper,0):["save head","save budget"] for kper in range(m_tr.nper)})
 
     angles = np.linspace(-np.pi, np.pi, tr_nper)
     season_mults = 1.0 + 0.65*np.sin(1 + angles*2)
+    season_mults = np.roll(season_mults,int(tr_nper / 8))
     wel_season_mults = np.roll(season_mults,int(tr_nper / 4))
     
     org_wel_data = m_org.wel.stress_period_data[0]
@@ -449,7 +447,8 @@ def setup_interface_daily():
                    np.zeros((m.nrow,m.ncol))+0.001,fmt="%15.6E")
 
     par = pst.parameter_data  
-    tag_dict = {"hk":[0.1,10.0],"vka":[0.1,10],"strt":[0.95,1.05],"pr":[0.8,1.2],"rech":[0.8,1.2]}
+    tag_dict = {"hk":[0.1,10.0],"vka":[0.1,10],"strt":[0.95,1.05],"pr":[0.8,1.2],"rech":[0.8,1.2],
+                "wf":[0.8,1.2],"welflux":[0.8,1.2]}
     for t,[l,u] in tag_dict.items():
         t_pars = par.loc[par.parnme.apply(lambda x: t in x ),"parnme"]
         par.loc[t_pars,"parubnd"] = u
@@ -469,7 +468,7 @@ def setup_interface_daily():
 
     pst = pyemu.Pst(os.path.join(pst_helper.m.model_ws,"freyberg.pst"))
 
-    pe = pst_helper.draw(100,use_specsim=True)   
+    pe = pst_helper.draw(200,use_specsim=True)   
     pe.enforce()  # always a good idea!
     pe.to_binary(os.path.join(pst_helper.new_model_ws,"prior.jcb"))
     pst_helper.pst.write(os.path.join(pst_helper.m.model_ws,nam_file.replace(".nam",".pst")))
@@ -594,6 +593,6 @@ def revise_base_model():
 
 if __name__ == "__main__":
     #revise_base_model()
-    #build_daily_model(redis_fac=5)
-    setup_interface_daily()
+    #build_daily_model(redis_fac=3)
+    #setup_interface_daily()
     run_draws_and_pick_truth(run=True)
