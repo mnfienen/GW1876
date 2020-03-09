@@ -38,7 +38,7 @@ def redis_freyberg(fac=3,b_d="temp",nam_file="freyberg.nam",run=True):
     flopy.modflow.ModflowBas(mfr,ibound=[resample_arr(a,fac) for a in mf.bas6.ibound.array],
                              strt=[resample_arr(a,fac) for a in mf.bas6.strt.array])
 
-    flopy.modflow.ModflowNwt(mfr,headtol=1.0e-5,fluxtol=10)
+    flopy.modflow.ModflowNwt(mfr,headtol=1.0e-5,fluxtol=10,Continue=True)
 
     oc_spd = {(iper,0):["save head","save budget"] for iper in range(mfr.nper)}
     flopy.modflow.ModflowOc(mfr,stress_period_data=oc_spd)

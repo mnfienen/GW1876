@@ -64,7 +64,7 @@ def run_draws_and_pick_truth(run=True):
     fore_df = fore_df.loc[fore_df.part_time>0,:]
     sorted_vals = fore_df.loc[:,forecast].sort_values()
 
-    idx = sorted_vals.index[int(sorted_vals.shape[0]*.25)]
+    idx = sorted_vals.index[int(sorted_vals.shape[0]*.65)]
     print(fore_df.loc[idx,:])
     print(obs_df.loc[idx,pst.forecast_names])
 
@@ -108,19 +108,17 @@ def run_draws_and_pick_truth(run=True):
     pst.observation_data.loc[fo_obs.obsnme,"obsval"] += fo_noise
 
     # Just for fun, lets have some "model error"
-    obs = pst.observation_data
-    offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_02_015_016" in x),"obsnme"]
-    pst.observation_data.loc[offset_names[:300],"obsval"] -= 3
-    pst.observation_data.loc[offset_names[300:],"obsval"] += 3
-    offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_02_009_001" in x),"obsnme"]
-    trend = np.linspace(0.0,3.0,offset_names.shape[0])
-    #pst.observation_data.loc[offset_names[:100],"obsval"] -= 3
-    #pst.observation_data.loc[offset_names[600:],"obsval"] -= 3
-    pst.observation_data.loc[offset_names,"obsval"] += trend
+    # obs = pst.observation_data
+    # offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_02_015_016" in x),"obsnme"]
+    # pst.observation_data.loc[offset_names[:300],"obsval"] -= 3
+    # pst.observation_data.loc[offset_names[300:],"obsval"] += 3
+    # offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_02_009_001" in x),"obsnme"]
+    # trend = np.linspace(0.0,3.0,offset_names.shape[0])
+    # pst.observation_data.loc[offset_names,"obsval"] += trend
 
-    #add a trend to the flow obs
-    trend = np.linspace(0.4,1.6,fo_obs.shape[0])
-    pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
+    # #add a trend to the flow obs
+    # trend = np.linspace(0.4,1.6,fo_obs.shape[0])
+    # pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
 
     #add some "spikes"
     #spike_idxs = np.random.randint(0,fo_obs.shape[0],40)
@@ -213,7 +211,7 @@ def build_daily_model(redis_fac=1):
     _ = flopy.modflow.ModflowUpw(m_tr,ipakcb=50,laytyp=[1,0,0],hk=m_org.upw.hk.array,
                                  vka=m_org.upw.vka.array,ss=m_org.upw.ss.array,sy=m_org.upw.sy.array)
 
-    _ = flopy.modflow.ModflowNwt(m_tr)#,headtol=0.01,fluxtol=1.0)
+    _ = flopy.modflow.ModflowNwt(m_tr,Continue=True)#,headtol=0.01,fluxtol=1.0)
     _ = flopy.modflow.ModflowOc(m_tr,stress_period_data={(kper,0):["save head","save budget"] for kper in range(m_tr.nper)})
 
     angles = np.linspace(-np.pi, np.pi, tr_nper)
@@ -322,6 +320,29 @@ def build_daily_model(redis_fac=1):
                 cb = axes[1,k].imshow(dtw)
                 plt.colorbar(cb,ax=axes[1,k])
             pdf.savefig()#os.path.join(tr_d,"hds.pdf"))
+            plt.close(fig)
+
+    obs_df = pd.read_csv(os.path.join(org_d,"obs_loc.csv"))
+    obs_df.loc[:,"row"] *= redis_fac
+    obs_df.loc[:,"col"] *= redis_fac  
+
+    with PdfPages(os.path.join(tr_d,"hds_ts.pdf")) as pdf:
+        for r,c in zip(obs_df.row,obs_df.col):
+            ts = hds.get_ts((2,r-1,c-1))
+            fig,ax = plt.subplots(1,1,figsize=(10,3))
+            ax.scatter(ts[:,0],ts[:,1])
+            xlim = ax.get_xlim()
+            ax.plot(xlim,[top[r-1,c-1],top[r-1,c-1]],"k-")
+            ax.set_title("{0} {1} {2}".format(2,r-1,c-1))
+            pdf.savefig()
+            plt.close(fig)
+            ts = hds.get_ts((0,r-1,c-1))
+            fig,ax = plt.subplots(1,1,figsize=(10,3))
+            ax.scatter(ts[:,0],ts[:,1])
+            xlim = ax.get_xlim()
+            ax.plot(xlim,[top[r-1,c-1],top[r-1,c-1]],"k-")
+            ax.set_title("{0} {1} {2}".format(0,r-1,c-1))
+            pdf.savefig()
             plt.close(fig)
 
     mp_files = [f for f in os.listdir(org_d) if "mp" in f or "location" in f]
@@ -595,6 +616,6 @@ def revise_base_model():
 
 if __name__ == "__main__":
     #revise_base_model()
-    build_daily_model(redis_fac=3)
+    #build_daily_model(redis_fac=3)
     setup_interface_daily()
     run_draws_and_pick_truth(run=True)
