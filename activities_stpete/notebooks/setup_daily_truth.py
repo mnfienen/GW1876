@@ -109,10 +109,10 @@ def run_draws_and_pick_truth(run=True):
 
     # Just for fun, lets have some "model error"
     obs = pst.observation_data
-    offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_015_016" in x),"obsnme"]
+    offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_02_015_016" in x),"obsnme"]
     pst.observation_data.loc[offset_names[:300],"obsval"] -= 3
     pst.observation_data.loc[offset_names[300:],"obsval"] += 3
-    offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_009_001" in x),"obsnme"]
+    offset_names = obs.loc[obs.obsnme.apply(lambda x: "trgw_02_009_001" in x),"obsnme"]
     trend = np.linspace(0.0,3.0,offset_names.shape[0])
     #pst.observation_data.loc[offset_names[:100],"obsval"] -= 3
     #pst.observation_data.loc[offset_names[600:],"obsval"] -= 3
@@ -123,9 +123,9 @@ def run_draws_and_pick_truth(run=True):
     pst.observation_data.loc[fo_obs.obsnme,"obsval"] *= trend
 
     #add some "spikes"
-    spike_idxs = np.random.randint(0,fo_obs.shape[0],40)
-    spike_names = fo_obs.obsnme.iloc[spike_idxs]
-    pst.observation_data.loc[spike_names,"obsval"] *= 3.5
+    #spike_idxs = np.random.randint(0,fo_obs.shape[0],40)
+    #spike_names = fo_obs.obsnme.iloc[spike_idxs]
+    #pst.observation_data.loc[spike_names,"obsval"] *= 3.5
 
     nz_obs = pst.observation_data.loc[pst.nnz_obs_names,:].copy()
     nz_obs.loc[:,"datetime"] = pd.to_datetime(nz_obs.obsnme.apply(lambda x: x.split("_")[-1]))
@@ -293,6 +293,7 @@ def build_daily_model(redis_fac=1):
         assert redis_fac > 1
         m_tr = redis.redis_freyberg(fac=redis_fac,b_d=tr_d,run=False)
         m_tr.change_model_ws(tr_d,reset_external=True)
+        m_tr.dis.start_datetime = model_start_datetime
         m_tr.write_input()
         pyemu.os_utils.run("mfnwt {0}".format(tr_nam),cwd=tr_d)
    
@@ -469,7 +470,7 @@ def setup_interface_daily():
 
     pst = pyemu.Pst(os.path.join(pst_helper.m.model_ws,"freyberg.pst"))
 
-    pe = pst_helper.draw(200,use_specsim=True)   
+    pe = pst_helper.draw(100,use_specsim=True)   
     pe.enforce()  # always a good idea!
     pe.to_binary(os.path.join(pst_helper.new_model_ws,"prior.jcb"))
     pst_helper.pst.write(os.path.join(pst_helper.m.model_ws,nam_file.replace(".nam",".pst")))
@@ -477,7 +478,7 @@ def setup_interface_daily():
     obs = pst_helper.pst.observation_data
     dts = pd.to_datetime(pst_helper.m.start_datetime) + pd.to_timedelta(np.cumsum(pst_helper.m.dis.perlen.array),unit='d')
     dts_str = list(dts.map(lambda x: x.strftime("%Y%m%d")).values)
-    dry_kper = int(pst_helper.m.nper * 0.85)
+    dry_kper = pst_helper.m.nper - 1
     dry_dt = dts_str[dry_kper]
     print(dry_dt)
     swgw_forecasts = obs.loc[obs.obsnme.apply(lambda x: "fa" in x and ("hw" in x or "tw" in x) and dry_dt in x),"obsnme"].tolist()
@@ -594,6 +595,6 @@ def revise_base_model():
 
 if __name__ == "__main__":
     #revise_base_model()
-    #build_daily_model(redis_fac=3)
+    build_daily_model(redis_fac=3)
     setup_interface_daily()
     run_draws_and_pick_truth(run=True)
