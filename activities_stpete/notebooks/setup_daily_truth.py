@@ -14,8 +14,7 @@ import redis
 t_d = "template_daily"
 
 
-def run_draws_and_pick_truth(run=True):
-    num_workers = 8
+def run_draws_and_pick_truth(run=True,num_workers=10):
     
     pst = pyemu.Pst(os.path.join(t_d,"freyberg.pst"))
 
@@ -137,8 +136,9 @@ def run_draws_and_pick_truth(run=True):
             ax.plot(nz_obs_group.datetime,obs_df.loc[idx,nz_obs_group.obsnme],"b-")
             #ax.plot(nz_obs_group.datetime, pst_base.observation_data.loc[nz_obs_group.obsnme,"obsval"],"g-")
             if (nz_group.startswith("trgw")):
-                i = int(nz_group.split('_')[1])
-                j = int(nz_group.split('_')[2])
+                i = int(nz_group.split('_')[2])
+                j = int(nz_group.split('_')[3])
+                print(nz_group,i,j)
                 t = m.dis.top.array[i,j]
                 ax.plot(ax.get_xlim(),[t,t],"k--")
                 
@@ -430,8 +430,9 @@ def setup_interface_daily():
     obs_locs.loc[:,"site"] = obs_locs.apply(lambda x: "trgw_02_{0:03d}_{1:03d}".format(x.row-1,x.col-1),axis=1)
     # work out where the obs are in the redis'd model - we use org row col in the 
     # obs names for aligning later...
-    obs_locs.loc[:,"row"] = (obs_locs.row * redis_fac) + int(redis_fac/2.0)
-    obs_locs.loc[:,"col"] = (obs_locs.col * redis_fac) + int(redis_fac/2.0)
+    if int(redis_fac) != 1:
+        obs_locs.loc[:,"row"] = (obs_locs.row * redis_fac) + int(redis_fac/2.0)
+        obs_locs.loc[:,"col"] = (obs_locs.col * redis_fac) + int(redis_fac/2.0)
     kij_dict = {site:(2,r-1,c-1) for site,r,c in zip(obs_locs.site,obs_locs.row,obs_locs.col)}
     for site,r,c in zip(obs_locs.site,obs_locs.row,obs_locs.col):
         kij_dict[site.replace("_02_","_00_")] = (0,r-1,c-1)
@@ -616,6 +617,6 @@ def revise_base_model():
 
 if __name__ == "__main__":
     #revise_base_model()
-    #build_daily_model(redis_fac=3)
+    build_daily_model(redis_fac=1)
     setup_interface_daily()
-    run_draws_and_pick_truth(run=True)
+    run_draws_and_pick_truth(run=True,num_workers=12)
